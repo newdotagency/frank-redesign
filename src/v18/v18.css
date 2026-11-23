@@ -1,0 +1,4 @@
+/* V18 — page background (shared V9 styles come from ../v9/v9.css). */
+html,body{background:#ffffff}
+/* What is Frank — the play dot grows a touch under the pointer (hover-capable devices only). */
+@media (hover: hover) and (pointer: fine){ .wf-play .wf-dot{transition:transform .2s cubic-bezier(.23,1,.32,1)} .wf-play:hover .wf-dot{transform:scale(1.06)} }

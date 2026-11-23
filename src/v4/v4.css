@@ -1,0 +1,7 @@
+/* V4 — calm flat hero on #fffdf3. */
+html,body{background:#efe9d9}
+
+/* Interview waveform: each hairline bar breathes on a slow, offset cycle (never in unison). */
+@keyframes wave-bar{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.wave-bar{transform-box:fill-box;transform-origin:center;animation:wave-bar 2.6s cubic-bezier(.45,0,.55,1) infinite}
+@media (prefers-reduced-motion:reduce){.wave-bar{animation:none}}

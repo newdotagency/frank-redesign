@@ -1,0 +1,12 @@
+/* ClosingCTA: the pills' slow float and the interview pill's waveform. Classes are only set while the
+   card is on screen and motion is allowed. */
+@keyframes cta-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.cta-float { animation: cta-float var(--dur, 6s) cubic-bezier(0.45, 0, 0.55, 1) var(--delay, 0s) infinite; }
+@keyframes cta-wave { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+.cta-wave i { display: block; width: 2px; height: 14px; border-radius: 2px; background: currentColor; }
+.cta-wave.on i { animation: cta-wave 1.1s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+.cta-wave.on i:nth-child(2) { animation-delay: -0.35s; }
+.cta-wave.on i:nth-child(3) { animation-delay: -0.7s; }
+.cta-wave.on i:nth-child(4) { animation-delay: -0.15s; }
+.cta-wave:not(.on) i { transform: scaleY(0.55); }
+@media (prefers-reduced-motion: reduce) { .cta-float, .cta-wave.on i { animation: none; } }

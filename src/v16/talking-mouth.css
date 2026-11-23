@@ -1,0 +1,24 @@
+/* MouthTile — lip-sync frames on a 2.4 s loop (12 slots of 0.2 s, step-end so shapes snap like
+   hand-drawn frames): closed · ah · ee · ah · oo · closed · ee · ah · ee · oo · closed · closed. */
+
+.tm-f{opacity:0}
+.tm-closed{animation:tm-closed 2.4s step-end infinite}
+.tm-ah{animation:tm-ah 2.4s step-end infinite}
+.tm-ee{animation:tm-ee 2.4s step-end infinite}
+.tm-oo{animation:tm-oo 2.4s step-end infinite}
+@keyframes tm-closed{0%{opacity:1}8.33%{opacity:0}41.67%{opacity:1}50%{opacity:0}83.33%,100%{opacity:1}}
+@keyframes tm-ah{0%{opacity:0}8.33%{opacity:1}16.67%{opacity:0}25%{opacity:1}33.33%{opacity:0}58.33%{opacity:1}66.67%,100%{opacity:0}}
+@keyframes tm-ee{0%{opacity:0}16.67%{opacity:1}25%{opacity:0}50%{opacity:1}58.33%{opacity:0}66.67%{opacity:1}75%,100%{opacity:0}}
+@keyframes tm-oo{0%{opacity:0}33.33%{opacity:1}41.67%{opacity:0}75%{opacity:1}83.33%,100%{opacity:0}}
+
+/* Sound arcs at both corners, only while the mouth is open. */
+.tm-wave{opacity:0;animation:tm-wave 2.4s step-end infinite}
+@keyframes tm-wave{0%{opacity:0}8.33%{opacity:1}41.67%{opacity:0}50%{opacity:1}83.33%,100%{opacity:0}}
+
+/* Reduced motion: hold the open "ah" shape with its sound arcs, nothing moves. */
+@media (prefers-reduced-motion: reduce){
+  .tm *{animation:none !important}
+  .tm-ah,.tm-wave{opacity:1}
+}
+.rt-still .tm *{animation:none !important}
+.rt-still .tm-ah,.rt-still .tm-wave{opacity:1}

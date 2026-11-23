@@ -1,0 +1,23 @@
+/* V19 — page background (shared V9 styles come from ../v9/v9.css). */
+html,body{background:#ffffff}
+
+/* Titles: Figtree medium, set tight, with the italic phrase in Lora italic (every h1/h2 and the
+   How it works step titles). Quotes on the call cards stay Lora. */
+.v19 :is(h1, h2), .v19 .hiw-step-title { font-family: 'Figtree', 'Geist', ui-sans-serif, system-ui, sans-serif; font-weight: 500; letter-spacing: -0.035em; }
+/* The Lora italic phrase sits a touch smaller than the Figtree words around it. */
+.v19 :is(h1, h2) .italic { font-family: 'Lora', Georgia, serif; font-style: italic; font-weight: 400; font-size: 0.92em; letter-spacing: -0.02em; }
+
+/* Title sizes: first screen 72px (the tunnel), chat screen 64px (AppV19); section titles are 56px. */
+.v19 :is(#wf-title, #hiw-title, #ie-title, #wg-title, #uc-title, #ag-title, #ft-title, #faq-title, #cta-title) { font-size: clamp(32px, 4.4vw, 56px); }
+
+/* How it works: the Background Paths lines, few and faint, in Frank's light green on the page's
+   white (also in dark mode). */
+.v19 .hiw-paths { color: #a0d05f; background-color: transparent; opacity: 0.55; }
+/* Fewer lines on the right, where the step's copy sits: from the middle they thin to about 40%
+   of their strength, so a few still run to the edge. */
+.v19 .hiw-paths { -webkit-mask-image: linear-gradient(to right, #000 0%, #000 50%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0.4) 100%); mask-image: linear-gradient(to right, #000 0%, #000 50%, rgba(0,0,0,0.5) 72%, rgba(0,0,0,0.4) 100%); }
+
+/* Interview example: the green stage settling in as it goes full screen. */
+.v19 .ie-full { animation: ie-full .3s cubic-bezier(.23,1,.32,1) both; }
+@keyframes ie-full { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .v19 .ie-full { animation: none; } }

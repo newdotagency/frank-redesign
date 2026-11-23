@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   Frank Design System tokens — copied verbatim from Homepage V5 (.fk)
+   ───────────────────────────────────────────────────────────── */
+.fk{--brand:#d1f899;--brand-fg:#2a321e;--brand-strong:#a0d05f;--lime-50:#f4fde6;--lime-700:#58782c;--lime-800:#455b24;--violet-100:#f3eefc;--violet-200:#ece1fd;--violet-400:#d1b2ff;--violet-500:#ba86fc;--primary:#171717;--canvas:#F9F8F5;--tint:#f4f4f0;--paper:#fcfcfb;--card:#ffffff;--line:#e5e5e5;--line-2:#ebe8e3;--ink:#1a1714;--ink-2:#5c554d;--ink-3:#7d766e;--olive:#171717;--o100:#f4fde6;--o200:#d1f899;--o300:#d1f899;--o400:#cec9c1;--o600:#58782c;--night:#181410;--night-2:#2a321e;--night-3:#364420;--ease:cubic-bezier(.16,1,.3,1);--r-sm:6px;--r-md:8px;--r-lg:10px;--r-xl:14px;--gut:clamp(16px,4vw,48px);--serif:Lora,Georgia,'Times New Roman',serif;--sans:Geist,ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip;font-family:var(--sans);color:var(--ink);background:var(--canvas)}
+html,body{background:#F9F8F5}
+.fk :focus-visible{outline:2px solid var(--olive);outline-offset:3px;border-radius:6px}
+/* Hero controls are round: the V5 focus rule must not square them off */
+.fk .rounded-full:focus-visible{border-radius:9999px}
+.fk .chip:focus-visible{border-radius:12px}
+.wrap{max-width:1312px;margin:0 auto;padding-inline:var(--gut)}
+.skip{position:absolute;left:16px;top:-60px;z-index:100;background:var(--olive);color:#fff;padding:10px 16px;border-radius:var(--r-md);text-decoration:none;font-weight:500;transition:transform .6s var(--ease)}
+.skip:focus{transform:translateY(76px);color:#fff}
+
+/* ─────────────────────────────────────────────────────────────
+   Header — ported verbatim from Homepage V5 (base rules, then the
+   V5 override layer, in the original cascade order). Do not restyle.
+   ───────────────────────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:999px;font:500 15px/20px var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .6s var(--ease),opacity .6s var(--ease);white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--primary);color:#fff}
+.btn-p:hover{background:var(--brand);color:var(--brand-fg)}
+.btn-s{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-s:hover{color:var(--ink)}
+.btn-sm{height:36px;padding:0 14px;font-size:14px}
+
+.ann{background:var(--brand);color:var(--brand-fg);font-size:14px;line-height:20px}
+.ann .wrap{display:flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding-block:8px;position:relative;padding-right:56px}
+.ann-pill{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;background:var(--primary);color:var(--brand);font:600 11px/16px var(--sans);letter-spacing:.06em}
+.ann a{color:var(--brand-fg);text-underline-offset:3px;font-weight:500}
+.ann-x{position:absolute;right:max(8px,calc(var(--gut) - 12px));top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;background:transparent;color:var(--brand-fg);cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:999px}
+.ann-x:hover{color:var(--ink)}
+
+.nav{position:sticky;top:0;z-index:50;transition:transform .6s var(--ease)}
+.nav-bg{position:absolute;inset:0;background:var(--canvas);border-bottom:1px solid var(--line);opacity:0;transition:opacity .6s var(--ease)}
+.nav.solid .nav-bg{opacity:1}
+.nav.hide{transform:translateY(-100%)}
+.nav .wrap{position:relative;display:flex;align-items:center;gap:32px;height:72px}
+.nav-logo{display:flex;align-items:center;height:44px}
+.nav-logo img{height:22px;width:auto;display:block}
+.nav-links{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.nav-links a{display:inline-flex;align-items:center;height:40px;padding:0 12px;border-radius:var(--r-md);color:inherit;text-decoration:none;font-size:15px;font-weight:450;transition:color .4s var(--ease)}
+/* Simplified hover: text softens, no fill */
+.nav-links a:hover{color:var(--ink-2)}
+.nav-act{margin-left:auto;display:flex;align-items:center;gap:8px}
+.nav-login{color:inherit;text-decoration:none;font-size:15px;padding:0 12px;height:40px;display:inline-flex;align-items:center}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;color:inherit;align-items:center;justify-content:center;border-radius:999px;cursor:pointer;margin-left:auto}
+
+.mm{position:fixed;inset:0;z-index:80;background:var(--canvas);display:flex;flex-direction:column;padding:16px var(--gut) 32px;animation:fade .6s var(--ease) both}
+.mm-top{display:flex;align-items:center;justify-content:space-between;height:56px}
+.mm-top img{height:22px;width:auto}
+.mm ul{list-style:none;margin:32px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.mm ul a{display:block;font:400 34px/1.15 var(--serif);letter-spacing:-.02em;color:var(--ink);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--line)}
+.mm-ctas{margin-top:auto;display:flex;flex-direction:column;gap:12px}
+.mm-ctas .btn{width:100%}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+@media (max-width:1023px){.nav-links{display:none}}
+@media (max-width:767px){
+  .nav .wrap{height:60px;gap:12px}
+  .nav-act{display:none}
+  .burger{display:inline-flex}
+  .ann{font-size:13px}
+  .ann .wrap{justify-content:flex-start;flex-wrap:wrap;gap:6px 10px;padding-right:48px}
+}
+
+/* V5 override layer */
+.ann{background:#1a1714;color:#e7e4de}
+.ann-pill{background:var(--brand);color:var(--brand-fg)}
+.ann a{color:var(--brand);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.ann a::after{content:"→";display:inline-block;transition:transform .5s var(--ease)}
+.ann a:hover{color:var(--brand)}
+.ann a:hover::after{transform:translateX(4px)}
+.ann-x{color:#cec9c1}
+.ann-x:hover{color:#fff}
+.nav{top:10px;padding-inline:12px}
+.nav-bg{display:none}
+.nav .wrap{max-width:1180px;height:62px;border-radius:999px;padding:0 10px 0 24px;overflow:hidden;transition:background-color .5s var(--ease),box-shadow .5s var(--ease)}
+.nav.solid .wrap{background:#f9f8f5;box-shadow:0 0 0 1px var(--line),0 18px 40px -24px oklch(0.3 0.0891 19.6 / .35)}
+.nav-prog{position:absolute;left:24px;right:24px;bottom:0;height:2px;border-radius:2px;background:var(--brand-strong);transform-origin:left center;transform:scaleX(0);opacity:0;transition:opacity .4s}
+.nav.solid .nav-prog{opacity:1}
+.nav.hide{transform:translateY(calc(-100% - 14px))}
+@media (max-width:767px){
+  .nav{top:8px;padding-inline:8px}
+  .nav .wrap{height:56px;padding:0 6px 0 18px}
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hero
+   ───────────────────────────────────────────────────────────── */
+/* Film grain: fixed, behind content, multiplied into the canvas */
+.grain{
+  position:fixed;inset:-50%;pointer-events:none;z-index:0;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.09  0 0 0 0 0.08  0 0 0 0.11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+
+/* V21.04 adaptive header (opt-in: Header `adaptive`). Sticky: always on screen, a compact 52px pill.
+   Past the top the announcement bar folds away and the pill floats 12px below the window's top.
+   1024px and up: the pill is wide (the page's 1312px content width), links centred. */
+.nav.adapt{transition:transform .6s var(--ease),padding-top .45s cubic-bezier(.32,.72,0,1)}
+.nav.adapt.solid{padding-top:12px}
+.nav.adapt .wrap{height:52px}
+@media (min-width:1024px){
+  .nav.adapt .wrap{max-width:1312px;height:52px;padding:0 8px 0 24px}
+  .nav.adapt nav{flex:1;display:flex;justify-content:center}
+  .nav.adapt .nav-act{margin-left:0}
+  .nav.adapt .nav-prog{left:24px;right:24px}
+}
+
+
+

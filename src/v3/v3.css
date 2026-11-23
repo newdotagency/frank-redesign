@@ -1,0 +1,4 @@
+/* V3 — flat hero overrides (header itself stays V5). */
+/* On the lime field the V5 "Get started" hover (lime fill) would vanish; hover to white instead
+   while the nav is transparent. Once the nav turns solid, V5's own hover applies again. */
+.v3 .nav:not(.solid) .btn-p:hover{background:#fff;color:var(--ink)}

@@ -1,0 +1,48 @@
+/* Motion and micro-interaction styles shared by V1 (index.css) and V2 (v2/v2.css). */
+/* Placeholder caret: soft eased blink, never a hard on/off */
+@keyframes caret-blink{0%,45%{opacity:1}55%,100%{opacity:0}}
+.caret-blink{animation:caret-blink 1.05s cubic-bezier(.65,0,.35,1) infinite}
+
+/* Pill rail: no scrollbar (edge fades are set inline from scroll position) */
+.rail{scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+
+/* Template icon hover motion (PlaybookIcon). One meaningful part moves; nothing scales.
+   Rest → hover end-states use transitions (interruptible, 250ms strong ease-out).
+   Return-to-rest gestures (flip, swing, redraw) are one-shot keyframes on hover-in. */
+.ti-slide-x,.ti-slide-down,.ti-lift,.ti-tilt,.ti-spin{transition:transform 250ms cubic-bezier(.23,1,.32,1)}
+.ti-draw,.ti-draw-rev{stroke-dasharray:1}
+@keyframes ti-flip{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+@keyframes ti-swing{0%{transform:rotate(0)}30%{transform:rotate(-12deg)}65%{transform:rotate(7deg)}100%{transform:rotate(0)}}
+@keyframes ti-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes ti-draw-rev{from{stroke-dashoffset:-1}to{stroke-dashoffset:0}}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .group:hover .ti-slide-x{transform:translateX(1.5px)}
+  .group:hover .ti-slide-down{transform:translateY(1.5px)}
+  .group:hover .ti-lift{transform:translateY(-1.5px)}
+  .group:hover .ti-tilt{transform:rotate(-10deg)}
+  .group:hover .ti-spin{transform:rotate(90deg)}
+  .group:hover .ti-flip{animation:ti-flip 450ms cubic-bezier(.23,1,.32,1)}
+  .group:hover .ti-swing{animation:ti-swing 500ms cubic-bezier(.77,0,.175,1)}
+  .group:hover .ti-draw{animation:ti-draw 450ms cubic-bezier(.23,1,.32,1)}
+  .group:hover .ti-draw-rev{animation:ti-draw-rev 450ms cubic-bezier(.23,1,.32,1)}
+}
+
+/* Mic equalizer: bars rest low and paused; they bounce while the mic is hovered or listening */
+@keyframes eq{0%,100%{transform:scaleY(.32)}50%{transform:scaleY(1)}}
+.eq-bar{transform-box:fill-box;transform-origin:center;transform:scaleY(.32);animation:eq .9s cubic-bezier(.45,0,.55,1) infinite paused}
+.eq-bar:nth-child(2){animation-delay:-.3s}
+.eq-bar:nth-child(3){animation-delay:-.6s}
+@media (hover:hover) and (pointer:fine){.group:hover .eq-bar{animation-play-state:running}}
+.eq-live .eq-bar{animation-play-state:running}
+
+/* Drafting status: a slow breath, not a shimmer */
+@keyframes breathe{0%,100%{opacity:.72}50%{opacity:1}}
+.breathe{animation:breathe 1.8s cubic-bezier(.65,0,.35,1) infinite}
+
+@media (prefers-reduced-motion:reduce){
+  .caret-blink,.breathe{animation:none}
+  .eq-bar{animation:none}
+  .eq-bar:nth-child(1),.eq-bar:nth-child(3){transform:scaleY(.5)}
+  .eq-bar:nth-child(2){transform:scaleY(.85)}
+}

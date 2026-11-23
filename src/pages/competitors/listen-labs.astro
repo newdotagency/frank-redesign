@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import CompetitorPage from '../../v2104/CompetitorPage.jsx';
+import listenLabs from '../../v2104/competitors/listenLabs';
+---
+<Base title="Frank vs Listen Labs — Frank" description="Frank and Listen Labs are both AI-powered interview tools. See how they compare for founders, marketers, PMs and operators.">
+  <div id="root"><CompetitorPage c={listenLabs} client:only="react" /></div>
+</Base>

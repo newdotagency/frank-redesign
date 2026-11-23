@@ -1,0 +1,17 @@
+/* The voice widget's waveform (V21.11 Interview example). Each bar has its own height factor (--k)
+   and delay (--d); the mode on the row decides how they move:
+   speak  — Frank talking: a soft ripple across the bars;
+   listen — your turn: the bars follow your microphone level (--lvl, set by the room's meter);
+   think  — Frank thinking: a quiet shimmer;
+   idle   — before and between: a slow breath. */
+.vw-bars span { display: block; width: 3px; height: 100%; border-radius: 3px; background: currentColor; transform: scaleY(0.14); transform-origin: 50% 50%; transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1); }
+.vw-bars[data-mode="speak"] span { animation: vw-wave 0.9s cubic-bezier(0.45, 0, 0.55, 1) var(--d) infinite alternate; }
+.vw-bars[data-mode="listen"] span { transform: scaleY(calc(0.12 + var(--lvl, 0) * var(--k) * 1.1)); }
+.vw-bars[data-mode="think"] span { animation: vw-think 1.4s cubic-bezier(0.45, 0, 0.55, 1) var(--d) infinite; }
+.vw-bars[data-mode="idle"] span { animation: vw-breathe 3.2s cubic-bezier(0.45, 0, 0.55, 1) var(--d) infinite; }
+@keyframes vw-wave { from { transform: scaleY(calc(0.14 + 0.2 * var(--k))); } to { transform: scaleY(calc(0.24 + 0.76 * var(--k))); } }
+@keyframes vw-think { 0%, 100% { opacity: 0.35; transform: scaleY(0.14); } 50% { opacity: 1; transform: scaleY(0.32); } }
+@keyframes vw-breathe { 0%, 100% { transform: scaleY(0.12); } 50% { transform: scaleY(calc(0.14 + 0.16 * var(--k))); } }
+/* The orb's listening halo, following your voice. */
+.vw-halo { transform: scale(calc(1 + var(--lvl, 0) * 0.45)); transition: transform 90ms linear; }
+@media (prefers-reduced-motion: reduce) { .vw-bars span { animation: none !important; } .vw-halo { transition: none; } }

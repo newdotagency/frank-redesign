@@ -1,0 +1,23 @@
+/* Styles for HeroScrollCard — imported by the component, so every page that uses it gets them. */
+/* ── Hero scroll wrap (HeroScrollCard, native path) ─────────────────────────────
+   Scroll-driven, compositor-run, transform only. Progress is linear in scroll position
+   (scroll is the clock); endpoints come from CSS vars set once per resize. */
+.hsc-card,.hsc-content,.hsc-corner{
+  animation-duration:auto;animation-timing-function:linear;animation-fill-mode:both;
+  animation-timeline:scroll(root block);animation-range:0 var(--hsc-range);
+  will-change:transform;
+}
+.hsc-card{animation-name:hsc-card;transform-origin:50% 50%}
+@keyframes hsc-card{from{transform:none}to{transform:scale(var(--hsc-sx),var(--hsc-sy))}}
+.hsc-content{animation-name:hsc-content;transform-origin:50% 50%}
+@keyframes hsc-content{
+  0%{transform:none}
+  50%{transform:scale(var(--hsc-csx50),var(--hsc-csy50))}
+  100%{transform:scale(var(--hsc-csx),var(--hsc-csy))}
+}
+.hsc-corner{transform:scale(0)} /* hidden until the scroll animation scales them in */
+.hsc-tl{animation-name:hsc-tl}.hsc-tr{animation-name:hsc-tr}.hsc-br{animation-name:hsc-br}.hsc-bl{animation-name:hsc-bl}
+@keyframes hsc-tl{from{transform:translate(0,0) scale(0)}to{transform:translate(var(--hsc-m),var(--hsc-m)) scale(1)}}
+@keyframes hsc-tr{from{transform:translate(0,0) scale(0)}to{transform:translate(calc(var(--hsc-m) * -1),var(--hsc-m)) scale(1)}}
+@keyframes hsc-br{from{transform:translate(0,0) scale(0)}to{transform:translate(calc(var(--hsc-m) * -1),calc(var(--hsc-m) * -1)) scale(1)}}
+@keyframes hsc-bl{from{transform:translate(0,0) scale(0)}to{transform:translate(var(--hsc-m),calc(var(--hsc-m) * -1)) scale(1)}}

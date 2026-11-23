@@ -1,0 +1,80 @@
+/* ResearchTiles — fps-style hand-drawn, stop-motion research illustrations for the V9 pixel tiles.
+   Motion is stepped (steps()/step-end) so it reads like hand-drawn GIF frames, and lines "boil"
+   (re-jitter ~8 fps) by cycling three displacement filters. Reduced motion: final frame, still. */
+.rt svg{display:block;width:100%;height:100%}
+.rt-grain{mix-blend-mode:overlay;opacity:.55;pointer-events:none}
+.rt-draw{fill:none;stroke-dasharray:1 1;stroke-linecap:round;stroke-linejoin:round}
+
+.rt-boil{animation:rt-boil .5s steps(1) infinite}
+@keyframes rt-boil{0%{filter:url(#rt-r1)}33%{filter:url(#rt-r2)}66%{filter:url(#rt-r3)}}
+
+/* magnifier + line chart */
+.rt-dl{animation:rt-dl 7s steps(14) infinite both}
+@keyframes rt-dl{0%{stroke-dashoffset:1}35%{stroke-dashoffset:0}88%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+.rt-dc{animation:rt-dc 7s steps(6) infinite both}
+@keyframes rt-dc{0%,55%{stroke-dashoffset:1}68%{stroke-dashoffset:0}88%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+.rt-dot{transform-box:fill-box;transform-origin:center;animation:rt-pop 7s steps(3) infinite both}
+@keyframes rt-pop{0%{transform:scale(0)}6%{transform:scale(1.35)}10%{transform:scale(1)}80%{transform:scale(1)}86%,100%{transform:scale(0)}}
+.rt-scan{animation:rt-scan 7s steps(3) infinite both}
+@keyframes rt-scan{0%{transform:translate(64px,248px)}10%,25%{transform:translate(100px,196px)}38%,50%{transform:translate(170px,156px)}62%,85%{transform:translate(242px,110px)}100%{transform:translate(64px,248px)}}
+.rt-tilt{animation:rt-tilt 1.2s steps(1) infinite}
+@keyframes rt-tilt{0%{transform:rotate(-6deg)}50%{transform:rotate(4deg)}}
+.rt-flick{animation:rt-flick .9s steps(1) infinite}
+@keyframes rt-flick{0%{opacity:1}30%{opacity:0}45%{opacity:1}70%{opacity:0}}
+
+/* note */
+.rt-wig{transform-origin:80px 82px;animation:rt-wig 1.6s steps(1) infinite}
+@keyframes rt-wig{0%{transform:rotate(0deg)}50%{transform:rotate(1.5deg)}}
+.rt-w{animation:rt-write 6s steps(5) infinite both}
+@keyframes rt-write{0%{stroke-dashoffset:1}12%{stroke-dashoffset:0}86%{stroke-dashoffset:0}96%,100%{stroke-dashoffset:1}}
+
+/* pen */
+.rt-pen{animation:rt-pen 5s steps(2) infinite both}
+@keyframes rt-pen{0%{transform:translate(55px,89px)}10%{transform:translate(70px,84px)}20%{transform:translate(82px,90px)}30%{transform:translate(94px,85px)}40%{transform:translate(106px,90px)}50%{transform:translate(118px,85px)}60%{transform:translate(128px,87px)}70%{transform:translate(128px,72px)}80%{transform:translate(56px,74px)}90%,100%{transform:translate(55px,89px)}}
+.rt-pw{animation:rt-pw 5s steps(6) infinite both}
+@keyframes rt-pw{0%{stroke-dashoffset:1}60%{stroke-dashoffset:0}84%{stroke-dashoffset:0}94%,100%{stroke-dashoffset:1}}
+
+/* bulb */
+.rt-bg{animation:rt-lit 4s step-end infinite}
+@keyframes rt-lit{0%,30%{fill:#433d37}32%{fill:#d1f899}36%{fill:#433d37}40%,88%{fill:#d1f899}90%,100%{fill:#433d37}}
+.rt-fil{animation:rt-fil 4s step-end infinite}
+@keyframes rt-fil{0%,30%{stroke:#7d766e}32%{stroke:#1a1714}36%{stroke:#7d766e}40%,88%{stroke:#1a1714}90%,100%{stroke:#7d766e}}
+.rt-glow{animation:rt-glow 4s step-end infinite}
+@keyframes rt-glow{0%,30%{opacity:0}32%{opacity:.3}36%{opacity:0}40%{opacity:.3}60%{opacity:.22}66%,88%{opacity:.32}90%,100%{opacity:0}}
+.rt-rays{animation:rt-rays 4s step-end infinite}
+@keyframes rt-rays{0%,40%{opacity:0}44%{opacity:1}52%{opacity:.35}58%{opacity:1}66%{opacity:.35}72%,88%{opacity:1}90%,100%{opacity:0}}
+
+/* bar chart */
+.rt-bar{transform-box:fill-box;transform-origin:50% 100%;animation:rt-grow 6s steps(4) infinite both}
+@keyframes rt-grow{0%{transform:scaleY(0)}12%{transform:scaleY(1.08)}16%,86%{transform:scaleY(1)}96%,100%{transform:scaleY(0)}}
+.rt-tr{animation:rt-tr 6s steps(6) infinite both}
+@keyframes rt-tr{0%,22%{stroke-dashoffset:1}36%,86%{stroke-dashoffset:0}96%,100%{stroke-dashoffset:1}}
+
+/* speech bubble: typing dots */
+.rt-type{animation:rt-type 1.2s steps(1) infinite}
+@keyframes rt-type{0%{transform:translateY(0)}25%{transform:translateY(-7px)}50%{transform:translateY(0)}}
+
+/* ear: sound waves arrive, outermost arc first */
+.rt-wave{animation:rt-wave 1.8s steps(1) infinite both}
+@keyframes rt-wave{0%{opacity:0}18%{opacity:1}72%{opacity:1}86%,100%{opacity:0}}
+
+/* Minimal magnifier: the glass moves, the content inside the lens counter-moves at 1.8x */
+.rt-lens-move{animation:rt-lens-move 6s steps(3) infinite both}
+@keyframes rt-lens-move{0%,100%{transform:translate(104px,124px)}25%{transform:translate(200px,120px)}45%,75%{transform:translate(222px,178px)}}
+.rt-lens-zoom{animation:rt-lens-zoom 6s steps(3) infinite both}
+@keyframes rt-lens-zoom{0%,100%{transform:translate(-187.2px,-223.2px) scale(1.8)}25%{transform:translate(-360px,-216px) scale(1.8)}45%,75%{transform:translate(-399.6px,-320.4px) scale(1.8)}}
+.rt-lens-spark{opacity:0;animation:rt-lens-spark 6s step-end infinite}
+@keyframes rt-lens-spark{0%,46%{opacity:0}48%,56%{opacity:1}58%{opacity:0}62%,72%{opacity:1}74%,100%{opacity:0}}
+/* Bulb from the V9 design file: the filament scribbles itself in, then the bulb bursts on.
+   The SVG attributes hold the lit pose, which reduced motion shows. */
+.rt-bulb-fil{animation:rt-bulb-fil 4.5s steps(8) infinite both,rt-bulb-filc 4.5s step-end infinite}
+@keyframes rt-bulb-fil{0%,4%{stroke-dashoffset:1}34%{stroke-dashoffset:0}90%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes rt-bulb-filc{0%,38%{stroke:#d1f899}40%,90%{stroke:#1a1714}92%,100%{stroke:#d1f899}}
+.rt-bulb-lit{animation:rt-bulb-lit 4.5s step-end infinite}
+@keyframes rt-bulb-lit{0%,38%{fill:#1a1714}40%,90%{fill:#d1f899}92%,100%{fill:#1a1714}}
+.rt-bulb-burst{transform-origin:80px 64px;animation:rt-bulb-burst 4.5s steps(2) infinite both}
+@keyframes rt-bulb-burst{0%,38%{transform:scale(.5);opacity:0}40%{transform:scale(1.2);opacity:1}46%,84%{transform:scale(1);opacity:1}90%,100%{transform:scale(1);opacity:0}}
+.rt-bulb-ring{transform-origin:80px 64px;animation:rt-bulb-ring 4.5s steps(3) infinite both}
+@keyframes rt-bulb-ring{0%,39%{transform:scale(.6);opacity:0}40%{transform:scale(.7);opacity:.7}56%{transform:scale(1.5);opacity:0}100%{transform:scale(1.5);opacity:0}}
+@media (prefers-reduced-motion: reduce){.rt *{animation:none !important}}
+.rt-still *{animation:none !important}

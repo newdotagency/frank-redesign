@@ -1,0 +1,8 @@
+node_modules
+dist
+.astro
+.wrangler
+.DS_Store
+# original V21.04 export, kept locally as reference
+frank-v21.04/
+.cloudflare/

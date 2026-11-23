@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* V2 — "Warm cream editorial" (DESIGN-2.md). Eggshell paper, black ink, warm greys.
+   Violet/orange appear only inside the voice-orb product visual. */
+:root{
+  --color-eggshell:#fdfcfc; --color-warm-taupe:#f5f3f1; --color-stone:#ebe8e4;
+  --color-ink:#000; --color-graphite:#44403b; --color-smoke:#777169; --color-ash:#a59f97;
+  --shadow-subtle:rgba(0,0,0,.4) 0 0 1px 0, rgba(0,0,0,.04) 0 1px 1px 0, rgba(0,0,0,.04) 0 2px 4px 0;
+}
+html,body{background:var(--color-eggshell)}
+.v2{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#000;background:var(--color-eggshell);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip;font-feature-settings:"ss01"}
+/* Focus: a calm ink outline that follows each element's own radius */
+.v2 :focus-visible{outline:2px solid #000;outline-offset:2px}
+.v2 .skip{position:absolute;left:16px;top:-60px;z-index:100;background:#000;color:#fff;padding:10px 16px;border-radius:9999px;font-size:14px;font-weight:500;text-decoration:none;transition:transform .3s cubic-bezier(.23,1,.32,1)}
+.v2 .skip:focus{transform:translateY(76px)}

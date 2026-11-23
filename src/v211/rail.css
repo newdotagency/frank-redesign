@@ -1,0 +1,26 @@
+/* Use cases rail (V21), adapted from kokonutui's Momentum Rail (MIT, @dorianbaffier).
+   Depth runs off the main thread: each card is a view timeline on the inline axis (0% entering on
+   the right, 50% centred, 100% leaving on the left). Browsers without scroll-driven animations, and
+   reduced motion, get flat cards. */
+.uc-rail { --rail-card: 15rem; }
+@media (min-width: 640px) { .uc-rail { --rail-card: 17rem; } }
+@media (min-width: 1024px) { .uc-rail { --rail-card: 18.5rem; } }
+
+@keyframes uc-rail-tilt {
+  0% { transform: perspective(1000px) translateZ(-160px) rotateY(-12deg); }
+  50% { transform: perspective(1000px) translateZ(0) rotateY(0deg); }
+  100% { transform: perspective(1000px) translateZ(-160px) rotateY(12deg); }
+}
+@supports (animation-timeline: view()) {
+  .uc-rail-card { view-timeline: --uc-rail inline; }
+  @media (prefers-reduced-motion: no-preference) {
+    .uc-rail-tilt { animation: uc-rail-tilt linear both; animation-timeline: --uc-rail; }
+  }
+}
+
+/* While JS owns the position (drag, spring), native snapping is off. */
+.uc-rail-scroller { scroll-snap-type: x mandatory; scrollbar-width: none; }
+.uc-rail-scroller::-webkit-scrollbar { display: none; }
+.uc-rail-scroller[data-free='true'] { scroll-snap-type: none; }
+.uc-rail-scroller[data-dragging='true'] { cursor: grabbing; }
+@media (pointer: fine) { .uc-rail-scroller { cursor: grab; user-select: none; } }

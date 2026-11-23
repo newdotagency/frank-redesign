@@ -1,0 +1,62 @@
+/* V10 — glass bubble behind the hero (see BubbleRing.jsx), after motionsites.ai "Human Machine". */
+.v10-ring{width:min(70vh,58vw,780px);aspect-ratio:1}
+@media (max-width:767px){.v10-ring{width:min(94vw,500px)}}
+
+/* Faint white haze inside the bubble. */
+.v10-bubble-haze{background:radial-gradient(closest-side,rgba(255,255,255,.55) 0%,rgba(255,255,255,.42) 55%,rgba(255,255,255,.18) 80%,rgba(255,255,255,0) 96%)}
+
+/* Thin iridescent rim — Frank system colours: violet (#ba86fc / #d1b2ff) and brand green
+   (#a0d05f / #d1f899), with lilac (#ece1fd) between them. */
+.v10-bubble-rim{
+  background:conic-gradient(from 0deg,
+    rgba(186,134,252,.95) 0deg,   /* violet-500, top */
+    rgba(209,178,255,.65) 35deg,  /* violet-400 */
+    rgba(209,248,153,.3) 70deg,
+    rgba(160,208,95,.9) 105deg,   /* brand green (strong), right */
+    rgba(209,248,153,.6) 135deg,  /* brand green */
+    rgba(160,208,95,.85) 165deg,  /* brand green (strong), lower right */
+    rgba(209,248,153,.45) 200deg,
+    rgba(255,255,255,.15) 235deg,
+    rgba(236,225,253,.55) 280deg, /* violet-200, left */
+    rgba(209,178,255,.85) 320deg, /* violet-400 */
+    rgba(186,134,252,.95) 360deg);
+  -webkit-mask-image:radial-gradient(closest-side,transparent 89%,#000 93%,#000 95.5%,transparent 99%);
+  mask-image:radial-gradient(closest-side,transparent 89%,#000 93%,#000 95.5%,transparent 99%);
+  filter:blur(9px);
+  transform:rotate(-40deg);
+  will-change:transform;
+  animation:v10-rim 22s linear infinite;
+}
+@keyframes v10-rim{from{transform:rotate(-40deg)}to{transform:rotate(320deg)}}
+
+/* Wider, fainter film turning the other way: makes the edge shimmer and look slightly uneven. */
+.v10-bubble-film{
+  background:conic-gradient(from 90deg,
+    rgba(160,208,95,0) 0deg,
+    rgba(160,208,95,.45) 50deg,
+    rgba(209,248,153,.35) 110deg,
+    rgba(255,255,255,0) 170deg,
+    rgba(186,134,252,.45) 230deg,
+    rgba(209,178,255,.3) 290deg,
+    rgba(160,208,95,0) 360deg);
+  -webkit-mask-image:radial-gradient(closest-side,transparent 84%,#000 91%,#000 94%,transparent 100%);
+  mask-image:radial-gradient(closest-side,transparent 84%,#000 91%,#000 94%,transparent 100%);
+  filter:blur(14px);
+  transform:scale(1.02,1.035);
+  will-change:transform;
+  animation:v10-film 34s linear infinite;
+}
+@keyframes v10-film{from{transform:scale(1.02,1.035) rotate(0deg)}to{transform:scale(1.02,1.035) rotate(-360deg)}}
+
+/* Thin white gloss on the inner edge of the rim. */
+.v10-bubble-gloss{
+  background:radial-gradient(closest-side,transparent 88%,rgba(255,255,255,.75) 91.5%,transparent 94%);
+  filter:blur(3px);
+}
+
+.v10-ring-breathe{animation:v10-breathe 6.5s cubic-bezier(.45,0,.55,1) infinite alternate}
+@keyframes v10-breathe{from{transform:scale(1)}to{transform:scale(1.02)}}
+
+@media (prefers-reduced-motion: reduce){
+  .v10-bubble-rim,.v10-bubble-film,.v10-ring-breathe{animation:none}
+}

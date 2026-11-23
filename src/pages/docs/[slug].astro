@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import DocsPage from '../../v2104/DocsPage.jsx';
+import ARTICLES from '../../v2104/docs/articles.json';
+export function getStaticPaths() {
+  return Object.entries(ARTICLES).map(([slug, a]: [string, any]) => ({ params: { slug }, props: { title: a.title } }));
+}
+const { title } = Astro.props;
+---
+<Base title={`${title} — Frank Docs`} description="Guides for setting up Frank, running better interviews, and installing the widget, MCP connector, webhook and API.">
+  <div id="root"><DocsPage client:only="react" /></div>
+</Base>

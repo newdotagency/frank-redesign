@@ -1,0 +1,13 @@
+/* V8 — page around the wrapped card and the band below. */
+html,body{background:#ffffff}
+
+/* Grain only on the colour fields: the two speck layers blend in `overlay`, which leaves the
+   near-white canvas untouched and only shows up where there is colour underneath. The hero
+   card's background comes from HeroScrollCard's inline style (untouched), so it is matched
+   by the grain's data URI; this covers the CSS, Framer and reduced-motion card variants. */
+.v8 [style*="feTurbulence"]{
+  background-blend-mode: overlay, overlay, normal, normal, normal, normal;
+}
+
+/* Template chips: solid white (the shared soft skin is 55% white + blur). */
+.v8 #template-rail .chip{background-color:#ffffff}

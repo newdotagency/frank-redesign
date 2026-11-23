@@ -1,0 +1,53 @@
+/* V9 — fps-style. White page around the wrapped card and below. */
+html,body{background:#ffffff}
+/* Template chips: solid white (the shared soft skin is 55% white + blur). */
+.v9 #template-rail .chip{background-color:#ffffff}
+
+/* LineBurst (animaapp.com-style): rays draw out from the chat, then erase from the inside;
+   a star twinkles where each ray lands; free stars twinkle on their own. */
+.v9-ray{stroke-dasharray:1 1;stroke-dashoffset:1;animation:v9-ray 9s cubic-bezier(.45,0,.55,1) infinite both}
+@keyframes v9-ray{0%{stroke-dashoffset:1}35%{stroke-dashoffset:0}70%,100%{stroke-dashoffset:-1}}
+.v9-ray-star{opacity:0;transform:scale(.6);animation:v9-ray-star 9s linear infinite both}
+@keyframes v9-ray-star{
+  0%,33.5%{opacity:0;transform:scale(.6) rotate(0deg)}
+  35%{opacity:1;transform:scale(.9) rotate(10deg)}
+  36.5%{opacity:1;transform:scale(1) rotate(18deg)}
+  40%,100%{opacity:0;transform:scale(1) rotate(28deg)}
+}
+.v9-twinkle{opacity:0;transform:scale(.6);animation:v9-twinkle 4s cubic-bezier(.23,1,.32,1) infinite both}
+@keyframes v9-twinkle{
+  0%{opacity:0;transform:scale(.6) rotate(0deg)}
+  6%{opacity:1;transform:scale(.95) rotate(12deg)}
+  10%{opacity:1;transform:scale(1) rotate(18deg)}
+  20%,100%{opacity:0;transform:scale(1) rotate(30deg)}
+}
+@media (prefers-reduced-motion: reduce){
+  .v9-ray{animation:none;stroke-dashoffset:0;opacity:.35}
+  .v9-ray-star{animation:none;opacity:.5;transform:none}
+  .v9-twinkle{animation:v9-fade 6s ease infinite both;transform:none}
+  @keyframes v9-fade{0%,100%{opacity:.15}50%{opacity:.7}}
+}
+
+/* Logo strip (from V11): two copies slide left by 50% over 48s; edges fade; pauses on hover/focus. */
+.lg-strip{overflow:hidden;outline:none;border-radius:8px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.lg-strip:focus-visible{box-shadow:0 0 0 2px #1a1714}
+.lg-track{display:flex;width:max-content;animation:lg-marquee 48s linear infinite}
+.lg-strip:hover .lg-track,.lg-strip:focus .lg-track,.lg-strip:focus-within .lg-track{animation-play-state:paused}
+@keyframes lg-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.lg-list{display:flex;list-style:none;margin:0;padding:0}
+.lg-slot{width:176px;height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.lg{max-height:26px;max-width:132px;width:auto;height:auto;display:block;filter:brightness(0);opacity:.5;transition:opacity .4s ease}
+@media (hover:hover) and (pointer:fine){.lg:hover{opacity:.95}}
+@media (prefers-reduced-motion: reduce){
+  .lg-strip{-webkit-mask-image:none;mask-image:none}
+  .lg-track{animation:none!important;width:auto}
+  .lg-list{flex-wrap:wrap;justify-content:center;width:100%}
+  .lg-copy{display:none}
+}
+
+/* Frank's glasses beside the docked chat bar (from V11): lime disc, slow blink. Wide screens only. */
+.dock-glasses{display:none}
+@media (min-width:961px){.dock-glasses{display:grid}}
+.dg-lens{transform-box:fill-box;transform-origin:center;animation:dg-blink 5s ease-in-out infinite}
+@keyframes dg-blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.12)}}
+@media (prefers-reduced-motion: reduce){.dg-lens{animation:none!important}}

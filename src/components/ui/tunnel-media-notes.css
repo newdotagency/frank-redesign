@@ -1,0 +1,29 @@
+/* Media notes (V17) — all stepped or looping CSS, transform/opacity only. */
+
+/* Video: blink every ~3.6 s; the mouth swaps open/shut in an uneven speech rhythm. */
+.tmn-blink{transform-box:fill-box;transform-origin:center;animation:tmn-blink 3.6s steps(1) infinite}
+@keyframes tmn-blink{0%,94%{transform:scaleY(1)}95%,97%{transform:scaleY(.1)}98%,100%{transform:scaleY(1)}}
+.tmn-open{animation:tmn-open 1.8s step-end infinite}
+.tmn-shut{animation:tmn-shut 1.8s step-end infinite}
+@keyframes tmn-open{0%{opacity:0}10%{opacity:1}22%{opacity:0}30%{opacity:1}46%{opacity:0}56%{opacity:1}64%{opacity:0}72%{opacity:1}84%,100%{opacity:0}}
+@keyframes tmn-shut{0%{opacity:1}10%{opacity:0}22%{opacity:1}30%{opacity:0}46%{opacity:1}56%{opacity:0}64%{opacity:1}72%{opacity:0}84%,100%{opacity:1}}
+.tmn-progress{animation:tmn-progress 9s linear infinite}
+@keyframes tmn-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Voice: bars bounce around their resting height; a live dot and a soft ring pulse. */
+.tmn-bar{transform-origin:center;animation:tmn-bar 1.1s ease-in-out infinite alternate}
+@keyframes tmn-bar{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+.tmn-live{animation:tmn-live 1.6s steps(1) infinite}
+@keyframes tmn-live{0%,60%{opacity:1}61%,100%{opacity:.25}}
+.tmn-ring{animation:tmn-ring 1.8s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes tmn-ring{from{transform:scale(1);opacity:.9}to{transform:scale(1.45);opacity:0}}
+
+/* Caret in the Set up card's composer (V19). */
+.tmn-caret{animation:tmn-caret 1s steps(1) infinite}
+@keyframes tmn-caret{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+@media (prefers-reduced-motion: reduce){
+  .tmn-blink,.tmn-open,.tmn-shut,.tmn-progress,.tmn-bar,.tmn-live,.tmn-ring,.tmn-caret{animation:none !important}
+  .tmn-open,.tmn-ring{opacity:0}
+  .tmn-progress{transform:scaleX(.4)}
+}
