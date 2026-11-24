@@ -5,6 +5,7 @@ const HOSTED = [
   /^\/$/,
   /^\/(pricing|docs|case-study|mcp|comparison|ai-voice-interviewer|try-frank)$/,
   /^\/blog(\/[\w-]+)?$/,
+  /^\/author\/[\w-]+$/,
   /^\/docs\/[\w-]+$/,
   /^\/features\/[\w-]+$/,
   /^\/product-updates(\/[\w-]+)?$/,

@@ -1,0 +1,76 @@
+{
+ "danniel": {
+  "slug": "danniel",
+  "metaTitle": "Danniel Booker, Senior Copywriter & Insights | Frank",
+  "name": "Danniel Booker",
+  "role": "Senior Copywriter & Brand Storyteller",
+  "photo": "/blog/authors/danniel.webp",
+  "bio": [
+   "Danniel is a senior copywriter and insights specialist. With over 10 years of experience leading brands on a quest to understand their customers, position their products and launch innovations, Danniel's insight-driven approach helps Prelaunch compress mountains of data into valuable and actionable insights for our brands. From podcasting to content creation, ads to copy, community management to product development, he's always ready to share his expertise with the community and level-up the industry."
+  ],
+  "expertise": [
+   "Content Marketing",
+   "Product Launch",
+   "Creative Direction",
+   "Email Marketing"
+  ],
+  "postsTitle": "Ideas, Stories & Strategy",
+  "postsSub": "Practical insights and real stories to guide your product from vision to reality.",
+  "posts": [
+   "how-gen-z-shop-online",
+   "introducing-frank-ai-customer-researcher"
+  ]
+ },
+ "heghine": {
+  "slug": "heghine",
+  "metaTitle": "Heghine Hambardzumyan, Content Writer | Frank",
+  "name": "Heghine Hambardzumyan",
+  "role": "Content Writer",
+  "photo": "/blog/authors/heghine.webp",
+  "bio": [
+   "Heghine is a Content Writer at Frank, where she turns complex ideas into clear, human stories. Starting her career in 2019 as a Digital Marketing specialist and growing into Content Writer, she has written across industries industries like e-commerce, finance, law, iGaming, and more. Her craft is rooted in tone, structure, and audience psychology. As a curious researcher, she draws inspiration from thoughtful essays, community threads, and books that resonate, shaping writing that feels natural and conversational. Journaling keeps her voice grounded, kind, and distinctly her own. She believes the best writing feels like a conversation: approachable, insightful, and real."
+  ],
+  "expertise": [
+   "SEO Content Writing",
+   "Content Marketing",
+   "Wordpress",
+   "Digital Marketing",
+   "Email Marketing",
+   "Brand tone & voice developmen"
+  ],
+  "postsTitle": "Ideas, Stories & Strategy",
+  "postsSub": "Practical insights and real stories to guide your product from vision to reality.",
+  "posts": [
+   "customer-research-for-ecommerce-brands",
+   "questions-to-ask-customers-at-each-lifecycle-stage",
+   "qualtrics-alternatives"
+  ]
+ },
+ "van": {
+  "slug": "van",
+  "metaTitle": "Van Avetisyan, Data Analyst & Writer | Frank",
+  "name": "Van Avetisyan",
+  "role": "Data Analyst | Writer",
+  "photo": "/blog/authors/van.webp",
+  "bio": [
+   "Van helps companies save time and money on support and operations. His career began in tennis, where he learned discipline, consistency, and how to spot patterns in fast-moving environments. Over the past six years, he has helped crowdfund over $500K in direct sales, streamlined operations and cut costs with data-driven insights, automated tasks, and created over 50 reporting dashboards. He also co-founded a startup, secured funding and grants, and was accelerated by one of the world’s top VC programs."
+  ],
+  "expertise": [
+   "Data Analysis",
+   "SQL",
+   "Looker Studio",
+   "Operations Management",
+   "Data Insights",
+   "Customer Satisfaction Improvement",
+   "Customer Experience Research",
+   "Reporting & KPI"
+  ],
+  "postsTitle": "Ideas, Stories & Strategy",
+  "postsSub": "Practical insights and real stories to guide your product from vision to reality.",
+  "posts": [
+   "best-typeform-alternatives",
+   "how-founders-use-ai-to-understand-trial-conversion",
+   "how-sales-use-ai-to-understand-proposal-ghosting"
+  ]
+ }
+}

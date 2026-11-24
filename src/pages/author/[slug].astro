@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Page from '../../v2104/AuthorPage.jsx';
+import AUTHORS from '../../v2104/blog/authors.json';
+export function getStaticPaths() {
+  return Object.values(AUTHORS).map(a => ({ params: { slug: a.slug }, props: { slug: a.slug, title: a.metaTitle, description: a.bio[0].slice(0, 200) } }));
+}
+const { slug, title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <div id="root"><Page slug={slug} client:only="react" /></div>
+</Base>
