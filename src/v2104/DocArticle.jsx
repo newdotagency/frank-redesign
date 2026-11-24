@@ -9,6 +9,7 @@
 // Inline text marks: **bold**, *italic*, `code`, [link](url).
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { localize } from '../lib/sitePaths';
 import { AlertTriangle, ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Info, Lightbulb, Mail, Play, ThumbsDown, ThumbsUp } from 'lucide-react';
 
 const EASE = [0.23, 1, 0.32, 1];
@@ -22,8 +23,10 @@ function Inline({ x }) {
     if (p.startsWith('`') && p.endsWith('`')) return <code key={i} className="rounded-[5px] bg-[#1a1714]/[0.06] px-[5px] py-[1px] font-gmono text-[0.86em] text-ink">{p.slice(1, -1)}</code>;
     const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     // Links to other docs articles open their new version on this page (the old pages are going away).
-    const doc = m && m[2].match(/hifrank\.ai\/docs\/([\w-]+)/);
+    const doc = m && m[2].match(/hifrank\.ai\/(?:docs|help)\/([\w-]+)/);
+    const local = m && localize(m[2]);
     if (m && doc) return <a key={i} href={'/docs/' + doc[1]} className="text-ink underline decoration-[#a0d05f] decoration-2 underline-offset-[3px] hover:decoration-ink">{m[1]}</a>;
+    if (m && local !== m[2]) return <a key={i} href={local} className="text-ink underline decoration-[#a0d05f] decoration-2 underline-offset-[3px] hover:decoration-ink">{m[1]}</a>;
     if (m) return <a key={i} href={m[2]} target={m[2].startsWith('#') ? undefined : '_blank'} rel="noopener noreferrer" className="text-ink underline decoration-[#a0d05f] decoration-2 underline-offset-[3px] hover:decoration-ink">{m[1]}</a>;
     if (p.startsWith('*') && p.endsWith('*') && p.length > 2) return <em key={i}>{p.slice(1, -1)}</em>;
     return <Fragment key={i}>{p}</Fragment>;

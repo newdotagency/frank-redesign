@@ -1,5 +1,6 @@
 // Header — announcement bar + floating pill nav, reused as-is from Homepage V5.
 // Markup, class names and scroll behaviour match the original; styles live in index.css.
+import { localize } from '../lib/sitePaths';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { enter, spring } from '../lib/motion';
@@ -37,7 +38,8 @@ const LOGO = '/frank-logo.png';
 export default function Header({ fixed = false, mode = 'auto', mega = false, adaptive = false, hrefs = null, current = null }) {
   // '#template-<id>' (Solutions › Templates) opens the home page's use-case wheel on that template; joined at run time
   // so the build's rewrite of the home link still applies.
-  const link = h => /hifrank\.ai\/features\/[a-z-]+$/.test(h) ? h.replace(/^https?:\/\/[^/]+/, '') : /^#template-/.test(h) ? (hrefs?.home ? hrefs.home : 'https://www.hifrank.ai/') + h : (hrefs?.mcp && /hifrank\.ai\/mcp$/.test(h)) ? hrefs.mcp : (hrefs?.voice && /\/ai-voice-interviewer$/.test(h)) ? hrefs.voice : (hrefs?.pricing && /hifrank\.ai\/pricing$/.test(h)) ? hrefs.pricing : (hrefs?.docs && /hifrank\.ai\/docs$/.test(h)) ? hrefs.docs : (hrefs?.blog && /hifrank\.ai\/blog$/.test(h)) ? hrefs.blog : (hrefs?.cases && /hifrank\.ai\/case-study$/.test(h)) ? hrefs.cases : (hrefs?.churn && /hifrank\.ai\/(churn|use-case\/ai-churn-interviews)$/.test(h)) ? hrefs.churn : /hifrank\.ai\/comparison$/.test(h) ? (hrefs?.comparison || (hrefs?.blog ? hrefs.blog + '#comparisons' : 'https://www.hifrank.ai/blog')) : h;
+  const link0 = h => /hifrank\.ai\/features\/[a-z-]+$/.test(h) ? h.replace(/^https?:\/\/[^/]+/, '') : /^#template-/.test(h) ? (hrefs?.home ? hrefs.home : 'https://www.hifrank.ai/') + h : (hrefs?.mcp && /hifrank\.ai\/mcp$/.test(h)) ? hrefs.mcp : (hrefs?.voice && /\/ai-voice-interviewer$/.test(h)) ? hrefs.voice : (hrefs?.pricing && /hifrank\.ai\/pricing$/.test(h)) ? hrefs.pricing : (hrefs?.docs && /hifrank\.ai\/docs$/.test(h)) ? hrefs.docs : (hrefs?.blog && /hifrank\.ai\/blog$/.test(h)) ? hrefs.blog : (hrefs?.cases && /hifrank\.ai\/case-study$/.test(h)) ? hrefs.cases : (hrefs?.churn && /hifrank\.ai\/(churn|use-case\/ai-churn-interviews)$/.test(h)) ? hrefs.churn : /hifrank\.ai\/comparison$/.test(h) ? (hrefs?.comparison || (hrefs?.blog ? hrefs.blog + '#comparisons' : 'https://www.hifrank.ai/blog')) : h;
+  const link = h => localize(link0(h));
   const [annOpen, setAnnOpen] = useState(true);
   const [solid, setSolid] = useState(false);
   const [hide, setHide] = useState(false);
@@ -126,7 +128,7 @@ export default function Header({ fixed = false, mode = 'auto', mega = false, ada
           <div className="wrap">
             <span className="ann-pill">{NAV.announce.pill}</span>
             <span>{NAV.announce.text}</span>
-            <a href={NAV.announce.href}>{NAV.announce.cta}</a>
+            <a href={localize(NAV.announce.href)}>{NAV.announce.cta}</a>
             <button type="button" className="ann-x" aria-label="Dismiss announcement" onClick={() => setAnnOpen(false)}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
             </button>
@@ -157,7 +159,7 @@ export default function Header({ fixed = false, mode = 'auto', mega = false, ada
                       className={'transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ' + (mOpen === l.label ? 'rotate-180' : '')}><path d="m6 9 6 6 6-6" /></svg>
                   </button>
                 </li>
-              ) : <li key={l.label}><a href={(l.label === 'Pricing' && hrefs?.pricing) || l.href} aria-current={current === l.label ? 'page' : undefined}
+              ) : <li key={l.label}><a href={(l.label === 'Pricing' && hrefs?.pricing) || localize(l.href)} aria-current={current === l.label ? 'page' : undefined}
                     className={current === l.label ? '!rounded-full !bg-[#1a1714]/[0.06]' : undefined}>{l.label}</a></li>)}
             </ul>
           </nav>
@@ -200,7 +202,7 @@ export default function Header({ fixed = false, mode = 'auto', mega = false, ada
                   </div>
                 </details>
               </li>
-            ) : <li key={l.label}><a href={(l.label === 'Pricing' && hrefs?.pricing) || l.href} aria-current={current === l.label ? 'page' : undefined} onClick={() => setMenuOpen(false)}>{l.label}</a></li>)}
+            ) : <li key={l.label}><a href={(l.label === 'Pricing' && hrefs?.pricing) || localize(l.href)} aria-current={current === l.label ? 'page' : undefined} onClick={() => setMenuOpen(false)}>{l.label}</a></li>)}
           </ul>
           <div className="mm-ctas">
             <a className="btn btn-s" href={NAV.login.href}>{NAV.login.label}</a>

@@ -8,6 +8,7 @@
 // decorative wordmark runs underneath.
 import { useRef } from 'react';
 import { motion, useMotionTemplate, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { siteHref } from '../lib/sitePaths';
 import { siFacebook, siInstagram, siLinkedin, siTiktok, siX, siYoutube } from 'simple-icons';
 
 const LOGO = '/frank-logo.png';
@@ -102,7 +103,7 @@ export default function Footer() {
               <div key={c.title}>
                 <h2 className="m-0 font-sans text-[14px] font-medium text-ink">{c.title}</h2>
                 <ul className="m-0 mt-4 grid list-none gap-3 p-0 font-sans text-[15px] leading-[1.35]">
-                  {c.links.map(([label, path, local]) => <li key={label}><a href={local || (path.startsWith('/features/') ? path : SITE + path)} className={LINK}>{label}</a></li>)}
+                  {c.links.map(([label, path, local]) => <li key={label}><a href={local || siteHref(path)} className={LINK}>{label}</a></li>)}
                 </ul>
               </div>
             ))}
@@ -112,7 +113,7 @@ export default function Footer() {
         <div className="mt-[clamp(48px,6vw,80px)] flex flex-col gap-4 border-t border-[#1a1714]/[0.08] pt-6 font-sans text-[14px] text-ink/55 sm:flex-row sm:items-center sm:justify-between">
           <p className="m-0">© 2026 Frank. All rights reserved.</p>
           <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
-            {LEGAL.map(([label, path]) => <li key={label}><a href={SITE + path} className={LINK.replace('text-ink/65', 'text-ink/55')}>{label}</a></li>)}
+            {LEGAL.map(([label, path]) => <li key={label}><a href={siteHref(path)} className={LINK.replace('text-ink/65', 'text-ink/55')}>{label}</a></li>)}
           </ul>
         </div>
       </div>

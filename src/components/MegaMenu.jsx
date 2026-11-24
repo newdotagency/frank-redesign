@@ -23,17 +23,18 @@ import {
   Video, Zap, ArrowRight,
 } from 'lucide-react';
 
+import { siteHref } from '../lib/sitePaths';
 const SITE = 'https://www.hifrank.ai';
-const it = (icon, title, desc, path) => ({ icon, title, desc, href: SITE + path });
+const it = (icon, title, desc, path) => ({ icon, title, desc, href: siteHref(path) });
 // A use case: one of the interview templates from the home page's use-case wheel (v2104/UseCases.jsx), with its Figma icon. Churn reasons opens the
 // Churn page; the others open the home page with that template chosen (Header maps '#template-<id>' to the home page).
-const tp = (tpl, title, desc) => ({ tpl, title, desc, href: tpl === 'churn' ? SITE + '/churn' : '#template-' + tpl });
+const tp = (tpl, title, desc) => ({ tpl, title, desc, href: tpl === 'churn' ? siteHref('/churn') : '#template-' + tpl });
 
 export const MENUS = {
   Platform: {
     col: 204,
     // Side zone: the header bar's announcement.
-    aside: { kind: 'feature', label: 'New', title: 'Frank now works inside your AI', text: 'Run research and uncover insights without leaving the chat.', cta: 'Learn more', href: SITE + '/mcp' },
+    aside: { kind: 'feature', label: 'New', title: 'Frank now works inside your AI', text: 'Run research and uncover insights without leaving the chat.', cta: 'Learn more', href: siteHref('/mcp') },
     groups: [
       { label: 'Product', items: [
         it(Mic, 'AI Voice Interviews', 'Natural voice conversations', '/ai-voice-interviewer'),
@@ -88,7 +89,7 @@ export const MENUS = {
   Resources: {
     // Side zone: plain links, all from the live site.
     aside: { kind: 'links', label: 'Get started', links: [
-      { title: 'Pricing', href: SITE + '/pricing' },
+      { title: 'Pricing', href: siteHref('/pricing') },
       { title: 'Log in', href: 'https://app.hifrank.ai/login' },
       { title: 'Sign up', href: 'https://app.hifrank.ai/signup' },
       { title: 'Contact support', href: 'mailto:support@hifrank.ai' },
