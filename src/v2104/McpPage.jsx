@@ -916,11 +916,32 @@ const TEAMS = [
 ];
 
 // One team card: the icon tile and role, the question as a prompt in your AI (user, 2026-11-24: keep the icons and the
-// chat input), and the line. The question types in once the card is mostly in view and the send button darkens;
-// screen readers get the whole question as the heading. Reduced motion: shown typed.
-function TeamCard({ role, icon, q, text, reduce }) {
+// chat input), and the line. The question types in and the send button darkens once the card has settled in its
+// pinned spot beside the section text (user, 2026-11-24): from 1024px that is when its top reaches its sticky `top`;
+// below 1024px, where nothing pins, when the card is mostly in view. Screen readers get the whole question as the
+// heading. Reduced motion: shown typed.
+function TeamCard({ role, icon, q, text, top, reduce }) {
   const ref = useRef(null);
-  const seen = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const [docked, setDocked] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || reduce) return;
+    const wide = window.matchMedia('(min-width: 1024px)');
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      if (wide.matches && el.getBoundingClientRect().top <= top + 2) setDocked(true);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
+    check();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf); };
+  }, [top, reduce]);
+  const [wideNow, setWideNow] = useState(false);
+  useEffect(() => { setWideNow(window.matchMedia('(min-width: 1024px)').matches); }, []);
+  const seen = wideNow ? docked : inView;
   const [n, setN] = useState(reduce ? q.length : 0);
   useEffect(() => {
     if (reduce) { setN(q.length); return; }
@@ -975,7 +996,7 @@ function Teams({ reduce }) {
         <ul aria-label="Teams" className="m-0 flex list-none flex-col gap-4 p-0 lg:gap-0">
           {TEAMS.map(([role, icon, q, text], i) => (
             <li key={role} className="lg:sticky lg:mb-[28vh] lg:last:mb-0" style={{ top: `${112 + i * 18}px` }}>
-              <TeamCard role={role} icon={icon} q={q} text={text} reduce={reduce} />
+              <TeamCard role={role} icon={icon} q={q} text={text} top={112 + i * 18} reduce={reduce} />
             </li>
           ))}
         </ul>
