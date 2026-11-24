@@ -984,6 +984,8 @@ function TeamCard({ role, icon, q, text, top, reduce }) {
 function Teams({ reduce }) {
   return (
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
+      {/* The last card keeps scroll room after it docks (the 36vh spacer at the end of the list), so the title and the
+          last card stay pinned while its question types (user, 2026-11-24). */}
       <div className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Built for every team</Eyebrow></ScrubText>
@@ -995,10 +997,12 @@ function Teams({ reduce }) {
 
         <ul aria-label="Teams" className="m-0 flex list-none flex-col gap-4 p-0 lg:gap-0">
           {TEAMS.map(([role, icon, q, text], i) => (
-            <li key={role} className="lg:sticky lg:mb-[28vh] lg:last:mb-0" style={{ top: `${112 + i * 18}px` }}>
+            <li key={role} className={'lg:sticky' + (i < TEAMS.length - 1 ? ' lg:mb-[28vh]' : '')} style={{ top: `${112 + i * 18}px` }}>
               <TeamCard role={role} icon={icon} q={q} text={text} top={112 + i * 18} reduce={reduce} />
             </li>
           ))}
+          {/* Scroll room after the last card: a sticky element's own bottom margin doesn't hold it, a spacer does. */}
+          <li aria-hidden="true" role="presentation" className="hidden h-[36vh] lg:block" />
         </ul>
       </div>
     </section>
