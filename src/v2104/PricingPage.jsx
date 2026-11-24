@@ -275,7 +275,7 @@ export default function PricingPage() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
-        <Header fixed mode="auto" mega adaptive current="Pricing" hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews' }} />
+        <Header fixed mode="auto" mega adaptive current="Pricing" hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
         <main id="main">
           {/* 1 — Hero: the green panel, framed like the homepage cards (16px / 40px from the window's edges,
               32 / 44px corners), starting under the header. The plan cards overlap its bottom edge. */}

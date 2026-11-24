@@ -5,13 +5,14 @@ import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import HighlightMarker from '../components/HighlightMarker';
 
-export default function MarkedPhrase({ children, reduce, delay = 0.35 }) {
+// color/shade (optional): the marker's colours, e.g. white on a lime panel (Churn closing, user 2026-11-23).
+export default function MarkedPhrase({ children, reduce, delay = 0.35, color, shade }) {
   const ref = useRef(null);
   const on = useInView(ref, { once: true, amount: 0.8 });
   const phrase = <span className="italic">{children}</span>;
   return (
     <span ref={ref} className="relative inline-block">
-      {on ? <HighlightMarker reduced={reduce} delay={delay}>{phrase}</HighlightMarker> : phrase}
+      {on ? <HighlightMarker reduced={reduce} delay={delay} {...(color ? { color, shade } : {})}>{phrase}</HighlightMarker> : phrase}
     </span>
   );
 }

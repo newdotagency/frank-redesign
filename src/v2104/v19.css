@@ -8,7 +8,7 @@ html,body{background:#ffffff}
 .v19 :is(h1, h2) .italic { font-family: 'Lora', Georgia, serif; font-style: italic; font-weight: 400; font-size: 0.92em; letter-spacing: -0.02em; }
 
 /* Title sizes: first screen 72px (the tunnel), chat screen 64px (AppV19); section titles are 56px. */
-.v19 :is(#wf-title, #hiw-title, #ie-title, #wg-title, #uc-title, #ag-title, #ag4-title, #ag5-title, #ag6-title, #pr-title, #pr-faq-title, #pr-built-title, #vo-title, #vo-hear-title, #vo-auto-title, #vo-global-title, #vo-try-title, #vo-how-title, #vo-sec-title, #vo-faq-title, #vo-cta-title, #dc-title, #dc-start-title, #dc-browse-title, #cs-title, #ft-title, #ts-title, #ob-talk-title, #ob-trust-title, #cv-title, #mc-title, #faq-title, #cta-title) { font-size: clamp(32px, 4.4vw, 56px); }
+.v19 :is(#wf-title, #hiw-title, #ie-title, #wg-title, #uc-title, #ag-title, #ag4-title, #ag5-title, #ag6-title, #pr-title, #pr-faq-title, #pr-built-title, #vo-title, #vo-hear-title, #vo-auto-title, #vo-global-title, #vo-try-title, #vo-how-title, #vo-sec-title, #vo-faq-title, #vo-cta-title, #ch-faq-title, #mcp-faq-title, #mcp-how-title, #dc-title, #dc-start-title, #dc-browse-title, #cs-title, #ft-title, #ts-title, #ob-talk-title, #ob-trust-title, #cv-title, #mc-title, #faq-title, #cta-title) { font-size: clamp(32px, 4.4vw, 56px); }
 
 /* How it works: the Background Paths lines, few and faint, in Frank's light green on the page's
    white (also in dark mode). */
@@ -127,3 +127,14 @@ html,body{background:#ffffff}
 .vo-crowd.on .vo-crowd-float { animation: vo-crowd-float 6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
 @keyframes vo-crowd-float { 0% { transform: translateY(-5px); } 100% { transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) { .vo-crowd.on .vo-crowd-float { animation: none; } }
+
+/* MCP hero chat: the running tool step's spinner (constant motion, linear); held still with reduced motion. */
+@keyframes mcp-spin { to { transform: rotate(360deg); } }
+.mcp-spin { animation: mcp-spin 0.8s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .mcp-spin { animation: none; } }
+
+/* MCP hero concept C: a speaking customer's voice bars (constant motion); still when not speaking or with reduced motion. */
+@keyframes mcp-voice { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+.mcp-voice-bar { transform: scaleY(0.35); opacity: 0.45; transition: opacity 300ms ease; }
+.mcp-voice-on .mcp-voice-bar { opacity: 1; animation: mcp-voice 0.7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .mcp-voice-on .mcp-voice-bar { animation: none; transform: scaleY(0.7); } }

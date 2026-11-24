@@ -43,13 +43,13 @@ function Rise({ as = 'div', delay = 0, reduce, className, children, ...rest }) {
 }
 
 // A pill button with its arrow in its own circle. tone: 'ink' | 'white' | 'lime' (Frank's green, for dark panels; its
-// arrow circle in the panels' forest green).
+// arrow circle a soft shade of the pill, as on the AI voice page: CLAUDE.md, "buttons on dark green").
 const PillButton = ({ href, tone = 'ink', children }) => (
   <a href={href}
     className={'group inline-flex h-12 items-center gap-3 rounded-full py-1.5 pl-6 pr-1.5 font-sans text-[15px] font-medium no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 '
       + (tone === 'lime' ? 'bg-[#d1f899] text-ink hover:bg-[#c4ef84] focus-visible:outline-[#d1f899]' : tone === 'white' ? 'bg-white text-ink hover:bg-[#f6f5f1] focus-visible:outline-white' : 'bg-[#1a1714] text-white hover:bg-[#2a2622] focus-visible:outline-ink')}>
     {children}
-    <span aria-hidden="true" className={'grid size-9 place-items-center rounded-full transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-safe:group-hover:translate-x-0.5 ' + (tone === 'lime' ? 'bg-[#0f2e27] text-white' : tone === 'white' ? 'bg-[#1a1714]/[0.06]' : 'bg-white/[0.12]')}>
+    <span aria-hidden="true" className={'grid size-9 place-items-center rounded-full transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-safe:group-hover:translate-x-0.5 ' + (tone === 'lime' ? 'bg-[#1a1714]/[0.07]' : tone === 'white' ? 'bg-[#1a1714]/[0.06]' : 'bg-white/[0.12]')}>
       <ArrowRight className="size-4" strokeWidth={1.75} />
     </span>
   </a>
@@ -361,7 +361,7 @@ export default function CompetitorPage({ c }) {
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
         <Header fixed mode="auto" mega adaptive current="Resources"
-          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews' }} />
+          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
         <main id="main">
           <Hero c={c} reduce={reduce} />
           <WhatIs c={c} reduce={reduce} />

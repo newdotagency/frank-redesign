@@ -17,7 +17,10 @@
 //      forest-green column, then the table's closing line as the takeaway.
 //   5b. What you get: pinned label, title and intro on the left; the four top reasons as cards that stack one by
 //      one as you scroll (as on hifrank.ai/roles/product-managers), each with its count, finding and quote.
-//   6. Closing: the lime panel with the brief's alternative headlines and both CTAs, then the footer.
+//   5c. More templates: the home page's use-case wheel with the other ten templates.
+//   5d. FAQ: the user's nine questions in the home page's FAQ layout.
+//   6. Closing: the lime panel with the brief's alternative headlines and both CTAs, then the footer. "Hear it." in the
+//      Lora italic under the violet highlighter, brand-secondary (user asked, 2026-11-23; an exception to the first-title-only rule).
 // "Preview the interview" opens the home page's live interview; "Make it yours" opens sign-up.
 // Titles (user rule, 2026-11-23): only the first section after the hero has the styled title (the Lora italic phrase
 // under the lime marker); every later section title is plain Figtree. The hero keeps its own italic phrase.
@@ -25,6 +28,9 @@
 import { useRef, useState } from 'react';
 import { MotionConfig, motion, useInView, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import UseCases from './UseCases';
+import MarkedPhrase from './MarkedPhrase';
+import FAQ from './FAQ';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { AnalyticsUpIcon, MessageQuestionIcon, Tag01Icon, UserRemove01Icon } from '@hugeicons/core-free-icons';
 import Header from '../components/Header';
@@ -68,32 +74,26 @@ function Rise({ as = 'div', delay = 0, reduce, className, children, ...rest }) {
   );
 }
 
-// The secondary action on dark: plain text, no outline, circle or arrow; an underline draws in on hover.
-function TextLink({ href, children }) {
+// Buttons in the AI voice interviewer page's style (VoicePage.jsx Btn; user, 2026-11-23): a pill whose arrow sits
+// in a soft circle of the pill's own colour; secondary actions are plain pills with no arrow. tone: 'lime' (on
+// dark), 'ink' (on light), 'ghost' (secondary on dark), 'white' (secondary on light).
+const FOCUS_RING = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink';
+function Btn({ href, tone = 'ink', arrow = true, children }) {
+  const tones = {
+    ink: 'bg-[#1a1714] text-white hover:bg-[#2a2622]',
+    lime: 'bg-[#d1f899] text-ink hover:bg-[#c4ef84]',
+    white: 'bg-white text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.08)] hover:bg-[#fafaf7]',
+    ghost: 'bg-white/[0.08] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)] hover:bg-white/[0.14]',
+  };
   return (
     <a href={href}
-      className={'group inline-flex h-12 items-center rounded-full px-3 font-sans text-[15px] font-medium text-white/85 no-underline transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ' + CURVE}>
-      <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-[position:0_100%] bg-no-repeat pb-0.5 transition-[background-size] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-[length:100%_1px]">{children}</span>
-    </a>
-  );
-}
-
-// A pill with its arrow in its own circle. tone: 'lime' (on dark), 'ink' (on light),
-// 'outline' (on light).
-function Pill({ href, tone, children, down }) {
-  const look = {
-    lime: 'bg-[#d1f899] text-ink hover:bg-[#c4ef84] focus-visible:outline-[#d1f899]',
-    ink: 'bg-[#1a1714] text-white hover:bg-[#2a2622] focus-visible:outline-ink',
-    outline: 'bg-transparent text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.22)] hover:bg-[#1a1714]/[0.04] focus-visible:outline-ink',
-  }[tone];
-  const circle = { lime: 'bg-[#0f2e27] text-white', ink: 'bg-white/[0.12] text-white', outline: 'bg-[#1a1714]/[0.06] text-ink' }[tone];
-  return (
-    <a href={href}
-      className={'group inline-flex h-12 items-center gap-3 rounded-full py-1.5 pl-6 pr-1.5 font-sans text-[15px] font-medium no-underline transition-[background-color,transform] duration-500 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ' + CURVE + ' ' + look}>
+      className={'group inline-flex h-12 items-center gap-3 rounded-full font-sans text-[15.5px] font-medium no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] ' + (arrow ? 'py-1.5 pl-5 pr-1.5 ' : 'px-6 ') + tones[tone] + ' ' + FOCUS_RING}>
       {children}
-      <span aria-hidden="true" className={'grid size-9 place-items-center rounded-full transition-transform duration-500 group-hover:scale-105 ' + CURVE + ' ' + circle + ' ' + (down ? 'motion-safe:group-hover:translate-y-0.5' : 'motion-safe:group-hover:translate-x-0.5')}>
-        <ArrowRight className={'size-4 ' + (down ? 'rotate-90' : '')} strokeWidth={1.75} />
-      </span>
+      {arrow && (
+        <span aria-hidden="true" className={'grid size-9 place-items-center rounded-full transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] motion-safe:group-hover:translate-x-0.5 ' + (tone === 'ink' || tone === 'ghost' ? 'bg-white/[0.12]' : 'bg-[#1a1714]/[0.07]')}>
+          <ArrowRight className="size-4" strokeWidth={1.75} />
+        </span>
+      )}
     </a>
   );
 }
@@ -114,8 +114,8 @@ function Hero({ reduce }) {
               In a short voice or video interview, Frank uncovers what led to the cancellation decision, which expectations went unmet, and what the customer will use instead. Then it ranks every reason by how many customers raised it.
             </Rise>
             <Rise reduce={reduce} delay={0.22} className="mt-9 flex flex-wrap items-center gap-3">
-              <Pill href={PREVIEW.href + PREVIEW.hash} tone="lime">Preview the interview</Pill>
-              <TextLink href={SIGNUP}>Make it yours</TextLink>
+              <Btn href={PREVIEW.href + PREVIEW.hash} tone="lime">Preview the interview</Btn>
+              <Btn href={SIGNUP} tone="ghost" arrow={false}>Make it yours</Btn>
             </Rise>
           </div>
           <Rise reduce={reduce} delay={0.3} className="mx-auto w-full max-w-[560px] lg:mr-0"><CallCard data={CHURN} reduce={reduce} /></Rise>
@@ -384,19 +384,46 @@ function Outcomes({ reduce }) {
   );
 }
 
+// ——— 5c. More templates (user, 2026-11-23: kicker and title given; "reuse this for templates, get it from main
+// landing page"). The home page's use-case wheel (UseCases.jsx) with this page's heading and no subtitle, showing
+// the ten templates other than Churn. The page has no chat, so "Start with this template" opens sign-up.
+
+// ——— 5d. FAQ (user's copy, 2026-11-23, words unchanged): the home page's FAQ section (FAQ.jsx: title and how to
+// reach the team on the left, the questions as an accordion on the right), as on the Voice and competitor pages.
+const CHURN_FAQ = [
+  { q: 'Will customers who just cancelled actually talk to us?',
+    a: ['More than you’d expect, if you ask at the right moment. Trigger the interview from the cancellation flow, keep it short, and let customers pick voice, video or WhatsApp. Many are glad someone finally asked.'] },
+  { q: 'Who should I interview?',
+    a: ['Customers who cancelled in the last few weeks. Add customers whose subscription lapsed without renewal, since they often have the clearest picture of a slow decline.'] },
+  { q: 'How many interviews do I need?',
+    a: ['In most studies, the main reasons start repeating within the first 15 to 20 interviews. Frank shows how many customers raised each theme, so you can see when patterns settle.'] },
+  { q: 'How do I launch it?',
+    a: ['Start from this template, and the AI Researcher helps you adapt the Research Guide to your product. Then add the interview to your cancellation flow as a floating button, an inline card, or a pop-up from your own button. You can also connect it through the API.'] },
+  { q: 'Can I change the questions?',
+    a: ['Yes. Every question in the template is editable. Add questions about a recent pricing change, a specific competitor, or a feature you’re unsure about.'] },
+  { q: 'Does Frank try to win customers back?',
+    a: ['No. The template is built to listen, not to sell. Customers speak more openly when they don’t expect a retention offer at the end.'] },
+  { q: 'Does this replace our cancellation survey?',
+    a: ['It doesn’t have to. Many teams keep the survey for a quick tally and use Frank to find out what’s behind the top answers.'] },
+  { q: 'What languages does Frank support?',
+    a: ['Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more.'] },
+  { q: 'What happens after the interviews?',
+    a: ['You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table.'] },
+];
+
 // ——— 6. Closing.
 function Closing({ reduce }) {
   return (
     <section aria-labelledby="ch-cta-title" className="px-4 pb-[clamp(96px,11vw,160px)] pt-[clamp(112px,13vw,200px)] md:px-10">
       <div className="relative overflow-hidden rounded-[32px] bg-[#d1f899] px-6 py-[clamp(64px,8vw,112px)] text-center md:rounded-[44px]">
         <ScrubText reduce={reduce} className="mx-auto mb-7 w-[72px]"><Glasses pose="Ready" reduced={reduce} /></ScrubText>
-        <ScrubTitle reduce={reduce} id="ch-cta-title" className={H2} lines={['Every cancelled customer has a story.', 'Hear it.']} />
+        <ScrubTitle reduce={reduce} id="ch-cta-title" className={H2} lines={['Every cancelled customer has a story.', <MarkedPhrase key="m" reduce={reduce} color="#d1b2ff" shade="#decbfd">Hear it.</MarkedPhrase>]} />
         <ScrubText as="p" reduce={reduce} lag={0.15} className={'mx-auto mb-0 mt-6 max-w-[42ch] [text-wrap:balance] ' + SUBTITLE}>
           Your exit survey has the what. Frank gets the why.
         </ScrubText>
         <ScrubText reduce={reduce} lag={0.25} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <Pill href={SIGNUP} tone="ink">Make it yours</Pill>
-          <Pill href={PREVIEW.href + PREVIEW.hash} tone="outline">Preview the interview</Pill>
+          <Btn href={SIGNUP} tone="ink">Make it yours</Btn>
+          <Btn href={PREVIEW.href + PREVIEW.hash} tone="white" arrow={false}>Preview the interview</Btn>
         </ScrubText>
       </div>
     </section>
@@ -409,13 +436,18 @@ export default function ChurnPage() {
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
         <Header fixed mode="auto" mega adaptive current="Solutions"
-          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews' }} />
+          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
         <main id="main">
           <Hero reduce={reduce} />
           <WhatIs reduce={reduce} />
           <GuideLight reduce={reduce} />
           <Versus reduce={reduce} />
           <Outcomes reduce={reduce} />
+          <UseCases exclude={['churn']} href={SIGNUP} sectionClass={SECTION + PAD}
+            head={{ eyebrow: 'Build your study on the right foundation', lines: ['Discover more Frank', 'interview templates'], sub: null, titleId: 'ch-tpl-title', titleClass: H2 }} />
+          <div className="pt-[clamp(112px,13vw,200px)]">
+            <FAQ items={CHURN_FAQ} label="FAQ" lines={['Have questions?', 'We have answers.']} id="ch-faq-title" />
+          </div>
           <Closing reduce={reduce} />
         </main>
         <Footer />

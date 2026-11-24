@@ -213,7 +213,7 @@ export default function AppV2111() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: PAGE }}>
-        <Header fixed mode={navMode} mega adaptive hrefs={{ pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews' }} />
+        <Header fixed mode={navMode} mega adaptive hrefs={{ pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
 
         <main id="main">
           <section aria-labelledby="hero-title">

@@ -9,21 +9,25 @@
 // label; each item a thin line icon on the left, a dark title and one grey line under it. Hovering an item
 // darkens its icon and tints it softly. Beside the white panel, on the warm rim, a side zone: the 'New'
 // announcement (Platform), a customer quote (Solutions), a few plain links (Resources). Groups sit side by side as columns:
-//   Platform: Product, Features, Benefits, Industries.  Solutions: Use cases, Roles.  Resources: one list.
+//   Platform: Product, Features, Benefits, Industries.  Solutions: Use cases (the home page's 11 interview templates, 2026-11-23), Roles.  Resources: one list.
 // Motion: the panel fades in, 6px down and from 98.5% scale, anchored at its top, 200ms strong ease-out
 // (the same in reverse to close); moving to another trigger glides it sideways (250ms) and crossfades
 // the content (140ms). Reduced motion: fades only, no glide.
 import { useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Glasses from '../v3/Glasses';
+import PlaybookIcon from './PlaybookIcon';
 import {
-  BadgeCheck, BookOpen, Boxes, Clock3, Compass, FileText, Globe, LayoutGrid, Map, Megaphone, MessageCircle,
-  Mic, PhoneCall, Plug, Quote, Rocket, Scale, Search, ShieldCheck, ShoppingBag, Sparkles, Tag, TrendingUp,
-  UserMinus, Video, Zap, ArrowRight,
+  BadgeCheck, BookOpen, Boxes, Clock3, FileText, Globe, LayoutGrid, Megaphone, MessageCircle,
+  Mic, Plug, Quote, Rocket, Scale, Search, ShieldCheck, ShoppingBag, Sparkles, Tag, TrendingUp,
+  Video, Zap, ArrowRight,
 } from 'lucide-react';
 
 const SITE = 'https://www.hifrank.ai';
 const it = (icon, title, desc, path) => ({ icon, title, desc, href: SITE + path });
+// A use case: one of the interview templates from the home page's use-case wheel (v2104/UseCases.jsx), with its Figma icon. Churn reasons opens the
+// Churn page; the others open the home page with that template chosen (Header maps '#template-<id>' to the home page).
+const tp = (tpl, title, desc) => ({ tpl, title, desc, href: tpl === 'churn' ? SITE + '/churn' : '#template-' + tpl });
 
 export const MENUS = {
   Platform: {
@@ -33,8 +37,8 @@ export const MENUS = {
     groups: [
       { label: 'Product', items: [
         it(Mic, 'AI Voice Interviews', 'Natural voice conversations', '/ai-voice-interviewer'),
-        it(MessageCircle, 'AI WhatsApp Interviewer', 'Voice and video on WhatsApp', '/ai-whatsapp-chat-interviewer'),
         it(Video, 'Video Interviewer', 'Text-based AI interviews', '/ai-video-interviewer'),
+        it(MessageCircle, 'AI WhatsApp Interviewer', 'Voice and video on WhatsApp', '/ai-whatsapp-chat-interviewer'),
         it(Plug, 'MCP', 'Frank inside your AI tools', '/mcp'),
       ] },
       { label: 'Features', items: [
@@ -56,17 +60,22 @@ export const MENUS = {
     ],
   },
   Solutions: {
-    // Side zone: a customer's words. SAMPLE copy from the page's Testimonials (the name is made up) until
-    // real quotes are collected.
-    aside: { kind: 'quote', quote: 'Frank caught the pricing complaint I’d missed in twenty calls.', name: 'Daniel Okafor', role: 'Head of Product, analytics tool', initials: 'DO' },
+    // No side zone (2026-11-23): the sample customer quote that sat here (made-up name) was dropped.
     groups: [
-      { label: 'Use cases', items: [
-        it(UserMinus, 'Churn', 'Learn why customers leave', '/churn'),
-        it(Compass, 'Product Discovery', 'Know what to build next', '/use-case/ai-product-discovery'),
-        it(Sparkles, 'Feature Discovery', 'Instant feedback on features', '/use-case/ai-feature-discovery'),
-        it(Map, 'Market Discovery', 'Find your next market', '/use-case/market-discovery'),
-        it(PhoneCall, 'Discovery Calls', 'Talk to every new customer', '/use-case/ai-discovery-calls'),
-        it(Scale, 'Win/Loss Analysis', 'Why deals close or walk away', '/use-case/win-loss-analysis'),
+      // Two columns (user, 2026-11-23), each use case with a short line under its name. The lines for churn, trial and
+      // activation are the Figma template cards' own; the others are drafted from the home page's problem lines.
+      { label: 'Use cases', cols: 2, items: [
+        tp('churn', 'Churn reasons', 'Cancellation causes, ranked'),
+        tp('activation', 'Activation barriers', 'Why new users don’t start'),
+        tp('trial', 'Trial conversion', 'Why trial users don’t pay'),
+        tp('adoption', 'Feature adoption', 'Why a feature goes unused'),
+        tp('funnel', 'Funnel drop-off', 'Where people stop and why'),
+        tp('engagement', 'Declining engagement', 'Why active users slow down'),
+        tp('upgrade', 'Upgrade barriers', 'What holds back an upgrade'),
+        tp('requests', 'Feature request discovery', 'Which requests deserve investment'),
+        tp('value', 'Customer value drivers', 'Why customers keep coming back'),
+        tp('checkout', 'Checkout abandonment', 'Why payment isn’t completed'),
+        tp('downgrade', 'Downgrade reasons', 'Why customers pay for less'),
       ] },
       { label: 'Roles', items: [
         it(Boxes, 'Product Managers', 'Decisions backed by customers', '/roles/product-managers'),
@@ -101,6 +110,20 @@ const EASE = [0.23, 1, 0.32, 1];
 
 function Item({ i, onPick, link }) {
   const Icon = i.icon;
+  if (i.tpl) {
+    // A use case (one of the home page's interview templates): its Figma glyph as a plain black icon (user,
+    // 2026-11-23: simple black icons, no colour tiles), the name and a short line under it.
+    return (
+      <a href={link(i.href)} onClick={onPick}
+        className="group/i -mx-3 flex gap-3 rounded-[14px] px-3 py-2.5 text-ink no-underline outline-none transition-colors duration-200 ease-out hover:bg-[#1a1714]/[0.035] focus-visible:bg-[#1a1714]/[0.035] focus-visible:ring-2 focus-visible:ring-ink/15">
+        <PlaybookIcon p={{ id: i.tpl }} box={17} className="mt-[2px] text-ink" />
+        <span className="min-w-0">
+          <span className="block font-sans text-[15.5px] leading-[1.3] text-ink">{i.title}</span>
+          {i.desc && <span className="mt-0.5 block font-sans text-[12.5px] leading-[1.4] text-ink-3">{i.desc}</span>}
+        </span>
+      </a>
+    );
+  }
   return (
     <a href={link(i.href)} onClick={onPick}
       className="group/i -mx-3 flex gap-3 rounded-[14px] px-3 py-2.5 text-ink no-underline outline-none transition-colors duration-200 ease-out hover:bg-[#1a1714]/[0.035] focus-visible:bg-[#1a1714]/[0.035] focus-visible:ring-2 focus-visible:ring-ink/15">
@@ -122,9 +145,10 @@ function Body({ menu, onPick, link }) {
         // A faint hairline divider between columns (not before the first), the space on both sides of it.
         // Columns fill the white panel's height, so each line sits the same distance from its top and bottom.
         <div key={g.label} className={'shrink-0 ' + (k ? (m.col ? 'ml-6 border-0 border-l border-solid border-[#1a1714]/[0.045] pl-6' : 'ml-8 border-0 border-l border-solid border-[#1a1714]/[0.045] pl-8') : '')}
-          style={{ width: (m.col || 236) + (k ? (m.col ? 24 : 32) : 0) }}>
+          style={{ width: (m.col || 236) * (g.cols || 1) + 24 * ((g.cols || 1) - 1) + (k ? (m.col ? 24 : 32) : 0) }}>
           <p className="m-0 mb-3 font-sans text-[12px] font-light uppercase leading-none tracking-[0.08em] text-ink-3">{g.label}</p>
-          <div className="flex flex-col gap-0.5">
+          <div className={g.cols ? 'grid grid-flow-col gap-x-6 gap-y-0.5' : 'flex flex-col gap-0.5'}
+            style={g.cols ? { gridTemplateColumns: `repeat(${g.cols}, minmax(0, 1fr))`, gridTemplateRows: `repeat(${Math.ceil(g.items.length / g.cols)}, auto)` } : undefined}>
             {g.items.map(i => <Item key={i.title} i={i} onPick={onPick} link={link} />)}
           </div>
         </div>

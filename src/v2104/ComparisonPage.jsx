@@ -179,7 +179,7 @@ export default function ComparisonPage() {
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
         <Header fixed mode="auto" mega adaptive current="Resources"
-          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews' }} />
+          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
         <main id="main">
           <Hero reduce={reduce} />
           <Cards reduce={reduce} />

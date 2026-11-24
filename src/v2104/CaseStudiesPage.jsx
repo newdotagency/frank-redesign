@@ -135,9 +135,9 @@ function Hero({ reduce }) {
             </Rise>
             <Rise reduce={reduce} delay={0.22} className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-6">
               <a href="#cs-all-title"
-                className="group inline-flex h-12 items-center gap-3 rounded-full bg-white py-1.5 pl-6 pr-1.5 font-sans text-[15px] font-medium text-ink no-underline transition-[transform,background-color] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-[#f6f5f1] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                className="group inline-flex h-12 items-center gap-3 rounded-full bg-[#d1f899] py-1.5 pl-5 pr-1.5 font-sans text-[15.5px] font-medium text-ink no-underline transition-[transform,background-color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-[#c4ef84] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d1f899]">
                 Browse all stories
-                <span aria-hidden="true" className="grid size-9 place-items-center rounded-full bg-[#1a1714]/[0.06] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-safe:group-hover:translate-y-0.5 motion-safe:group-hover:scale-105">
+                <span aria-hidden="true" className="grid size-9 place-items-center rounded-full bg-[#1a1714]/[0.07] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-safe:group-hover:translate-y-0.5 motion-safe:group-hover:scale-105">
                   <ArrowRight className="size-4 rotate-90" strokeWidth={1.5} />
                 </span>
               </a>
@@ -296,7 +296,7 @@ export default function CaseStudiesPage() {
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
         <Header fixed mode="auto" mega adaptive current="Resources"
-          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews' }} />
+          hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
         <main id="main">
           <Hero reduce={reduce} />
           <AllCases reduce={reduce} />

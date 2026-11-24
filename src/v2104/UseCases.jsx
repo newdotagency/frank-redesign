@@ -17,9 +17,9 @@ import { TEMPLATE_ICONS } from '../data/templateIcons';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
 import { END_OFFSET, ScrubText, ScrubTitle } from './reveal';
 
-// The eleven interview templates. problem: what you'd say (a \n starts a new line in the panel); learn: what Frank finds out; prompt: what
+// The eleven interview templates (also read by the Churn page's templates section and, by id, the header menu). problem: what you'd say (a \n starts a new line in the panel); learn: what Frank finds out; prompt: what
 // "Start with this" types into the chat.
-const CASES = [
+export const CASES = [
   { id: 'churn', name: 'Churn reasons', problem: 'Customers are cancelling.',
     learn: 'What led to cancellation, which expectations went unmet, and what customers will do instead.',
     prompt: 'Why are customers cancelling, and what will they do instead?' },
@@ -73,7 +73,7 @@ function Icon({ id, size, on = true }) {
 
 // What the chosen template is for: the problem, what Frank finds out, and the button. `big` is the
 // side panel (1024px and up), otherwise it opens inside the row.
-function Detail({ c, onUse, big }) {
+function Detail({ c, onUse, big, href }) {
   return (
     <div className="flex h-full flex-col">
       <p className="m-0 font-sans text-[13px] text-ink-3">The problem</p>
@@ -82,14 +82,21 @@ function Detail({ c, onUse, big }) {
       </p>
       <p className={'m-0 font-sans text-[13px] text-ink-3 ' + (big ? 'mt-8' : 'mt-5')}>Frank finds out</p>
       <p className={'m-0 mt-2 max-w-[46ch] font-sans leading-[1.5] text-ink-2 ' + (big ? 'mb-10 text-[18px]' : 'mb-6 text-[16px]')}>{c.learn}</p>
-      {/* Types the template's question into the chat; the arrow sits in its own circle. */}
-      <button type="button" onClick={() => onUse(c)}
-        className={'group inline-flex h-12 cursor-pointer items-center gap-3 self-start rounded-full border-0 bg-black py-1.5 pl-5 pr-1.5 font-sans text-[15px] text-white transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#262626] active:scale-[0.98] ' + FOCUS + ' mt-auto'}>
-        Start with this template
-        <span className="grid size-9 place-items-center rounded-full bg-white/[0.14] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-px group-hover:translate-x-0.5">
-          <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
-        </span>
-      </button>
+      {/* Types the template's question into the chat (home page), or, with `href` (other pages, which have no chat),
+          a link; the arrow sits in its own circle. */}
+      {(() => {
+        const Tag = href ? 'a' : 'button';
+        const act = href ? { href } : { type: 'button', onClick: () => onUse(c) };
+        return (
+          <Tag {...act}
+            className={'group inline-flex h-12 cursor-pointer items-center gap-3 self-start rounded-full border-0 bg-black py-1.5 pl-5 pr-1.5 font-sans text-[15px] text-white no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#262626] active:scale-[0.98] ' + FOCUS + ' mt-auto'}>
+            Start with this template
+            <span className="grid size-9 place-items-center rounded-full bg-white/[0.14] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-px group-hover:translate-x-0.5">
+              <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
+            </span>
+          </Tag>
+        );
+      })()}
     </div>
   );
 }
@@ -100,9 +107,10 @@ const SHOW = 2;     // rows visible above and below the chosen one
 
 // The wheel. Each visible row sits at its offset from the chosen one (-2…2); rows slide when the choice
 // changes, new ones come in from the edge the list is moving toward. dir: +1 forward, -1 back.
-function Wheel({ at, dir, go, live, reduce, wide }) {
+function Wheel({ list, at, dir, go, live, reduce, wide }) {
+  const n = list.length;
   const y = o => `translateY(${(o + SHOW) * ROW}px)`;
-  const rows = Array.from({ length: SHOW * 2 + 1 }, (_, k) => k - SHOW).map(o => ({ o, x: CASES[(at + o + N) % N] }));
+  const rows = Array.from({ length: SHOW * 2 + 1 }, (_, k) => k - SHOW).map(o => ({ o, x: list[(at + o + n) % n] }));
   return (
     <div className="relative" style={{ height: ROW * (SHOW * 2 + 1) }}
       onKeyDown={e => { if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); go(1); } if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } }}>
@@ -111,7 +119,7 @@ function Wheel({ at, dir, go, live, reduce, wide }) {
       <span aria-hidden="true" className="absolute inset-x-0 h-[1.5px] overflow-hidden bg-[#1a1714]/[0.07]" style={{ top: (SHOW + 1) * ROW - 1 }}>
         {!reduce && wide && (
           <span key={at} className="ts-fill absolute inset-0 origin-left"
-            style={{ background: TEMPLATE_ICONS[CASES[at].id].fg, animationDuration: `${EVERY_MS}ms`, animationPlayState: live ? 'running' : 'paused' }} />
+            style={{ background: TEMPLATE_ICONS[list[at].id].fg, animationDuration: `${EVERY_MS}ms`, animationPlayState: live ? 'running' : 'paused' }} />
         )}
       </span>
       <div className="absolute inset-0 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_24%,#000_76%,transparent)]">
@@ -145,17 +153,24 @@ function Wheel({ at, dir, go, live, reduce, wide }) {
 const ROUND = 'grid size-10 cursor-pointer place-items-center rounded-full border-0 bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.12] transition-[background-color,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#f4f2ec] active:scale-[0.96] ' + FOCUS;
 
 // What the panel shows for one template: its icon and name, then the detail.
-const PanelBody = ({ c, wide, onUse }) => (
+const PanelBody = ({ c, wide, onUse, href }) => (
   <div className="flex h-full flex-col">
     <div className="mb-7 flex items-center gap-4 lg:mb-8">
       <Icon id={c.id} size={wide ? 56 : 44} />
       <p className="m-0 font-sans text-[17px] text-ink">{c.name}</p>
     </div>
-    <div className="flex flex-1 flex-col [&>div]:flex-1"><Detail c={c} onUse={onUse} big={wide} /></div>
+    <div className="flex flex-1 flex-col [&>div]:flex-1"><Detail c={c} onUse={onUse} big={wide} href={href} /></div>
   </div>
 );
 
-export default function UseCases({ onUse }) {
+// Opt-in props for other pages (the home page passes only onUse, so it is unchanged):
+//   head: { eyebrow, lines, sub, titleId, titleClass } replaces the heading (sub: null hides the subtitle);
+//   exclude: template ids to leave out; href: the button's link (no chat on that page); sectionClass: the
+//   section's spacing.
+export default function UseCases({ onUse, head = null, exclude = null, href = null, sectionClass = null }) {
+  const list = exclude ? CASES.filter(x => !exclude.includes(x.id)) : CASES;
+  const N = list.length;
+  const titleId = head?.titleId || 'uc-title';
   const reduce = !!useReducedMotion();
   const [{ at, dir }, setState] = useState({ at: 0, dir: 1 });
   const go = d => { if (d) setState(st => ({ at: (st.at + d + N) % N, dir: Math.sign(d) })); };
@@ -181,19 +196,37 @@ export default function UseCases({ onUse }) {
     const t = setTimeout(() => go(1), left.current);
     return () => { clearTimeout(t); left.current = Math.max(0, left.current - (Date.now() - t0)); };
   }, [at, live]);
+  // '#template-<id>' (from the header's Solutions › Templates): choose that template and bring the section into view,
+  // instantly, and again after the page has loaded (images above it change the scroll position).
+  useEffect(() => {
+    const pick = () => {
+      const m = window.location.hash.match(/^#template-([a-z]+)$/);
+      const i = m ? list.findIndex(x => x.id === m[1]) : -1;
+      if (i < 0) return;
+      setState({ at: i, dir: 1 });
+      const sec = document.getElementById(titleId)?.closest('section');
+      if (sec) window.scrollTo(0, sec.getBoundingClientRect().top + window.scrollY - 96); // clear of the fixed header
+    };
+    pick();
+    window.addEventListener('hashchange', pick);
+    window.addEventListener('load', pick);
+    return () => { window.removeEventListener('hashchange', pick); window.removeEventListener('load', pick); };
+  }, []);
   const use = c => onUse?.({ id: 'uc-' + c.id, prompt: c.prompt });
-  const c = CASES[at];
+  const c = list[at];
 
   return (
-    <section aria-labelledby="uc-title" className="relative px-4 pb-[clamp(128px,15vw,232px)] sm:px-[clamp(16px,4vw,48px)]">
+    <section aria-labelledby={titleId} className={sectionClass || 'relative px-4 pb-[clamp(128px,15vw,232px)] sm:px-[clamp(16px,4vw,48px)]'}>
       <div className="mx-auto max-w-[1312px]">
         <div className="max-w-[860px]">
-          <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Use cases</Eyebrow></ScrubText>
-          <ScrubTitle reduce={reduce} id="uc-title" className={'m-0 leading-[1.04] text-ink ' + TITLE}
-            lines={['One interviewer.', 'Every use case that matters.']} />
-          <ScrubText as="p" reduce={reduce} lag={0.15} offset={END_OFFSET} className={'mb-0 max-w-[48ch] mt-6 ' + SUBTITLE}>
-            11 interview templates. Pick the question you need answered.
-          </ScrubText>
+          <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">{head?.eyebrow || 'Use cases'}</Eyebrow></ScrubText>
+          <ScrubTitle reduce={reduce} id={titleId} className={head?.titleClass || ('m-0 leading-[1.04] text-ink ' + TITLE)}
+            lines={head?.lines || ['One interviewer.', 'Every use case that matters.']} />
+          {(head?.sub !== null) && (
+            <ScrubText as="p" reduce={reduce} lag={0.15} offset={END_OFFSET} className={'mb-0 max-w-[48ch] mt-6 ' + SUBTITLE}>
+              {head?.sub || '11 interview templates. Pick the question you need answered.'}
+            </ScrubText>
+          )}
         </div>
 
         <ScrubText reduce={reduce} lag={0.1} className="mt-[clamp(28px,4vw,48px)]">
@@ -202,7 +235,7 @@ export default function UseCases({ onUse }) {
             className="grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center">
             {/* Left: the wheel, and under it the back / next buttons (left and right arrows). */}
             <div role="group" aria-roledescription="carousel" aria-label="Interview templates">
-              <Wheel at={at} dir={dir} go={go} live={live} reduce={reduce} wide={wide} />
+              <Wheel list={list} at={at} dir={dir} go={go} live={live} reduce={reduce} wide={wide} />
               <div className="mt-5 flex gap-2">
                 <button type="button" aria-label="Previous template" onClick={() => go(-1)} className={ROUND}><ChevronLeft aria-hidden="true" className="size-4" strokeWidth={1.75} /></button>
                 <button type="button" aria-label="Next template" onClick={() => go(1)} className={ROUND}><ChevronRight aria-hidden="true" className="size-4" strokeWidth={1.75} /></button>
@@ -216,8 +249,8 @@ export default function UseCases({ onUse }) {
                   panel is as tall as the longest at any width and never changes height; the chosen one
                   crossfades on top, its button pinned to the bottom. */}
               <div className="grid">
-                {CASES.map(x => (
-                  <div key={x.id} aria-hidden="true" className="invisible [grid-area:1/1]"><PanelBody c={x} wide={wide} onUse={use} /></div>
+                {list.map(x => (
+                  <div key={x.id} aria-hidden="true" className="invisible [grid-area:1/1]"><PanelBody c={x} wide={wide} onUse={use} href={href} /></div>
                 ))}
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div key={c.id} className="[grid-area:1/1]"
@@ -225,7 +258,7 @@ export default function UseCases({ onUse }) {
                     animate={{ opacity: 1, transform: 'translateY(0px)' }}
                     exit={{ opacity: 0, transform: reduce ? 'none' : 'translateY(-8px)' }}
                     transition={{ duration: reduce ? 0.2 : 0.35, ease: EASE }}>
-                    <PanelBody c={c} wide={wide} onUse={use} />
+                    <PanelBody c={c} wide={wide} onUse={use} href={href} />
                   </motion.div>
                 </AnimatePresence>
               </div>

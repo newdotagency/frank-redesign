@@ -414,7 +414,7 @@ export default function VoicePage() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
-        <Header fixed mode="auto" mega adaptive hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews' }} />
+        <Header fixed mode="auto" mega adaptive hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
         <main id="main">
           {/* 1 — Hero: the green panel in two columns. Left, the label, title, the line under it and the two actions
               (the live page's words); right, a stack of call cards: one customer speaking at a time (VoiceCrowd). Below 1280px: stacked,
