@@ -13,7 +13,7 @@
 //   6. Closing: the lime panel with the live page's closing words and CTA, then the footer.
 // Later section titles are plain Figtree (user rule, 2026-11-23); every subtitle uses SUBTITLE from ./titles.
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, MotionConfig, motion, useInView, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowUp, Check, Mic, PhoneOff } from 'lucide-react';
 import { siGithubcopilot, siGooglegemini } from 'simple-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -903,57 +903,41 @@ function How() {
   );
 }
 
-// ——— 4. Built for every team: the live page's four roles in simple cards (icon and role, the question as a prompt, the line),
-// laid out like the Churn page's "What you get" (user, 2026-11-24: "like this section"): the kicker, title and subtitle
-// pinned on the left; on the right the cards stack as you scroll, each new card sliding up over the one before, so one
-// team shows at a time. The cards are that section's cream with the corner glow. Plain CSS sticky (no scroll script).
-// Two equal columns from 1024px; below that the cards are a plain list.
+// ——— 4. Built for every team: the live page's four roles in simple cards (icon and role, the question as a prompt, the
+// line), laid out like the Churn page's "What you get" (user, 2026-11-24): title on the left, cards stacking on the
+// right, one team at a time. From 1024px it is one pinned stage, like How it works (user, 2026-11-24: "after showing
+// all cards the whole block should scroll together"): a tall track with a sticky stage; scrolling slides
+// each next card up over the one before (each stops 18px lower, so the earlier ones show above it); after the last one
+// the stage holds for one more step while its question types, then the title and all four cards scroll away as one
+// block. A card's question types once it has arrived. Below 1024px, and with reduced motion, the cards are a plain list
+// that types as each card comes into view.
 const TEAMS = [
   ['Founders', Rocket01Icon, 'Why are we losing these customers?', 'Pull together interviews from recent wins, losses, and cancellations. Find the patterns behind them and get to the answer before the next decision.'],
   ['Product', PackageIcon, 'What do users actually want next?', 'Explore interviews, test assumptions, compare customer segments, and pressure-test roadmap ideas without digging through research reports.'],
   ['Marketing', Megaphone01Icon, 'Why do customers choose us?', 'Find the language customers naturally use, uncover objections and motivations, and understand what makes people convert.'],
   ['Sales and accounts', HandshakeIcon, 'Why did we win this deal?', 'Analyze winning and losing conversations to uncover the objections, competitors, buying triggers, and gaps shaping your sales funnel.'],
 ];
+const TEAM_STEP = 18; // px each card stops below the one before
+const TEAM_UNITS = TEAMS.length; // scroll steps: one per arriving card (3) plus one hold after the last
 
-// One team card: the icon tile and role, the question as a prompt in your AI (user, 2026-11-24: keep the icons and the
-// chat input), and the line. The question types in and the send button darkens once the card has settled in its
-// pinned spot beside the section text (user, 2026-11-24): from 1024px that is when its top reaches its sticky `top`;
-// below 1024px, where nothing pins, when the card is mostly in view. Screen readers get the whole question as the
-// heading. Reduced motion: shown typed.
-function TeamCard({ role, icon, q, text, top, reduce }) {
+// One team card. Its question types in once `play` (or, when `play` isn't given, once the card is mostly in view);
+// screen readers get the whole question as the heading. Reduced motion: shown typed.
+function TeamCard({ role, icon, q, text, reduce, play, className = '' }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
-  const [docked, setDocked] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || reduce) return;
-    const wide = window.matchMedia('(min-width: 1024px)');
-    let raf = 0;
-    const check = () => {
-      raf = 0;
-      if (wide.matches && el.getBoundingClientRect().top <= top + 2) setDocked(true);
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
-    check();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(raf); };
-  }, [top, reduce]);
-  const [wideNow, setWideNow] = useState(false);
-  useEffect(() => { setWideNow(window.matchMedia('(min-width: 1024px)').matches); }, []);
-  const seen = wideNow ? docked : inView;
+  const go = play === undefined ? inView : play;
   const [n, setN] = useState(reduce ? q.length : 0);
   useEffect(() => {
     if (reduce) { setN(q.length); return; }
-    if (!seen) return;
+    if (!go) return;
     let i = 0, id;
     const tick = () => { i += 1; setN(i); if (i < q.length) id = setTimeout(tick, 34); };
-    id = setTimeout(tick, 300);
+    id = setTimeout(tick, 250);
     return () => clearTimeout(id);
-  }, [seen, reduce, q]);
+  }, [go, reduce, q]);
   const typed = n >= q.length;
   return (
-    <div ref={ref} className="relative flex min-h-[320px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-1 ring-[#1a1714]/[0.06] sm:p-9">
+    <div ref={ref} className={'relative flex min-h-[320px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-1 ring-[#1a1714]/[0.06] sm:p-9 ' + className}>
       {/* The Churn page's "What you get" card: cream with the faint grainy yellow glow in the corner. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
       <span className="relative flex items-center gap-2.5 font-sans text-[15px] text-ink-2">
@@ -981,28 +965,92 @@ function TeamCard({ role, icon, q, text, top, reduce }) {
   );
 }
 
+// A card in the pinned stack: slides up from below the screen to its place while the scroll is in its step.
+function StackCard({ i, progress, from, children }) {
+  const y = useTransform(progress, p => {
+    if (i === 0) return 0;
+    const t = Math.min(1, Math.max(0, p * TEAM_UNITS - (i - 1)));
+    const e = 1 - Math.pow(1 - t, 3); // ease out
+    return from * (1 - e) + i * TEAM_STEP * e;
+  });
+  return <motion.li className="[grid-area:1/1]" style={{ y, zIndex: i }}>{children}</motion.li>;
+}
+
+function TeamsHeader({ reduce }) {
+  return (
+    <div>
+      <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Built for every team</Eyebrow></ScrubText>
+      <ScrubTitle reduce={reduce} id="mcp-teams-title" className={H2} lines={['Customer research', 'built around your work']} />
+      <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[52ch] ' + SUBTITLE}>
+        You don’t need to become a researcher, learn new skills, or dedicate hours to managing interviews to reap the benefits of customer insights. With Frank connected to your AI, customer insight effortlessly becomes part of the work you already do every day.
+      </ScrubText>
+    </div>
+  );
+}
+
+// The stage pins 112px from the top (under the header, as the Churn section's title does) at its own height; the track
+// is that height plus TEAM_UNITS steps of scroll, so the gaps to the sections around it stay as they were.
+const TEAM_PIN = 112;
+function TeamsPinned({ reduce }) {
+  const track = useRef(null);
+  const stage = useRef(null);
+  const [stageH, setStageH] = useState(560);
+  useLayoutEffect(() => {
+    const el = stage.current; if (!el) return;
+    const ro = new ResizeObserver(([e]) => setStageH(Math.round(e.borderBoxSize?.[0]?.blockSize ?? el.offsetHeight)));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const { scrollYProgress } = useScroll({ target: track, offset: [`start ${TEAM_PIN}px`, `end ${TEAM_PIN + stageH}px`] });
+  // How many cards have arrived: the first once the stage is pinned, each next one at the end of its step.
+  const [arrived, setArrived] = useState(-1);
+  useMotionValueEvent(scrollYProgress, 'change', p => {
+    const k = p <= 0 ? -1 : Math.min(TEAMS.length - 1, Math.floor(p * TEAM_UNITS + 0.02));
+    setArrived(a => Math.max(a, k));
+  });
+  const [from, setFrom] = useState(700);
+  useEffect(() => {
+    const set = () => setFrom(window.innerHeight); // start a full screen below, out of sight
+    set(); window.addEventListener('resize', set);
+    return () => window.removeEventListener('resize', set);
+  }, []);
+  return (
+    <div ref={track} className="relative" style={{ height: `calc(${stageH}px + ${TEAM_UNITS * 55}svh)` }}>
+      <div ref={stage} className="sticky" style={{ top: TEAM_PIN }}>
+        <div className="mx-auto grid w-full max-w-[1312px] grid-cols-2 items-center gap-16 xl:gap-24">
+          <TeamsHeader reduce={reduce} />
+          <ul aria-label="Teams" className="m-0 grid list-none p-0" style={{ paddingBottom: (TEAMS.length - 1) * TEAM_STEP }}>
+            {TEAMS.map(([role, icon, q, text], i) => (
+              <StackCard key={role} i={i} progress={scrollYProgress} from={from}>
+                <TeamCard role={role} icon={icon} q={q} text={text} reduce={reduce} play={arrived >= i} className="h-full" />
+              </StackCard>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Teams({ reduce }) {
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const set = () => setWide(mq.matches);
+    set(); mq.addEventListener('change', set);
+    return () => mq.removeEventListener('change', set);
+  }, []);
+  if (wide && !reduce) {
+    return <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}><TeamsPinned reduce={reduce} /></section>;
+  }
   return (
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
-      {/* The last card keeps scroll room after it docks (the 36vh spacer at the end of the list), so the title and the
-          last card stay pinned while its question types (user, 2026-11-24). */}
       <div className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Built for every team</Eyebrow></ScrubText>
-          <ScrubTitle reduce={reduce} id="mcp-teams-title" className={H2} lines={['Customer research', 'built around your work']} />
-          <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[52ch] ' + SUBTITLE}>
-            You don’t need to become a researcher, learn new skills, or dedicate hours to managing interviews to reap the benefits of customer insights. With Frank connected to your AI, customer insight effortlessly becomes part of the work you already do every day.
-          </ScrubText>
-        </div>
-
-        <ul aria-label="Teams" className="m-0 flex list-none flex-col gap-4 p-0 lg:gap-0">
-          {TEAMS.map(([role, icon, q, text], i) => (
-            <li key={role} className={'lg:sticky' + (i < TEAMS.length - 1 ? ' lg:mb-[28vh]' : '')} style={{ top: `${112 + i * 18}px` }}>
-              <TeamCard role={role} icon={icon} q={q} text={text} top={112 + i * 18} reduce={reduce} />
-            </li>
+        <TeamsHeader reduce={reduce} />
+        <ul aria-label="Teams" className="m-0 flex list-none flex-col gap-4 p-0">
+          {TEAMS.map(([role, icon, q, text]) => (
+            <li key={role}><TeamCard role={role} icon={icon} q={q} text={text} reduce={reduce} /></li>
           ))}
-          {/* Scroll room after the last card: a sticky element's own bottom margin doesn't hold it, a spacer does. */}
-          <li aria-hidden="true" role="presentation" className="hidden h-[36vh] lg:block" />
         </ul>
       </div>
     </section>
