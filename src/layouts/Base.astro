@@ -21,20 +21,18 @@ const { title, description } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Figtree:wght@500&family=Geist+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Homemade+Apple&family=Caveat:wght@600&family=Kalam:wght@700&display=swap" rel="stylesheet" />
     <!-- TODO-DESIGN markers, after every link to a page that is not finished:
            red    = still the old live site (not started);
-           yellow = built here, design in progress (now: the /features/ pages and /product-updates).
+           yellow = built here, design in progress (now: the /features/ pages).
          Delete this <style> block to hide the dots. A live-site page leaves red when it is added to src/lib/sitePaths.js; move a
          page's path from the yellow rule to nothing (delete it) once its design is done. -->
     <style is:global>
       a[href^="https://www.hifrank.ai/"]:not([tabindex="-1"])::after,
       a[href^="https://hifrank.ai/"]:not([tabindex="-1"])::after,
-      a[href^="/features/"]:not([tabindex="-1"])::after,
-      a[href^="/product-updates"]:not([tabindex="-1"])::after {
+      a[href^="/features/"]:not([tabindex="-1"])::after {
         content: ""; display: inline-block; flex: none; width: 7px; height: 7px; margin-left: 6px;
         border-radius: 9999px; background: #e5322d; vertical-align: middle; box-shadow: 0 0 0 2px rgba(229, 50, 45, 0.18);
       }
       /* in progress: yellow (listed after the red rule so it wins) */
-      a[href^="/features/"]:not([tabindex="-1"])::after,
-      a[href^="/product-updates"]:not([tabindex="-1"])::after {
+      a[href^="/features/"]:not([tabindex="-1"])::after {
         background: #f5b800; box-shadow: 0 0 0 2px rgba(245, 184, 0, 0.25);
       }
     </style>
