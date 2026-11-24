@@ -111,12 +111,12 @@ const EASE = [0.23, 1, 0.32, 1];
 function Item({ i, onPick, link }) {
   const Icon = i.icon;
   if (i.tpl) {
-    // A use case (one of the home page's interview templates): its Figma glyph as a plain black icon (user,
-    // 2026-11-23: simple black icons, no colour tiles), the name and a short line under it.
+    // A use case (one of the home page's interview templates): its Figma glyph as a plain icon, sized and
+    // coloured like the Lucide icons in the other menus (grey, ink on hover; user, 2026-11-24), the name and a short line under it.
     return (
       <a href={link(i.href)} onClick={onPick}
         className="group/i -mx-3 flex gap-3 rounded-[14px] px-3 py-2.5 text-ink no-underline outline-none transition-colors duration-200 ease-out hover:bg-[#1a1714]/[0.035] focus-visible:bg-[#1a1714]/[0.035] focus-visible:ring-2 focus-visible:ring-ink/15">
-        <PlaybookIcon p={{ id: i.tpl }} box={17} className="mt-[2px] text-ink" />
+        <PlaybookIcon p={{ id: i.tpl }} box={17} scale={1.15} className="mt-[2px] text-ink-3 transition-colors duration-200 group-hover/i:text-ink" />
         <span className="min-w-0">
           <span className="block font-sans text-[15.5px] leading-[1.3] text-ink">{i.title}</span>
           {i.desc && <span className="mt-0.5 block font-sans text-[12.5px] leading-[1.4] text-ink-3">{i.desc}</span>}

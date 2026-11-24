@@ -22,14 +22,15 @@ const MOTION = {
   downgrade:  { paths: { 1: 'ti-slide-down', 2: 'ti-slide-down' } },        // arrow steps down
 };
 
-export default function PlaybookIcon({ p, box = 16, className = '' }) {
+// scale: draws the glyph larger inside its box (strokes keep their drawn width), e.g. to match a 17px Lucide icon.
+export default function PlaybookIcon({ p, box = 16, scale = 1, className = '' }) {
   const ic = TEMPLATE_ICONS[p.id];
   if (!ic) return null;
   const m = MOTION[p.id] || {};
   const origin = m.origin ? { transformOrigin: m.origin } : undefined;
   return (
     <span aria-hidden="true" className={'grid shrink-0 place-items-center ' + className} style={{ width: box, height: box }}>
-      <svg width={ic.w} height={ic.h} viewBox={ic.vb} fill="none" overflow="visible">
+      <svg width={ic.w * scale} height={ic.h * scale} viewBox={ic.vb} fill="none" overflow="visible">
         <g className={m.all} style={m.all ? origin : undefined}>
           {ic.paths.map((pt, i) => {
             const cls = m.paths?.[i];
@@ -37,7 +38,7 @@ export default function PlaybookIcon({ p, box = 16, className = '' }) {
             return (
               <path key={i} d={pt.d} className={cls} style={cls ? origin : undefined}
                 pathLength={draws ? 1 : undefined}
-                stroke={pt.sw ? 'currentColor' : undefined} strokeWidth={pt.sw}
+                stroke={pt.sw ? 'currentColor' : undefined} strokeWidth={pt.sw && pt.sw / scale}
                 fill={pt.fill ? 'currentColor' : 'none'}
                 strokeLinecap="round" strokeLinejoin="round" />
             );
