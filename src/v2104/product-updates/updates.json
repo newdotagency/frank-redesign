@@ -1,0 +1,670 @@
+[
+ {
+  "slug": "editable-research-guide",
+  "title": "Full Control Over How Frank Interviews Your Customers",
+  "metaTitle": "Frank Product Updates: Editable Research Guide & Follow-Ups",
+  "date": "August 25, 2026",
+  "lead": "Your Research Guide is now fully editable — goals, questions, the order they're asked in, how deep Frank follows up, and what it says at the start and end of every interview!",
+  "excerpt": "Your Research Guide is now fully editable — goals, questions, the order they're asked in, how deep Frank follows up, and what it says at the start and end of every interview!",
+  "also": [
+   "Follow-up settings now shape the live interview",
+   "\"Something else\" free-text option on every list",
+   "One-request study creation through the API"
+  ],
+  "blocks": [
+   {
+    "t": "h",
+    "x": "Anyone can write the questions. The interview is the hard part."
+   },
+   {
+    "t": "p",
+    "x": "You already know what you need to find out. That's not the difficult bit."
+   },
+   {
+    "t": "p",
+    "x": "The difficult bit is the conversation. Knowing when \"the pricing felt a bit high\" is the answer, and when it's the thing standing in front of the answer. A good researcher pushes. A form moves on…"
+   },
+   {
+    "t": "p",
+    "x": "Now you decide how hard Frank pushes."
+   },
+   {
+    "t": "p",
+    "x": "Every part of your Research Guide is yours to edit — goals, questions, the order they come in, follow-up depth, probing guidelines, and the welcome and closing messages."
+   },
+   {
+    "t": "p",
+    "x": "Your follow-up settings feed straight into the live interview alongside your goals and questions, so the behaviour you configure is the behaviour your customers get."
+   },
+   {
+    "t": "h",
+    "x": "What to do with it"
+   },
+   {
+    "t": "p",
+    "x": "**Set how deep the follow-ups go.** Follow-up depth and probing guidelines are yours to configure per question and study. Let Frank take a short answer on the easy questions, and tell it to keep pushing on the one you actually built the study around."
+   },
+   {
+    "t": "p",
+    "x": "**Drag your questions into the order you want.** Order changes answers. Ask about price before you've established what someone was trying to achieve and you'll get a different response than if you ask it after. Reorder by dragging."
+   },
+   {
+    "t": "p",
+    "x": "**Write the welcome and closing messages.** Both are editable, so the interview opens and signs off in your voice rather than a default one — and your customer knows who they've been talking to."
+   },
+   {
+    "t": "p",
+    "x": "**\"Something else\" catches what you didn't think of.** When you’re setting up your interview, Frank helps by presenting options for you to select. Now option lists end with a free-text input, so if the answer you’re looking for isn't in the list can just say it."
+   },
+   {
+    "t": "h",
+    "x": "Getting started"
+   },
+   {
+    "t": "p",
+    "x": "1. Start a new research project and go to the Research Guide."
+   },
+   {
+    "t": "img",
+    "src": "/product-updates/editable-research-guide/image-1.png",
+    "alt": "Frank research guide dashboard"
+   },
+   {
+    "t": "p",
+    "x": "2. Edit your goals and questions, drag them into the order you want, then set follow-up depth and probing guidelines."
+   },
+   {
+    "t": "img",
+    "src": "/product-updates/editable-research-guide/image-2.png",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "3. Write your welcome and closing messages, and use the AI Researcher chat beside the builder to reword anything you'd rather it asked differently."
+   },
+   {
+    "t": "img",
+    "src": "/product-updates/editable-research-guide/image-3.png",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "Full setup steps are in the [knowledge base](/docs)."
+   },
+   {
+    "t": "h",
+    "x": "One Request to Create a Study"
+   },
+   {
+    "t": "p",
+    "x": "For anyone setting studies up through the API rather than the dashboard: creating a research project used to mean firing a request and then polling until it was ready. Now a single call returns a draft immediately, and you can carry straight on to configuring it."
+   },
+   {
+    "t": "p",
+    "x": "Smaller than it sounds, unless you've written the polling loop."
+   },
+   {
+    "t": "h",
+    "x": "Also in this release"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "Study creation flow has been restyled to match the rest of Frank.",
+     "Fixed: the breadcrumb briefly showing \"Research\" before resolving to your study title.",
+     "Fixed: the breadcrumb missing its product step, so there's a way back again."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Frank runs your customer interviews so you can get back to building."
+   },
+   {
+    "t": "p",
+    "x": "You still decide what to ask and how hard to dig — Frank just does the two hundred conversations, at whatever hour your customers are free."
+   }
+  ]
+ },
+ {
+  "slug": "new-interview-statuses",
+  "title": "Completion Rates You Can Actually Trust",
+  "metaTitle": "Frank Product Updates: New Interview Statuses",
+  "date": "August 20, 2026",
+  "lead": "Interview status now reflects what actually happened in the conversation, not just that a session ended.",
+  "excerpt": "Interview status now reflects what actually happened in the conversation, not just that a session ended.",
+  "also": [
+   "Full API documentation in Settings",
+   "Public interview sharing fixed"
+  ],
+  "blocks": [
+   {
+    "t": "h",
+    "x": "More Detailed Interview Statuses"
+   },
+   {
+    "t": "p",
+    "x": "If someone clicked your link, connected, said nothing, and left after five seconds, Frank counted that as Completed."
+   },
+   {
+    "t": "p",
+    "x": "So your completion count was flattering and slightly meaningless."
+   },
+   {
+    "t": "p",
+    "x": "Worse, it flowed downstream — into your analytics, and into anything you'd wired the interview-completed webhook up to."
+   },
+   {
+    "t": "p",
+    "x": "Now, Frank shows five statuses instead of two:"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "**Scheduled** — booked, not started.",
+     "**In progress** — happening now.",
+     "**Completed** — the interviewer reached its closing. Not a duration threshold, an actual finished conversation.",
+     "**Incomplete** — ended early, but the participant did talk. This is what used to be called Dropped.",
+     "**Dropped** — connected and never responded at all."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Three things follow from that:"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "The completed interview webhook now fires only for genuinely Completed interviews, so anything you've built on it stops triggering on five-second no-shows",
+     "Dropped interviews are excluded from analytics entirely",
+     "And the Interviews table shows and filters on all five statuses, so you can tell the difference between someone who bailed halfway and someone who never engaged at all"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "This change only applies to interviews after this date. Existing interviews keep the status they already have, so your historical completion figures won't correct themselves."
+   },
+   {
+    "t": "p",
+    "x": "If you're comparing this month against last, the comparison isn't clean — and the direction of the error is that the old numbers were too generous."
+   },
+   {
+    "t": "h",
+    "x": "Full API Documentation in Settings"
+   },
+   {
+    "t": "p",
+    "x": "If you're building on any of this, the docs are now in the product:"
+   },
+   {
+    "t": "p",
+    "x": "Settings → API documentation"
+   },
+   {
+    "t": "img",
+    "src": "/product-updates/new-interview-statuses/image-1.png",
+    "alt": "Frank API documentation"
+   },
+   {
+    "t": "p",
+    "x": "You can see your API keys, authentication, base URL, every /v1 endpoint with curl and JSON examples, and tables for errors and rate limits."
+   },
+   {
+    "t": "p",
+    "x": "Worth a look if you have a webhook handler to update after the status change above."
+   },
+   {
+    "t": "h",
+    "x": "Also in this release"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "Fixed: public interview sharing, and shared transcripts that weren't visible.",
+     "Fixed: the Performance drawer showing the wrong participant name against a quote."
+    ]
+   }
+  ]
+ },
+ {
+  "slug": "embed-customer-interviews",
+  "title": "Embed Customer Interviews Directly Into Your Website or App",
+  "metaTitle": "Frank Product Update: Embed Customer Interviews",
+  "date": "August 20, 2026",
+  "lead": "You can now embed a Frank interview as an inline card inside your page, as a pop-up opened from your own button, or as the floating button you already know — with CTA text you write yourself!",
+  "excerpt": "You can now embed a Frank interview as an inline card inside your page, as a pop-up opened from your own button, or as the floating button you already know — with CTA text you write yourself!",
+  "also": [
+   "A public API with keys you create and revoke",
+   "Webhooks that fire the moment an interview completes",
+   "Restyled study creation flow"
+  ],
+  "blocks": [
+   {
+    "t": "h",
+    "x": "Interview Users Automatically. Directly in your Website/App."
+   },
+   {
+    "t": "p",
+    "x": "A customer is only briefly willing to tell you why. Right after they cancel. Right after onboarding finally clicks. Right after the third visit to your pricing page in a week."
+   },
+   {
+    "t": "p",
+    "x": "A fixed, floating button in the corner of every page can't catch any of that. It asks everyone the same thing at the same non-moment, and mostly gets scrolled past…"
+   },
+   {
+    "t": "p",
+    "x": "An emailed survey or interview can’t do it either. It’s too late, the moment passed, and you won’t get any of the emotion your user experienced in the moment."
+   },
+   {
+    "t": "p",
+    "x": "But now, Frank let’s you choose where the interview lives."
+   },
+   {
+    "t": "p",
+    "x": "Three mount modes: the floating button you already have, an inline card rendered directly into your page, or a pop-up dialog opened from your own button or link. And the CTA text is yours to write."
+   },
+   {
+    "t": "h",
+    "x": "What to do with it"
+   },
+   {
+    "t": "p",
+    "x": "**Inline cards sit inside the page.** Rendered directly into your layout, so you can put an interview at the bottom of a cancellation flow or on the screen someone lands on after finishing setup. It reads as part of your product rather than a third-party widget hovering in the corner."
+   },
+   {
+    "t": "p",
+    "x": "**Pop-ups open from your own button.** Keep your design and your copy, and point an existing button or link at the interview. The ask arrives as a considered invitation instead of an interruption — and you decide what has to happen before it shows up."
+   },
+   {
+    "t": "p",
+    "x": "**Write the CTA yourself.** \"Tell us why you're leaving\" and \"Got 5 minutes to help us improve?\" get very different response rates out of the same audience. Configurable from the embed settings, so you can try one and then the other."
+   },
+   {
+    "t": "p",
+    "x": "**Keep the floating button for the always-on ask.** It hasn't gone anywhere, and it's still the right choice for a standing invitation on every page. Use the new modes where you want to catch a specific moment, and leave the button up for everything else."
+   },
+   {
+    "t": "h",
+    "x": "Getting started"
+   },
+   {
+    "t": "ol",
+    "items": [
+     "Open your research project and click \"Add to your site/app\".",
+     "Choose your mount mode — floating button, inline card, or pop-up — and write your CTA text.",
+     "Add the embed to your site by copy-pasting the code."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Full setup steps are in the [knowledge base](/docs)."
+   },
+   {
+    "t": "h",
+    "x": "A Public API and Webhooks"
+   },
+   {
+    "t": "p",
+    "x": "The other half of this release is for whoever looks after your stack."
+   },
+   {
+    "t": "p",
+    "x": "You can now create and revoke your own API keys from Settings, so you can integrate Frank into whatever flow you want. And the new Get interview endpoint returns an interview together with its transcript."
+   },
+   {
+    "t": "p",
+    "x": "There's also a Webhooks screen in Settings for a single account-wide webhook that notifies your server the moment an interview completes."
+   },
+   {
+    "t": "p",
+    "x": "Together those two are the useful part. An interview finishes, the webhook hits your server, your server pulls the transcript, and it lands wherever you keep the rest of your customer data — your warehouse, your CRM, a Slack channel for churn interviews. Nobody has to log into Frank for any of it."
+   },
+   {
+    "t": "p",
+    "x": "Check out the [API docs here](/docs/frank-public-api-developer-guide)."
+   },
+   {
+    "t": "h",
+    "x": "Also in this release"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "Fixed: Action Items showing no data in some cases, and Action Items missing their date and time.",
+     "Fixed: interviews that couldn't be exported or downloaded.",
+     "Fixed: a style mismatch on the interview schedule screen on mobile."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Frank runs your customer interviews so you can get back to building."
+   },
+   {
+    "t": "p",
+    "x": "This release is about getting out of your way while it does — the interview sits inside your product looking like it belongs there, and the results turn up in your own systems without anyone going to fetch them."
+   }
+  ]
+ },
+ {
+  "slug": "interview-analytics-dashboard",
+  "title": "Interview Analytics in the Survey-Style Dashboard You’re Used To",
+  "metaTitle": "Frank Product Update: Interview Analytics Dashboard",
+  "date": "July 20, 2026",
+  "lead": "The new Performance tab shows every response from your research grouped into themes and sorted by how often it came up — so you can see what your whole study is saying at a glance!",
+  "excerpt": "The new Performance tab shows every response from your research grouped into themes and sorted by how often it came up — so you can see what your whole study is saying at a glance!",
+  "also": [
+   "Charts and tables on request in Analytics Chat",
+   "Study stats: sign-ups, completions, interview time"
+  ],
+  "blocks": [
+   {
+    "t": "h",
+    "x": "Numbers you can show. Answers you can use."
+   },
+   {
+    "t": "p",
+    "x": "You need a number to take into a meeting. So you send a survey, two hundred people tick a box, and you get a clean chart saying cost was the top factor — with no idea what any of them meant by cost."
+   },
+   {
+    "t": "p",
+    "x": "So you run interviews instead. You get the why in vivid detail from ten people, you finally understand the problem, and then someone in the room asks how representative that is…"
+   },
+   {
+    "t": "p",
+    "x": "Now the Performance tab gives you both, from the same study!"
+   },
+   {
+    "t": "p",
+    "x": "With smart follow-ups and different touchpoints throughout the conversation, Frank might get multiple responses to the same question from the same customer over the course of a 5-minute interview."
+   },
+   {
+    "t": "p",
+    "x": "It reads like the survey dashboard you're already used to. The difference is that every bar is made of real conversations, and you can open it and hear them."
+   },
+   {
+    "t": "p",
+    "x": "And now you can see them all at a glance!"
+   },
+   {
+    "t": "h",
+    "x": "What to do with it"
+   },
+   {
+    "t": "p",
+    "x": "**Every bar opens into the real quotes.** Click a theme and you'll see the individual responses inside it, attributed by name, each with a link that jumps to that exact moment in the interview. So \"44% said cost\" stops being a statistic and becomes four people you can put on screen, in their own words."
+   },
+   {
+    "t": "p",
+    "x": "**One interview answers a question more than once.** A survey of 10 people gives you 10 data points. But sending Frank out to interview 10 customers might produce 100s of data points! Because people in conversation don't give you one answer, they give you the answer, then the caveat, then the real reason. And then they reiterate or paraphrase themselves 4 minutes later when you ask them something else… and now you can see them all."
+   },
+   {
+    "t": "p",
+    "x": "**Your Research Guide shapes the dashboard.** Themes sit under the question that produced them, and questions sit under the research goal you set during setup. You're not reading a generic report — you're reading answers to the questions you set out to ask."
+   },
+   {
+    "t": "p",
+    "x": "**Check how the study itself is going.** You can now also review the performance of your study. Sign-ups, completed interviews, total interview time and average duration sit alongside the results, so you can see whether you have enough responses to trust yet."
+   },
+   {
+    "t": "h",
+    "x": "Getting started"
+   },
+   {
+    "t": "img",
+    "src": "/product-updates/interview-analytics-dashboard/image-1.png",
+    "alt": ""
+   },
+   {
+    "t": "ol",
+    "items": [
+     "Open a research project with completed interviews and go to the Performance tab.",
+     "Pick a research goal from the list on the right to jump to its questions and themes.",
+     "Click any bar to read the responses inside it, then “Jump to interview” to hear it in the customer's own words."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Full setup steps are in the [knowledge base](/docs)."
+   },
+   {
+    "t": "h",
+    "x": "Charts on Request in Analytics Chat"
+   },
+   {
+    "t": "p",
+    "x": "The Performance tab covers the view you'll want most often: every question, every theme, sorted by frequency."
+   },
+   {
+    "t": "p",
+    "x": "But what about when you need something it doesn't show?"
+   },
+   {
+    "t": "p",
+    "x": "Just ask for it!"
+   },
+   {
+    "t": "p",
+    "x": "Analytics Chat will build charts and tables on request — correlations between responses, or every mention of a particular theme pulled out on its own."
+   },
+   {
+    "t": "p",
+    "x": "And because it's a conversation, you don't have to know what you're looking for before you start. You can follow the thing that looks odd in the Performance tab until it turns into an answer."
+   },
+   {
+    "t": "p",
+    "x": "Frank runs your customer interviews so you can get back to building. Now it hands the results back in a format you can act on and share — the numbers to make the case, and the recordings to back it up."
+   },
+   {
+    "t": "p",
+    "x": "If you've been running surveys because interviews were too much work, this is the release that closes the gap."
+   }
+  ]
+ },
+ {
+  "slug": "customer-action-items-from-interviews",
+  "title": "Turn Customer Interviews Into Action Items With Exact Quotes",
+  "metaTitle": "Frank Product Update: Customer Action Items & Insights",
+  "date": "May 20, 2026",
+  "lead": "Every research project in Frank now has its own Action Items page and every item links straight back to the moment a customer said it!",
+  "excerpt": "Every research project in Frank now has its own Action Items page and every item links straight back to the moment a customer said it!",
+  "also": [
+   "Bulk download and delete for interviews",
+   "Undo on archive and delete",
+   "Emails now come from Frank"
+  ],
+  "blocks": [
+   {
+    "t": "h",
+    "x": "Interviews don't fail during the interview"
+   },
+   {
+    "t": "p",
+    "x": "*You run 20 interviews. The transcripts land. Everyone means to read them. Then something more important happens, and the question of what to do with the interviews remains… *"
+   },
+   {
+    "t": "p",
+    "x": "Now, **Frank identifies Action Items** in relevant conversations with your customers automatically."
+   },
+   {
+    "t": "p",
+    "x": "It shows you how many people delivered this insight, and the exact moment in the conversation so that you can hear it for yourself!"
+   },
+   {
+    "t": "p",
+    "x": "No more rummaging through transcripts looking for breadcrumbs…"
+   },
+   {
+    "t": "h",
+    "x": "What to do with it"
+   },
+   {
+    "t": "p",
+    "x": "**Every Action Item is referenced.** Open any Action Item and you'll see the customer quote it came from, plus a link that jumps to that exact position in the transcript. This is the difference between \"customers seem confused by onboarding\" and being able to put three people's own words on screen in a meeting."
+   },
+   {
+    "t": "p",
+    "x": "**Set priority where you're already looking.** Straight from the card, or from the detail panel if you want the fuller picture first. Triage a list of forty Action Items without a round trip on every one."
+   },
+   {
+    "t": "p",
+    "x": "**Filter down to the decision in front of you.** Status, priority, date, or free-text search. If you're heading into a roadmap call, filter to high priority and open items and you have your agenda."
+   },
+   {
+    "t": "p",
+    "x": "**Keep each study's list separate.** Action Items live inside the research project they came from, so your churn study's to-do list doesn't get tangled up with onboarding research. Each question you asked keeps its own answers."
+   },
+   {
+    "t": "h",
+    "x": "Easier Interview Export"
+   },
+   {
+    "t": "p",
+    "x": "It’s now easy to download single interviews or batch them together."
+   },
+   {
+    "t": "p",
+    "x": "Just select which interviews you want to download, and bulk download runs in the background rather than making you wait."
+   },
+   {
+    "t": "p",
+    "x": "Frank packages up the transcripts and media and emails you a link when it's ready. Useful if you're handing a set of interviews to someone who doesn't work in Frank, or keeping your own copy alongside the rest of your research."
+   },
+   {
+    "t": "h",
+    "x": "Getting started"
+   },
+   {
+    "t": "img",
+    "src": "/product-updates/customer-action-items-from-interviews/image-1.png",
+    "alt": ""
+   },
+   {
+    "t": "ol",
+    "items": [
+     "Open a research project with completed interviews and go to the Action Items tab.",
+     "Filter by Status, Priority or Date, or Search for the Action Item you’re interested in.",
+     "Click on any Action Item to view the referenced moment in the interview and click through to hear it yourself!"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Full setup steps are in the [knowledge base](/docs)."
+   },
+   {
+    "t": "p",
+    "x": "Frank runs your customer interviews so you can get back to building."
+   },
+   {
+    "t": "p",
+    "x": "Now it also tells you what to do about them — with the receipts attached. If you've been meaning to talk to your customers for two quarters and haven't found the time, that's the problem it exists to solve."
+   }
+  ]
+ },
+ {
+  "slug": "personalized-ai-interview-greetings",
+  "title": "Personalize Your Welcome Message",
+  "metaTitle": "Frank Product Update: Personalized AI Interview Greetings",
+  "date": "April 30, 2026",
+  "lead": null,
+  "excerpt": "A customer clicks your link and an AI interviewer picks up. There's a beat of hesitation before they say anything: Who is this? What's it for? How long is this going to take?",
+  "also": [
+   "Fixed interviews dropping when running at scale",
+   "Research guide creation simplified"
+  ],
+  "blocks": [
+   {
+    "t": "h",
+    "x": "Greet your customers the way you want"
+   },
+   {
+    "t": "p",
+    "x": "A customer clicks your link and an AI interviewer picks up. There's a beat of hesitation before they say anything: *Who is this? What's it for? How long is this going to take?*"
+   },
+   {
+    "t": "p",
+    "x": "Handle that beat well and you get a real conversation. Handle it badly and they hang up — and a dropped interview isn't just a missing data point. It's the churned customer who never told you why."
+   },
+   {
+    "t": "p",
+    "x": "Until now, Frank opened every call the same way. From this release, you write the opening line yourself."
+   },
+   {
+    "t": "h",
+    "x": "What to do with it"
+   },
+   {
+    "t": "p",
+    "x": "**Say who you are.** \"Hi, I'm calling on behalf of [Brand] — thanks for taking a few minutes\" lands differently from a cold start. Your customer agreed to talk to *you*, so the interview should sound like you."
+   },
+   {
+    "t": "p",
+    "x": "**Set expectations immediately.** How long it'll take. Roughly how many questions. What happens to their answers. Most drop-offs are uncertainty, not unwillingness."
+   },
+   {
+    "t": "p",
+    "x": "**Match the greeting to the trigger.** A post-churn interview shouldn't open like an onboarding one. If you're firing interviews on different events across your product and site, each flow can now introduce itself properly."
+   },
+   {
+    "t": "p",
+    "x": "**Lead with the incentive.** If there's a discount code or gift card at the end, say so in the first sentence rather than the last."
+   },
+   {
+    "t": "h",
+    "x": "Getting started"
+   },
+   {
+    "t": "ol",
+    "items": [
+     "Open the research project you want to change, or start a new one with the AI Researcher.",
+     "Set your greeting in the Research Guide"
+    ]
+   },
+   {
+    "t": "img",
+    "src": "/product-updates/personalized-ai-interview-greetings/image-1.png",
+    "alt": ""
+   },
+   {
+    "t": "ol",
+    "items": [
+     "Run one interview on yourself before you send it out. Hearing your own greeting read aloud is the fastest way to tell whether it's too long."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Full setup steps are in the [knowledge base](/docs)."
+   },
+   {
+    "t": "h",
+    "x": "Interviews that start when you need them to"
+   },
+   {
+    "t": "p",
+    "x": "The rest of this release went into the part of Frank you shouldn't have to think about."
+   },
+   {
+    "t": "p",
+    "x": "Interview calls now retry automatically when the connection drops. This was the cause of the occasional call that failed to start when a lot of interviews were running at once — the exact moment you least want a failure, because those participants are hard to win back."
+   },
+   {
+    "t": "p",
+    "x": "We also enabled prompt caching on two of the heaviest steps in the pipeline: generating your Research Guide, and processing transcripts after a call. Both are now faster. If you've sat waiting on the AI Researcher while it drafted your guide, you'll definitely notice the difference!"
+   },
+   {
+    "t": "h",
+    "x": "Smaller things"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "**Delete a research project** from the 3-dot menu on your dashboard. It's a soft delete, so if you remove the wrong one it can be recovered.",
+     "**Project name in the breadcrumb** so you always know which research you're looking at when you're moving between tabs.",
+     "**Dropped interviews now show their date** in the Interviews table, so you can see when people are dropping, and adjust your strategy as needed."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "Frank runs your customer interviews so you can get back to building. If you've been meaning to talk to your customers for two quarters and haven't found the time, that's the problem it exists to solve."
+   }
+  ]
+ }
+]
