@@ -23,7 +23,6 @@ import { cornerGlowGrain } from '../components/grain';
 import Glasses from '../v3/Glasses';
 import Banner from './Cover';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
-import MarkedPhrase from './MarkedPhrase';
 import { ScrubText, ScrubTitle } from './reveal';
 import Footer from './Footer';
 
@@ -238,7 +237,7 @@ function AllCases({ reduce }) {
       <div className="mx-auto grid max-w-[1312px] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.3fr)] lg:gap-16">
         <div className="lg:sticky lg:top-[140px] lg:self-start">
           <ScrubTitle reduce={reduce} id="cs-all-title" className={'m-0 scroll-mt-[150px] text-[clamp(32px,4.4vw,56px)] leading-[1.06] text-ink [text-wrap:balance] ' + TITLE}
-            lines={['Case', <MarkedPhrase key="s" reduce={reduce}>studies.</MarkedPhrase>]} />
+            lines={['Case', 'studies.']} />
           <ScrubText as="p" reduce={reduce} lag={0.15} className={'m-0 max-w-[32ch] mt-6 ' + SUBTITLE}>
             Written studies and video stories from teams that run their customer research with Frank.
           </ScrubText>
