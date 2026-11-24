@@ -34,7 +34,7 @@ import Footer from './Footer';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const FRANK_PHOTO = '/videos/frank-avatar.jpg';  // Frank's realistic photo: a square crop of his greeting video at 5 s (mouth closed, a slight smile)
-const TRY = 'https://www.hifrank.ai/try-frank';
+const TRY = '/try-frank'; // the Try Frank page on this site
 const EASE = [0.23, 1, 0.32, 1];
 const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink';
 const BODY = 'font-sans text-[17px] leading-[1.6] text-ink-2 sm:text-[18px]';
@@ -481,7 +481,7 @@ export default function VoicePage() {
                   <ScrubText reduce={reduce} lag={0.2}>
                     <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
                       <Btn href={TRY} ext>Try it now</Btn>
-                      <Btn href={TRY} ext tone="white" arrow={false}>Try a live demo</Btn>
+                      <Btn href={TRY} tone="white" arrow={false}>Try a live demo</Btn>
                     </div>
                     <Note />
                   </ScrubText>
@@ -525,7 +525,7 @@ export default function VoicePage() {
                 <ScrubText reduce={reduce} lag={0.25}>
                   <div className="mt-8 flex flex-wrap justify-center gap-3 sm:mt-9">
                     <Btn href={SIGNUP}>Start scaling today</Btn>
-                    <Btn href={TRY} onClick={toTry} tone="white" arrow={false}>Try a live demo</Btn>
+                    <Btn href={TRY} tone="white" arrow={false}>Try a live demo</Btn>
                   </div>
                   <div className="[&>p]:!justify-center"><Note dark /></div>
                 </ScrubText>

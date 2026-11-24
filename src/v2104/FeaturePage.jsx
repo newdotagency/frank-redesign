@@ -25,7 +25,7 @@ import { MEDIA, RELATED_IMG, iconSvg } from './features/media';
 import { imageScene } from './features/scenes';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
-const TRY = 'https://www.hifrank.ai/try-frank';
+const TRY = '/try-frank'; // the Try Frank page on this site
 const EASE = [0.23, 1, 0.32, 1];
 const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink';
 const BRANDS = [
@@ -246,7 +246,7 @@ export default function FeaturePage({ slug }) {
           {/* Closing: the home page's closing panel with this page's words */}
           <div className="pt-[clamp(88px,10vw,160px)]">
             <ClosingCTA titleId="ft-cta-title" chips={false} lines={f.closeLines} sub={f.closeSub}
-              primary={{ label: f.closeCta, href: SIGNUP }} secondary={{ label: 'Try a live demo', href: TRY, ext: true }} />
+              primary={{ label: f.closeCta, href: SIGNUP }} secondary={{ label: 'Try a live demo', href: TRY }} />
           </div>
         </main>
         <Footer />
