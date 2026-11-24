@@ -1,13 +1,13 @@
 // FeaturePage (V21.04): one template for the four Platform > Features pages. It reuses the redesigned pages' own parts:
-//   Header and Footer; a forest-green hero (the tag, title, actions and the original page's product visual);
+//   Header and Footer; a forest-green hero (the tag, title and actions);
 //   "Trusted by"; HowItWorks (the home page's progress tabs, the original visual in each step's card);
 //   What you get (a card per feature, with its visual); UseCases (the home page's wheel, with the original icons);
-//   Related features (the list beside its visual); SecuritySection (shared with the AI voice interviewer page);
+//   Related features (three static cards, each with its visual); SecuritySection (shared with the AI voice interviewer page);
 //   FAQ; ClosingCTA (the home page's closing panel, with this page's words); Footer.
 // The words are the live pages' (hifrank.ai/features/<slug>, in features/data.js); the visuals are theirs too
 // (features/media.js, public/features/<slug>/), in the original's own cream and olive.
-import { useMemo, useState } from 'react';
-import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'framer-motion';
+import { useMemo } from 'react';
+import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
@@ -111,48 +111,30 @@ function GetCard({ title, text, src, i, reduce }) {
   );
 }
 
-// Related features: the three as a list (as in the home page's Features), the chosen one's text beside its visual.
+// Related features: three static cards side by side, each with its visual (as on the original page).
 function Related({ slugs, reduce }) {
-  const [at, setAt] = useState(0);
-  const c = slugs[at];
   return (
     <section aria-labelledby="ft-rel-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
       <div className="mx-auto max-w-[1312px]">
-        <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Features</Eyebrow></ScrubText>
-        <ScrubTitle reduce={reduce} id="ft-rel-title" className={'m-0 leading-[1.04] text-ink [text-wrap:balance] ' + TITLE} lines={['Related features']} />
-        <ScrubText reduce={reduce} lag={0.1} className="mt-[clamp(32px,5vw,64px)] grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 xl:gap-24">
-          <ul className="m-0 list-none p-0">
-            {slugs.map((s, i) => {
-              const on = i === at;
-              return (
-                <li key={s} className="border-0 border-b border-solid border-[#1a1714]/[0.07]">
-                  <button type="button" aria-expanded={on} onClick={() => setAt(i)} onMouseEnter={() => matchMedia('(hover: hover)').matches && setAt(i)} onFocus={() => setAt(i)}
-                    className={'group block w-full cursor-pointer border-0 bg-transparent py-6 text-left ' + FOCUS}>
-                    <span className={'hiw-step-title block leading-[1.15] transition-colors duration-300 ' + (on ? 'text-[30px] text-ink' : 'text-[24px] text-[#1a1714]/[0.34] group-hover:text-[#1a1714]/60')}>{RELATED_CARDS[s].title}</span>
-                  </button>
-                  <div className={'grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ' + (on ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0')}>
-                    <div className="overflow-hidden">
-                      <p className="m-0 max-w-[42ch] pb-3 font-sans text-[17px] leading-[1.55] text-ink-2">{RELATED_CARDS[s].text}</p>
-                      <a href={'/features/' + s} tabIndex={on ? 0 : -1} className={'mb-6 inline-flex items-center gap-2 rounded-[6px] font-sans text-[15px] font-medium text-ink no-underline ' + FOCUS}>
-                        Learn more <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
-                      </a>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] bg-[#d1f899] lg:justify-self-end">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.a key={c} href={'/features/' + c} aria-label={RELATED_CARDS[c].title} tabIndex={-1}
-                className="absolute inset-0 grid place-items-center p-[7%]"
-                initial={{ opacity: 0, transform: reduce ? 'none' : 'translateY(12px)' }} animate={{ opacity: 1, transform: 'translateY(0px)' }}
-                exit={{ opacity: 0, transform: reduce ? 'none' : 'translateY(-8px)' }} transition={{ duration: reduce ? 0.2 : 0.4, ease: EASE }}>
-                <img src={RELATED_IMG[c]} alt="" loading="lazy" draggable={false} className="max-h-full max-w-full rounded-[18px] bg-white object-contain shadow-[0_26px_60px_-24px_rgba(26,23,20,0.45)] ring-1 ring-[#1a1714]/[0.06]" />
-              </motion.a>
-            </AnimatePresence>
-          </div>
-        </ScrubText>
+        <ScrubTitle reduce={reduce} id="ft-rel-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['Related features']} />
+        <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-3">
+          {slugs.map((s, i) => (
+            <ScrubText as="li" key={s} reduce={reduce} lag={i * 0.06}>
+              <a href={'/features/' + s} className={'group flex h-full flex-col overflow-hidden rounded-[24px] bg-[#fffdf3] text-ink no-underline shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] transition-colors duration-300 hover:bg-[#fbf8e8] ' + FOCUS}>
+                <span className="grid aspect-[4/3] place-items-center overflow-hidden bg-[#d1f899]">
+                  <img src={RELATED_IMG[s]} alt="" loading="lazy" draggable={false} className="size-full object-cover" />
+                </span>
+                <span className="flex flex-1 flex-col p-7 sm:p-8">
+                  <span className="hiw-step-title block text-[22px] leading-tight text-ink">{RELATED_CARDS[s].title}</span>
+                  <span className="mt-3 block font-sans text-[15.5px] leading-[1.6] text-ink-2">{RELATED_CARDS[s].text}</span>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-6 font-sans text-[15px] font-medium text-ink">Learn more
+                    <ArrowRight aria-hidden="true" className="size-4 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1" strokeWidth={1.75} />
+                  </span>
+                </span>
+              </a>
+            </ScrubText>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -172,9 +154,9 @@ export default function FeaturePage({ slug }) {
         <main id="main">
           {/* 1 — Hero: the tag, title, line and actions, then the original page's product visual. */}
           <section aria-labelledby="ft-title" className="relative px-4 pt-[188px] sm:pt-[124px] md:px-10">
-            <div className="relative overflow-hidden rounded-[32px] bg-[#0f2e27] px-5 pb-0 pt-16 text-center sm:px-10 md:rounded-[44px] xl:pt-[clamp(88px,8vw,128px)]">
+            <div className="relative overflow-hidden rounded-[32px] bg-[#0f2e27] px-5 py-16 text-center sm:px-10 md:rounded-[44px] xl:py-[clamp(88px,8vw,128px)]">
               <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
-              <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(50% 55% at 50% 70%, rgba(209,248,153,0.14), rgba(209,248,153,0) 70%)' }} />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(50% 55% at 50% 60%, rgba(209,248,153,0.14), rgba(209,248,153,0) 70%)' }} />
               <div className="relative mx-auto max-w-[860px]">
                 <Rise reduce={reduce}><Eyebrow className="mb-6 !text-white/85 sm:mb-8">{f.label}</Eyebrow></Rise>
                 <Rise as="h1" reduce={reduce} delay={0.06} id="ft-title" className={'m-0 pb-1 leading-[1.06] text-white [text-wrap:balance] ' + TITLE}>
@@ -188,10 +170,6 @@ export default function FeaturePage({ slug }) {
                 </Rise>
                 <Rise reduce={reduce} delay={0.28}><Note /></Rise>
               </div>
-              <Rise reduce={reduce} delay={0.36} className="relative mx-auto mt-12 max-w-[1100px] sm:mt-16">
-                <img src={m.hero} alt="" draggable={false}
-                  className="block w-full rounded-t-[18px] bg-[#faf9f5] shadow-[0_-10px_60px_-20px_rgba(0,0,0,0.5)] ring-1 ring-white/10 sm:rounded-t-[24px]" />
-              </Rise>
             </div>
           </section>
 
