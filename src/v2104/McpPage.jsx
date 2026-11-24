@@ -1026,31 +1026,27 @@ function TeamAnswer({ t, reduce, show }) {
   );
 }
 
-// The question as a prompt in your AI (the idea of the live hifrank.ai/mcp cards, user 2026-11-24): it types in when
-// the card scrolls into view, the send button darkens, and the answer panel comes in under it as the reply.
-function TeamCard({ t, reduce }) {
-  const ref = useRef(null);
-  const seen = useInView(ref, { once: true, amount: 0.45 });
+// The question as a prompt in your AI (the idea of the live hifrank.ai/mcp cards, user 2026-11-24): while `play`, it
+// types in, the send button darkens, and the answer panel comes in under it as the reply. When `play` goes false the
+// card resets, so it plays again the next time its tab opens.
+function TeamCard({ t, reduce, play }) {
   const [n, setN] = useState(reduce ? t.q.length : 0);
-  useEffect(() => {
-    if (reduce) { setN(t.q.length); return; }
-    if (!seen) return;
-    let i = 0, id;
-    const tick = () => { i += 1; setN(i); if (i < t.q.length) id = setTimeout(tick, 34); };
-    id = setTimeout(tick, 350);
-    return () => clearTimeout(id);
-  }, [seen, reduce, t.q]);
-  const typed = n >= t.q.length;
   const [sent, setSent] = useState(reduce);
   useEffect(() => {
-    if (reduce) { setSent(true); return; }
-    if (!typed) return;
-    const id = setTimeout(() => setSent(true), 450);
+    if (reduce) { setN(t.q.length); setSent(true); return; }
+    if (!play) { setN(0); setSent(false); return; }
+    let i = 0, id;
+    const tick = () => {
+      i += 1; setN(i);
+      id = i < t.q.length ? setTimeout(tick, 34) : setTimeout(() => setSent(true), 450);
+    };
+    id = setTimeout(tick, 300);
     return () => clearTimeout(id);
-  }, [typed, reduce]);
+  }, [play, reduce, t.q]);
+  const typed = n >= t.q.length;
   return (
-    <div ref={ref} className={'group flex h-full flex-col rounded-[28px] bg-[#f6f4ef] p-3 ring-1 ring-inset ring-[#1a1714]/[0.05] transition-transform duration-700 hover:-translate-y-1 sm:p-3.5 ' + CURVE}>
-      <div className="px-4 pb-6 pt-4 sm:px-5 sm:pb-7 sm:pt-5">
+    <div className="flex h-full flex-col rounded-[28px] bg-[#f6f4ef] p-3 ring-1 ring-inset ring-[#1a1714]/[0.05] sm:p-3.5">
+      <div className="px-4 pb-6 pt-4 sm:px-6 sm:pb-7 sm:pt-6">
         <span className="flex items-center gap-2.5 font-sans text-[14px] text-ink-2">
           <span className="grid size-8 place-items-center rounded-[10px] bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.07]">
             <HugeiconsIcon icon={t.icon} size={17} strokeWidth={1.6} aria-hidden="true" />
@@ -1059,7 +1055,7 @@ function TeamCard({ t, reduce }) {
         </span>
         {/* The prompt: the whole question is the heading for screen readers; the typed copy is what's seen. */}
         <div className="mt-5 flex items-center gap-3 rounded-[18px] bg-white py-2.5 pl-4 pr-2.5 ring-1 ring-inset ring-[#1a1714]/[0.08] sm:pl-5">
-          <h3 className={FIG + ' relative m-0 min-w-0 flex-1 text-[clamp(19px,1.7vw,23px)] leading-[1.3] tracking-[-0.02em] text-ink'}>
+          <h3 className={FIG + ' relative m-0 min-w-0 flex-1 text-[clamp(19px,1.8vw,24px)] leading-[1.3] tracking-[-0.02em] text-ink'}>
             <span className="sr-only">{t.q}</span>
             <span aria-hidden="true" className="invisible block">{t.q}</span>
             <span aria-hidden="true" className="absolute inset-0">
@@ -1071,15 +1067,44 @@ function TeamCard({ t, reduce }) {
             <ArrowUp className="size-4" strokeWidth={2.25} />
           </span>
         </div>
-        {/* Three lines held from md, so the answer panels in a row start on one line. */}
-        <p className="m-0 mt-5 max-w-[50ch] font-sans text-[16px] leading-[1.6] text-ink-2 md:min-h-[4.8em]">{t.text}</p>
+        <p className="m-0 mt-5 max-w-[56ch] font-sans text-[16px] leading-[1.6] text-ink-2">{t.text}</p>
       </div>
       <TeamAnswer t={t} reduce={reduce} show={sent} />
     </div>
   );
 }
 
+// One team at a time (user, 2026-11-24: "do not show all the cards at the same time"): the teams as tabs (a list
+// with each question from 1024px, a row of pills below that) and the open team's card beside them. All four cards
+// sit in one grid cell so the stage keeps the tallest card's height and nothing below jumps when the tab changes.
+// While the section is in view the tabs move on by themselves every TEAM_MS (a thin bar fills on the open tab);
+// picking a tab stops that. Reduced motion: no cycling, cards shown finished. Arrow keys move between tabs.
+const TEAM_MS = 8000;
 function Teams({ reduce }) {
+  const stage = useRef(null);
+  const inView = useInView(stage, { amount: 0.4 });
+  const [active, setActive] = useState(0);
+  const [auto, setAuto] = useState(!reduce);
+  const tabs = useRef([]);
+  useEffect(() => {
+    if (!auto || reduce || !inView) return;
+    const id = setTimeout(() => setActive(a => (a + 1) % TEAMS.length), TEAM_MS);
+    return () => clearTimeout(id);
+  }, [active, auto, reduce, inView]);
+  // Phones: keep the open tab in sight in the pill row (scrolls the row only, never the page).
+  const row = useRef(null);
+  useEffect(() => {
+    const r = row.current, el = tabs.current[active];
+    if (!r || !el || r.scrollWidth <= r.clientWidth) return;
+    r.scrollTo({ left: el.offsetLeft - (r.clientWidth - el.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+  }, [active, reduce]);
+  const pick = (i, focus) => { setAuto(false); setActive(i); if (focus) tabs.current[i]?.focus({ preventScroll: true }); };
+  const onKey = (e) => {
+    const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+    if (k) { e.preventDefault(); pick((active + k + TEAMS.length) % TEAMS.length, true); }
+    else if (e.key === 'Home') { e.preventDefault(); pick(0, true); }
+    else if (e.key === 'End') { e.preventDefault(); pick(TEAMS.length - 1, true); }
+  };
   return (
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
       <div className="mx-auto max-w-[1312px]">
@@ -1090,13 +1115,48 @@ function Teams({ reduce }) {
             You don’t need to become a researcher, learn new skills, or dedicate hours to managing interviews to reap the benefits of customer insights. With Frank connected to your AI, customer insight effortlessly becomes part of the work you already do every day.
           </ScrubText>
         </div>
-        <ul className="m-0 mt-12 grid list-none grid-cols-1 gap-4 p-0 sm:mt-14 md:grid-cols-2 lg:gap-5">
-          {TEAMS.map((t, i) => (
-            <ScrubText as="li" key={t.role} reduce={reduce} lag={(i % 2) * 0.05}>
-              <TeamCard t={t} reduce={reduce} />
-            </ScrubText>
-          ))}
-        </ul>
+        <ScrubText reduce={reduce} lag={0.08}>
+          <div ref={stage} className="mt-12 grid grid-cols-1 gap-6 sm:mt-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-16">
+            <div ref={row} role="tablist" aria-label="Teams" onKeyDown={onKey}
+              className="relative -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0 lg:pb-0">
+              {TEAMS.map((t, i) => {
+                const on = i === active;
+                return (
+                  <button key={t.role} type="button" role="tab" id={'mcp-team-tab-' + i} aria-controls={'mcp-team-panel-' + i}
+                    aria-selected={on} tabIndex={on ? 0 : -1} ref={el => { tabs.current[i] = el; }} onClick={() => pick(i)}
+                    className={'relative flex shrink-0 cursor-pointer items-center gap-3 overflow-hidden rounded-full border-0 px-4 py-2.5 text-left font-sans transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1714] lg:rounded-[20px] lg:px-5 lg:py-5 '
+                      + (on ? 'bg-[#f6f4ef] text-ink ring-1 ring-inset ring-[#1a1714]/[0.06]' : 'bg-transparent text-ink-2 ring-1 ring-inset ring-[#1a1714]/[0.08] hover:bg-[#1a1714]/[0.03] hover:text-ink lg:ring-0')}>
+                    <span className={'grid size-8 shrink-0 place-items-center rounded-[10px] transition-colors duration-300 ' + (on ? 'bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.07]' : 'bg-[#1a1714]/[0.04] text-ink-2')}>
+                      <HugeiconsIcon icon={t.icon} size={17} strokeWidth={1.6} aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block whitespace-nowrap text-[15px] font-medium leading-tight">{t.role}</span>
+                      <span className="mt-1 hidden text-[14px] leading-[1.4] text-ink-2 lg:block">{t.q}</span>
+                    </span>
+                    {on && auto && !reduce && inView && (
+                      <motion.span key={'bar' + active} aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[#6e9738]"
+                        initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: TEAM_MS / 1000, ease: 'linear' }} />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="grid">
+              {TEAMS.map((t, i) => {
+                const on = i === active;
+                return (
+                  <motion.div key={t.role} role="tabpanel" id={'mcp-team-panel-' + i} aria-labelledby={'mcp-team-tab-' + i}
+                    aria-hidden={!on}
+                    className={'[grid-area:1/1] ' + (on ? '' : 'pointer-events-none')}
+                    initial={false} animate={{ opacity: on ? 1 : 0, transform: on || reduce ? 'translateY(0px)' : 'translateY(8px)' }}
+                    transition={{ duration: reduce ? 0 : 0.45, ease: EASE }}>
+                    <TeamCard t={t} reduce={reduce} play={on && inView} />
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </ScrubText>
         <p className="m-0 mt-4 text-right font-sans text-[12.5px] text-ink-3">Example answers</p>
       </div>
     </section>
