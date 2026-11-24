@@ -1,16 +1,18 @@
-// DocArticle (V21.04) — one guide from the docs (articles.json), laid out to be read and scanned:
-//   · a breadcrumb back to Docs & guides, the title, the lead, and "N min read" with a link to the original;
-//   · the guide's sections, each a numbered heading so long guides show their shape, and its blocks as
-//     proper components: paragraphs at a reading measure, sub-headings, numbered steps on a rail, bullet
-//     lists, callouts (note / tip / warning), code with a copy button, tables, screenshots in frames with
-//     captions, FAQ answers that fold open, video links;
-//   · from 1280px, "On this page" on the right, following the section you're reading (click to jump);
-//   · at the end: "Was this helpful?", the previous and next guide, and support.
+// DocArticle (V21.04) — one guide from the docs (articles.json), set for reading and finding things:
+//   · breadcrumbs (Docs › group › guide), the title, the description, read time, and "Copy page" (the guide as Markdown);
+//   · sections as anchored headings (hover for the link, click copies it), sub-steps (the "Step 1…" headings) listed under
+//     their section in "On this page" (from 1280px, following what you're reading);
+//   · blocks as components: paragraphs at a reading measure, numbered steps on a rail, lists, callouts (note / tip /
+//     warning), code in a dark card with the language, syntax colours and a copy button (consecutive samples become
+//     tabs: a request and its response), tables, screenshots (click to enlarge), questions that fold open, videos;
+//   · at the end: "Was this helpful?", previous and next guide in reading order, and support.
 // Inline text marks: **bold**, *italic*, `code`, [link](url).
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { localize } from '../lib/sitePaths';
-import { AlertTriangle, ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Info, Lightbulb, Mail, Play, ThumbsDown, ThumbsUp } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronRight, Copy, Info, Lightbulb, Link2, Mail, Play, ThumbsDown, ThumbsUp, X } from 'lucide-react';
+import { Highlighted } from './docs/highlight';
+import { GUIDES, groupOf } from './docs/structure';
 
 const EASE = [0.23, 1, 0.32, 1];
 const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink';
@@ -33,21 +35,41 @@ function Inline({ x }) {
   });
 }
 
-function CodeBlock({ b }) {
+const slugify = t => String(t).replace(/\*\*|`/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const LANG = { bash: 'Shell', sh: 'Shell', json: 'JSON', js: 'JavaScript', javascript: 'JavaScript', html: 'HTML', text: 'Text' };
+const copyText = (t, done) => navigator.clipboard?.writeText(t).then(done).catch(() => {});
+
+// A copy button that says "Copied" for a moment.
+function CopyBtn({ text, label = 'Copy', className = '' }) {
   const [copied, setCopied] = useState(false);
-  const copy = () => {
-    navigator.clipboard?.writeText(b.x).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1600); }).catch(() => {});
-  };
+  return (
+    <button type="button" onClick={() => copyText(text, () => { setCopied(true); setTimeout(() => setCopied(false), 1600); })}
+      className={'inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-full border-0 px-2.5 font-sans text-[12px] transition-colors duration-200 ' + (copied ? 'bg-[#d1f899] text-[#0f2e27]' : 'bg-white/[0.08] text-white/75 hover:bg-white/[0.14]') + ' ' + className}>
+      {copied ? <Check className="size-3.5" strokeWidth={2.25} /> : <Copy className="size-3.5" strokeWidth={1.75} />}{copied ? 'Copied' : label}
+    </button>
+  );
+}
+
+// Code: a dark card, language (or tabs when samples sit together), highlighted, with a copy button.
+function Code({ items }) {
+  const [on, setOn] = useState(0);
+  const cur = items[on];
+  const seen = {};
+  const labels = items.map(b => { const l = LANG[b.lang] || b.lang || 'Code'; seen[l] = (seen[l] || 0) + 1; return seen[l] > 1 ? `${l} ${seen[l]}` : l; });
   return (
     <div className="overflow-hidden rounded-[16px] bg-[#1a1714] shadow-[0_0_0_1px_rgba(26,23,20,0.08)]">
-      <div className="flex items-center justify-between border-0 border-b border-solid border-white/[0.08] px-4 py-2">
-        <span className="font-gmono text-[12px] uppercase tracking-[0.06em] text-white/50">{b.lang || 'code'}</span>
-        <button type="button" onClick={copy}
-          className={'inline-flex h-7 cursor-pointer items-center gap-1.5 rounded-full border-0 px-2.5 font-sans text-[12px] transition-colors duration-200 ' + (copied ? 'bg-[#d1f899] text-[#0f2e27]' : 'bg-white/[0.08] text-white/75 hover:bg-white/[0.14]') + ' ' + FOCUS}>
-          {copied ? <Check className="size-3.5" strokeWidth={2.25} /> : <Copy className="size-3.5" strokeWidth={1.75} />}{copied ? 'Copied' : 'Copy'}
-        </button>
+      <div className="flex items-center justify-between gap-3 border-0 border-b border-solid border-white/[0.08] pl-2 pr-3">
+        <div role="tablist" className="flex min-w-0 gap-0.5 overflow-x-auto py-1.5">
+          {items.map((b, i) => (
+            items.length > 1 ? (
+              <button key={i} type="button" role="tab" aria-selected={i === on} onClick={() => setOn(i)}
+                className={'cursor-pointer whitespace-nowrap rounded-[8px] border-0 px-2.5 py-1 font-sans text-[12.5px] transition-colors duration-150 ' + (i === on ? 'bg-white/[0.1] text-white' : 'bg-transparent text-white/50 hover:text-white/80')}>{labels[i]}</button>
+            ) : <span key={i} className="px-2.5 py-1 font-sans text-[12.5px] text-white/55">{labels[i]}</span>
+          ))}
+        </div>
+        <CopyBtn text={cur.x} />
       </div>
-      <pre className="m-0 overflow-x-auto p-4 font-gmono text-[13px] leading-[1.65] text-[#f3f1ea]"><code>{b.x}</code></pre>
+      <pre className="m-0 overflow-x-auto p-4 font-gmono text-[13px] leading-[1.7] text-[#f3f1ea]"><code><Highlighted code={cur.x} lang={cur.lang} /></code></pre>
     </div>
   );
 }
@@ -60,10 +82,68 @@ const CALLOUT = {
 
 const P = 'm-0 font-sans text-[16.5px] leading-[1.75] text-ink-2';
 
-function Block({ b }) {
+// A heading you can link to: hover shows the link, clicking copies the address.
+function Anchored({ as: T = 'h2', id, className, children }) {
+  const [copied, setCopied] = useState(false);
+  const copy = e => {
+    e.preventDefault();
+    const url = window.location.origin + window.location.pathname + '#' + id;
+    history.replaceState(null, '', '#' + id);
+    copyText(url, () => { setCopied(true); setTimeout(() => setCopied(false), 1400); });
+  };
+  return (
+    <T id={id} className={'group scroll-mt-24 ' + className}>
+      {children}
+      <a href={'#' + id} onClick={copy} aria-label="Copy link to this section"
+        className={'ml-2 inline-grid size-6 translate-y-[2px] place-items-center rounded-[6px] align-middle no-underline transition-opacity duration-150 focus-visible:opacity-100 ' + (copied ? 'bg-[#d1f899] text-[#2a321e] opacity-100' : 'text-ink-3 opacity-0 hover:bg-[#1a1714]/[0.06] group-hover:opacity-100')}>
+        {copied ? <Check className="size-3.5" strokeWidth={2.25} /> : <Link2 className="size-3.5" strokeWidth={1.75} />}
+      </a>
+    </T>
+  );
+}
+
+// A screenshot in its frame; click to see it large.
+function Shot({ b }) {
+  const [big, setBig] = useState(false);
+  useEffect(() => {
+    if (!big) return;
+    const k = e => e.key === 'Escape' && setBig(false);
+    window.addEventListener('keydown', k);
+    return () => window.removeEventListener('keydown', k);
+  }, [big]);
+  return (
+    <figure className="m-0">
+      <button type="button" onClick={() => setBig(true)} aria-label={'Enlarge: ' + (b.alt || 'screenshot')}
+        className={'block w-full cursor-zoom-in overflow-hidden rounded-[18px] border-0 bg-[#f6f4ee] p-2 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] ' + FOCUS}>
+        <img src={b.src} alt={b.alt || ''} loading="lazy" className="block h-auto w-full rounded-[12px] bg-white" />
+      </button>
+      {b.cap && <figcaption className="mt-2.5 px-1 font-sans text-[13.5px] leading-snug text-ink-3"><Inline x={b.cap} /></figcaption>}
+      {big && (
+        <div role="dialog" aria-modal="true" aria-label={b.alt || 'Screenshot'} onClick={() => setBig(false)} className="fixed inset-0 z-[90] grid cursor-zoom-out place-items-center bg-[#1a1714]/70 p-4 sm:p-10">
+          <img src={b.src} alt={b.alt || ''} className="max-h-full max-w-full rounded-[14px] bg-white shadow-[0_30px_90px_-20px_rgba(0,0,0,0.6)]" />
+          <button type="button" aria-label="Close" onClick={() => setBig(false)} className="absolute right-4 top-4 grid size-10 cursor-pointer place-items-center rounded-full border-0 bg-white text-ink"><X className="size-5" strokeWidth={1.75} /></button>
+        </div>
+      )}
+    </figure>
+  );
+}
+
+// Blocks of a section: consecutive code samples become one tabbed card; h3s get ids for "On this page".
+function group(blocks) {
+  const out = [];
+  blocks.forEach(b => {
+    const last = out[out.length - 1];
+    if (b.t === 'code' && last && last.t === 'codegroup') last.items.push(b);
+    else if (b.t === 'code') out.push({ t: 'codegroup', items: [b] });
+    else out.push(b);
+  });
+  return out;
+}
+
+function Block({ b, sid }) {
   switch (b.t) {
     case 'p': return <p className={P}><Inline x={b.x} /></p>;
-    case 'h3': return <h3 className="m-0 pt-2 font-['Figtree',sans-serif] text-[19px] font-medium leading-snug tracking-[-0.015em] text-ink"><Inline x={b.x} /></h3>;
+    case 'h3': return <Anchored as="h3" id={`${sid}--${slugify(b.x)}`} className="m-0 pt-3 font-['Figtree',sans-serif] text-[19px] font-medium leading-snug tracking-[-0.015em] text-ink" ><Inline x={b.x} /></Anchored>;
     case 'list': return (
       <ul className="m-0 grid list-none gap-2.5 p-0">
         {b.items.map((it, i) => (
@@ -93,11 +173,11 @@ function Block({ b }) {
       return (
         <div className={'flex gap-3 rounded-[16px] p-4 ' + c.box}>
           <c.icon aria-hidden="true" className={'mt-[3px] size-[18px] shrink-0 ' + c.ic} strokeWidth={1.75} />
-          <p className="m-0 font-sans text-[15.5px] leading-[1.65] text-ink-2"><span className="sr-only">{c.label}: </span><Inline x={b.x} /></p>
+          <p className="m-0 font-sans text-[15.5px] leading-[1.65] text-ink-2"><span className={'mr-1.5 font-medium ' + c.ic}>{c.label}</span><Inline x={b.x} /></p>
         </div>
       );
     }
-    case 'code': return <CodeBlock b={b} />;
+    case 'codegroup': return <Code items={b.items} />;
     case 'table': return (
       <div className="overflow-x-auto rounded-[16px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.08)]">
         <table className="w-full min-w-[560px] border-collapse font-sans text-[14.5px]">
@@ -116,14 +196,7 @@ function Block({ b }) {
         </table>
       </div>
     );
-    case 'img': return (
-      <figure className="m-0">
-        <a href={b.src} target="_blank" rel="noopener noreferrer" className={'block overflow-hidden rounded-[18px] bg-[#f6f4ee] p-2 shadow-[0_0_0_1px_rgba(26,23,20,0.06)] ' + FOCUS}>
-          <img src={b.src} alt={b.alt || ''} loading="lazy" className="block h-auto w-full rounded-[12px] bg-white" />
-        </a>
-        {b.cap && <figcaption className="mt-2.5 px-1 font-sans text-[13.5px] leading-snug text-ink-3"><Inline x={b.cap} /></figcaption>}
-      </figure>
-    );
+    case 'img': return <Shot b={b} />;
     case 'qa': return (
       <div className="divide-y divide-[#1a1714]/[0.07] overflow-hidden rounded-[18px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.07)]">
         {b.items.map((it, i) => (
@@ -132,7 +205,7 @@ function Block({ b }) {
               <Inline x={it.q} />
               <ChevronDown aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-ink-3 transition-transform duration-200 group-open:rotate-180" strokeWidth={1.75} />
             </summary>
-            <div className="grid gap-4 px-5 pb-5">{(it.a || []).map((ab, j) => <Block key={j} b={ab} />)}</div>
+            <div className="grid gap-4 px-5 pb-5">{group(it.a || []).map((ab, j) => <Block key={j} b={ab} sid={sid} />)}</div>
           </details>
         ))}
       </div>
@@ -146,6 +219,27 @@ function Block({ b }) {
     );
     default: return null;
   }
+}
+
+// The guide as Markdown (for "Copy page").
+const strip = t => String(t || '');
+function toMarkdown(a) {
+  const blk = b => {
+    switch (b.t) {
+      case 'p': return strip(b.x);
+      case 'h3': return '### ' + strip(b.x);
+      case 'list': return b.items.map(i => '- ' + i).join('\n');
+      case 'steps': return b.items.map((i, n) => `${n + 1}. ${i.title ? '**' + i.title + '** ' : ''}${i.x || ''}`).join('\n');
+      case 'callout': return '> **' + (CALLOUT[b.tone]?.label || 'Note') + ':** ' + strip(b.x);
+      case 'code': return '```' + (b.lang || '') + '\n' + b.x + '\n```';
+      case 'table': return ['| ' + b.head.join(' | ') + ' |', '|' + b.head.map(() => ' --- ').join('|') + '|', ...b.rows.map(r => '| ' + r.join(' | ') + ' |')].join('\n');
+      case 'img': return `![${b.alt || ''}](${b.src})`;
+      case 'qa': return b.items.map(i => `**${i.q}**\n\n${(i.a || []).map(blk).join('\n\n')}`).join('\n\n');
+      case 'video': return `[${b.title || 'Video'}](${b.src})`;
+      default: return '';
+    }
+  };
+  return [`# ${a.title}`, a.lead, ...a.sections.map(s => `## ${strip(s.title)}\n\n${s.blocks.map(blk).filter(Boolean).join('\n\n')}`)].filter(Boolean).join('\n\n');
 }
 
 // "Was this helpful?": a thank-you once answered (kept on the page only).
@@ -170,53 +264,73 @@ function Helpful() {
 
 export default function DocArticle({ slug, a, prev, next }) {
   const reduce = !!useReducedMotion();
-  const [current, setCurrent] = useState(a.sections[0]?.id);
-  const refs = useRef({});
-  // "On this page" follows the section nearest the top of the window.
+  const g = groupOf(slug);
+  const desc = a.lead || GUIDES[slug]?.desc;
+  // "On this page": the sections, and under each the sub-steps (h3).
+  const toc = a.sections.flatMap(s => [{ id: s.id, title: s.title, level: 1 }, ...s.blocks.filter(b => b.t === 'h3').map(b => ({ id: `${s.id}--${slugify(b.x)}`, title: b.x, level: 2 }))]);
+  const [current, setCurrent] = useState(toc[0]?.id);
+  // The one that is nearest the top of the window.
   useEffect(() => {
+    const els = toc.map(t => document.getElementById(t.id)).filter(Boolean);
     const io = new IntersectionObserver(entries => {
       const vis = entries.filter(e => e.isIntersecting).sort((x, y) => x.boundingClientRect.top - y.boundingClientRect.top);
-      if (vis[0]) setCurrent(vis[0].target.dataset.id);
-    }, { rootMargin: '-15% 0px -70% 0px' });
-    Object.values(refs.current).forEach(el => el && io.observe(el));
+      if (vis[0]) setCurrent(vis[0].target.id);
+    }, { rootMargin: '-80px 0px -70% 0px' });
+    els.forEach(el => io.observe(el));
     return () => io.disconnect();
   }, [slug]);
+  // Open at the section in the address (#id), once the page has settled.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const t = setTimeout(() => document.getElementById(id)?.scrollIntoView({ block: 'start' }), 450);
+    return () => clearTimeout(t);
+  }, [slug]);
   const jump = id => {
-    const el = refs.current[id]; if (!el) return;
-    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24, behavior: reduce ? 'auto' : 'smooth' });
+    const el = document.getElementById(id); if (!el) return;
+    history.replaceState(null, '', '#' + id);
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 88, behavior: reduce ? 'auto' : 'smooth' });
   };
   const numbered = a.sections.length > 1;
+  const [mdCopied, setMdCopied] = useState(false);
 
   return (
     <motion.article key={slug} initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(12px)' }} animate={{ opacity: 1, transform: 'translateY(0px)' }}
-      transition={{ duration: 0.5, ease: EASE }} className="xl:grid xl:grid-cols-[minmax(0,1fr)_220px] xl:gap-14">
+      transition={{ duration: 0.5, ease: EASE }} className="xl:grid xl:grid-cols-[minmax(0,1fr)_230px] xl:gap-14">
       <div className="min-w-0">
-        {/* Header. */}
-        <nav aria-label="Breadcrumb" className="font-sans text-[13.5px] text-ink-3">
-          <a href="/docs" className={'inline-flex items-center gap-1.5 rounded-[6px] text-ink-3 no-underline hover:text-ink ' + FOCUS}><ArrowLeft className="size-3.5" strokeWidth={1.75} />Docs and guides</a>
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 font-sans text-[13.5px] text-ink-3">
+          <a href="/docs" className={'rounded-[6px] text-ink-3 no-underline hover:text-ink ' + FOCUS}>Docs</a>
+          <ChevronRight aria-hidden="true" className="size-3.5" strokeWidth={1.75} />
+          <span>{g?.label}</span>
+          <ChevronRight aria-hidden="true" className="size-3.5" strokeWidth={1.75} />
+          <span aria-current="page" className="text-ink">{GUIDES[slug]?.nav}</span>
         </nav>
-        <h1 className="m-0 mt-5 font-['Figtree',sans-serif] text-[clamp(30px,4vw,44px)] font-medium leading-[1.08] tracking-[-0.03em] text-ink [text-wrap:balance]">{a.title}</h1>
-        {a.lead && <p className="m-0 mt-4 max-w-[60ch] font-sans text-[18px] leading-[1.6] text-ink-2"><Inline x={a.lead} /></p>}
+        <div className="mt-5 flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
+          <h1 className="m-0 min-w-0 max-w-[22ch] flex-1 basis-[300px] font-['Figtree',sans-serif] text-[clamp(30px,4vw,44px)] font-medium leading-[1.08] tracking-[-0.03em] text-ink [text-wrap:balance]">{a.title}</h1>
+          <button type="button" onClick={() => copyText(toMarkdown(a), () => { setMdCopied(true); setTimeout(() => setMdCopied(false), 1800); })}
+            className={'inline-flex h-9 shrink-0 cursor-pointer items-center gap-2 rounded-full border-0 bg-white px-3.5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.1)] transition-colors duration-200 hover:bg-[#f6f4ee] ' + FOCUS}>
+            {mdCopied ? <Check className="size-4 text-[#3f6b12]" strokeWidth={2.25} /> : <Copy className="size-4" strokeWidth={1.75} />}{mdCopied ? 'Copied as Markdown' : 'Copy page'}
+          </button>
+        </div>
+        {desc && <p className="m-0 mt-4 max-w-[60ch] font-sans text-[18px] leading-[1.6] text-ink-2"><Inline x={desc} /></p>}
         <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 font-sans text-[13.5px] text-ink-3">
           <span>{a.readMins} min read</span>
           {numbered && <span>{a.sections.length} sections</span>}
         </div>
         <span aria-hidden="true" className="mt-8 block h-px bg-[#1a1714]/[0.08]" />
 
-        {/* Sections. */}
         <div className="mt-10 grid gap-14">
           {a.sections.map((s, si) => (
-            <section key={s.id} ref={el => { refs.current[s.id] = el; }} data-id={s.id} aria-labelledby={`${slug}-${s.id}`} className="scroll-mt-6">
-              <h2 id={`${slug}-${s.id}`} className="m-0 flex items-baseline gap-3 font-['Figtree',sans-serif] text-[24px] font-medium leading-tight tracking-[-0.02em] text-ink sm:text-[26px]">
-                {numbered && <span className="font-gmono text-[14px] font-normal text-ink-3">{String(si + 1).padStart(2, '0')}</span>}
+            <section key={s.id} aria-labelledby={s.id}>
+              <Anchored id={s.id} className="m-0 flex items-baseline font-['Figtree',sans-serif] text-[24px] font-medium leading-tight tracking-[-0.02em] text-ink sm:text-[26px]">
+                {numbered && <span className="mr-3 font-gmono text-[14px] font-normal text-ink-3">{String(si + 1).padStart(2, '0')}</span>}
                 <span><Inline x={s.title} /></span>
-              </h2>
-              <div className="mt-5 grid gap-5 [&>p]:max-w-[68ch]">{s.blocks.map((b, bi) => <Block key={bi} b={b} />)}</div>
+              </Anchored>
+              <div className="mt-5 grid gap-5 [&>p]:max-w-[68ch]">{group(s.blocks).map((b, bi) => <Block key={bi} b={b} sid={s.id} />)}</div>
             </section>
           ))}
         </div>
 
-        {/* End of guide: helpful, previous / next, support. */}
         <div className="mt-16 grid gap-4">
           <Helpful />
           <div className="grid gap-4 sm:grid-cols-2">
@@ -240,19 +354,18 @@ export default function DocArticle({ slug, a, prev, next }) {
         </div>
       </div>
 
-      {/* On this page (from 1280px). */}
       {numbered && (
         <aside className="hidden xl:block">
-          <div className="sticky top-8">
+          <div className="sticky top-24">
             <p className="m-0 mb-3 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">On this page</p>
-            <ul className="m-0 list-none border-0 border-l border-solid border-[#1a1714]/[0.08] p-0">
-              {a.sections.map(s => {
-                const on = s.id === current;
+            <ul className="m-0 max-h-[calc(100vh-160px)] list-none overflow-y-auto border-0 border-l border-solid border-[#1a1714]/[0.08] p-0">
+              {toc.map(t => {
+                const on = t.id === current;
                 return (
-                  <li key={s.id}>
-                    <button type="button" onClick={() => jump(s.id)}
-                      className={'-ml-px block w-full cursor-pointer border-0 border-l-2 border-solid bg-transparent py-1.5 pl-3 text-left font-sans text-[13.5px] leading-snug transition-colors duration-200 ' + (on ? 'border-[#5f8f22] text-ink' : 'border-transparent text-ink-3 hover:text-ink-2') + ' ' + FOCUS}>
-                      {s.title.replace(/\*\*|`/g, '')}
+                  <li key={t.id}>
+                    <button type="button" onClick={() => jump(t.id)}
+                      className={'-ml-px block w-full cursor-pointer border-0 border-l-2 border-solid bg-transparent py-1.5 text-left font-sans leading-snug transition-colors duration-200 ' + (t.level === 2 ? 'pl-6 text-[12.5px] ' : 'pl-3 text-[13.5px] ') + (on ? 'border-[#5f8f22] text-ink' : 'border-transparent text-ink-3 hover:text-ink-2')}>
+                      {t.title.replace(/\*\*|`/g, '')}
                     </button>
                   </li>
                 );
