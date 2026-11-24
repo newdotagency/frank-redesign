@@ -45,9 +45,9 @@ const PAD = 'px-4 sm:px-[clamp(16px,4vw,48px)]';
 // live hifrank.ai/competitors page, else the blog article (Marvin and GetWhy have no comparison page).
 const COMPARE = [
   ['Listen Labs', 'listen-labs-alternatives', listenLabsLogo, 16, '/competitors/listen-labs'],
-  ['Outset', 'outset-alternatives', outsetLogo, 18, `${SITE}/competitors/outset`],
-  ['Strella', 'strella-alternatives', strellaLogo, 18, `${SITE}/competitors/strella`],
-  ['Conveo', 'best-conveo-alternatives', conveoLogo, 18, `${SITE}/competitors/conveo`],
+  ['Outset', 'outset-alternatives', outsetLogo, 18, '/competitors/outset'],
+  ['Strella', 'strella-alternatives', strellaLogo, 18, '/competitors/strella'],
+  ['Conveo', 'best-conveo-alternatives', conveoLogo, 18, '/competitors/conveo'],
   ['Marvin', 'marvin-alternatives', marvinLogo, 24],
   ['GetWhy', 'getwhy-alternatives', getwhyLogo, 19],
 ].map(([tool, slug, logo, h, page]) => {

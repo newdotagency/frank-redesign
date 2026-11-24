@@ -11,7 +11,7 @@ const HOSTED = [
   /^\/features\/[\w-]+$/,
   /^\/product-updates(\/[\w-]+)?$/,
   /^\/use-case\/ai-churn-interviews$/,
-  /^\/competitors\/listen-labs$/,
+  /^\/competitors\/(conveo|listen-labs|outset|strella)$/,
 ];
 // Old paths that now live somewhere else on the sitemap.
 const MOVED = [[/^\/help\//, '/docs/'], [/^\/churn$/, '/use-case/ai-churn-interviews']];

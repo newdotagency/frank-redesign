@@ -246,7 +246,7 @@ function Why({ c, reduce }) {
             const Icon = ICONS[icon];
             return (
               <ScrubText as="li" key={title} reduce={reduce} lag={(i % 3) * 0.05}
-                className={'flex flex-col rounded-[24px] bg-[#f7f5f0] p-7 sm:p-8 ' + (i < 3 ? 'md:col-span-2' : 'md:col-span-3')}>
+                className={'flex flex-col rounded-[24px] bg-[#f7f5f0] p-7 sm:p-8 ' + (c.why.points.length === 5 && i < 3 || c.why.points.length === 3 ? 'md:col-span-2' : 'md:col-span-3')}>
                 <span aria-hidden="true" className="grid size-11 place-items-center rounded-full bg-white text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.06)]">
                   <Icon className="size-[19px]" strokeWidth={1.5} />
                 </span>
@@ -337,17 +337,17 @@ function Others({ c, reduce }) {
 }
 
 // ——— 7. Closing: the live page's closing words on the lime panel.
-function Closing({ reduce }) {
+function Closing({ c, reduce }) {
   return (
     <section aria-labelledby="vs-cta-title" className="px-4 pb-[clamp(96px,11vw,160px)] md:px-10">
       <div className="relative overflow-hidden rounded-[32px] bg-[#d1f899] px-6 py-[clamp(64px,8vw,112px)] text-center md:rounded-[44px]">
         <ScrubText reduce={reduce} className="mx-auto mb-7 w-[72px]"><Glasses pose="Ready" reduced={reduce} /></ScrubText>
-        <ScrubTitle reduce={reduce} id="vs-cta-title" className={H2} lines={['Don’t just run surveys.', 'Drive action.']} />
+        <ScrubTitle reduce={reduce} id="vs-cta-title" className={H2} lines={c.close.title} />
         <ScrubText as="p" reduce={reduce} lag={0.15} className={'mx-auto mb-0 max-w-[42ch] [text-wrap:balance] mt-6 ' + SUBTITLE}>
-          Deep interviews. Actionable insights. Zero research bottlenecks.
+          {c.close.sub}
         </ScrubText>
         <ScrubText reduce={reduce} lag={0.25} className="mt-9 flex flex-col items-center gap-3">
-          <PillButton href={SIGNUP}>Run 10 free interviews</PillButton>
+          <PillButton href={SIGNUP}>{c.close.cta}</PillButton>
           <span className="font-sans text-[13.5px] text-ink/65">Claim 225 signup credits. No credit card required.</span>
         </ScrubText>
       </div>
@@ -372,7 +372,7 @@ export default function CompetitorPage({ c }) {
           <div className="pt-[clamp(112px,13vw,200px)]">
             <FAQ items={c.faq} label="FAQ" lines={['Have questions?', 'We have answers.']} id="vs-faq-title" />
           </div>
-          <Closing reduce={reduce} />
+          <Closing c={c} reduce={reduce} />
         </main>
         <Footer />
       </div>
