@@ -922,7 +922,7 @@ const TEAM_UNITS = TEAMS.length; // scroll steps: one per arriving card (3) plus
 
 // One team card. Its question types in once `play` (or, when `play` isn't given, once the card is mostly in view);
 // screen readers get the whole question as the heading. Reduced motion: shown typed.
-function TeamCard({ role, icon, q, text, reduce, play, className = '' }) {
+function TeamCard({ role, icon, q, text, reduce, play, stacked, className = '' }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const go = play === undefined ? inView : play;
@@ -937,7 +937,10 @@ function TeamCard({ role, icon, q, text, reduce, play, className = '' }) {
   }, [go, reduce, q]);
   const typed = n >= q.length;
   return (
-    <div ref={ref} className={'relative flex min-h-[320px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-1 ring-[#1a1714]/[0.06] sm:p-9 ' + className}>
+    // Stacked, four shadows overlap down the sides and read as a dark band (user, 2026-11-24), so a stacked card's
+    // shadow only lifts its top edge.
+    <div ref={ref} className={'relative flex min-h-[320px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 ring-1 ring-[#1a1714]/[0.05] sm:p-9 '
+      + (stacked ? 'shadow-[0_-6px_12px_-8px_rgba(26,23,20,0.08)] ' : 'shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ') + className}>
       {/* The Churn page's "What you get" card: cream with the faint grainy yellow glow in the corner. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
       <span className="relative flex items-center gap-2.5 font-sans text-[15px] text-ink-2">
@@ -1022,7 +1025,7 @@ function TeamsPinned({ reduce }) {
           <ul aria-label="Teams" className="m-0 grid list-none p-0" style={{ paddingBottom: (TEAMS.length - 1) * TEAM_STEP }}>
             {TEAMS.map(([role, icon, q, text], i) => (
               <StackCard key={role} i={i} progress={scrollYProgress} from={from}>
-                <TeamCard role={role} icon={icon} q={q} text={text} reduce={reduce} play={arrived >= i} className="h-full" />
+                <TeamCard role={role} icon={icon} q={q} text={text} reduce={reduce} play={arrived >= i} stacked className="h-full" />
               </StackCard>
             ))}
           </ul>
