@@ -904,131 +904,21 @@ function How() {
 }
 
 // ——— 4. Built for every team: the live page's four roles, each led by its question, typed as a prompt in your AI as
-// on the live page (user, 2026-11-24: "this section is too simple, improve it", then "use idea of old version"). Each
-// card pairs the question with a small answer panel: what your AI brings back from
-// Frank for that question, in Claude, sourced from Frank interviews. Each answer has its own shape (reasons with bars,
-// ranked requests, customers' words, wins vs losses) so the four cards don't repeat. The numbers and quotes are
-// examples, labelled "Example" under the grid. The prompt types in when the card scrolls into view, then the answer comes in and its bars fill; reduced motion shows it all.
+// on the live page (user, 2026-11-24: "use idea of old version"). The answer panels were taken out (user, 2026-11-24:
+// "no need big graph"): each card is the role, the prompt and the live page's line about it.
 const TEAMS = [
-  { role: 'Founders', icon: Rocket01Icon, q: 'Why are we losing these customers?', n: 38,
-    text: 'Pull together interviews from recent wins, losses, and cancellations. Find the patterns behind them and get to the answer before the next decision.',
-    kind: 'bars', title: 'Top reasons for cancelling',
-    rows: [['Pricing at renewal', 38], ['Missing integrations', 27], ['Slow onboarding', 19]] },
-  { role: 'Product', icon: PackageIcon, q: 'What do users actually want next?', n: 46,
-    text: 'Explore interviews, test assumptions, compare customer segments, and pressure-test roadmap ideas without digging through research reports.',
-    kind: 'rank', title: 'Most requested, by segment',
-    rows: [['Bulk editing', 'Teams', 14], ['Slack alerts', 'Teams', 11], ['Public API', 'Enterprise', 8]] },
-  { role: 'Marketing', icon: Megaphone01Icon, q: 'Why do customers choose us?', n: 52,
-    text: 'Find the language customers naturally use, uncover objections and motivations, and understand what makes people convert.',
-    kind: 'words', title: 'In customers’ own words',
-    chips: ['“saves me hours”', '“no setup”', '“feels human”', '“easy to share”'],
-    quote: ['It was the first tool my whole team actually used.', 'Customer interview · 04:12'],
-    top: ['Main reason they chose us: saving time', 41] },
-  { role: 'Sales and accounts', icon: HandshakeIcon, q: 'Why did we win this deal?', n: 29,
-    text: 'Analyze winning and losing conversations to uncover the objections, competitors, buying triggers, and gaps shaping your sales funnel.',
-    kind: 'winloss', title: 'Won vs lost deals', won: 18, lost: 11,
-    rows: [['Buying trigger', 'A new team lead'], ['Top objection', 'Security review'], ['Lost most to', 'Spreadsheets']] },
+  { role: 'Founders', icon: Rocket01Icon, q: 'Why are we losing these customers?',
+    text: 'Pull together interviews from recent wins, losses, and cancellations. Find the patterns behind them and get to the answer before the next decision.' },
+  { role: 'Product', icon: PackageIcon, q: 'What do users actually want next?',
+    text: 'Explore interviews, test assumptions, compare customer segments, and pressure-test roadmap ideas without digging through research reports.' },
+  { role: 'Marketing', icon: Megaphone01Icon, q: 'Why do customers choose us?',
+    text: 'Find the language customers naturally use, uncover objections and motivations, and understand what makes people convert.' },
+  { role: 'Sales and accounts', icon: HandshakeIcon, q: 'Why did we win this deal?',
+    text: 'Analyze winning and losing conversations to uncover the objections, competitors, buying triggers, and gaps shaping your sales funnel.' },
 ];
-const BAR = '#6e9738'; // lime 600, as on the Churn page's charts
-
-function Bar({ pct, seen, reduce, delay = 0 }) {
-  return (
-    <span aria-hidden="true" className="relative block h-1.5 overflow-hidden rounded-full bg-[#1a1714]/[0.07]">
-      <motion.span className="absolute inset-y-0 left-0 rounded-full" style={{ background: BAR }}
-        initial={{ width: reduce ? pct + '%' : '0%' }} animate={seen ? { width: pct + '%' } : undefined}
-        transition={{ duration: 0.9, ease: EASE, delay }} />
-    </span>
-  );
-}
-
-function TeamAnswer({ t, reduce, show }) {
-  const seen = show;
-  const row = 'border-0 border-t border-solid border-[#1a1714]/[0.07] first:border-t-0';
-  let body;
-  if (t.kind === 'bars') {
-    body = (
-      <ul className="m-0 flex list-none flex-col gap-3 p-0">
-        {t.rows.map(([label, pct], i) => (
-          <li key={label} className="font-sans text-[14px]">
-            <span className="mb-1.5 flex justify-between gap-3"><span className="text-ink">{label}</span><span className="tabular-nums text-ink-2">{pct}%</span></span>
-            <Bar pct={pct} seen={seen} reduce={reduce} delay={0.1 + i * 0.12} />
-          </li>
-        ))}
-      </ul>
-    );
-  } else if (t.kind === 'rank') {
-    body = (
-      <ol className="m-0 list-none p-0">
-        {t.rows.map(([label, seg, n], i) => (
-          <li key={label} className={row + ' flex items-center gap-3 py-2.5 font-sans text-[14px] first:pt-0 last:pb-0'}>
-            <span className="w-4 tabular-nums text-ink-3">{i + 1}</span>
-            <span className="min-w-0 flex-1 text-ink">{label}</span>
-            <span className="rounded-full bg-[#f4f2ec] px-2 py-0.5 text-[12px] text-ink-2">{seg}</span>
-            <span className="w-[86px] text-right tabular-nums text-ink-2">{n} mentions</span>
-          </li>
-        ))}
-      </ol>
-    );
-  } else if (t.kind === 'words') {
-    body = (
-      <div>
-        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0">
-          {t.chips.map((c, i) => (
-            <li key={c} className={'rounded-full px-2.5 py-1 font-sans text-[13px] text-ink ' + (i === 0 ? 'bg-[#d1f899]' : 'bg-[#f4f2ec]')}>{c}</li>
-          ))}
-        </ul>
-        <p className="m-0 mt-4 border-0 border-l-2 border-solid border-[#d1b2ff] pl-3 font-serif text-[16px] italic leading-[1.45] text-ink">“{t.quote[0]}”</p>
-        <p className="m-0 mt-1.5 pl-3.5 font-sans text-[12.5px] text-ink-3">{t.quote[1]}</p>
-        <div className="mt-4 border-0 border-t border-solid border-[#1a1714]/[0.07] pt-4 font-sans text-[14px]">
-          <span className="mb-1.5 flex justify-between gap-3"><span className="text-ink">{t.top[0]}</span><span className="tabular-nums text-ink-2">{t.top[1]}%</span></span>
-          <Bar pct={t.top[1]} seen={seen} reduce={reduce} delay={0.2} />
-        </div>
-      </div>
-    );
-  } else {
-    const total = t.won + t.lost;
-    body = (
-      <div>
-        <div className="flex items-baseline justify-between font-sans text-[14px]">
-          <span className="text-ink"><span className={FIG + ' text-[22px] tracking-[-0.02em] tabular-nums'}>{t.won}</span> won</span>
-          <span className="text-ink-2"><span className={FIG + ' text-[22px] tracking-[-0.02em] tabular-nums text-ink'}>{t.lost}</span> lost</span>
-        </div>
-        <span aria-hidden="true" className="mt-2 flex h-1.5 gap-1 overflow-hidden">
-          <motion.span className="rounded-full" style={{ background: BAR }}
-            initial={{ flexGrow: reduce ? t.won : 0.001 }} animate={seen ? { flexGrow: t.won } : undefined} transition={{ duration: 0.9, ease: EASE, delay: 0.1 }} />
-          <motion.span className="rounded-full bg-[#1a1714]/[0.14]"
-            initial={{ flexGrow: reduce ? t.lost : total }} animate={seen ? { flexGrow: t.lost } : undefined} transition={{ duration: 0.9, ease: EASE, delay: 0.1 }} />
-        </span>
-        <dl className="m-0 mt-4">
-          {t.rows.map(([k, v]) => (
-            <div key={k} className={row + ' flex justify-between gap-3 py-2.5 font-sans text-[14px] last:pb-0'}>
-              <dt className="text-ink-2">{k}</dt><dd className="m-0 text-right text-ink">{v}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    );
-  }
-  return (
-    <motion.div className="flex-1 rounded-[20px] bg-white p-5 shadow-[0_18px_40px_-28px_rgba(26,23,20,0.35)] ring-1 ring-inset ring-[#1a1714]/[0.07] sm:p-6"
-      initial={reduce ? false : { opacity: 0, transform: 'translateY(12px)' }}
-      animate={show ? { opacity: 1, transform: 'translateY(0px)' } : undefined} transition={{ duration: 0.6, ease: EASE }}>
-      <div className="mb-4 flex items-center gap-2 font-sans text-[12.5px] text-ink-2">
-        <img src={claudeLogo} alt="" className="size-4" />
-        <span className="font-medium text-ink">{t.title}</span>
-        <span className="ml-auto inline-flex items-center gap-1.5 whitespace-nowrap text-ink-3">
-          <span className="grid size-3.5 place-items-center rounded-full bg-[#0f2e27] text-[8px] font-medium text-[#d1f899]">F</span>
-          {t.n} interviews
-        </span>
-      </div>
-      {body}
-    </motion.div>
-  );
-}
-
 // The question as a prompt in your AI (the idea of the live hifrank.ai/mcp cards, user 2026-11-24): while `play`, it
-// types in, the send button darkens, and the answer panel comes in under it as the reply. When `play` goes false the
-// card resets, so it plays again the next time its tab opens.
+// types in and the send button darkens. When `play` goes false the card resets, so it plays again the next time its
+// tab opens.
 function TeamCard({ t, reduce, play }) {
   const [n, setN] = useState(reduce ? t.q.length : 0);
   const [sent, setSent] = useState(reduce);
@@ -1046,7 +936,7 @@ function TeamCard({ t, reduce, play }) {
   const typed = n >= t.q.length;
   return (
     <div className="flex h-full flex-col rounded-[28px] bg-[#f6f4ef] p-3 ring-1 ring-inset ring-[#1a1714]/[0.05] sm:p-3.5">
-      <div className="px-4 pb-6 pt-4 sm:px-6 sm:pb-7 sm:pt-6">
+      <div className="px-4 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-6">
         <span className="flex items-center gap-2.5 font-sans text-[14px] text-ink-2">
           <span className="grid size-8 place-items-center rounded-[10px] bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.07]">
             <HugeiconsIcon icon={t.icon} size={17} strokeWidth={1.6} aria-hidden="true" />
@@ -1069,7 +959,6 @@ function TeamCard({ t, reduce, play }) {
         </div>
         <p className="m-0 mt-5 max-w-[56ch] font-sans text-[16px] leading-[1.6] text-ink-2">{t.text}</p>
       </div>
-      <TeamAnswer t={t} reduce={reduce} show={sent} />
     </div>
   );
 }
@@ -1101,8 +990,8 @@ function Teams({ reduce }) {
   return (
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
       {/* Two columns from 768px (user, 2026-11-24: "tabs and texts on the same wrapping, section two columned"): the
-          kicker, title, subtitle and the team tabs on the left, the open team's card on the right. */}
-      <div ref={stage} className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-center md:gap-12 lg:gap-20">
+          kicker, title, subtitle and the team tabs on the left, the open team's card on the right, in equal halves (user, 2026-11-24: "50-50"). */}
+      <div ref={stage} className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 md:grid-cols-2 md:items-center md:gap-12 lg:gap-20">
         <div>
           <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Built for every team</Eyebrow></ScrubText>
           <ScrubTitle reduce={reduce} id="mcp-teams-title" className={H2} lines={['Customer research', 'built around your work']} />
@@ -1159,7 +1048,6 @@ function Teams({ reduce }) {
                 );
               })}
             </div>
-            <p className="m-0 mt-4 text-right font-sans text-[12.5px] text-ink-3">Example answers</p>
         </ScrubText>
       </div>
     </section>
