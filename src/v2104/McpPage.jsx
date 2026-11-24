@@ -1,9 +1,9 @@
 // McpPage (V21.04): the MCP page, with the words of the live hifrank.ai/mcp page (2026-11-23), headings in sentence
 // case. Drafted here and labelled "Example" on the page: the hero chat (question, Frank's tool call, the answer). The live page's fourth step ("Act") repeats the first step's text, so it is
 // left out until it has its own words. Layout, on the home page's container (CLAUDE.md, "Frank landing pages"):
-//   1. Hero: the forest-green panel with the title, description, the CTA and the "no API keys" line, centred, and no
-//      visual (user, 2026-11-24: "On MCP landing pages first section remove visual"; HERO_VISUAL = 'none'). The
-//      earlier concepts (A chat, B hub, C voices, D instruct, E stack) stay in the file behind HERO_VISUAL.
+//   1. Hero: the forest-green panel. Left: title, description, the CTA and the "no API keys" line. Right: concept E
+//      (AiStack), as in the V21.04 HTML export (user, 2026-11-24: "use HTML visual"). HERO_VISUAL = 'none' centres
+//      the text with no visual. The earlier concepts (A chat, B hub, C voices, D instruct, E stack) stay in the file behind HERO_VISUAL.
 //   2. Where it works: the styled first title (Lora italic phrase under the lime marker), then the supported AI
 //      tools as logo tiles, the sixth tile "any MCP-compatible platform".
 //   3. How it works: the home page's How it works (HowItWorks.jsx, "How it works" kicker) with the live page's
@@ -212,9 +212,9 @@ const PathLogo = ({ icon, color }) => (
 // HERO_VISUAL picks the concept: 'voices' (C, below), 'hub' (B) or 'chat' (A, AiChat above). B and C show the chat
 // on phones, where their text would be too small.
 // 'instruct' (D, AiInstruct further down) is the current one (user, 2026-11-24) and shows at every width.
-// 'none' (user, 2026-11-24): no visual; the hero's text is centred in the panel. Set back to 'stack' (E) for the last
-// visual shown.
-const HERO_VISUAL = 'none';
+// 'stack' (E, AiStack): the current one (user, 2026-11-24: "use HTML visual", the V21.04 export's hero).
+// 'none': no visual; the hero's text is centred in the panel.
+const HERO_VISUAL = 'stack';
 const HUB_W = 520, HUB_H = 520, HUB_C = [260, 260];
 const HUB = [
   { name: 'Claude', logo: <img src={claudeLogo} alt="" className="size-full" />, at: [0, 0], ask: 'Top churn reasons this month?',
