@@ -30,7 +30,6 @@ const COLUMNS = [
   { title: 'Platform', links: [
     ['Voice Interviewer', '/ai-voice-interviewer'],
     ['Video Interviewer', '/ai-video-interviewer'],
-    ['WhatsApp Interviewer', '/ai-whatsapp-chat-interviewer'],
   ] },
   { title: 'Why Frank', links: [
     ['Price', '/benefits/price'],

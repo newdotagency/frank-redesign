@@ -18,7 +18,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Glasses from '../v3/Glasses';
 import PlaybookIcon from './PlaybookIcon';
 import {
-  BadgeCheck, BookOpen, Boxes, Clock3, FileText, Globe, LayoutGrid, Megaphone, MessageCircle,
+  BadgeCheck, BookOpen, Boxes, Clock3, FileText, Globe, LayoutGrid, Megaphone,
   Mic, Plug, Quote, Rocket, Scale, Search, ShieldCheck, ShoppingBag, Sparkles, Tag, TrendingUp,
   Video, Zap, ArrowRight,
 } from 'lucide-react';
@@ -38,7 +38,6 @@ export const MENUS = {
       { label: 'Product', items: [
         it(Mic, 'AI Voice Interviews', 'Natural voice conversations', '/ai-voice-interviewer'),
         it(Video, 'Video Interviewer', 'Text-based AI interviews', '/ai-video-interviewer'),
-        it(MessageCircle, 'AI WhatsApp Interviewer', 'Voice and video on WhatsApp', '/ai-whatsapp-chat-interviewer'),
         it(Plug, 'MCP', 'Frank inside your AI tools', '/mcp'),
       ] },
       { label: 'Features', items: [
