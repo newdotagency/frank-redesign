@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Page from '../../v2104/CaseStudyPage.jsx';
+import CASES from '../../v2104/case-study/cases.json';
+export function getStaticPaths() {
+  return CASES.map(c => ({ params: { slug: c.slug }, props: { slug: c.slug, title: c.metaTitle, description: c.summary } }));
+}
+const { slug, title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <div id="root"><Page slug={slug} client:only="react" /></div>
+</Base>

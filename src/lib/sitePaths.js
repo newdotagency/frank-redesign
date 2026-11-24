@@ -3,7 +3,8 @@
 const SITE = 'https://www.hifrank.ai';
 const HOSTED = [
   /^\/$/,
-  /^\/(pricing|docs|case-study|mcp|comparison|ai-voice-interviewer|try-frank)$/,
+  /^\/(pricing|docs|mcp|comparison|ai-voice-interviewer|try-frank)$/,
+  /^\/case-study(\/[\w-]+)?$/,
   /^\/blog(\/[\w-]+)?$/,
   /^\/author\/[\w-]+$/,
   /^\/docs\/[\w-]+$/,

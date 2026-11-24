@@ -1,0 +1,742 @@
+[
+ {
+  "slug": "tcf-win-loss-analysis",
+  "metaTitle": "Win-Loss Analysis at TCF: What We Learned by Looking Beyond the CRM",
+  "title": "Win-Loss Analysis at TCF: What We Learned by Looking Beyond the CRM",
+  "brand": "TCF",
+  "hero": "/case-study/tcf-win-loss-analysis/hero.webp",
+  "blocks": [
+   {
+    "t": "h",
+    "l": 2,
+    "x": "How TCF Used Frank to Understand Why Promising Sales Conversations Ended"
+   },
+   {
+    "t": "p",
+    "x": "[TCF](https://www.tcf.team/) has spent more than a decade helping founders launch products through crowdfunding. The company has worked on more than [1,000 product launches](https://uk.entrepreneur.com/marketing/the-crowdfunding-failure-happening-before-launch-day) with its team of more than 100 specialists across campaign strategy, advertising and performance marketing, creative, PR, influencer marketing and crowdfunding execution."
+   },
+   {
+    "t": "p",
+    "x": "That history also meant TCF accumulated a substantial amount of sales data."
+   },
+   {
+    "t": "p",
+    "x": "The team knew where leads originated, how they moved through the funnel, which opportunities converted, where deals stalled, which competitors appeared and what reasons were recorded when opportunities were either lost or closed."
+   },
+   {
+    "t": "p",
+    "x": "Or did they?"
+   },
+   {
+    "t": "p",
+    "x": "Like most companies, those closed-lost reasons tended to fit into relatively simple categories: price, budget, timing, competition, not ready. The problem was not that the data was wrong. It was that TCF suspected it was incomplete."
+   },
+   {
+    "t": "p",
+    "x": "A CRM can record that a prospect considered the service too expensive. It usually cannot tell you whether the prospect genuinely thought the price was unreasonable, whether they couldn't calculate the incremental return, whether their own product economics were weak, whether they were simply too early, or whether they had already committed emotionally and operationally to another option."
+   },
+   {
+    "t": "p",
+    "x": "Those distinctions matter because they lead to very different decisions inside the company."
+   },
+   {
+    "t": "p",
+    "x": "With this in mind, TCF reached out to [**Frank**](https://hifrank.ai), an **AI Researcher**, to conduct a pilot win-loss study with former prospects and investigate the reasoning behind their decisions."
+   },
+   {
+    "t": "p",
+    "x": "The objective was not to evaluate individual salespeople or prove that the CRM was inaccurate. It was to add a layer of buyer context that TCF's existing data did not contain."
+   },
+   {
+    "t": "p",
+    "x": "This is a common limitation of traditional [win-loss reporting](/blog/how-ai-interviews-transform-qualitative-research). Clozd's 2026 guide cites its research showing that the reason given by buyers and the reason recorded by sellers align only about 15% of the time."
+   },
+   {
+    "t": "p",
+    "x": "For TCF, the question was therefore less about finding a better closed-lost label and more about understanding how those decisions had actually developed. So that the agency could develop better strategies to communicate the value and understand the needs of their potential clients."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "How Frank was used"
+   },
+   {
+    "t": "p",
+    "x": "Frank is an AI Researcher that makes it easier for brands to [talk to customers](/blog/how-to-get-deeper-insights-from-customer-interviews) and understand their pain points and needs. Even if you’ve never run an interview before, Frank makes it easy by guiding brands through the best-practices of building a research outline, developing questions and follow-ups."
+   },
+   {
+    "t": "p",
+    "x": "The end result is an interview link you can share, where 100s of your customers can be interviewed concurrently, in their own language, at their own pace. Each interview is unique, with Frank adapting to your customers’ responses and diving deeper where necessary."
+   },
+   {
+    "t": "p",
+    "x": "And just like the best online survey and analytics tools, Frank makes it easy to review 100s of interviews at once, with transcripts, highlights, action items, themes and much more surfaced from each one, and grouped together so you know what work will have the biggest impact."
+   },
+   {
+    "t": "img",
+    "src": "/case-study/tcf-win-loss-analysis/img-1.webp",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "For TCF, Frank conducted independent voice interviews with former prospects."
+   },
+   {
+    "t": "p",
+    "x": "Unlike typical win-loss surveys, the interviews did not begin by asking respondents to choose a reason for rejecting TCF. Instead, Frank worked backward through the decision."
+   },
+   {
+    "t": "p",
+    "x": "Participants were asked things like:"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "Why they initially looked for help",
+     "How they discovered TCF",
+     "What they expected from an agency",
+     "What happened during the evaluation",
+     "What concerns emerged",
+     "What alternatives they considered",
+     "What they eventually did instead"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "The conversation was [adaptive rather than a fixed questionnaire](/blog/the-future-of-customer-interviews)."
+   },
+   {
+    "t": "p",
+    "x": "If somebody mentioned price, Frank could explore how they evaluated the economics. If somebody chose another agency, Frank could explore when that alternative entered the conversation, what were the key differentiators in the eyes of the customer, and what made switching unattractive. And if someone said they were not ready, Frank could examine what “not ready” actually meant."
+   },
+   {
+    "t": "img",
+    "src": "/case-study/tcf-win-loss-analysis/img-2.webp",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "This approach is consistent with an important principle of win-loss research: the account owner should generally not conduct their own loss interview."
+   },
+   {
+    "t": "p",
+    "x": "Buyers naturally manage the relationship with a salesperson. And whether knowingly or subconsciously, customers adapt their responses to minimize conflict and not upset the salesperson."
+   },
+   {
+    "t": "p",
+    "x": "But an independent interviewer like Frank can ask follow-up questions without trying to recover the deal. RevenueFlow describes this independence as one of the fundamental design choices in a useful win-loss program."
+   },
+   {
+    "t": "p",
+    "x": "The completed interviews in this pilot were then [analyzed together](/blog/how-to-analyze-conversational-data) to look for recurring decision drivers, contradictions and patterns."
+   },
+   {
+    "t": "p",
+    "x": "Because this was an exploratory sample, TCF treated the themes as hypotheses rather than attempting to turn a small number of interviews into precise percentages."
+   },
+   {
+    "t": "p",
+    "x": "That is also an important methodological point: [interview frequency](/blog/how-many-customer-interviews-do-you-need) should be tested against CRM and pipeline data before a business concludes that a theme represents the broader market."
+   },
+   {
+    "t": "p",
+    "x": "The insights for this case study were therefore qualitative, rather than quantitative."
+   },
+   {
+    "t": "p",
+    "x": "This has been common practice for interviews for decades, where brands tend to run between 10-25 interviews. This is the sweet spot for finding valuable insights directly in the words of your customers, before testing them further using quantitative methods."
+   },
+   {
+    "t": "p",
+    "x": "However, thanks to the scaling factor of moving interviews online and powering them with AI, Frank is capable of running 100s of interviews at the same time. This means that for the first time ever, it’s easy for brands to turn qualitative data from interviews into specific, measurable and quantifiable insights. Some brands have even built it into user journeys and funnels to gather continuous data over time!"
+   },
+   {
+    "t": "p",
+    "x": "*All participant names, companies, products and commercially sensitive information have been removed. Quotes below have been lightly cleaned for readability without changing their meaning.*"
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Finding 1: “Price” was usually more complicated than price"
+   },
+   {
+    "t": "p",
+    "x": "Economic concerns appeared repeatedly in the interviews. On the surface, that appeared to confirm something TCF already knew: their marketing is a premium service and its price could be a barrier."
+   },
+   {
+    "t": "p",
+    "x": "Surveys uncovered this objection in the past, but couldn’t do much in terms of depth. But the interviews showed that several quite different problems were hiding inside the same objection, including:"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "Unclear Value Attribution and ROI",
+     "Unviable Campaign or Unit Economics",
+     "Upfront Investment Risk"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "One prospect clearly understood that TCF had capabilities smaller agencies did not have. The problem was that they could not estimate the incremental contribution of those capabilities well enough to justify paying significantly more."
+   },
+   {
+    "t": "p",
+    "x": "As the participant put it:"
+   },
+   {
+    "t": "quote",
+    "x": "“I cannot accurately measure how much those benefits are going to contribute.”"
+   },
+   {
+    "t": "p",
+    "x": "The issue was not that the buyer saw no difference between TCF and the alternatives. They actually identified specific advantages. They simply could not attach enough economic value to them."
+   },
+   {
+    "t": "p",
+    "x": "Another founder had a very different problem. They liked TCF's experience and considered it an important asset, but their own margins meant that the economics of the campaign would not work comfortably regardless of which serious agency they hired. That founder eventually concluded that the underlying product itself was too expensive for the intended audience."
+   },
+   {
+    "t": "p",
+    "x": "In another case, the prospect was not objecting to the absolute amount as much as the risk of committing substantial capital before knowing whether a first crowdfunding campaign would work."
+   },
+   {
+    "t": "p",
+    "x": "These look almost identical when reduced to “price” in a CRM."
+   },
+   {
+    "t": "p",
+    "x": "They are not."
+   },
+   {
+    "t": "p",
+    "x": "For TCF, the implication is that price objections should be separated into more useful categories: weak product economics, insufficient proof of incremental ROI, limited cash availability, risk aversion, scope mismatch compared to competitors, and genuine price comparison."
+   },
+   {
+    "t": "p",
+    "x": "The corrective action is different in every case."
+   },
+   {
+    "t": "p",
+    "x": "While the obvious superficial answer to a pricing issue is to reduce the price, the insights Frank provided confirmed that TCF does not necessarily need to make their premium service cheaper."
+   },
+   {
+    "t": "p",
+    "x": "In some cases, it needs to make the incremental value easier to evaluate. In others, the right conclusion may be that the prospect's economics simply do not support a full-service crowdfunding model. And yet in others, there are new opportunities for TCF to expand its scope and offer clients ways to reduce risk and gain more certainty before they commit (as they do with their partners at Prelaunch.com)."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Finding 2: Several “losses” were really qualification signals"
+   },
+   {
+    "t": "p",
+    "x": "A more surprising pattern was that some prospects probably should not have become TCF customers at that particular moment."
+   },
+   {
+    "t": "img",
+    "src": "/case-study/tcf-win-loss-analysis/img-3.webp",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "One founder was still developing the product. They valued TCF's process, described the interaction as helpful and insightful, and were open to working with the company in the future. But they eventually realized that the product itself was not ready for the attention and investment required by a crowdfunding launch."
+   },
+   {
+    "t": "p",
+    "x": "Another founder initially explored crowdfunding but eventually discovered through actual sales that the product worked considerably better through a B2B model. What looked initially like a lost crowdfunding-services deal was ultimately evidence that the founder had found a more appropriate route to market."
+   },
+   {
+    "t": "p",
+    "x": "Another prospect eventually changed the launch strategy because the product was geographically constrained and crowdfunding no longer made much sense for the target market."
+   },
+   {
+    "t": "p",
+    "x": "These cases changed how TCF interpreted closed-lost opportunities."
+   },
+   {
+    "t": "p",
+    "x": "Not every loss is a sales failure."
+   },
+   {
+    "t": "p",
+    "x": "Some are **readiness losses**. Some are**business-model losses**. Some are**channel-fit losses**. And some are prospects that should probably have been qualified differently much earlier."
+   },
+   {
+    "t": "p",
+    "x": "That suggests a useful change for TCF: qualification should go beyond asking whether someone wants crowdfunding support and can afford the engagement."
+   },
+   {
+    "t": "p",
+    "x": "The sales process should also assess whether:"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "The product is sufficiently developed",
+     "The margins support paid acquisition",
+     "There is a large enough consumer market",
+     "Crowdfunding is the right route to market",
+     "The founder has the required internal bandwidth",
+     "The expected campaign economics are realistic"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "The result may actually be fewer proposals in some cases. They’d be turning leads away. And maybe even tailor their marketing to dismiss these segments entirely."
+   },
+   {
+    "t": "p",
+    "x": "But the opportunities reaching the proposal stage should be better suited to what TCF does. And the sales team would be able to focus their efforts on closing deals with partners who are in the right position to launch their products with TCF."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Finding 3: In some cases, the cost of saying “no” only became visible later"
+   },
+   {
+    "t": "p",
+    "x": "One of the most interesting interviews came from a company that decided not to hire TCF largely because it was cautious about spending before generating revenue."
+   },
+   {
+    "t": "p",
+    "x": "At the time, that decision felt rational."
+   },
+   {
+    "t": "p",
+    "x": "The company ended up attempting much of the campaign work internally. The founder spent substantial time learning marketing, creating graphics, working on positioning and managing the campaign. Only after the campaign had launched and results were weaker than expected did the team begin to feel that they had been underprepared."
+   },
+   {
+    "t": "p",
+    "x": "They subsequently spent money across several external promotional channels, with very inconsistent results."
+   },
+   {
+    "t": "p",
+    "x": "Looking back, the participant said:"
+   },
+   {
+    "t": "quote",
+    "x": "“I wish we would have done things differently with our marketing.”"
+   },
+   {
+    "t": "p",
+    "x": "A different founder rejected agency support because the economics initially felt too difficult. They later ran marketing themselves with the help of AI tools. Conversion rates came in much lower than expected, and by the time they increased the budget, they felt it was already too late to materially change the campaign."
+   },
+   {
+    "t": "p",
+    "x": "This does not mean those companies would necessarily have succeeded with TCF. But they reveal something that a CRM cannot show: **the buyer evaluates the cost of hiring an agency before the campaign, while the cost of not hiring one may only become visible afterward.**"
+   },
+   {
+    "t": "p",
+    "x": "That suggests an opportunity for TCF's sales process."
+   },
+   {
+    "t": "p",
+    "x": "A lot of first-time founders are aware of their customers’ pain points and the solution they’re presenting. But they’re not necessarily aware of all of the processes involved in building a brand, launching a product, marketing it, and the crowdfunding niche. Because of this, they have no point of reference. And in an environment consistently bombarded with messages of, “You can do this yourself with AI,” it can be easy to develop a false sense of confidence that won’t be tested until it’s too late!"
+   },
+   {
+    "t": "p",
+    "x": "Rather than only presenting the expected upside of working with TCF, the sales conversation can help a founder think through the operational and economic consequences of the alternative: who will create the campaign assets, who will acquire the expertise, how much founder time the process will consume, what will happen if prelaunch preparation starts late, and how difficult it will become to correct problems once a campaign is live."
+   },
+   {
+    "t": "p",
+    "x": "That is less about persuasion and more about helping the buyer compare the complete economics of both options."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Finding 4: Some prospects did not want less service. They wanted more control."
+   },
+   {
+    "t": "p",
+    "x": "Another theme was easy to mistake for price sensitivity: A number of prospects wanted to remain deeply involved in execution."
+   },
+   {
+    "t": "p",
+    "x": "One founder trusted TCF and described the team positively, but felt that the proposed operating model did not give them enough control over marketing spend. They ultimately chose an approach in which they could personally change creatives, audiences and budget levels."
+   },
+   {
+    "t": "p",
+    "x": "Their final assessment of TCF was not negative:"
+   },
+   {
+    "t": "quote",
+    "x": "“I think they're great guys… it was a misalignment on a very functional thing.”"
+   },
+   {
+    "t": "img",
+    "src": "/case-study/tcf-win-loss-analysis/img-4.webp",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "Another prospect chose a cheaper agency partly because that agency left more work with the founder. In that situation, doing more internally was not perceived as a disadvantage. The founder saw themselves as the product expert and preferred being at the center of the work."
+   },
+   {
+    "t": "p",
+    "x": "A similar pattern appeared with a company that wanted TCF's knowledge but intended to produce much of the campaign material itself. The gap in price between a full-service TCF engagement and the more limited service they wanted did not feel proportionate to their needs."
+   },
+   {
+    "t": "p",
+    "x": "This suggested another [segmentation dimension for TCF](/blog/how-to-understand-customers-better-than-competitors)."
+   },
+   {
+    "t": "p",
+    "x": "There is a difference between a founder looking for **execution capacity**and one looking primarily for**expertise and guidance**."
+   },
+   {
+    "t": "p",
+    "x": "TCF's full-service model naturally makes more sense for the first group."
+   },
+   {
+    "t": "p",
+    "x": "For the second group, qualification needs to identify the mismatch early — or TCF may eventually decide there is room for a different service structure. The interviews alone do not answer which strategic choice is right, but they make the trade-off and opportunity visible."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Finding 5: Sometimes the deal was largely lost before TCF entered it"
+   },
+   {
+    "t": "p",
+    "x": "One participant had run crowdfunding campaigns before and already understood the value of specialized marketing support."
+   },
+   {
+    "t": "p",
+    "x": "TCF therefore did not need to convince this buyer that an agency was necessary."
+   },
+   {
+    "t": "p",
+    "x": "The problem was timing."
+   },
+   {
+    "t": "img",
+    "src": "/case-study/tcf-win-loss-analysis/img-5.webp",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "By the time TCF entered the evaluation, the prospect already had a working relationship with a marketing partner and were already developing their next launch with them."
+   },
+   {
+    "t": "p",
+    "x": "At that point, the comparison changed."
+   },
+   {
+    "t": "p",
+    "x": "The buyer was no longer simply deciding which agency looked stronger. Their incumbent already had campaign data, had demonstrated acceptable performance and represented continuity. Moving to TCF meant paying more while also accepting the cost and uncertainty of switching during a live campaign."
+   },
+   {
+    "t": "p",
+    "x": "The prospect explicitly said that the risk of changing partners late in the process outweighed the potential incremental upside."
+   },
+   {
+    "t": "p",
+    "x": "This is not primarily an objection-handling issue. It is a timing issue."
+   },
+   {
+    "t": "p",
+    "x": "The implication for TCF is that some improvement in win rate may have to happen well before a prospect requests a proposal."
+   },
+   {
+    "t": "p",
+    "x": "Educational content, relationships with founders, early launch-planning tools and other touchpoints can help TCF enter the conversation before the campaign architecture and agency relationship have already been established, or shift the conversation in their favor by reducing the apparent cost of switching as much as possible."
+   },
+   {
+    "t": "p",
+    "x": "It also means TCF should distinguish **competitive loss**from**late-entry loss** in its analysis. They require very different responses."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Finding 6: TCF's reputation was generally not the problem"
+   },
+   {
+    "t": "p",
+    "x": "The study also contained an important positive signal."
+   },
+   {
+    "t": "p",
+    "x": "Several prospects had considered working with TCF specifically because of their experience and expertise."
+   },
+   {
+    "t": "p",
+    "x": "One lead searched Kickstarter for successful campaigns and tried to identify the agencies responsible for the strongest results. They described TCF's market experience as “a great asset.”"
+   },
+   {
+    "t": "p",
+    "x": "Another prospect was impressed by TCF's educational material and the structure of its process, saying it demonstrated the benefit of working with an organization that had substantial crowdfunding experience."
+   },
+   {
+    "t": "p",
+    "x": "Another specifically looked for an agency with experience in the participant's product category and found TCF through relevant successful campaigns."
+   },
+   {
+    "t": "p",
+    "x": "This matters because it narrows the problem."
+   },
+   {
+    "t": "p",
+    "x": "The interviews suggested that TCF didn’t lack credibility or category expertise. In several cases the opposite was true: **TCF's reputation was what got it into the consideration set.**"
+   },
+   {
+    "t": "p",
+    "x": "The gap appeared later, when the prospect needed to connect that expertise to their particular economics, risk profile, preferred working model or stage of readiness."
+   },
+   {
+    "t": "p",
+    "x": "That gives TCF a much more specific problem to work on than simply “improve the sales pitch.”"
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Finding 7: A small sales-process signal is worth watching"
+   },
+   {
+    "t": "p",
+    "x": "There was also a less comfortable finding."
+   },
+   {
+    "t": "p",
+    "x": "One participant felt the sales conversation moved toward selling before enough time had been spent understanding the product. Another described wanting a conversation that felt somewhat deeper and more engaged."
+   },
+   {
+    "t": "p",
+    "x": "These are isolated signals in a small pilot and should not be generalized into a conclusion about TCF's sales organization."
+   },
+   {
+    "t": "p",
+    "x": "But they are precisely the kind of signal that becomes useful if win-loss research runs continuously."
+   },
+   {
+    "t": "p",
+    "x": "One comment is an anecdote."
+   },
+   {
+    "t": "p",
+    "x": "If the same theme appears repeatedly across a particular stage, salesperson, prospect type or period, it becomes something the company should investigate."
+   },
+   {
+    "t": "p",
+    "x": "TCF can then compare the buyer interviews with sales-call recordings and ask whether there is a real pattern: are stronger discovery conversations associated with higher conversion? Are prospects with unusual products receiving enough diagnostic attention? Does moving to the proposal too quickly create uncertainty later?"
+   },
+   {
+    "t": "p",
+    "x": "That is where qualitative feedback becomes operational rather than anecdotal. And by integrating Frank into their post-sales workflow, TCF will soon be enriching this anecdotal, qualitative insights, with quantitative data to back it up."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "What TCF learned from the pilot"
+   },
+   {
+    "t": "p",
+    "x": "The overall finding was not that TCF had a price problem."
+   },
+   {
+    "t": "img",
+    "src": "/case-study/tcf-win-loss-analysis/img-6.webp",
+    "alt": ""
+   },
+   {
+    "t": "p",
+    "x": "It was that several different buying problems were being compressed into a small number of sales outcomes:"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "“Price” could mean weak margins. It could mean uncertain ROI. It could mean fear of putting capital at risk. It could mean wanting to do more work internally.",
+     "“Not ready” could mean unfinished product development, unclear product-market fit or a completely different route to market.",
+     "“Competitor” could mean genuine preference, or simply that another provider arrived early enough to accumulate switching costs."
+    ]
+   },
+   {
+    "t": "p",
+    "x": "That distinction changes what TCF can do with the information moving forward."
+   },
+   {
+    "t": "p",
+    "x": "We spoke with the TCF team to see what changes they were planning on implementing after reviewing Frank’s results. For now, their sales team is prioritizing activities that use the findings to:"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "Refine their lead qualification strategies",
+     "Distinguish loss reasons more precisely and start developing strategies to address the more nuanced objections and friction points",
+     "Strengthen the way ROI and campaign economics are discussed",
+     "Spend more time understanding the founder's context during discovery",
+     "Create a clearer path for those promising prospects who are currently too early"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "The research also gives TCF a useful starting point for comparing buyer feedback with its existing CRM and sales-call data."
+   },
+   {
+    "t": "p",
+    "x": "The pilot tells the team where to look. The larger data set can tell them how widespread each pattern actually is."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Why the next step is continuous win-loss analysis"
+   },
+   {
+    "t": "p",
+    "x": "A one-time set of interviews can reveal things the team did not know."
+   },
+   {
+    "t": "p",
+    "x": "It cannot reliably show whether those things are changing."
+   },
+   {
+    "t": "p",
+    "x": "That is why TCF does not see this as a one-off research exercise to repeat once a year."
+   },
+   {
+    "t": "p",
+    "x": "[RevenueFlow](https://www.revenueflow.com/blog/win-loss-analysis) makes a useful distinction here: ten interviews can generate very good hypotheses, but the version of win-loss analysis that changes a company is a standing cadence where a consistent number of conversations happen over time and the themes are repeatedly compared with pipeline data."
+   },
+   {
+    "t": "p",
+    "x": "For TCF, a [continuous program](/blog/how-pms-use-ai-for-customer-discovery) could reveal whether ROI uncertainty declines after the proposal is redesigned, whether better qualification reduces the number of readiness- and problem/solution awareness-related losses, whether earlier engagement changes competitive outcomes, and whether the same objections appear differently across regions, campaign sizes and founder experience levels."
+   },
+   {
+    "t": "p",
+    "x": "It would also allow the analysis to include wins, not only losses."
+   },
+   {
+    "t": "p",
+    "x": "That is important. Understanding why somebody chose TCF can be just as valuable as understanding why somebody did not. RevenueFlow specifically recommends deliberately sampling wins, losses, no-decisions and early disqualifications rather than treating all closed opportunities as the same population."
+   },
+   {
+    "t": "p",
+    "x": "There is also evidence that continuity matters. Clozd's 2025 State of Win-Loss research reports that **63% of companies running win-loss programs saw increased win rates**, rising to**84% among programs running for two years or more**. It reports positive ROI for**85% of ongoing, cross-functional programs**, compared with 55% for one-off projects."
+   },
+   {
+    "t": "p",
+    "x": "Those statistics do not mean that interviewing customers automatically improves a sales organization."
+   },
+   {
+    "t": "p",
+    "x": "The value comes from closing the loop:"
+   },
+   {
+    "t": "ol",
+    "items": [
+     "**Observe a pattern**",
+     "**Make a change**",
+     "**Continue interviewing**",
+     "**See whether the pattern changes**",
+     "**Verify it against sales data**"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "That is difficult to achieve when win-loss analysis is an occasional research project."
+   },
+   {
+    "t": "p",
+    "x": "‍"
+   },
+   {
+    "t": "h",
+    "l": 2,
+    "x": "Where Frank and AI change the economics"
+   },
+   {
+    "t": "p",
+    "x": "Historically, [continuous win-loss analysis](/blog/how-ai-interviews-transform-qualitative-research) has been difficult to maintain."
+   },
+   {
+    "t": "p",
+    "x": "Every interview requires outreach, scheduling, an interviewer, transcription, analysis and placement within the collection of existing interviews, and some way of distributing the learning internally. As the number of deals grows, the operational burden grows with it."
+   },
+   {
+    "t": "p",
+    "x": "This is where **Frank** changes the practical model."
+   },
+   {
+    "t": "p",
+    "x": "A deal outcome can trigger an interview automatically. Frank can conduct the conversation independently, follow the participant's answers, transcribe the interview and structure the evidence for analysis."
+   },
+   {
+    "t": "p",
+    "x": "The process can then be connected with the systems a company already has."
+   },
+   {
+    "t": "p",
+    "x": "The CRM provides the deal history and outcome. Sales-call platforms provide the conversations that happened while the opportunity was active. Frank provides something those systems do not contain: the buyer's account after the sales conversation has ended."
+   },
+   {
+    "t": "p",
+    "x": "The resulting analysis can combine three different perspectives:"
+   },
+   {
+    "t": "ol",
+    "items": [
+     "**What the CRM says happened**",
+     "**What happened in the sales conversations**",
+     "**What the buyer says actually drove the decision**"
+    ]
+   },
+   {
+    "t": "p",
+    "x": "AI can also compare new interviews with previous ones, identify emerging themes and help teams examine differences by segment, stage or competitor."
+   },
+   {
+    "t": "p",
+    "x": "The point is not to remove human judgment."
+   },
+   {
+    "t": "p",
+    "x": "TCF still has to decide whether a finding is important, verify it against the broader pipeline and determine what to change."
+   },
+   {
+    "t": "p",
+    "x": "AI reduces the cost of obtaining enough qualitative evidence for that judgment to happen regularly."
+   }
+  ],
+  "kind": "Win-loss analysis",
+  "summary": "A pilot win-loss study with former prospects, to find out why promising sales conversations ended."
+ }
+]
