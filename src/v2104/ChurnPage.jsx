@@ -25,8 +25,8 @@
 // Titles (user rule, 2026-11-23): only the first section after the hero has the styled title (the Lora italic phrase
 // under the lime marker); every later section title is plain Figtree. The hero keeps its own italic phrase.
 // Entrance: the hero rises in on load, its cards settling on a spring; the rest rises in with the scroll.
-import { useRef, useState } from 'react';
-import { MotionConfig, motion, useInView, useReducedMotion, useScroll, useSpring } from 'framer-motion';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { MotionConfig, motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import UseCases from './UseCases';
 import MarkedPhrase from './MarkedPhrase';
@@ -329,8 +329,8 @@ function Versus({ reduce }) {
 // pinned on the left; on the right the four top reasons as cards that stack as you scroll, each new card sliding up
 // over the one before, so one reason shows at a time. A card (the home Widget stage's cream with the corner glow): the
 // share as 48 dots with this reason's customers filled and "17 of 48 customers" (user: a big number read as numbering),
-// the reason, the follow-up finding and the customer's words. Plain CSS sticky (no scroll script). The study is labelled Example. Below
-// 1024px the cards are a plain list.
+// the reason, the follow-up finding and the customer's words. From 1024px one pinned stage (see OutcomesPinned); the study is
+// labelled Example. Below 1024px, and with reduced motion, the cards are a plain list.
 const OUT_TOTAL = 48;
 const OUT_ROWS = [
   [17, 'Usage collapsed when the person who set it up left', 'Most of these customers first said the product “wasn’t a fit anymore.” Follow-ups traced it back to one departure.', 'Sarah built all the automations. When she left, nobody knew how they worked, so we stopped trusting them.'],
@@ -460,47 +460,116 @@ function ActionItems() {
   );
 }
 
+// One reason card. `stacked` (the pinned stack): the four cards' side edges line up, so outlines drawn outside them and
+// their shadows add up to a dark line (user, 2026-11-24, as on the MCP page); a stacked card draws its outline inside
+// its edge, where the card in front covers it, and its shadow only lifts its top edge.
+function OutcomeCard({ row: [n, reason, note, quote], i, stacked }) {
+  return (
+    <div className={'relative flex h-full min-h-[340px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 ring-1 sm:p-9 '
+      + (stacked ? 'shadow-[0_-6px_12px_-8px_rgba(26,23,20,0.08)] ring-inset ring-[#1a1714]/[0.07]' : 'shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-[#1a1714]/[0.06]')}>
+      {/* The home page's Widget stage look: cream with the faint grainy yellow glow in the corner. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
+      {/* The share, not a rank: 48 dots, one per customer interviewed, with this reason's customers filled. */}
+      <div className="relative flex flex-wrap items-center gap-x-4 gap-y-3">
+        <span aria-hidden="true" className="grid grid-cols-[repeat(16,6px)] gap-[4px]">
+          {Array.from({ length: OUT_TOTAL }, (_, d) => (
+            <span key={d} className={'block size-[6px] rounded-full ' + (d < n ? 'bg-[#1a1714]' : 'bg-[#1a1714]/[0.12]')} />
+          ))}
+        </span>
+        <span className="font-sans text-[15px] text-ink-2"><span className="font-medium text-ink">{n} of {OUT_TOTAL}</span> customers</span>
+      </div>
+      <h3 className={FIG + ' relative m-0 mt-7 text-[clamp(21px,1.9vw,25px)] leading-[1.25] tracking-[-0.02em] text-ink [text-wrap:balance]'}>
+        <span className="sr-only">{i + 1}. </span>{reason}
+      </h3>
+      {note && <p className="relative m-0 mt-3 max-w-[52ch] font-sans text-[16px] leading-[1.55] text-ink-2">{note}</p>}
+      <span aria-hidden="true" className="block min-h-6 flex-1" />
+      <blockquote className="relative m-0 mt-6 max-w-[52ch] border-0 border-l-2 border-solid border-[#a0d05f] pl-4 font-serif text-[17px] italic leading-[1.5] text-ink">&ldquo;{quote}&rdquo;</blockquote>
+    </div>
+  );
+}
+
+function OutcomesHeader({ reduce }) {
+  return (
+    <div>
+      <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Frank interview outcomes</Eyebrow></ScrubText>
+      <ScrubTitle reduce={reduce} id="ch-out-title" className={H2} lines={['What you get']} />
+      <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[46ch] ' + SUBTITLE}>
+        Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many customers raised each one, and turns the biggest into Action Items.
+      </ScrubText>
+      <ScrubText as="p" reduce={reduce} lag={0.16} className="m-0 mt-8 font-sans text-[14px] text-ink-2">
+        Top reasons for cancelling. Example: {OUT_TOTAL} churn interviews.
+      </ScrubText>
+    </div>
+  );
+}
+
+// From 1024px the label, title and the card stack pin as one stage (user, 2026-11-24: the MCP page's fixes here too): a
+// track with a sticky stage 112px from the top at its own height; scrolling slides each next card up from below the
+// screen to 18px under the one before; after the last the stage holds one more step, then the title and all four cards
+// scroll away as one block, so no card leaves on its own.
+const OUT_PIN = 112, OUT_STEP = 18, OUT_UNITS = 4; // 3 arriving cards + 1 hold
+function OutcomeSlide({ i, progress, from, children }) {
+  const y = useTransform(progress, p => {
+    if (i === 0) return 0;
+    const t = Math.min(1, Math.max(0, p * OUT_UNITS - (i - 1)));
+    const e = 1 - Math.pow(1 - t, 3);
+    return from * (1 - e) + i * OUT_STEP * e;
+  });
+  return <motion.li className="[grid-area:1/1]" style={{ y, zIndex: i }}>{children}</motion.li>;
+}
+function OutcomesPinned({ reduce }) {
+  const track = useRef(null);
+  const stage = useRef(null);
+  const [stageH, setStageH] = useState(600);
+  useLayoutEffect(() => {
+    const el = stage.current; if (!el) return;
+    const ro = new ResizeObserver(([e]) => setStageH(Math.round(e.borderBoxSize?.[0]?.blockSize ?? el.offsetHeight)));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const { scrollYProgress } = useScroll({ target: track, offset: [`start ${OUT_PIN}px`, `end ${OUT_PIN + stageH}px`] });
+  const [from, setFrom] = useState(800);
+  useEffect(() => {
+    const set = () => setFrom(window.innerHeight); // start a full screen below, out of sight
+    set(); window.addEventListener('resize', set);
+    return () => window.removeEventListener('resize', set);
+  }, []);
+  return (
+    <div ref={track} className="relative" style={{ height: `calc(${stageH}px + ${OUT_UNITS * 55}svh)` }}>
+      <div ref={stage} className="sticky" style={{ top: OUT_PIN }}>
+        <div className="mx-auto grid max-w-[1312px] grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-start gap-16 xl:gap-24">
+          <OutcomesHeader reduce={reduce} />
+          <ol aria-label="Top reasons for cancelling" className="m-0 grid list-none p-0" style={{ paddingBottom: (OUT_ROWS.length - 1) * OUT_STEP }}>
+            {OUT_ROWS.map((row, i) => (
+              <OutcomeSlide key={row[1]} i={i} progress={scrollYProgress} from={from}>
+                <OutcomeCard row={row} i={i} stacked />
+              </OutcomeSlide>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Outcomes({ reduce }) {
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const set = () => setWide(mq.matches);
+    set(); mq.addEventListener('change', set);
+    return () => mq.removeEventListener('change', set);
+  }, []);
   return (
     <section aria-labelledby="ch-out-title" className={SECTION + PAD}>
-      <div className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 xl:gap-24">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Frank interview outcomes</Eyebrow></ScrubText>
-          <ScrubTitle reduce={reduce} id="ch-out-title" className={H2} lines={['What you get']} />
-          <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[46ch] ' + SUBTITLE}>
-            Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many customers raised each one, and turns the biggest into Action Items.
-          </ScrubText>
-          <ScrubText as="p" reduce={reduce} lag={0.16} className="m-0 mt-8 font-sans text-[14px] text-ink-2">
-            Top reasons for cancelling. Example: {OUT_TOTAL} churn interviews.
-          </ScrubText>
+      {wide && !reduce ? <OutcomesPinned reduce={reduce} /> : (
+        <div className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 xl:gap-24">
+          <OutcomesHeader reduce={reduce} />
+          <ol aria-label="Top reasons for cancelling" className="m-0 flex list-none flex-col gap-4 p-0">
+            {OUT_ROWS.map((row, i) => <li key={row[1]}><OutcomeCard row={row} i={i} /></li>)}
+          </ol>
         </div>
-
-        <ol aria-label="Top reasons for cancelling" className="m-0 flex list-none flex-col gap-4 p-0 lg:gap-0">
-          {OUT_ROWS.map(([n, reason, note, quote], i) => (
-            <li key={reason} className="lg:sticky lg:mb-[28vh] lg:last:mb-0" style={{ top: `${112 + i * 18}px` }}>
-              <div className="relative flex min-h-[340px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-1 ring-[#1a1714]/[0.06] sm:p-9">
-                {/* The home page's Widget stage look: cream with the faint grainy yellow glow in the corner. */}
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
-                {/* The share, not a rank: 48 dots, one per customer interviewed, with this reason's customers filled. */}
-                <div className="relative flex flex-wrap items-center gap-x-4 gap-y-3">
-                  <span aria-hidden="true" className="grid grid-cols-[repeat(16,6px)] gap-[4px]">
-                    {Array.from({ length: OUT_TOTAL }, (_, d) => (
-                      <span key={d} className={'block size-[6px] rounded-full ' + (d < n ? 'bg-[#1a1714]' : 'bg-[#1a1714]/[0.12]')} />
-                    ))}
-                  </span>
-                  <span className="font-sans text-[15px] text-ink-2"><span className="font-medium text-ink">{n} of {OUT_TOTAL}</span> customers</span>
-                </div>
-                <h3 className={FIG + ' relative m-0 mt-7 text-[clamp(21px,1.9vw,25px)] leading-[1.25] tracking-[-0.02em] text-ink [text-wrap:balance]'}>
-                  <span className="sr-only">{i + 1}. </span>{reason}
-                </h3>
-                {note && <p className="relative m-0 mt-3 max-w-[52ch] font-sans text-[16px] leading-[1.55] text-ink-2">{note}</p>}
-                <span aria-hidden="true" className="block min-h-6 flex-1" />
-                <blockquote className="relative m-0 mt-6 max-w-[52ch] border-0 border-l-2 border-solid border-[#a0d05f] pl-4 font-serif text-[17px] italic leading-[1.5] text-ink">&ldquo;{quote}&rdquo;</blockquote>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
+      )}
 
       {/* After the reasons: where those customers went, and the Action Items Frank drew from them. Side by side from
           1024px (the chart narrower), stacked below. */}
