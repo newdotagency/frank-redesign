@@ -937,10 +937,11 @@ function TeamCard({ role, icon, q, text, reduce, play, stacked, className = '' }
   }, [go, reduce, q]);
   const typed = n >= q.length;
   return (
-    // Stacked, four shadows overlap down the sides and read as a dark band (user, 2026-11-24), so a stacked card's
-    // shadow only lifts its top edge.
-    <div ref={ref} className={'relative flex min-h-[320px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 ring-1 ring-[#1a1714]/[0.05] sm:p-9 '
-      + (stacked ? 'shadow-[0_-6px_12px_-8px_rgba(26,23,20,0.08)] ' : 'shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ') + className}>
+    // Stacked, the four cards' side edges line up, so outlines drawn outside them and their shadows add up to a dark
+    // line (user, 2026-11-24). A stacked card's outline is drawn inside its edge, where the card in front covers it,
+    // and its shadow only lifts its top edge.
+    <div ref={ref} className={'relative flex min-h-[320px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 ring-1 sm:p-9 '
+      + (stacked ? 'shadow-[0_-6px_12px_-8px_rgba(26,23,20,0.08)] ring-inset ring-[#1a1714]/[0.07] ' : 'shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-[#1a1714]/[0.06] ') + className}>
       {/* The Churn page's "What you get" card: cream with the faint grainy yellow glow in the corner. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
       <span className="relative flex items-center gap-2.5 font-sans text-[15px] text-ink-2">
