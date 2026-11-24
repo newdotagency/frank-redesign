@@ -107,8 +107,8 @@ const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outli
 
 // Opt-in content for other pages (the home page passes none, so it is unchanged):
 //   lines: the title's lines; sub: the line under it; primary / secondary: { label, href, ext?, icon? } for the two buttons
-//   (primary's icon: 'arrow' or 'mic', default 'arrow'); titleId: the title's id.
-export default function ClosingCTA({ lines = null, sub = null, primary = null, secondary = null, titleId = 'cta-title' }) {
+//   (primary's icon: 'arrow' or 'mic', default 'arrow'); titleId: the title's id; chips={false}: no floating pills.
+export default function ClosingCTA({ lines = null, sub = null, primary = null, secondary = null, titleId = 'cta-title', chips = true }) {
   const reduce = !!useReducedMotion();
   const panel = useRef(null);
   const scrub = useScrubIn(panel, reduce);
@@ -158,7 +158,7 @@ export default function ClosingCTA({ lines = null, sub = null, primary = null, s
         <div onPointerMove={onMove} onPointerLeave={onLeave} className="relative grid min-h-[calc(100svh-32px)] place-items-center overflow-hidden rounded-[44px] bg-[#d1f899] px-6 py-[clamp(64px,9vw,128px)] text-center md:min-h-[calc(100svh-80px)]">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0"
             style={{ background: 'radial-gradient(70% 45% at 50% 0%, rgba(255,255,255,0.38), rgba(255,255,255,0) 100%)' }} />
-          {CHIPS.map((c, i) => <Chip key={i} p={chipsP} px={px} py={py} live={live} reduce={reduce} {...c} />)}
+          {chips && CHIPS.map((c, i) => <Chip key={i} p={chipsP} px={px} py={py} live={live} reduce={reduce} {...c} />)}
           <div className="relative z-[1] mx-auto max-w-[900px]">
             <div aria-hidden="true" className="mx-auto w-[84px] sm:w-[104px]">
               <Glasses pose={pose} reduced={reduce} />
