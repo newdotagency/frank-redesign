@@ -1074,10 +1074,10 @@ function TeamCard({ t, reduce, play }) {
   );
 }
 
-// One team at a time (user, 2026-11-24: "do not show all the cards at the same time"): the teams as tabs (a list
-// with each question from 1024px, a row of pills below that) and the open team's card beside them. All four cards
+// One team at a time (user, 2026-11-24: "do not show all the cards at the same time", then "two column layout"):
+// the teams as tabs on a rule (violet for the open one) and the open team's card beside them, two columns from 768px. All four cards
 // sit in one grid cell so the stage keeps the tallest card's height and nothing below jumps when the tab changes.
-// While the section is in view the tabs move on by themselves every TEAM_MS (a thin bar fills on the open tab);
+// While the section is in view the tabs move on by themselves every TEAM_MS (the violet segment fills meanwhile);
 // picking a tab stops that. Reduced motion: no cycling, cards shown finished. Arrow keys move between tabs.
 const TEAM_MS = 8000;
 function Teams({ reduce }) {
@@ -1091,13 +1091,6 @@ function Teams({ reduce }) {
     const id = setTimeout(() => setActive(a => (a + 1) % TEAMS.length), TEAM_MS);
     return () => clearTimeout(id);
   }, [active, auto, reduce, inView]);
-  // Phones: keep the open tab in sight in the pill row (scrolls the row only, never the page).
-  const row = useRef(null);
-  useEffect(() => {
-    const r = row.current, el = tabs.current[active];
-    if (!r || !el || r.scrollWidth <= r.clientWidth) return;
-    r.scrollTo({ left: el.offsetLeft - (r.clientWidth - el.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
-  }, [active, reduce]);
   const pick = (i, focus) => { setAuto(false); setActive(i); if (focus) tabs.current[i]?.focus({ preventScroll: true }); };
   const onKey = (e) => {
     const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
@@ -1116,28 +1109,35 @@ function Teams({ reduce }) {
           </ScrubText>
         </div>
         <ScrubText reduce={reduce} lag={0.08}>
-          <div ref={stage} className="mt-12 grid grid-cols-1 gap-6 sm:mt-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-16">
-            <div ref={row} role="tablist" aria-label="Teams" onKeyDown={onKey}
-              className="relative -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0 lg:pb-0">
+          <div ref={stage} className="mt-12 grid grid-cols-1 gap-10 sm:mt-14 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-center md:gap-12 lg:gap-16">
+            {/* The teams as a list on a thin rule, like How it works' steps; the open team's segment is brand violet
+                (user, 2026-11-24) and fills while the tabs cycle, full once a team is picked. */}
+            <div role="tablist" aria-label="Teams" aria-orientation="vertical" onKeyDown={onKey} className="flex flex-col">
               {TEAMS.map((t, i) => {
                 const on = i === active;
                 return (
-                  <button key={t.role} type="button" role="tab" id={'mcp-team-tab-' + i} aria-controls={'mcp-team-panel-' + i}
-                    aria-selected={on} tabIndex={on ? 0 : -1} ref={el => { tabs.current[i] = el; }} onClick={() => pick(i)}
-                    className={'relative flex shrink-0 cursor-pointer items-center gap-3 overflow-hidden rounded-full border-0 px-4 py-2.5 text-left font-sans transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1714] lg:rounded-[20px] lg:px-5 lg:py-5 '
-                      + (on ? 'bg-[#f6f4ef] text-ink ring-1 ring-inset ring-[#1a1714]/[0.06]' : 'bg-transparent text-ink-2 ring-1 ring-inset ring-[#1a1714]/[0.08] hover:bg-[#1a1714]/[0.03] hover:text-ink lg:ring-0')}>
-                    <span className={'grid size-8 shrink-0 place-items-center rounded-[10px] transition-colors duration-300 ' + (on ? 'bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.07]' : 'bg-[#1a1714]/[0.04] text-ink-2')}>
-                      <HugeiconsIcon icon={t.icon} size={17} strokeWidth={1.6} aria-hidden="true" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block whitespace-nowrap text-[15px] font-medium leading-tight">{t.role}</span>
-                      <span className="mt-1 hidden text-[14px] leading-[1.4] text-ink-2 lg:block">{t.q}</span>
-                    </span>
-                    {on && auto && !reduce && inView && (
-                      <motion.span key={'bar' + active} aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[#6e9738]"
-                        initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: TEAM_MS / 1000, ease: 'linear' }} />
+                  <div key={t.role} className="relative border-0 border-l-2 border-solid border-[#e5e1d8] pl-6 lg:pl-7">
+                    {on && (
+                      <motion.span key={'rule' + active + (auto && !reduce && inView ? 'a' : 's')} aria-hidden="true"
+                        className="absolute -left-[2px] top-0 h-full w-[2px] origin-top bg-[#ba86fc]"
+                        initial={{ scaleY: auto && !reduce && inView ? 0 : 1 }} animate={{ scaleY: 1 }}
+                        transition={{ duration: auto && !reduce && inView ? TEAM_MS / 1000 : 0, ease: 'linear' }} />
                     )}
-                  </button>
+                    <button type="button" role="tab" id={'mcp-team-tab-' + i} aria-controls={'mcp-team-panel-' + i}
+                      aria-selected={on} tabIndex={on ? 0 : -1} ref={el => { tabs.current[i] = el; }} onClick={() => pick(i)}
+                      className={'group flex w-full cursor-pointer items-start gap-3 border-0 bg-transparent p-0 py-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1a1714] lg:py-5' + (i === 0 ? ' !pt-1' : '') + (i === TEAMS.length - 1 ? ' !pb-1' : '')}>
+                      <span className="min-w-0">
+                        <span className={'flex items-center gap-2 font-sans text-[14px] leading-none ' + (on ? 'text-ink-2' : 'text-ink-3')}>
+                          <HugeiconsIcon icon={t.icon} size={16} strokeWidth={1.6} aria-hidden="true" />
+                          {t.role}
+                        </span>
+                        <span className={FIG + ' mt-2.5 block leading-[1.2] tracking-[-0.02em] [text-wrap:balance]' + (reduce ? '' : ' transition-[color,font-size] duration-300 ease-out')
+                          + (on ? ' text-[clamp(21px,2.1vw,28px)] text-ink' : ' text-[clamp(17px,1.5vw,20px)] text-ink-3 group-hover:text-ink-2')}>
+                          {t.q}
+                        </span>
+                      </span>
+                    </button>
+                  </div>
                 );
               })}
             </div>
