@@ -73,15 +73,18 @@ function Icon({ id, size, on = true }) {
 
 // What the chosen template is for: the problem, what Frank finds out, and the button. `big` is the
 // side panel (1024px and up), otherwise it opens inside the row.
-function Detail({ c, onUse, big, href }) {
+function Detail({ c, onUse, big, href, kit }) {
   return (
     <div className="flex h-full flex-col">
-      <p className="m-0 font-sans text-[13px] text-ink-3">The problem</p>
+      {(!kit || kit.labels.a) && <p className="m-0 font-sans text-[13px] text-ink-3">{kit ? kit.labels.a : 'The problem'}</p>}
       <p className={'m-0 mt-2 font-sans font-medium tracking-[-0.02em] text-ink [text-wrap:balance] [white-space:pre-line] ' + (big ? 'text-[clamp(22px,2.15vw,30px)] leading-[1.15]' : 'text-[22px] leading-[1.2]')}>
         {c.problem}
       </p>
-      <p className={'m-0 font-sans text-[13px] text-ink-3 ' + (big ? 'mt-8' : 'mt-5')}>Frank finds out</p>
-      <p className={'m-0 mt-2 max-w-[46ch] font-sans leading-[1.5] text-ink-2 ' + (big ? 'mb-10 text-[18px]' : 'mb-6 text-[16px]')}>{c.learn}</p>
+      {c.learn && <>
+        <p className={'m-0 font-sans text-[13px] text-ink-3 ' + (big ? 'mt-8' : 'mt-5')}>{kit ? kit.labels.b : 'Frank finds out'}</p>
+        <p className={'m-0 mt-2 max-w-[46ch] font-sans leading-[1.5] text-ink-2 ' + (big ? 'mb-10 text-[18px]' : 'mb-6 text-[16px]')}>{c.learn}</p>
+      </>}
+      {!c.learn && <span className={big ? 'mb-10' : 'mb-6'} />}
       {/* Types the template's question into the chat (home page), or, with `href` (other pages, which have no chat),
           a link; the arrow sits in its own circle. */}
       {(() => {
@@ -90,7 +93,7 @@ function Detail({ c, onUse, big, href }) {
         return (
           <Tag {...act}
             className={'group inline-flex h-12 cursor-pointer items-center gap-3 self-start rounded-full border-0 bg-black py-1.5 pl-5 pr-1.5 font-sans text-[15px] text-white no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#262626] active:scale-[0.98] ' + FOCUS + ' mt-auto'}>
-            Start with this template
+            {kit ? kit.labels.cta : 'Start with this template'}
             <span className="grid size-9 place-items-center rounded-full bg-white/[0.14] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-px group-hover:translate-x-0.5">
               <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
             </span>
@@ -107,19 +110,20 @@ const SHOW = 2;     // rows visible above and below the chosen one
 
 // The wheel. Each visible row sits at its offset from the chosen one (-2…2); rows slide when the choice
 // changes, new ones come in from the edge the list is moving toward. dir: +1 forward, -1 back.
-function Wheel({ list, at, dir, go, live, reduce, wide }) {
+function Wheel({ list, at, dir, go, live, reduce, wide, kit }) {
   const n = list.length;
-  const y = o => `translateY(${(o + SHOW) * ROW}px)`;
-  const rows = Array.from({ length: SHOW * 2 + 1 }, (_, k) => k - SHOW).map(o => ({ o, x: list[(at + o + n) % n] }));
+  const show = n < 5 ? 1 : SHOW; // fewer than five templates: one row each side, so no template shows twice
+  const y = o => `translateY(${(o + show) * ROW}px)`;
+  const rows = Array.from({ length: show * 2 + 1 }, (_, k) => k - show).map(o => ({ o, x: list[(at + o + n) % n] }));
   return (
-    <div className="relative" style={{ height: ROW * (SHOW * 2 + 1) }}
+    <div className="relative" style={{ height: ROW * (show * 2 + 1) }}
       onKeyDown={e => { if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); go(1); } if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } }}>
       {/* The band the chosen row sits in: a hairline above, and below it the line that fills toward the next. */}
-      <span aria-hidden="true" className="absolute inset-x-0 h-px bg-[#1a1714]/[0.07]" style={{ top: SHOW * ROW }} />
-      <span aria-hidden="true" className="absolute inset-x-0 h-[1.5px] overflow-hidden bg-[#1a1714]/[0.07]" style={{ top: (SHOW + 1) * ROW - 1 }}>
+      <span aria-hidden="true" className="absolute inset-x-0 h-px bg-[#1a1714]/[0.07]" style={{ top: show * ROW }} />
+      <span aria-hidden="true" className="absolute inset-x-0 h-[1.5px] overflow-hidden bg-[#1a1714]/[0.07]" style={{ top: (show + 1) * ROW - 1 }}>
         {!reduce && wide && (
           <span key={at} className="ts-fill absolute inset-0 origin-left"
-            style={{ background: TEMPLATE_ICONS[list[at].id].fg, animationDuration: `${EVERY_MS}ms`, animationPlayState: live ? 'running' : 'paused' }} />
+            style={{ background: kit ? kit.color(list[at]) : TEMPLATE_ICONS[list[at].id].fg, animationDuration: `${EVERY_MS}ms`, animationPlayState: live ? 'running' : 'paused' }} />
         )}
       </span>
       <div className="absolute inset-0 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_24%,#000_76%,transparent)]">
@@ -131,15 +135,15 @@ function Wheel({ list, at, dir, go, live, reduce, wide }) {
                 aria-current={on} aria-label={on ? x.name : `Show ${x.name}`}
                 onClick={() => go(o)}
                 variants={{
-                  enter: d => ({ transform: reduce ? y(o) : y(d > 0 ? SHOW + 1 : -SHOW - 1), opacity: 0 }),
+                  enter: d => ({ transform: reduce ? y(o) : y(d > 0 ? show + 1 : -show - 1), opacity: 0 }),
                   at: { transform: y(o), opacity: on ? 1 : Math.abs(o) === 1 ? 0.55 : 0.28 },
-                  exit: d => ({ transform: reduce ? y(o) : y(d > 0 ? -SHOW - 1 : SHOW + 1), opacity: 0 }),
+                  exit: d => ({ transform: reduce ? y(o) : y(d > 0 ? -show - 1 : show + 1), opacity: 0 }),
                 }}
                 initial="enter" animate="at" exit="exit"
                 transition={{ duration: reduce ? 0.2 : 0.55, ease: EASE }}
                 style={{ height: ROW }}
                 className={'absolute inset-x-0 top-0 flex cursor-pointer items-center gap-4 border-0 bg-transparent px-0 text-left font-sans text-[18px] tracking-[-0.01em] sm:text-[20px] ' + FOCUS + ' ' + (on ? 'text-ink' : 'text-ink-3 hover:text-ink-2')}>
-                <Icon id={x.id} size={32} on={on} />
+                {kit ? kit.icon(x, 32, on) : <Icon id={x.id} size={32} on={on} />}
                 <span className="min-w-0 flex-1 truncate">{x.name}</span>
               </motion.button>
             );
@@ -153,13 +157,13 @@ function Wheel({ list, at, dir, go, live, reduce, wide }) {
 const ROUND = 'grid size-10 cursor-pointer place-items-center rounded-full border-0 bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.12] transition-[background-color,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#f4f2ec] active:scale-[0.96] ' + FOCUS;
 
 // What the panel shows for one template: its icon and name, then the detail.
-const PanelBody = ({ c, wide, onUse, href }) => (
+const PanelBody = ({ c, wide, onUse, href, kit }) => (
   <div className="flex h-full flex-col">
     <div className="mb-7 flex items-center gap-4 lg:mb-8">
-      <Icon id={c.id} size={wide ? 56 : 44} />
+      {kit ? kit.icon(c, wide ? 56 : 44, true) : <Icon id={c.id} size={wide ? 56 : 44} />}
       <p className="m-0 font-sans text-[17px] text-ink">{c.name}</p>
     </div>
-    <div className="flex flex-1 flex-col [&>div]:flex-1"><Detail c={c} onUse={onUse} big={wide} href={href} /></div>
+    <div className="flex flex-1 flex-col [&>div]:flex-1"><Detail c={c} onUse={onUse} big={wide} href={href} kit={kit} /></div>
   </div>
 );
 
@@ -167,8 +171,10 @@ const PanelBody = ({ c, wide, onUse, href }) => (
 //   head: { eyebrow, lines, sub, titleId, titleClass } replaces the heading (sub: null hides the subtitle);
 //   exclude: template ids to leave out; href: the button's link (no chat on that page); sectionClass: the
 //   section's spacing.
-export default function UseCases({ onUse, head = null, exclude = null, href = null, sectionClass = null }) {
-  const list = exclude ? CASES.filter(x => !exclude.includes(x.id)) : CASES;
+//   kit (feature pages): { cases: [{ id, name, problem, learn? }], icon(c, size, on), color(c), labels: { a, b, cta } } swaps the
+//   templates, their icons and the panel's labels (a: null hides the small label, no `learn` hides the second text).
+export default function UseCases({ onUse, head = null, exclude = null, href = null, sectionClass = null, kit = null }) {
+  const list = kit ? kit.cases : exclude ? CASES.filter(x => !exclude.includes(x.id)) : CASES;
   const N = list.length;
   const titleId = head?.titleId || 'uc-title';
   const reduce = !!useReducedMotion();
@@ -235,7 +241,7 @@ export default function UseCases({ onUse, head = null, exclude = null, href = nu
             className="grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center">
             {/* Left: the wheel, and under it the back / next buttons (left and right arrows). */}
             <div role="group" aria-roledescription="carousel" aria-label="Interview templates">
-              <Wheel list={list} at={at} dir={dir} go={go} live={live} reduce={reduce} wide={wide} />
+              <Wheel list={list} at={at} dir={dir} go={go} live={live} reduce={reduce} wide={wide} kit={kit} />
               <div className="mt-5 flex gap-2">
                 <button type="button" aria-label="Previous template" onClick={() => go(-1)} className={ROUND}><ChevronLeft aria-hidden="true" className="size-4" strokeWidth={1.75} /></button>
                 <button type="button" aria-label="Next template" onClick={() => go(1)} className={ROUND}><ChevronRight aria-hidden="true" className="size-4" strokeWidth={1.75} /></button>
@@ -250,7 +256,7 @@ export default function UseCases({ onUse, head = null, exclude = null, href = nu
                   crossfades on top, its button pinned to the bottom. */}
               <div className="grid">
                 {list.map(x => (
-                  <div key={x.id} aria-hidden="true" className="invisible [grid-area:1/1]"><PanelBody c={x} wide={wide} onUse={use} href={href} /></div>
+                  <div key={x.id} aria-hidden="true" className="invisible [grid-area:1/1]"><PanelBody c={x} wide={wide} onUse={use} href={href} kit={kit} /></div>
                 ))}
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div key={c.id} className="[grid-area:1/1]"
@@ -258,7 +264,7 @@ export default function UseCases({ onUse, head = null, exclude = null, href = nu
                     animate={{ opacity: 1, transform: 'translateY(0px)' }}
                     exit={{ opacity: 0, transform: reduce ? 'none' : 'translateY(-8px)' }}
                     transition={{ duration: reduce ? 0.2 : 0.35, ease: EASE }}>
-                    <PanelBody c={c} wide={wide} onUse={use} href={href} />
+                    <PanelBody c={c} wide={wide} onUse={use} href={href} kit={kit} />
                   </motion.div>
                 </AnimatePresence>
               </div>

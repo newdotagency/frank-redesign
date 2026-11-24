@@ -15,7 +15,7 @@
 // Motion inside the scenes runs only while they're on screen; reduced motion: they hold still.
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Award, Check, List, MicOff, PhoneOff } from 'lucide-react';
+import { ArrowRight, Check, List, MicOff, PhoneOff } from 'lucide-react';
 import Header from '../components/Header';
 import HighlightMarker from '../components/HighlightMarker';
 import { cornerGlowGrain } from '../components/grain';
@@ -29,9 +29,8 @@ import { PLATE, GRAIN } from './InterviewExample';
 import HowItWorks from './HowItWorks';
 import { Share } from './StepVisuals';
 import FAQ from './FAQ';
+import SecuritySection from './SecuritySection';
 import Footer from './Footer';
-import soc2 from './logos/soc2.png';
-import gdpr from './logos/gdpr.png';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const FRANK_PHOTO = '/videos/frank-avatar.jpg';  // Frank's realistic photo: a square crop of his greeting video at 5 s (mouth closed, a slight smile)
@@ -395,11 +394,6 @@ const BRANDS = [
   ['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23],
 ];
 
-const SECURITY = [
-  { name: 'SOC 2', text: 'Independently audited for top-tier security and privacy.', img: soc2 },
-  { name: 'Award winning methodology', text: 'Prelaunch.com is the Silver Winner of the global ESOMAR Award for Breakthrough Research Methodology', icon: Award },
-  { name: 'GDPR', text: 'Privacy built to meet EU regulations.', img: gdpr },
-];
 
 const Note = ({ dark }) => (
   <p className={'m-0 mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-sans text-[13.5px] lg:justify-start ' + (dark ? 'text-ink/70' : 'text-ink-3')}>
@@ -508,24 +502,8 @@ export default function VoicePage() {
           <HowItWorks steps={STEPS} label="How it works" lines={['From a goal to real voices', 'in three steps']} subtitle={null}
             id="vo-how-title" action={<Btn href={TRY} onClick={toTry} tone="white">Try it now</Btn>} />
 
-          {/* 7 — Security. */}
-          <section aria-labelledby="vo-sec-title" className="relative px-4 pb-[clamp(112px,13vw,200px)] sm:px-[clamp(16px,4vw,48px)]">
-            <div className="mx-auto max-w-[1312px]">
-              <ScrubTitle reduce={reduce} id="vo-sec-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['Enterprise-grade security', '& compliance']} />
-              <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-3">
-                {SECURITY.map((s, i) => (
-                  <ScrubText as="li" key={s.name} reduce={reduce} lag={i * 0.06}
-                    className="rounded-[24px] bg-[#fffdf3] p-7 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.04)] sm:p-8">
-                    <span aria-hidden="true" className="grid size-16 place-items-center rounded-full bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06)]">
-                      {s.img ? <img src={s.img} alt="" className="size-11 object-contain" /> : <s.icon className="size-7 text-[#5f8f22]" strokeWidth={1.5} />}
-                    </span>
-                    <h3 className="m-0 mt-6 font-['Figtree',sans-serif] text-[22px] font-medium leading-tight tracking-[-0.02em] text-ink">{s.name}</h3>
-                    <p className="m-0 mt-2 font-sans text-[15.5px] leading-[1.55] text-ink-2">{s.text}</p>
-                  </ScrubText>
-                ))}
-              </ul>
-            </div>
-          </section>
+          {/* 7 — Security (shared with the feature pages). */}
+          <SecuritySection reduce={reduce} id="vo-sec-title" />
 
           {/* FAQ, in the homepage FAQ's layout (title, how to reach the team; the questions on the right). */}
           <FAQ items={FAQS} label="FAQ" lines={['Have questions?', 'We have answers']} id="vo-faq-title" />

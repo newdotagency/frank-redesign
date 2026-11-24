@@ -13,7 +13,7 @@
 // screen, and with reduced motion they sit still showing their final state.
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useInView, useMotionTemplate, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { Mic } from 'lucide-react';
+import { ArrowRight, Mic } from 'lucide-react';
 import Glasses from '../v3/Glasses';
 import HighlightMarker from '../components/HighlightMarker';
 import { TITLE, SUBTITLE } from './titles';
@@ -105,7 +105,10 @@ function Chip({ p, px, py, live, reduce, at, from: [dx, dy], lag, depth, dur, de
 
 const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink';
 
-export default function ClosingCTA() {
+// Opt-in content for other pages (the home page passes none, so it is unchanged):
+//   lines: the title's lines; sub: the line under it; primary / secondary: { label, href, ext?, icon? } for the two buttons
+//   (primary's icon: 'arrow' or 'mic', default 'arrow'); titleId: the title's id.
+export default function ClosingCTA({ lines = null, sub = null, primary = null, secondary = null, titleId = 'cta-title' }) {
   const reduce = !!useReducedMotion();
   const panel = useRef(null);
   const scrub = useScrubIn(panel, reduce);
@@ -149,7 +152,7 @@ export default function ClosingCTA() {
     // The same footprint as the hero's chat screen once it has wrapped into a card: an even 16px
     // (phones) / 40px gap from the window's edges, 44px corners, a screen's height. No frame or border:
     // a soft light along the top of the lime, and no shadow.
-    <section aria-labelledby="cta-title" className="relative px-4 pb-4 md:px-10 md:pb-10">
+    <section aria-labelledby={titleId} className="relative px-4 pb-4 md:px-10 md:pb-10">
       <motion.div ref={panel} style={scrub}
         className="relative rounded-[44px]">
         <div onPointerMove={onMove} onPointerLeave={onLeave} className="relative grid min-h-[calc(100svh-32px)] place-items-center overflow-hidden rounded-[44px] bg-[#d1f899] px-6 py-[clamp(64px,9vw,128px)] text-center md:min-h-[calc(100svh-80px)]">
@@ -161,25 +164,27 @@ export default function ClosingCTA() {
               <Glasses pose={pose} reduced={reduce} />
             </div>
             <div ref={titleBox}>
-              <ScrubTitle reduce={reduce} id="cta-title" className={'m-0 mt-8 leading-[1.06] text-ink [text-wrap:balance] sm:mt-10 ' + TITLE}
-                lines={['Your customers have', 'something to say.', <>Maybe they want to <span className="italic">{tellFrank}</span></>]} />
+              <ScrubTitle reduce={reduce} id={titleId} className={'m-0 mt-8 leading-[1.06] text-ink [text-wrap:balance] sm:mt-10 ' + TITLE}
+                lines={lines || ['Your customers have', 'something to say.', <>Maybe they want to <span className="italic">{tellFrank}</span></>]} />
             </div>
             <ScrubText as="p" reduce={reduce} lag={0.15} className={'mx-auto mb-0 max-w-[44ch] [text-wrap:balance] mt-6 ' + SUBTITLE}>
-              Describe what you want to learn and hear from your customers before your next standup.
+              {sub || 'Describe what you want to learn and hear from your customers before your next standup.'}
             </ScrubText>
             <ScrubText reduce={reduce} lag={0.25} className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:mt-10">
               {/* Primary: the mic sits in its own circle at the button's end; on hover it nudges up and
                   out and grows a touch, on press the whole button sinks. */}
-              <a href="#ie-title" onClick={toInterview} {...look}
+              <a href={primary ? primary.href : '#ie-title'} onClick={primary ? undefined : toInterview} {...look}
+                {...(primary?.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className={'group inline-flex h-14 items-center gap-3 rounded-full bg-black py-1.5 pl-6 pr-1.5 font-sans text-[16px] text-white no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#262626] active:scale-[0.98] ' + FOCUS}>
-                Try a live interview
+                {primary ? primary.label : 'Try a live interview'}
                 <span aria-hidden="true" className="grid size-11 place-items-center rounded-full bg-white/[0.12] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] motion-safe:group-hover:-translate-y-px motion-safe:group-hover:translate-x-0.5 motion-safe:group-hover:scale-105">
-                  <Mic className="size-[18px]" strokeWidth={1.75} />
+                  {primary && primary.icon !== 'mic' ? <ArrowRight className="size-[18px]" strokeWidth={1.75} /> : <Mic className="size-[18px]" strokeWidth={1.75} />}
                 </span>
               </a>
-              <a href="#signup" {...look}
+              <a href={secondary ? secondary.href : '#signup'} {...look}
+                {...(secondary?.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className={'inline-flex h-14 items-center rounded-full bg-white/75 px-7 font-sans text-[16px] text-ink no-underline ring-1 ring-[#1a1714]/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white active:scale-[0.98] ' + FOCUS}>
-                Sign up
+                {secondary ? secondary.label : 'Sign up'}
               </a>
             </ScrubText>
           </div>
