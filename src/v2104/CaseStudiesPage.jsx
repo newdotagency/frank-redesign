@@ -250,10 +250,13 @@ function AllCases({ reduce }) {
                   <button key={u} type="button" aria-pressed={on} onClick={() => setUseCase(u)}
                     className={'relative inline-flex h-8 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full border-0 bg-transparent px-3 font-sans text-[13px] transition-colors duration-200 ease-out lg:h-10 lg:w-full lg:justify-between lg:rounded-[12px] lg:px-3.5 lg:text-[14.5px] ' + FOCUS + ' '
                       + (on ? 'text-ink' : 'text-ink-2 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.1)] hover:bg-[#1a1714]/[0.03] hover:text-ink lg:shadow-none')}>
-                    {on && <motion.span layoutId="cs-usecase" aria-hidden="true" className="absolute inset-0 rounded-[inherit] bg-[#f1fae3] shadow-[inset_0_0_0_1px_rgba(160,208,95,0.6)]"
-                      transition={reduce ? { duration: 0 } : { type: 'spring', duration: 0.4, bounce: 0.12 }} />}
+                    {on && <motion.span layoutId="cs-usecase" aria-hidden="true" className="absolute inset-0 rounded-[inherit] bg-[#f1fae3] shadow-[inset_0_0_0_1px_rgba(160,208,95,0.6)] lg:bg-transparent lg:shadow-none"
+                      transition={reduce ? { duration: 0 } : { type: 'spring', duration: 0.4, bounce: 0.12 }}>
+                      {/* Brand violet (custom violet 400) line on the selected tab's left edge, in the vertical list only */}
+                      <span className="absolute inset-y-1.5 left-0 hidden w-[3px] rounded-full bg-[#ba86fc] lg:block" />
+                    </motion.span>}
                     <span className="relative">{u === 'All' ? 'All case studies' : u}</span>
-                    <span className={'relative font-gmono text-[11px] tabular-nums lg:text-[12px] ' + (on ? 'text-[#43681a]' : 'text-ink-3')}>{count(u)}</span>
+                    <span className={'relative font-gmono text-[11px] tabular-nums lg:text-[12px] ' + (on ? 'text-[#43681a] lg:text-ink' : 'text-ink-3')}>{count(u)}</span>
                   </button>
                 );
               })}
