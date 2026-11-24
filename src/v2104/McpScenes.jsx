@@ -1,8 +1,8 @@
 // McpScenes (V21.04): the three "How it works" visuals of the MCP page, rebuilt from the live hifrank.ai/mcp
 // tab visuals (user, 2026-11-23: "use the old page's visuals, improve them"), same cards and words, drawn in the
 // V21.04 style on the How it works card's lime. Each is a StepVisual `scene` ({ active, reduce }).
-//   Define: the AI composer ("Where should we begin?") types the research prompt; then the "Real-time insights"
-//           and "Live transcript" cards float in.
+//   Define: a chat with Claude: the user asks for a research project, Claude calls Frank and answers with the
+//           project it set up (user, 2026-11-24).
 //   Engage: a phone video call with the Frank AI Researcher; the "Frank Research" quick-insights card and the
 //           AI's "Thinking about your research" card under it, whose three checks tick one by one.
 //   Query:  the composer types the question; the "Customer Cancellation Reasons" project card and the "Take
@@ -95,38 +95,101 @@ function Composer({ text, on, reduce, style }) {
   );
 }
 
-// ——— 1. Define.
-const DEFINE_PROMPT = 'I’m doing a short interview about our customers’ recent experience to understand what made them decide to try our product.';
-const TRANSCRIPT = [
-  ['02:14', 'I was looking for a simpler tool to manage our customer communication.'],
-  ['02:36', 'It felt like we were spending too much time switching between apps.'],
-  ['03:02', 'The pricing was also a factor, we needed something more affordable.'],
-];
+// ——— 1. Define (user, 2026-11-24: "show simple animation of chatting with LLM, asking to make a research").
+// One chat window with Claude: the ask types into the input and is sent as a bubble, Claude shows typing dots, calls
+// Frank (the tool chip ticks), then answers with the research project it set up. Reduced motion: the finished chat.
+const DEFINE_PROMPT = 'Set up a short interview with customers who signed up this month. I want to know what made them try us.';
+const DEFINE_QUESTIONS = ['What were you using before?', 'What made you look for something new?', 'Why did you pick us?'];
+const MSG = { duration: 0.5, ease: EASE };
+function Msg({ show, reduce, className = '', children }) {
+  if (!show) return null;
+  return (
+    <motion.div className={className} initial={reduce ? false : { opacity: 0, transform: 'translateY(10px)' }}
+      animate={{ opacity: 1, transform: 'translateY(0px)' }} transition={MSG}>
+      {children}
+    </motion.div>
+  );
+}
 export function DefineScene({ active, reduce }) {
-  const typedFor = DEFINE_PROMPT.length / 52 + 0.4;
+  // 0 typing in the input · 1 sent · 2 Claude typing · 3 calling Frank · 4 Frank done · 5 the answer
+  const [phase, setPhase] = useState(reduce ? 5 : 0);
+  const typedFor = DEFINE_PROMPT.length / 52 + 0.3;
+  const typed = useTyping(DEFINE_PROMPT, active && phase === 0, reduce);
+  useEffect(() => {
+    if (reduce) { setPhase(5); return; }
+    if (!active) { setPhase(0); return; }
+    const at = [typedFor + 0.35, typedFor + 0.9, typedFor + 1.9, typedFor + 3.0, typedFor + 3.5];
+    const ts = at.map((s, i) => setTimeout(() => setPhase(i + 1), s * 1000));
+    return () => ts.forEach(clearTimeout);
+  }, [active, reduce, typedFor]);
+  const input = phase === 0 ? typed : '';
   return (
     <Stage>
-      <Composer text={DEFINE_PROMPT} on={active} reduce={reduce} style={{ left: 30, top: 214, width: 460 }} />
-      <Float on={active} reduce={reduce} at={typedFor} className={CARD + ' p-4'} style={{ left: 22, top: 40, width: 286 }}>
-        <Head icon={Sparkles}>Real-time insights</Head>
-        <p className="m-0 mt-3 font-sans text-[11.5px] text-ink-3">Common themes detected</p>
-        <div className="mt-1.5 flex items-center justify-between gap-2">
-          <span className="rounded-full bg-[#d1f899] px-2.5 py-1 font-sans text-[11.5px] text-ink">Need for simpler communication</span>
-          <span className="font-sans text-[12px] font-medium tabular-nums text-ink">42%</span>
+      <div className={'absolute flex flex-col overflow-hidden rounded-[22px] bg-[#fbfaf6] ' + CARD.replace('rounded-[16px] bg-white ', '')}
+        style={{ left: 30, top: 36, width: 460, height: 506 }}>
+        {/* Window bar */}
+        <div className="flex items-center gap-2 border-0 border-b border-solid border-[#1a1714]/[0.07] px-5 py-3.5">
+          <img src={claudeLogo} alt="" className="size-4" />
+          <span className="font-sans text-[13px] font-medium text-ink">Claude</span>
+          <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[#f4f2ec] px-2 py-0.5 font-sans text-[10.5px] text-ink-2">
+            <span className="grid size-3.5 place-items-center rounded-full bg-[#0f2e27] text-[8px] font-medium text-[#d1f899]">F</span>Frank connected
+          </span>
         </div>
-        <p className="m-0 mt-3 border-0 border-l-2 border-solid border-[#d1b2ff] pl-2.5 font-serif text-[12.5px] italic leading-[1.45] text-ink">“We were spending too much time switching between apps.”</p>
-        <p className="m-0 mt-1.5 pl-3 font-sans text-[10.5px] text-ink-3">Customer interview · 02:14</p>
-      </Float>
-      <Float on={active} reduce={reduce} at={typedFor + 0.25} className={CARD + ' p-4'} style={{ left: 214, top: 372, width: 284 }}>
-        <Head icon={FileText}>Live transcript</Head>
-        <ul className="m-0 mt-3 flex list-none flex-col gap-2.5 p-0">
-          {TRANSCRIPT.map(([t, s]) => (
-            <li key={t} className="grid grid-cols-[38px_minmax(0,1fr)] gap-2 font-sans text-[11.5px] leading-[1.45]">
-              <span className="tabular-nums text-ink-3">{t}</span><span className="text-ink-2">{s}</span>
-            </li>
-          ))}
-        </ul>
-      </Float>
+        {/* Messages, bottom-aligned like a chat */}
+        <div className="flex flex-1 flex-col justify-end gap-3 px-5 pb-4">
+          <Msg show={phase >= 1} reduce={reduce} className="ml-auto max-w-[78%] rounded-[16px] rounded-br-[6px] bg-[#1a1714] px-3.5 py-2.5 font-sans text-[12.5px] leading-[1.5] text-white">
+            {DEFINE_PROMPT}
+          </Msg>
+          {phase === 2 && (
+            <Msg show reduce={reduce} className="flex items-center gap-2">
+              <img src={claudeLogo} alt="" className="size-4" />
+              <span className="flex gap-1">
+                {[0, 1, 2].map(i => (
+                  <motion.span key={i} className="size-1.5 rounded-full bg-ink-3"
+                    animate={{ opacity: [0.25, 1, 0.25] }} transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }} />
+                ))}
+              </span>
+            </Msg>
+          )}
+          <Msg show={phase >= 3} reduce={reduce} className="flex items-center gap-2">
+            <img src={claudeLogo} alt="" className="size-4" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-white px-2.5 py-1 font-sans text-[11px] text-ink-2 ring-1 ring-inset ring-[#1a1714]/[0.08]">
+              <span className={'grid size-3.5 place-items-center rounded-full transition-colors duration-300 ' + (phase >= 4 ? 'bg-[#d1f899] text-ink' : 'bg-[#1a1714]/[0.08] text-transparent')}>
+                <Check className="size-2.5" strokeWidth={3} />
+              </span>
+              {phase >= 4 ? 'Used Frank · create research' : 'Using Frank · create research…'}
+            </span>
+          </Msg>
+          <Msg show={phase >= 5} reduce={reduce} className="pl-6">
+            <p className="m-0 font-sans text-[12.5px] leading-[1.5] text-ink">Done. Your research is set up in Frank and ready to share:</p>
+            <div className="mt-2.5 rounded-[14px] bg-white p-3.5 ring-1 ring-inset ring-[#1a1714]/[0.08]">
+              <div className="flex items-center justify-between gap-2">
+                <span className="font-sans text-[13px] font-medium tracking-[-0.01em] text-ink">Why new customers try us</span>
+                <span className="rounded-full bg-[#d1f899] px-2 py-0.5 font-sans text-[10.5px] text-ink">Ready</span>
+              </div>
+              <p className="m-0 mt-1 font-sans text-[10.5px] text-ink-3">Voice interview · 10 min · 3 questions</p>
+              <ul className="m-0 mt-2.5 flex list-none flex-col gap-1 p-0">
+                {DEFINE_QUESTIONS.map((q, i) => (
+                  <li key={q} className="flex gap-2 font-sans text-[11.5px] leading-[1.4] text-ink-2">
+                    <span className="tabular-nums text-ink-3">{i + 1}.</span>{q}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Msg>
+        </div>
+        {/* Input */}
+        <div className="mx-4 mb-4 flex items-end gap-2.5 rounded-[16px] bg-white p-3 ring-1 ring-[#1a1714]/[0.08]">
+          <Plus className="mb-1 size-4 shrink-0 text-ink-3" strokeWidth={1.75} />
+          <p className={'m-0 min-h-[20px] flex-1 font-sans text-[12.5px] leading-[1.5] ' + (input ? 'text-ink' : 'text-ink-3')}>
+            {input || (phase === 0 ? '' : 'Reply to Claude…')}
+            {phase === 0 && <span className="ml-px inline-block h-[13px] w-px translate-y-[2px] animate-pulse bg-ink" />}
+          </p>
+          <span className={'grid size-7 shrink-0 place-items-center rounded-full text-white transition-colors duration-300 ' + (phase === 0 && input.length === DEFINE_PROMPT.length ? 'bg-[#1a1714]' : 'bg-[#1a1714]/30')}>
+            <ArrowUp className="size-3.5" strokeWidth={2.25} />
+          </span>
+        </div>
+      </div>
     </Stage>
   );
 }
