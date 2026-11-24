@@ -16,8 +16,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowUp, Check, Mic, PhoneOff } from 'lucide-react';
 import { siGithubcopilot, siGooglegemini } from 'simple-icons';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { HandshakeIcon, Megaphone01Icon, PackageIcon, Rocket01Icon } from '@hugeicons/core-free-icons';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import Glasses from '../v3/Glasses';
@@ -903,178 +901,43 @@ function How() {
   );
 }
 
-// ——— 4. Built for every team (user, 2026-11-24: "improve this layout"). Two equal columns from 768px:
-//   Left:  the kicker, title and subtitle, then the four teams as tabs. Each tab is the role and its question; the open
-//          one is larger, has a brand violet line in the gutter, and unfolds the live page's line about that team
-//          (as How it works' steps do).
-//   Right: a lime stage (How it works' card colour) with one Claude chat: the open team's question is sent, Claude uses
-//          Frank, and a short answer in words with one customer quote comes back (no charts: user, "no need big
-//          graph"). Answers and quotes are examples, labelled on the stage.
-// The tabs move on by themselves every TEAM_MS while the section is in view (the violet line fills meanwhile); picking
-// a tab stops that. Reduced motion: no cycling, the chat shown finished. Arrow keys, Home and End move between tabs.
+// ——— 4. Built for every team: the live page's four roles in simple cards (role, the question in quotes, the line),
+// laid out like the Churn page's "What you get" (user, 2026-11-24: "like this section"): the kicker, title and subtitle
+// pinned on the left; on the right the cards stack as you scroll, each new card sliding up over the one before, so one
+// team shows at a time. The cards are that section's cream with the corner glow. Plain CSS sticky (no scroll script).
+// Two equal columns from 1024px; below that the cards are a plain list.
 const TEAMS = [
-  { role: 'Founders', icon: Rocket01Icon, q: 'Why are we losing these customers?', n: 38,
-    text: 'Pull together interviews from recent wins, losses, and cancellations. Find the patterns behind them and get to the answer before the next decision.',
-    a: ['Mostly pricing at renewal: it came up in ', '14 of 38', ' cancellation interviews, well ahead of missing integrations (9).'],
-    quote: ['The renewal price doubled and nobody told us why.', 'Cancelled customer · 03:41'] },
-  { role: 'Product', icon: PackageIcon, q: 'What do users actually want next?', n: 46,
-    text: 'Explore interviews, test assumptions, compare customer segments, and pressure-test roadmap ideas without digging through research reports.',
-    a: ['Bulk editing leads, asked for in ', '14 of 46', ' interviews, nearly all from teams of ten or more.'],
-    quote: ['Every Friday I update fifty records one by one.', 'Team lead · 07:12'] },
-  { role: 'Marketing', icon: Megaphone01Icon, q: 'Why do customers choose us?', n: 52,
-    text: 'Find the language customers naturally use, uncover objections and motivations, and understand what makes people convert.',
-    a: ['Time saved. “Saves me hours” or close to it comes up in ', '21 of 52', ' interviews, more than price or features.'],
-    quote: ['It was the first tool my whole team actually used.', 'New customer · 04:12'] },
-  { role: 'Sales and accounts', icon: HandshakeIcon, q: 'Why did we win this deal?', n: 29,
-    text: 'Analyze winning and losing conversations to uncover the objections, competitors, buying triggers, and gaps shaping your sales funnel.',
-    a: ['A new team lead looking for a tool: that started ', '9 of 18', ' wins. The deals you lost mostly stalled at security review.'],
-    quote: ['Our new head of CS asked for it in her first week.', 'Buyer interview · 02:55'] },
+  ['Founders', 'Why are we losing these customers?', 'Pull together interviews from recent wins, losses, and cancellations. Find the patterns behind them and get to the answer before the next decision.'],
+  ['Product', 'What do users actually want next?', 'Explore interviews, test assumptions, compare customer segments, and pressure-test roadmap ideas without digging through research reports.'],
+  ['Marketing', 'Why do customers choose us?', 'Find the language customers naturally use, uncover objections and motivations, and understand what makes people convert.'],
+  ['Sales and accounts', 'Why did we win this deal?', 'Analyze winning and losing conversations to uncover the objections, competitors, buying triggers, and gaps shaping your sales funnel.'],
 ];
-const TEAM_MS = 9000;
-
-// One team's chat. While `play`: the question types into the composer, is sent as a bubble, Claude uses Frank (the chip
-// ticks), then the answer and the quote come in. When `play` goes false it resets, ready for the next time.
-function TeamChat({ t, reduce, play }) {
-  const [n, setN] = useState(reduce ? t.q.length : 0);
-  const [phase, setPhase] = useState(reduce ? 3 : 0); // 0 typing · 1 sent, Frank working · 2 Frank done · 3 answer
-  useEffect(() => {
-    if (reduce) { setN(t.q.length); setPhase(3); return; }
-    if (!play) { setN(0); setPhase(0); return; }
-    let i = 0;
-    const ids = [];
-    const tick = () => {
-      i += 1; setN(i);
-      if (i < t.q.length) { ids.push(setTimeout(tick, 32)); return; }
-      [[350, 1], [1350, 2], [1800, 3]].forEach(([ms, ph]) => ids.push(setTimeout(() => setPhase(ph), ms)));
-    };
-    ids.push(setTimeout(tick, 350));
-    return () => ids.forEach(clearTimeout);
-  }, [play, reduce, t.q]);
-  const rise = { initial: reduce ? false : { opacity: 0, transform: 'translateY(8px)' }, animate: { opacity: 1, transform: 'translateY(0px)' }, transition: { duration: 0.45, ease: EASE } };
-  return (
-    <div className="flex h-full min-h-[460px] flex-col overflow-hidden rounded-[20px] bg-[#fbfaf6] shadow-[0_24px_50px_-26px_rgba(26,23,20,0.4)] ring-1 ring-[#1a1714]/[0.06]">
-      <div className="flex items-center gap-2 border-0 border-b border-solid border-[#1a1714]/[0.07] px-4 py-3 sm:px-5">
-        <img src={claudeLogo} alt="" className="size-4" />
-        <span className="font-sans text-[13px] font-medium text-ink">Claude</span>
-        <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[#f4f2ec] px-2 py-0.5 font-sans text-[11px] text-ink-2">
-          <span className="grid size-3.5 place-items-center rounded-full bg-[#0f2e27] text-[8px] font-medium text-[#d1f899]">F</span>Frank connected
-        </span>
-      </div>
-      <div className="flex flex-1 flex-col justify-end gap-3 px-4 pb-3 pt-4 sm:px-5">
-        {phase >= 1 && (
-          <motion.p {...rise} className="m-0 ml-auto max-w-[85%] rounded-[16px] rounded-br-[6px] bg-[#1a1714] px-3.5 py-2.5 font-sans text-[14px] leading-[1.45] text-white">{t.q}</motion.p>
-        )}
-        {phase >= 1 && (
-          <motion.span {...rise} className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-2.5 py-1 font-sans text-[12px] text-ink-2 ring-1 ring-inset ring-[#1a1714]/[0.08]">
-            <span className={'grid size-3.5 place-items-center rounded-full transition-colors duration-300 ' + (phase >= 2 ? 'bg-[#d1f899] text-ink' : 'bg-[#1a1714]/[0.08] text-transparent')}>
-              <Check className="size-2.5" strokeWidth={3} />
-            </span>
-            {phase >= 2 ? `Searched ${t.n} Frank interviews` : 'Searching Frank interviews…'}
-          </motion.span>
-        )}
-        {phase >= 3 && (
-          <motion.div {...rise}>
-            <p className="m-0 font-sans text-[15px] leading-[1.55] text-ink">{t.a[0]}<span className="font-medium">{t.a[1]}</span>{t.a[2]}</p>
-            <p className="m-0 mt-3 border-0 border-l-2 border-solid border-[#d1b2ff] pl-3 font-serif text-[15px] italic leading-[1.45] text-ink">“{t.quote[0]}”</p>
-            <p className="m-0 mt-1 pl-3.5 font-sans text-[12px] text-ink-3">{t.quote[1]}</p>
-          </motion.div>
-        )}
-      </div>
-      <div className="mx-3 mb-3 flex items-center gap-2.5 rounded-[14px] bg-white py-2 pl-3.5 pr-2 ring-1 ring-[#1a1714]/[0.08] sm:mx-4 sm:mb-4">
-        <p className={'m-0 min-h-[20px] flex-1 font-sans text-[14px] leading-[1.45] ' + (phase === 0 ? 'text-ink' : 'text-ink-3')}>
-          {phase === 0 ? <>{t.q.slice(0, n)}<span className="ml-px inline-block h-[14px] w-px translate-y-[2px] animate-pulse bg-ink" /></> : 'Reply to Claude…'}
-        </p>
-        <span className={'grid size-7 shrink-0 place-items-center rounded-full text-white transition-colors duration-300 ' + (phase === 0 && n >= t.q.length ? 'bg-[#1a1714]' : 'bg-[#1a1714]/30')}>
-          <ArrowUp className="size-3.5" strokeWidth={2.25} />
-        </span>
-      </div>
-    </div>
-  );
-}
-
 function Teams({ reduce }) {
-  const stage = useRef(null);
-  const inView = useInView(stage, { amount: 0.35 });
-  const [active, setActive] = useState(0);
-  const [auto, setAuto] = useState(!reduce);
-  const tabs = useRef([]);
-  const cycling = auto && !reduce && inView;
-  useEffect(() => {
-    if (!cycling) return;
-    const id = setTimeout(() => setActive(a => (a + 1) % TEAMS.length), TEAM_MS);
-    return () => clearTimeout(id);
-  }, [active, cycling]);
-  const pick = (i, focus) => { setAuto(false); setActive(i); if (focus) tabs.current[i]?.focus({ preventScroll: true }); };
-  const onKey = (e) => {
-    const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
-    if (k) { e.preventDefault(); pick((active + k + TEAMS.length) % TEAMS.length, true); }
-    else if (e.key === 'Home') { e.preventDefault(); pick(0, true); }
-    else if (e.key === 'End') { e.preventDefault(); pick(TEAMS.length - 1, true); }
-  };
   return (
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
-      <div ref={stage} className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 md:grid-cols-2 md:items-center md:gap-12 lg:gap-20">
-        <div>
+      <div className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Built for every team</Eyebrow></ScrubText>
           <ScrubTitle reduce={reduce} id="mcp-teams-title" className={H2} lines={['Customer research', 'built around your work']} />
-          <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[56ch] ' + SUBTITLE}>
+          <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[52ch] ' + SUBTITLE}>
             You don’t need to become a researcher, learn new skills, or dedicate hours to managing interviews to reap the benefits of customer insights. With Frank connected to your AI, customer insight effortlessly becomes part of the work you already do every day.
           </ScrubText>
-          <ScrubText reduce={reduce} lag={0.16} className="mt-10 sm:mt-12">
-            <div role="tablist" aria-label="Teams" aria-orientation="vertical" onKeyDown={onKey} className="flex flex-col">
-              {TEAMS.map((t, i) => {
-                const on = i === active;
-                return (
-                  <div key={t.role} className={'relative border-0 border-t border-solid border-[#1a1714]/[0.08] first:border-t-0'}>
-                    {on && (
-                      <motion.span key={'rule' + active + (cycling ? 'a' : 's')} aria-hidden="true"
-                        className="absolute -left-3 top-4 bottom-4 w-[2px] origin-top rounded-full bg-[#ba86fc] sm:-left-4 lg:-left-5"
-                        initial={{ scaleY: cycling ? 0 : 1 }} animate={{ scaleY: 1 }}
-                        transition={{ duration: cycling ? TEAM_MS / 1000 : 0, ease: 'linear' }} />
-                    )}
-                    <button type="button" role="tab" id={'mcp-team-tab-' + i} aria-controls="mcp-team-panel"
-                      aria-selected={on} tabIndex={on ? 0 : -1} ref={el => { tabs.current[i] = el; }} onClick={() => pick(i)}
-                      className="group block w-full cursor-pointer border-0 bg-transparent px-0 py-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1a1714]">
-                      <span className={'flex items-center gap-2 font-sans text-[14px] leading-none ' + (on ? 'text-ink-2' : 'text-ink-3')}>
-                        <HugeiconsIcon icon={t.icon} size={16} strokeWidth={1.6} aria-hidden="true" />
-                        {t.role}
-                      </span>
-                      <span className={FIG + ' mt-2.5 block leading-[1.2] tracking-[-0.02em] [text-wrap:balance]' + (reduce ? '' : ' transition-colors duration-300')
-                        + (on ? ' text-[clamp(20px,1.9vw,26px)] text-ink' : ' text-[clamp(17px,1.4vw,19px)] text-ink-3 group-hover:text-ink-2')}>
-                        {t.q}
-                      </span>
-                      {/* The open team's line unfolds under its question (grid rows 0fr to 1fr). */}
-                      <span className={'grid' + (reduce ? '' : ' transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]') + (on ? ' grid-rows-[1fr]' : ' grid-rows-[0fr]')}>
-                        <span className="overflow-hidden">
-                          <span className={'block max-w-[48ch] pt-2.5 font-sans text-[16px] leading-[1.55] text-ink-2' + (reduce ? '' : ' transition-opacity duration-500') + (on ? ' opacity-100' : ' opacity-0')}>{t.text}</span>
-                        </span>
-                      </span>
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-          </ScrubText>
         </div>
-        <ScrubText reduce={reduce} lag={0.08}>
-          <div id="mcp-team-panel" role="tabpanel" aria-labelledby={'mcp-team-tab-' + active}
-            className="relative overflow-hidden rounded-[28px] bg-[#d1f899] p-4 sm:p-7 lg:p-10">
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
-            {/* All four chats share one cell, so the stage keeps the tallest one's height. */}
-            <div className="relative grid">
-              {TEAMS.map((t, i) => {
-                const on = i === active;
-                return (
-                  <motion.div key={t.role} aria-hidden={!on} className={'[grid-area:1/1] ' + (on ? '' : 'pointer-events-none')}
-                    initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ duration: reduce ? 0 : 0.35, ease: EASE }}>
-                    <TeamChat t={t} reduce={reduce} play={on && inView} />
-                  </motion.div>
-                );
-              })}
-            </div>
-            <p className="relative m-0 mt-3 text-right font-sans text-[12px] text-[#2a321e]/70">Example answer</p>
-          </div>
-        </ScrubText>
+
+        <ul aria-label="Teams" className="m-0 flex list-none flex-col gap-4 p-0 lg:gap-0">
+          {TEAMS.map(([role, q, text], i) => (
+            <li key={role} className="lg:sticky lg:mb-[28vh] lg:last:mb-0" style={{ top: `${112 + i * 18}px` }}>
+              <div className="relative flex min-h-[300px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-1 ring-[#1a1714]/[0.06] sm:p-9">
+                {/* The Churn page's "What you get" card: cream with the faint grainy yellow glow in the corner. */}
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
+                <span className="relative font-sans text-[15px] text-ink-2">{role}</span>
+                <h3 className={FIG + ' relative m-0 mt-6 text-[clamp(24px,2.3vw,30px)] leading-[1.2] tracking-[-0.02em] text-ink [text-wrap:balance]'}>&ldquo;{q}&rdquo;</h3>
+                <span aria-hidden="true" className="block min-h-6 flex-1" />
+                <p className="relative m-0 mt-6 max-w-[52ch] font-sans text-[16px] leading-[1.6] text-ink-2">{text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
