@@ -1100,26 +1100,27 @@ function Teams({ reduce }) {
   };
   return (
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
-      <div className="mx-auto max-w-[1312px]">
-        <div className="max-w-[820px]">
+      {/* Two columns from 768px (user, 2026-11-24: "tabs and texts on the same wrapping, section two columned"): the
+          kicker, title, subtitle and the team tabs on the left, the open team's card on the right. */}
+      <div ref={stage} className="mx-auto grid max-w-[1312px] grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-center md:gap-12 lg:gap-20">
+        <div>
           <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Built for every team</Eyebrow></ScrubText>
           <ScrubTitle reduce={reduce} id="mcp-teams-title" className={H2} lines={['Customer research', 'built around your work']} />
           <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[62ch] ' + SUBTITLE}>
             You don’t need to become a researcher, learn new skills, or dedicate hours to managing interviews to reap the benefits of customer insights. With Frank connected to your AI, customer insight effortlessly becomes part of the work you already do every day.
           </ScrubText>
-        </div>
-        <ScrubText reduce={reduce} lag={0.08}>
-          <div ref={stage} className="mt-12 grid grid-cols-1 gap-10 sm:mt-14 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-center md:gap-12 lg:gap-16">
-            {/* The teams as a list on a thin rule, like How it works' steps; the open team's segment is brand violet
-                (user, 2026-11-24) and fills while the tabs cycle, full once a team is picked. */}
+          <ScrubText reduce={reduce} lag={0.16} className="mt-10 sm:mt-12">
+            {/* The teams as a list, their text on the title's edge; only the open team has a line, in brand violet, in
+                the gutter to its left (user, 2026-11-24: no grey rule). It fills while the tabs cycle and is full once
+                a team is picked. */}
             <div role="tablist" aria-label="Teams" aria-orientation="vertical" onKeyDown={onKey} className="flex flex-col">
               {TEAMS.map((t, i) => {
                 const on = i === active;
                 return (
-                  <div key={t.role} className="relative border-0 border-l-2 border-solid border-[#e5e1d8] pl-6 lg:pl-7">
+                  <div key={t.role} className="relative">
                     {on && (
                       <motion.span key={'rule' + active + (auto && !reduce && inView ? 'a' : 's')} aria-hidden="true"
-                        className="absolute -left-[2px] top-0 h-full w-[2px] origin-top bg-[#ba86fc]"
+                        className="absolute -left-3 top-0 h-full w-[2px] origin-top bg-[#ba86fc] sm:-left-4 lg:-left-5"
                         initial={{ scaleY: auto && !reduce && inView ? 0 : 1 }} animate={{ scaleY: 1 }}
                         transition={{ duration: auto && !reduce && inView ? TEAM_MS / 1000 : 0, ease: 'linear' }} />
                     )}
@@ -1141,6 +1142,9 @@ function Teams({ reduce }) {
                 );
               })}
             </div>
+          </ScrubText>
+        </div>
+        <ScrubText reduce={reduce} lag={0.08}>
             <div className="grid">
               {TEAMS.map((t, i) => {
                 const on = i === active;
@@ -1155,9 +1159,8 @@ function Teams({ reduce }) {
                 );
               })}
             </div>
-          </div>
+            <p className="m-0 mt-4 text-right font-sans text-[12.5px] text-ink-3">Example answers</p>
         </ScrubText>
-        <p className="m-0 mt-4 text-right font-sans text-[12.5px] text-ink-3">Example answers</p>
       </div>
     </section>
   );
