@@ -203,10 +203,10 @@ function Row({ c, i, reduce }) {
       animate={{ opacity: 1, transform: 'translateY(0px)' }}
       transition={{ duration: 0.4, ease: EASE, delay: i * 0.04 }}>
       <Tag {...(href ? { href } : {})}
-        className={'group grid grid-cols-[96px_minmax(0,1fr)] items-center gap-4 rounded-[18px] py-5 text-ink no-underline transition-colors duration-200 sm:grid-cols-[176px_minmax(0,1fr)_auto] sm:gap-7 sm:px-3 sm:py-6 sm:-mx-3 '
-          + (href ? 'hover:bg-[#f6f5f1] ' + FOCUS : '')}>
+        className={'group grid grid-cols-[96px_minmax(0,1fr)] items-center gap-4 rounded-[12px] py-5 text-ink no-underline sm:grid-cols-[176px_minmax(0,1fr)] sm:gap-7 sm:py-6 '
+          + (href ? FOCUS : '')}>
         <span className="block overflow-hidden rounded-[12px] shadow-[0_0_0_1px_rgba(26,23,20,0.06)] sm:rounded-[14px]">
-          <Banner p={c} sizes="176px" imgClass="transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] motion-safe:group-hover:scale-[1.04]" />
+          <Banner p={c} sizes="176px" imgClass="transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] motion-safe:group-hover:scale-[1.05]" />
         </span>
         <span className="min-w-0">
           <span className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 font-sans text-[13px] text-ink-3">
@@ -215,14 +215,9 @@ function Row({ c, i, reduce }) {
             <span aria-hidden="true">·</span>
             <span>{c.format}</span>
           </span>
-          <span className={FIG + ' mt-2.5 block text-[clamp(17px,1.6vw,21px)] leading-[1.3] tracking-[-0.02em] [text-wrap:pretty] ' + (c.slot ? 'text-ink-3' : 'text-ink')}>{c.title}</span>
+          <span className={FIG + ' mt-2.5 block text-[clamp(17px,1.6vw,21px)] leading-[1.3] tracking-[-0.02em] decoration-ink/30 decoration-1 underline-offset-[5px] [text-wrap:pretty] ' + (href ? 'group-hover:underline ' : '') + (c.slot ? 'text-ink-3' : 'text-ink')}>{c.title}</span>
           <span className="mt-1.5 line-clamp-2 hidden font-sans text-[14.5px] leading-[1.55] text-ink-2 sm:block">{c.summary}</span>
         </span>
-        {href ? (
-          <span aria-hidden="true" className="hidden size-10 place-items-center rounded-full bg-[#1a1714] text-white opacity-0 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:opacity-100 group-focus-visible:opacity-100 motion-safe:-translate-x-2 motion-safe:group-hover:translate-x-0 sm:grid">
-            <ArrowRight className="size-4" strokeWidth={1.75} />
-          </span>
-        ) : <span className="hidden sm:block" />}
       </Tag>
     </motion.li>
   );
