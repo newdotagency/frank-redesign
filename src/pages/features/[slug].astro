@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import FeaturePage from '../../v2104/FeaturePage.jsx';
+import { FEATURES } from '../../v2104/features/data.js';
+export function getStaticPaths() {
+  return Object.entries(FEATURES).map(([slug, f]) => ({ params: { slug }, props: { slug, title: f.title, description: f.description } }));
+}
+const { slug, title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <div id="root"><FeaturePage slug={slug} client:only="react" /></div>
+</Base>

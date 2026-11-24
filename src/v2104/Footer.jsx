@@ -102,7 +102,7 @@ export default function Footer() {
               <div key={c.title}>
                 <h2 className="m-0 font-sans text-[14px] font-medium text-ink">{c.title}</h2>
                 <ul className="m-0 mt-4 grid list-none gap-3 p-0 font-sans text-[15px] leading-[1.35]">
-                  {c.links.map(([label, path, local]) => <li key={label}><a href={local || SITE + path} className={LINK}>{label}</a></li>)}
+                  {c.links.map(([label, path, local]) => <li key={label}><a href={local || (path.startsWith('/features/') ? path : SITE + path)} className={LINK}>{label}</a></li>)}
                 </ul>
               </div>
             ))}
