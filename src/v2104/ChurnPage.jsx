@@ -32,7 +32,7 @@ import UseCases from './UseCases';
 import MarkedPhrase from './MarkedPhrase';
 import FAQ from './FAQ';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { AnalyticsUpIcon, MessageQuestionIcon, Tag01Icon, UserRemove01Icon } from '@hugeicons/core-free-icons';
+import { AnalyticsUpIcon, MessageQuestionIcon, Tag01Icon, CheckmarkCircle02Icon, UserRemove01Icon } from '@hugeicons/core-free-icons';
 import Header from '../components/Header';
 import HighlightMarker from '../components/HighlightMarker';
 import { cornerGlowGrain } from '../components/grain';
@@ -163,9 +163,9 @@ function WhatIs({ reduce }) {
           {WHEN.map(([Icon, title, text], i) => {
             return (
               <ScrubText as="li" key={title} reduce={reduce} lag={i * 0.04}>
-                {/* A thinner frame than the page's other framed cards (user: card borders a bit smaller): 4px, not 6px. */}
-                <div className={'h-full rounded-[28px] bg-[#1a1714]/[0.035] p-1 ring-1 ring-inset ring-[#1a1714]/[0.05] transition-transform duration-700 hover:-translate-y-1 ' + CURVE}>
-                  <div className="flex h-full min-h-[248px] flex-col rounded-[24px] bg-white p-7 text-ink shadow-[0_1px_2px_rgba(26,23,20,0.04)]">
+                {/* One plain border (user, 2026-11-24: no two-layer frame). */}
+                <div className={'h-full transition-transform duration-700 hover:-translate-y-1 ' + CURVE}>
+                  <div className="flex h-full min-h-[248px] flex-col rounded-[24px] bg-white p-7 text-ink ring-1 ring-inset ring-[#1a1714]/[0.08]">
                     <span aria-hidden="true" className="grid size-14 place-items-center rounded-[16px] bg-[#f6f4ef] text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]">
                       <HugeiconsIcon icon={Icon} size={28} strokeWidth={1.5} />
                     </span>
@@ -339,6 +339,127 @@ const OUT_ROWS = [
   [9, 'A “good enough” tool came bundled with something they already pay for', null, 'It’s included in our Microsoft plan. It does most of what you do, and most was enough.'],
 ];
 
+// Where they went (user, 2026-11-24): what the 48 customers moved to, as a donut with its legend. Colours from the
+// brand ramps (lime 600, violet 500, blue 600), and greige 600 for "Nothing" on purpose: no destination reads as no
+// colour. Checked with the dataviz validator: CVD and normal-vision separation pass; greige is below the chroma floor
+// (by design) and violet is under 3:1 on white, so every slice is named with its count in the legend, never colour alone.
+// Each slice is drawn as its own shape with softly rounded corners (user, 2026-11-24: a lighter redraw was tried and
+// rejected in favour of this first version, with rounded corners added). The ring sweeps in when it scrolls into view.
+// Hovering a slice or a legend row brings that slice forward and shows it in the centre.
+const WENT = [
+  ['Spreadsheets', 16, '#6e9738'],
+  ['A direct competitor', 12, '#ba86fc'],
+  ['Nothing', 11, '#7d766e'],
+  ['A bundled tool', 9, '#4e7ff9'],
+];
+// A ring slice with rounded corners (viewBox units): the shape is inset by the corner radius and then stroked in its
+// own colour with round joins, which puts the radius back as rounded corners. gap is the white space between slices.
+function slicePath(a0, a1, rOut, rIn, corner, gap) {
+  const ro = rOut - corner, ri = rIn + corner, inset = gap / 2 + corner;
+  const pt = (r, a) => `${(100 + r * Math.cos(a)).toFixed(2)} ${(100 + r * Math.sin(a)).toFixed(2)}`;
+  const o0 = a0 + inset / ro, o1 = a1 - inset / ro, i0 = a0 + inset / ri, i1 = a1 - inset / ri;
+  const large = o1 - o0 > Math.PI ? 1 : 0;
+  return `M${pt(ro, o0)} A${ro} ${ro} 0 ${large} 1 ${pt(ro, o1)} L${pt(ri, i1)} A${ri} ${ri} 0 ${large} 0 ${pt(ri, i0)} Z`;
+}
+// Action Items (user, 2026-11-24, words unchanged).
+const ACTIONS = [
+  ['Alert account owners when their admin goes inactive, and offer a handover session.', 17],
+  ['Show seat usage on the billing page before renewal.', 14],
+  ['Add scheduled report exports by email.', 11],
+];
+// One plain border (user, 2026-11-24: no two-layer frame); FRAME only sizes the wrapper.
+const FRAME = 'h-full';
+const PANEL = 'relative flex h-full flex-col rounded-[24px] bg-white p-7 text-ink ring-1 ring-inset ring-[#1a1714]/[0.08] sm:p-9';
+const H3 = FIG + ' m-0 text-[clamp(22px,2vw,26px)] leading-[1.2] tracking-[-0.02em] text-ink';
+
+function WhereTheyWent({ reduce }) {
+  const ref = useRef(null);
+  const seen = useInView(ref, { once: true, amount: 0.5 });
+  const [active, setActive] = useState(null);
+  const mask = 'ch-went-mask';
+  let start = -Math.PI / 2; // 12 o'clock, clockwise
+  const slices = WENT.map(([label, n, color]) => {
+    const span = (n / OUT_TOTAL) * Math.PI * 2;
+    const s = { label, n, color, d: slicePath(start, start + span, 93, 63, 5, 3.5), pct: Math.round((n / OUT_TOTAL) * 100) };
+    start += span;
+    return s;
+  });
+  const on = active === null ? null : slices[active];
+  return (
+    <div className={FRAME}>
+      <div className={PANEL}>
+        <h3 id="ch-went-title" className={H3}>Where they went</h3>
+        <div ref={ref} className="mt-8 grid flex-1 grid-cols-1 items-center gap-8 sm:grid-cols-[200px_minmax(0,1fr)] sm:gap-10 lg:grid-cols-1 xl:grid-cols-[200px_minmax(0,1fr)]">
+          <div className="relative mx-auto size-[200px]">
+            <svg viewBox="0 0 200 200" className="block size-full" role="img" aria-labelledby="ch-went-title"
+              onMouseLeave={() => setActive(null)}>
+              {/* The sweep: a ring-shaped mask that draws clockwise from 12 o'clock. */}
+              <mask id={mask}>
+                <motion.circle cx="100" cy="100" r="78" fill="none" stroke="#fff" strokeWidth="40" pathLength="100"
+                  transform="rotate(-90 100 100)"
+                  initial={{ strokeDasharray: reduce ? '100 0' : '0 100' }}
+                  animate={seen ? { strokeDasharray: '100 0' } : undefined}
+                  transition={{ duration: 1.1, ease: EASE, delay: 0.1 }} />
+              </mask>
+              <g mask={`url(#${mask})`}>
+                {slices.map((s, i) => (
+                  <motion.path key={s.label} d={s.d} fill={s.color} stroke={s.color} strokeWidth="10" strokeLinejoin="round"
+                    animate={{ opacity: active === null || active === i ? 1 : 0.28 }} transition={{ duration: 0.25 }}
+                    onMouseEnter={() => setActive(i)} className="cursor-default" />
+                ))}
+              </g>
+            </svg>
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 grid place-content-center text-center">
+              <span className={FIG + ' block text-[40px] leading-none tracking-[-0.03em] tabular-nums text-ink'}>{on ? on.n : OUT_TOTAL}</span>
+              <span className="mt-1.5 block max-w-[110px] font-sans text-[13px] leading-[1.3] text-ink-2">{on ? on.label : 'customers'}</span>
+            </div>
+          </div>
+          <ul className="m-0 flex list-none flex-col p-0">
+            {slices.map((s, i) => (
+              <li key={s.label} onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(null)}
+                className={'flex items-center gap-3 border-0 border-t border-solid border-[#1a1714]/[0.08] py-3 font-sans text-[15px] transition-opacity duration-200 first:border-t-0 ' + (active === null || active === i ? 'opacity-100' : 'opacity-50')}>
+                <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full" style={{ background: s.color }} />
+                <span className="min-w-0 flex-1 text-ink">{s.label}</span>
+                <span className="tabular-nums font-medium text-ink">{s.n}</span>
+                <span className="w-10 text-right tabular-nums text-ink-2">{s.pct}%</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ActionItems() {
+  return (
+    <div className={FRAME}>
+      <div className={PANEL}>
+        <h3 id="ch-actions-title" className={H3}>Action Items</h3>
+        <ol aria-labelledby="ch-actions-title" className="m-0 mt-6 flex list-none flex-col p-0">
+          {ACTIONS.map(([text, n], i) => (
+            <li key={text} className="flex gap-3.5 border-0 border-t border-solid border-[#1a1714]/[0.08] py-6 first:border-t-0 first:pt-2 last:pb-0">
+              {/* A plain stroke icon, no tile (user, 2026-11-24: simple icons, in green). Lime 600, the bars' colour: 3.4:1 on white. */}
+              <HugeiconsIcon icon={CheckmarkCircle02Icon} size={22} strokeWidth={1.5} aria-hidden="true" className="mt-px shrink-0 text-[#6e9738]" />
+              <div className="min-w-0 flex-1">
+                <p className={FIG + ' m-0 text-[clamp(17px,1.4vw,19px)] leading-[1.35] tracking-[-0.01em] text-ink [text-wrap:pretty]'}>
+                  <span className="sr-only">{i + 1}. </span>{text}
+                </p>
+                <div className="mt-3 flex items-center gap-3">
+                  <span aria-hidden="true" className="relative h-1 w-24 overflow-hidden rounded-full bg-[#1a1714]/[0.08]">
+                    <span className="absolute inset-y-0 left-0 rounded-full bg-[#6e9738]" style={{ width: `${(n / OUT_TOTAL) * 100}%` }} />
+                  </span>
+                  <span className="whitespace-nowrap font-sans text-[14px] text-ink-2">Raised by <span className="font-medium text-ink">{n} customers</span></span>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
 function Outcomes({ reduce }) {
   return (
     <section aria-labelledby="ch-out-title" className={SECTION + PAD}>
@@ -379,6 +500,13 @@ function Outcomes({ reduce }) {
             </li>
           ))}
         </ol>
+      </div>
+
+      {/* After the reasons: where those customers went, and the Action Items Frank drew from them. Side by side from
+          1024px (the chart narrower), stacked below. */}
+      <div className="mx-auto mt-[clamp(64px,8vw,112px)] grid max-w-[1312px] grid-cols-1 gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-5">
+        <ScrubText reduce={reduce}><WhereTheyWent reduce={reduce} /></ScrubText>
+        <ScrubText reduce={reduce} lag={0.06}><ActionItems /></ScrubText>
       </div>
     </section>
   );
