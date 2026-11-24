@@ -1,9 +1,9 @@
 // McpPage (V21.04): the MCP page, with the words of the live hifrank.ai/mcp page (2026-11-23), headings in sentence
 // case. Drafted here and labelled "Example" on the page: the hero chat (question, Frank's tool call, the answer). The live page's fourth step ("Act") repeats the first step's text, so it is
 // left out until it has its own words. Layout, on the home page's container (CLAUDE.md, "Frank landing pages"):
-//   1. Hero: the forest-green panel. Left: title, description, the CTA and the "no API keys" line. Right: an AI chat
-//      that plays the loop: the question typed and sent, Frank's tool call working step by step, the answer with
-//      ranked reasons and bars, then a customer quote.
+//   1. Hero: the forest-green panel with the title, description, the CTA and the "no API keys" line, centred, and no
+//      visual (user, 2026-11-24: "On MCP landing pages first section remove visual"; HERO_VISUAL = 'none'). The
+//      earlier concepts (A chat, B hub, C voices, D instruct, E stack) stay in the file behind HERO_VISUAL.
 //   2. Where it works: the styled first title (Lora italic phrase under the lime marker), then the supported AI
 //      tools as logo tiles, the sixth tile "any MCP-compatible platform".
 //   3. How it works: the home page's How it works (HowItWorks.jsx, "How it works" kicker) with the live page's
@@ -14,14 +14,13 @@
 // Later section titles are plain Figtree (user rule, 2026-11-23); every subtitle uses SUBTITLE from ./titles.
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
-import { ArrowRight, ArrowUp, Check } from 'lucide-react';
+import { ArrowRight, ArrowUp, Check, Mic, PhoneOff } from 'lucide-react';
 import { siGithubcopilot, siGooglegemini } from 'simple-icons';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import Glasses from '../v3/Glasses';
 import { TITLE, SUBTITLE, Eyebrow } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
-import MarkedPhrase from './MarkedPhrase';
 import Footer from './Footer';
 import FAQ from './FAQ';
 import HowItWorks from './HowItWorks';
@@ -212,7 +211,10 @@ const PathLogo = ({ icon, color }) => (
 // Claude's answered card, still. The questions and answers are examples.
 // HERO_VISUAL picks the concept: 'voices' (C, below), 'hub' (B) or 'chat' (A, AiChat above). B and C show the chat
 // on phones, where their text would be too small.
-const HERO_VISUAL = 'voices';
+// 'instruct' (D, AiInstruct further down) is the current one (user, 2026-11-24) and shows at every width.
+// 'none' (user, 2026-11-24): no visual; the hero's text is centred in the panel. Set back to 'stack' (E) for the last
+// visual shown.
+const HERO_VISUAL = 'none';
 const HUB_W = 520, HUB_H = 520, HUB_C = [260, 260];
 const HUB = [
   { name: 'Claude', logo: <img src={claudeLogo} alt="" className="size-full" />, at: [0, 0], ask: 'Top churn reasons this month?',
@@ -445,18 +447,368 @@ function AiVoices({ reduce }) {
   );
 }
 
+// ——— 1d. Hero, concept D (user, 2026-11-24: "show that they can give instructions in any LLM and it can make an
+// interview in Frank"). Purpose: explanation. Built in normal flow (no scaled stage), so it reads at every width.
+//   Minimal (user, 2026-11-24: "make minimal interface", "don't show everything at once"). Top: the five AI tools as
+//   logos only; the one in use is lit. Then that tool's chat: its name, the instruction typing in, and one status line
+//   (creating · created · publishing · live). A line draws down and the Frank card rises in only once Frank has the
+//   instruction: the interview's name, then three questions one by one, then "Live" and the customers answering.
+//   The next tool then takes a turn with its own instruction. About 9 s a turn, five turns, only while on screen.
+//   On first view the logos come in 50 ms apart, then the chat, then the typing starts.
+// Instructions, interview names, questions and customers are examples (labelled under the visual). Entrances:
+// transform + opacity, ease-out (0.23, 1, 0.32, 1), 300 to 450 ms; the dot runs ease-in-out; avatars on a spring
+// (0.5 s, bounce 0.2). Reduced motion: Claude's turn, finished and still.
+const LLMS = [
+  { name: 'Claude', dark: <img src={claudeLogo} alt="" className="size-full" />, light: <img src={claudeLogo} alt="" className="size-full" />,
+    ask: 'Interview customers who cancelled last month. Find out why they left.',
+    study: 'Why customers cancel', qs: ['What made you decide to cancel?', 'When did it stop feeling worth the price?', 'What are you using instead?'] },
+  { name: 'ChatGPT', dark: <img src={openaiLogo} alt="" className="size-full invert" />, light: <img src={openaiLogo} alt="" className="size-full" />,
+    ask: 'Talk to this week’s new sign-ups about their first few days.',
+    study: 'First-week onboarding', qs: ['What did you want to get done first?', 'Where did you get stuck?', 'What almost made you give up?'] },
+  { name: 'Gemini', dark: <PathLogo icon={siGooglegemini} color="#c9b6ff" />, light: <PathLogo icon={siGooglegemini} color={'#' + siGooglegemini.hex} />,
+    ask: 'Ask our power users how they would price a team plan.',
+    study: 'Team plan pricing', qs: ['How does your team use it today?', 'Who decides on new tools?', 'What would a fair price per seat be?'] },
+  { name: 'Copilot', dark: <PathLogo icon={siGithubcopilot} color="#ffffff" />, light: <PathLogo icon={siGithubcopilot} color="#1a1714" />,
+    ask: 'Find out why trial users never invite their team.',
+    study: 'Team invites in the trial', qs: ['Who else would use this with you?', 'What stopped you from inviting them?', 'What would make sharing easier?'] },
+  { name: 'Cursor', dark: <img src={cursorLogo} alt="" className="size-full invert" />, light: <img src={cursorLogo} alt="" className="size-full" />,
+    ask: 'Ask developers what is missing from our API.',
+    study: 'API feedback', qs: ['What did you try to build with the API?', 'Where did the docs fall short?', 'What would you add first?'] },
+];
+const JOINED = ['/videos/call-03-card.jpg', '/videos/call-07-card.jpg', '/videos/call-10-card.jpg'];
+// ms per phase after the typing (phase 0): create runs · drafting · q1 · q2 · q3 · publish runs · live · fade
+const D_HOLD = [null, 900, 550, 420, 420, 650, 750, 3000, 450];
+
+// One quiet line under the instruction: what Frank is doing, a spinner while it works, a check when done.
+function StatusLine({ text, done }) {
+  return (
+    <span className="flex items-center gap-2 font-sans text-[13px] text-ink-2">
+      {done ? <span className="grid size-4 place-items-center rounded-full bg-[#d1f899] text-ink"><Check className="size-2.5" strokeWidth={3} /></span>
+        : <span className="mcp-spin block size-3.5 rounded-full border-[1.5px] border-solid border-[#1a1714]/15 border-t-[#1a1714]/70" />}
+      {text}
+    </span>
+  );
+}
+
+function AiInstruct({ reduce }) {
+  const box = useRef(null);
+  const seen = useInView(box, { amount: 0.35 });
+  const [turn, setTurn] = useState(0);
+  const [p, setP] = useState(reduce ? 7 : 0);
+  const c = LLMS[turn];
+  const [chars, setChars] = useState(reduce ? c.ask.length : 0);
+  const live = seen && !reduce;
+  const first = useRef(true); // the first turn waits for the chips and the chat to come in
+
+  useEffect(() => {
+    if (reduce) { setTurn(0); setP(7); setChars(LLMS[0].ask.length); return; }
+    if (!live) return;
+    let t;
+    if (p === 0) {
+      if (chars < c.ask.length) t = setTimeout(() => { first.current = false; setChars(n => n + 1); }, chars === 0 ? (first.current ? 1400 : 450) : 30);
+      else t = setTimeout(() => setP(1), 300);
+    } else if (p === 8) {
+      t = setTimeout(() => { setChars(0); setP(0); setTurn(n => (n + 1) % LLMS.length); }, D_HOLD[8]);
+    } else {
+      t = setTimeout(() => setP(x => x + 1), D_HOLD[p]);
+    }
+    return () => clearTimeout(t);
+  }, [p, chars, live, reduce, c.ask.length]);
+
+  const rise = { initial: { opacity: 0, transform: 'translateY(8px)' }, animate: { opacity: 1, transform: 'translateY(0px)' }, transition: { duration: 0.38, ease: EASE } };
+  const fade = { animate: { opacity: p === 8 ? 0 : 1 }, transition: { duration: 0.35, ease: EASE } };
+  const shown = reduce || (p >= 2 && p < 8); // the Frank card is on screen
+  // The one status line under the instruction, by phase.
+  const line = p === 1 ? ['Creating the interview in Frank', false] : p >= 2 && p <= 5 ? ['Interview created in Frank', true]
+    : p === 6 ? ['Publishing', false] : p >= 7 ? ['Live in Frank', true] : null;
+
+  return (
+    <div ref={box} className="flex flex-col">
+      {/* Any AI tool, as logos only; the one in use is lit. */}
+      <ul className="m-0 flex list-none gap-2 p-0" aria-label="AI tools Frank works in">
+        {LLMS.map((l, i) => (
+          <motion.li key={l.name} initial={reduce ? false : { opacity: 0, transform: 'translateY(6px)' }} animate={{ opacity: 1, transform: 'translateY(0px)' }}
+            transition={{ duration: 0.3, ease: EASE, delay: 0.4 + i * 0.05 }}>
+            <span className={'grid size-9 place-items-center rounded-full transition-[opacity,background-color,box-shadow] duration-300 '
+              + (i === turn ? 'bg-white/[0.12] opacity-100 shadow-[inset_0_0_0_1px_rgba(209,248,153,0.6)]' : 'bg-white/[0.05] opacity-40')}>
+              <span className="block size-4">{l.dark}</span>
+              <span className="sr-only">{l.name}</span>
+            </span>
+          </motion.li>
+        ))}
+      </ul>
+
+      {/* The AI tool's chat: its name, the instruction, one status line. */}
+      <motion.div className="mt-4 rounded-[20px] bg-[#fbfaf6] p-5 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.6)]"
+        initial={reduce ? false : { opacity: 0, transform: 'translateY(10px)' }} animate={{ opacity: 1, transform: 'translateY(0px)' }}
+        transition={{ duration: 0.45, ease: EASE, delay: 0.7 }}>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span key={c.name} className="flex items-center gap-2 font-sans text-[13px] text-ink-2"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+            <span className="block size-4">{c.light}</span>{c.name}
+          </motion.span>
+        </AnimatePresence>
+        <motion.div {...fade}>
+          <div className="mt-3 flex min-h-[64px] items-start justify-end">
+            {chars > 0 && <span className={'max-w-[88%] rounded-[16px] rounded-br-[6px] px-3.5 py-2.5 font-sans text-[14px] leading-[1.45] transition-colors duration-300 '
+              + (p >= 1 ? 'bg-[#1a1714] text-white' : 'bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.08]')}>
+              {c.ask.slice(0, chars)}
+              {p === 0 && !reduce && <span aria-hidden="true" className="tmn-caret ml-px inline-block h-[1em] w-px translate-y-[2px] bg-current" />}
+            </span>}
+          </div>
+          <div className="mt-3 min-h-[20px]">
+            <AnimatePresence mode="wait" initial={false}>
+              {line && (
+                <motion.div key={line[0]} initial={{ opacity: 0, transform: 'translateY(4px)' }} animate={{ opacity: 1, transform: 'translateY(0px)' }}
+                  exit={{ opacity: 0 }} transition={{ duration: 0.25, ease: EASE }}>
+                  <StatusLine text={line[0]} done={line[1]} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* The line from the AI to Frank: it draws down once the instruction is sent; a lime dot runs along it when Frank
+          receives the interview and when it goes live. */}
+      <div aria-hidden="true" className="relative mx-auto h-7 w-px">
+        <span className="absolute inset-0 bg-white/[0.1]" />
+        <motion.span className="absolute inset-0 origin-top bg-[#d1f899]/70"
+          initial={false} animate={{ transform: `scaleY(${p >= 1 && p < 8 ? 1 : 0})` }} transition={{ duration: 0.45, ease: EASE }} />
+        {!reduce && (p === 2 || p === 6) && (
+          <motion.span key={turn + '-' + p} className="absolute left-1/2 top-0 -ml-[4px] size-2 rounded-full bg-[#d1f899]"
+            initial={{ transform: 'translateY(-4px)', opacity: 0 }} animate={{ transform: 'translateY(24px)', opacity: [0, 1, 1, 0] }}
+            transition={{ duration: 0.55, ease: [0.77, 0, 0.175, 1] }} />
+        )}
+      </div>
+
+      {/* The interview in Frank: its space is kept so nothing jumps, but it only rises in once Frank has the
+          instruction, then its name and the three questions arrive one by one; "Live" and the customers come last. */}
+      <motion.div className="rounded-[20px] bg-white p-5 shadow-[0_24px_60px_-32px_rgba(0,0,0,0.6)]"
+        initial={false}
+        animate={shown ? { opacity: 1, transform: 'translateY(0px) scale(1)' } : { opacity: 0, transform: 'translateY(14px) scale(0.98)' }}
+        transition={{ duration: 0.45, ease: EASE, delay: shown && p === 2 ? 0.3 : 0 }}>
+        <div className="flex min-h-6 items-center justify-between gap-3">
+          <span className="flex min-w-0 items-center gap-2.5">
+            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#d1f899]"><span className="block w-[62%]"><Glasses pose="Ready" reduced /></span></span>
+            {p >= 2 && <motion.span key={'t' + turn} {...rise} transition={{ duration: 0.38, ease: EASE, delay: 0.55 }}
+              className={FIG + ' truncate text-[17px] leading-[1.25] tracking-[-0.01em] text-ink'}>{c.study}</motion.span>}
+          </span>
+          {p >= 7 && (
+            <motion.span {...rise} className="flex shrink-0 items-center gap-1.5 font-sans text-[12.5px] text-ink-2">
+              <span className="tmn-live block size-1.5 rounded-full bg-[#6e9738]" />Live
+            </motion.span>
+          )}
+        </div>
+        <ol className="m-0 mt-3 flex min-h-[150px] list-none flex-col p-0 sm:min-h-[132px]">
+          {c.qs.map((q, i) => (
+            <li key={turn + q} className="min-h-[44px] border-0 border-t border-solid border-[#1a1714]/[0.06] first:border-t-0">
+              {p >= 3 + i && (
+                <motion.span {...rise} className="flex gap-3 py-3 font-sans text-[14px] leading-[1.4] text-ink">
+                  <span className="pt-px font-mono text-[11.5px] tabular-nums text-ink-3">{String(i + 1).padStart(2, '0')}</span>{q}
+                </motion.span>
+              )}
+            </li>
+          ))}
+        </ol>
+        <div className="mt-2 flex min-h-6 items-center">
+          {p >= 7 && (
+            <motion.span {...rise} className="flex items-center gap-2.5 whitespace-nowrap font-sans text-[12.5px] text-ink-2">
+              <span className="flex -space-x-1.5">
+                {JOINED.map((src, i) => (
+                  <motion.img key={src} src={src} alt="" className="size-6 rounded-full object-cover ring-2 ring-white"
+                    initial={reduce ? false : { opacity: 0, transform: 'scale(0.6)' }} animate={{ opacity: 1, transform: 'scale(1)' }}
+                    transition={{ type: 'spring', duration: 0.5, bounce: 0.2, delay: 0.15 + i * 0.18 }} />
+                ))}
+              </span>
+              3 customers answering now
+            </motion.span>
+          )}
+        </div>
+      </motion.div>
+      <span className="mt-2 self-end font-sans text-[11px] text-white/40">Example</span>
+    </div>
+  );
+}
+
+// ——— 1e. Hero, concept E (user, 2026-11-24: "make an animation alike hifrank.ai/churn's first section"). As on
+// that page: a stack of three tilted cards, one step each; the front card is sharp, the two behind it sit up and to
+// the right, smaller and blurred, and every few seconds the next step comes forward while the front one goes to the
+// back. A handwritten tag (Kalam, the design system's hand for marketing tags) names the step, with a drawn arrow
+// pointing at the front card. The steps tell this page's story:
+//   1 Ask in any AI: the instruction typing into Claude (the example AI, user 2026-11-24; the other tools show as
+//     dimmed logos under it), and Frank's create_research call ticking off.
+//   2 Frank interviews: a customer on a voice call, Frank's question, the customer's voice bars.
+//   3 Back in your AI: the reasons, each with its count and a bar that grows, in the same AI tool.
+// Purpose: explanation. Card moves: transform + opacity + blur, 700 ms on the drawer curve (0.32, 0.72, 0, 1); inner
+// entrances ease-out (0.23, 1, 0.32, 1). 3.6 s a step, only while on screen. Drawn on a 500 × 520 stage that scales
+// down to fit. Reduced motion: step 1 in front, no cycling. Instructions, questions, reasons and the customer are
+// examples (labelled under the stack).
+const S_W = 500, S_H = 520, STEP_MS = 3600;
+const S_TAGS = ['Ask in any AI', 'Frank interviews', 'Back in your AI'];
+// Where a card sits by its place in the stack (0 = front): x, y, scale, blur, opacity.
+// The stack starts 40px down, leaving the top-left row for the handwritten tag, on the bare green panel.
+const SLOTS = [[10, 136, 1, 0, 1], [178, 60, 0.86, 3, 0.6], [156, 222, 0.8, 5, 0.35]];
+const S_REASONS = [['The price went up for small teams', 12], ['Reporting moved into their CRM', 8], ['The admin who set it up left', 6]];
+const S_CARD = 'absolute left-0 top-0 w-[316px] rounded-[22px] bg-white p-5 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.65)]';
+
+function StackAsk({ on, tool, reduce }) {
+  const text = 'Interview customers who cancelled last month. Find out why they left.';
+  const [n, setN] = useState(text.length);
+  useEffect(() => {
+    if (!on || reduce) { setN(text.length); return; }
+    setN(0);
+    let i = 0, t;
+    const tick = () => { i += 2; setN(Math.min(i, text.length)); if (i < text.length) t = setTimeout(tick, 28); };
+    t = setTimeout(tick, 350);
+    return () => clearTimeout(t);
+  }, [on, reduce]);
+  const done = n >= text.length;
+  return (
+    <>
+      <div className="flex items-center justify-between gap-2">
+        <span className="flex items-center gap-2 font-sans text-[13px] font-medium text-ink"><span className="block size-4">{tool.light}</span>{tool.name}</span>
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#f6f4ef] px-2 py-0.5 font-sans text-[11px] text-ink-2"><img src={mcpLogo} alt="" className="size-2.5" />Frank</span>
+      </div>
+      <p className="m-0 ml-6 mt-4 min-h-[86px] rounded-[16px] rounded-br-[6px] bg-[#1a1714] px-3.5 py-2.5 font-sans text-[14px] leading-[1.45] text-white">{text.slice(0, n)}</p>
+      <div className="mt-3 flex min-h-5 items-center gap-2 font-sans text-[12.5px] text-ink-2">
+        {done && (<>
+          <motion.span initial={reduce ? false : { opacity: 0, transform: 'scale(0.9)' }} animate={{ opacity: 1, transform: 'scale(1)' }} transition={{ duration: 0.3, ease: EASE, delay: on ? 0.3 : 0 }}
+            className="grid size-4 place-items-center rounded-full bg-[#d1f899] text-ink"><Check className="size-2.5" strokeWidth={3} /></motion.span>
+          <span>Frank <span className="text-ink-3">›</span> <code className="font-mono text-[11.5px] text-ink">create_research</code></span>
+        </>)}
+      </div>
+      <div className="mt-4 flex items-center gap-2 border-0 border-t border-solid border-[#1a1714]/[0.07] pt-3">
+        <span className="font-sans text-[11.5px] text-ink-3">Works in</span>
+        {LLMS.map(l => <span key={l.name} className={'block size-3.5 transition-opacity duration-300 ' + (l.name === tool.name ? 'opacity-100' : 'opacity-35')}>{l.light}</span>)}
+      </div>
+    </>
+  );
+}
+
+function StackInterview({ on, reduce }) {
+  return (
+    <>
+      <div className="flex items-center justify-between gap-2">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f6f4ef] px-2 py-0.5 font-sans text-[11px] text-ink-2">
+          <span className="tmn-live block size-1.5 rounded-full bg-[#e5484d]" />AI voice interview
+        </span>
+        <span className="font-mono text-[11.5px] tabular-nums text-ink-3">02:14</span>
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <img src="/videos/call-08-card.jpg" alt="" className="size-[84px] rounded-full object-cover shadow-[0_0_0_4px_#f6f4ef]" />
+        <span className="mt-3 rounded-full bg-[#0f2e27] px-2.5 py-1.5"><VoiceBars on={on && !reduce} /></span>
+      </div>
+      <div className="mt-4 flex items-start gap-2">
+        <span className="grid size-6 shrink-0 place-items-center rounded-full bg-[#d1f899]"><span className="block w-[62%]"><Glasses pose="Ready" reduced /></span></span>
+        <p className="m-0 rounded-[14px] rounded-tl-[6px] bg-[#f6f4ef] px-3 py-2 font-sans text-[13.5px] leading-[1.4] text-ink">When did it stop feeling worth the price?</p>
+      </div>
+      <div className="mt-4 flex items-center justify-center gap-2.5">
+        <span className="grid size-8 place-items-center rounded-full bg-[#f6f4ef] text-ink-2"><Mic className="size-3.5" strokeWidth={1.75} /></span>
+        <span className="grid size-8 place-items-center rounded-full bg-[#e5484d] text-white"><PhoneOff className="size-3.5" strokeWidth={1.75} /></span>
+      </div>
+    </>
+  );
+}
+
+function StackAnswer({ on, tool, reduce }) {
+  const grow = on || reduce;
+  return (
+    <>
+      <span className="flex items-center gap-2 font-sans text-[13px] font-medium text-ink"><span className="block size-4">{tool.light}</span>{tool.name}</span>
+      <p className={FIG + ' m-0 mt-4 text-[17px] leading-[1.25] tracking-[-0.01em] text-ink'}>Why customers cancelled</p>
+      <p className="m-0 mt-1 flex items-center gap-1.5 font-sans text-[11.5px] text-ink-3"><img src={mcpLogo} alt="" className="size-3" />From 31 Frank interviews</p>
+      <ul className="m-0 mt-4 flex list-none flex-col gap-2.5 p-0">
+        {S_REASONS.map(([t, k], i) => (
+          <li key={t}>
+            <div className="flex items-baseline justify-between gap-3 font-sans text-[13px] leading-[1.35] text-ink"><span>{t}</span><span className="tabular-nums text-ink-2">{k}</span></div>
+            <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-[#1a1714]/[0.06]">
+              <motion.span className="block h-full origin-left rounded-full bg-[#6e9738]" style={{ width: `${(k / 12) * 100}%` }}
+                initial={false} animate={{ transform: `scaleX(${grow ? 1 : 0})` }}
+                transition={{ duration: 0.7, ease: EASE, delay: grow && !reduce ? 0.35 + i * 0.12 : 0 }} />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+function AiStack({ reduce }) {
+  const box = useRef(null);
+  const seen = useInView(box, { amount: 0.35 });
+  const [k, setK] = useState(1);
+  const [step, setStep] = useState(0); // counts up; the front card is step % 3
+  useLayoutEffect(() => {
+    const el = box.current; if (!el) return;
+    const ro = new ResizeObserver(([e]) => setK(Math.min(1, e.contentRect.width / S_W)));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  useEffect(() => {
+    if (reduce || !seen) return;
+    const t = setTimeout(() => setStep(n => n + 1), STEP_MS + (step === 0 ? 600 : 0));
+    return () => clearTimeout(t);
+  }, [step, seen, reduce]);
+  const front = step % 3;
+  const tool = LLMS[0]; // Claude, as the example AI (user, 2026-11-24)
+  const cards = [
+    <StackAsk key="a" on={front === 0 && seen} tool={tool} reduce={reduce} />,
+    <StackInterview key="b" on={front === 1} reduce={reduce} />,
+    <StackAnswer key="c" on={front === 2} tool={tool} reduce={reduce} />,
+  ];
+  return (
+    <div ref={box} className="relative w-full" style={{ height: S_H * k }}>
+      <div className="absolute left-0 top-0 origin-top-left" style={{ width: S_W, height: S_H, transform: `scale(${k})` }}>
+        {cards.map((card, i) => {
+          const r = (i - front + 3) % 3;
+          const [x, y, sc, blur, op] = SLOTS[r];
+          return (
+            <motion.div key={i} aria-hidden={r !== 0} className={S_CARD + (r === 0 ? ' ring-2 ring-[#d1f899]' : ' ring-1 ring-[#1a1714]/[0.06]')}
+              style={{ zIndex: 3 - r, transformOrigin: 'left top' }}
+              initial={false}
+              animate={{ transform: `perspective(1200px) translate(${x}px, ${y}px) rotateY(-9deg) rotateX(4deg) scale(${sc})`, filter: `blur(${blur}px)`, opacity: op }}
+              transition={{ duration: reduce ? 0 : 0.7, ease: [0.32, 0.72, 0, 1] }}>
+              {card}
+            </motion.div>
+          );
+        })}
+
+        {/* The handwritten tag, top left on the bare green (never over a card, user 2026-11-24: "make these texts
+            visible"), with a drawn arrow down to the front card. */}
+        <div aria-live="polite" className="absolute left-[14px] top-0 h-[134px] w-[300px]" style={{ zIndex: 5 }}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={front} className="relative h-full" initial={{ opacity: 0, transform: 'translateY(6px)' }} animate={{ opacity: 1, transform: 'translateY(0px)' }}
+              exit={{ opacity: 0, transform: 'translateY(-4px)' }} transition={{ duration: 0.35, ease: EASE }}>
+              <p className="m-0 origin-left -rotate-3 whitespace-nowrap font-['Kalam',cursive] text-[30px] font-bold leading-[1.1] text-[#d1f899]">{S_TAGS[front]}</p>
+              <svg viewBox="0 0 80 90" className="absolute left-[64px] top-[42px] block h-[90px] w-[80px] overflow-visible" aria-hidden="true">
+                <motion.path d="M56 2 C 60 34, 46 62, 22 84" fill="none" stroke="#d1f899" strokeWidth="2.5" strokeLinecap="round"
+                  initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, ease: EASE, delay: 0.2 }} />
+                <motion.path d="M20 70 L 21 85 L 35 80" fill="none" stroke="#d1f899" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                  initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2, delay: 0.65 }} />
+              </svg>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        <span className="absolute bottom-0 right-0 font-sans text-[11px] text-white/40">Example</span>
+      </div>
+    </div>
+  );
+}
+
 function Hero({ reduce }) {
+  const bare = HERO_VISUAL === 'none';
   return (
     <section aria-labelledby="mcp-title" className="relative px-4 pt-[188px] sm:pt-[124px] md:px-10">
-      <div className="relative overflow-hidden rounded-[32px] bg-[#0f2e27] px-5 py-[clamp(48px,6vw,88px)] sm:px-10 md:rounded-[44px] lg:px-[clamp(40px,5vw,80px)]">
+      <div className={'relative overflow-hidden rounded-[32px] bg-[#0f2e27] px-5 sm:px-10 md:rounded-[44px] lg:px-[clamp(40px,5vw,80px)] ' + (bare ? 'py-[clamp(64px,8vw,120px)]' : 'py-[clamp(48px,6vw,88px)]')}>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
-        <div className="relative mx-auto grid max-w-[1232px] grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
-          <div>
-            <Rise reduce={reduce}><Eyebrow align="start" className="mb-6 !text-white/85 sm:mb-8">MCP</Eyebrow></Rise>
-            <Rise as="h1" reduce={reduce} delay={0.06} id="mcp-title" className={'m-0 pb-1 text-[clamp(36px,4.6vw,60px)] leading-[1.05] text-white [text-wrap:balance] ' + TITLE}>
+        <div className={'relative mx-auto grid grid-cols-1 items-center gap-12 lg:gap-16 ' + (bare ? 'max-w-[880px] text-center' : 'max-w-[1232px] lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]')}>
+          <div className={bare ? 'flex flex-col items-center' : undefined}>
+            <Rise reduce={reduce}><Eyebrow align={bare ? 'center' : 'start'} className="mb-6 !text-white/85 sm:mb-8">MCP</Eyebrow></Rise>
+            <Rise as="h1" reduce={reduce} delay={0.06} id="mcp-title" className={'m-0 pb-1 leading-[1.05] text-white [text-wrap:balance] ' + (bare ? 'text-[clamp(36px,5.4vw,72px)] ' : 'text-[clamp(36px,4.6vw,60px)] ') + TITLE}>
               Run customer research from within your <span className="italic">favorite LLM</span>
             </Rise>
-            <Rise as="p" reduce={reduce} delay={0.14} className="m-0 mt-5 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-white/70 sm:mt-6">
+            <Rise as="p" reduce={reduce} delay={0.14} className={'m-0 mt-5 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-white/70 sm:mt-6' + (bare ? ' mx-auto [text-wrap:pretty]' : '')}>
               Connect Frank to Claude, OpenAI, Gemini, and the AI tools you already love to use. Create new research projects, run interviews, explore transcripts, analyze correlations, and uncover real customer insights without leaving your workflow.
             </Rise>
             <Rise reduce={reduce} delay={0.22} className="mt-9">
@@ -464,11 +816,11 @@ function Hero({ reduce }) {
               <p className="m-0 mt-5 font-sans text-[14px] text-white/70">No API keys required. No new workflow. Just connect Frank and start asking.</p>
             </Rise>
           </div>
-          <Rise reduce={reduce} delay={0.3} className="mx-auto w-full max-w-[520px] lg:mr-0">{HERO_VISUAL !== 'chat' ? (<>
+          {!bare && <Rise reduce={reduce} delay={0.3} className="mx-auto w-full max-w-[520px] lg:mr-0">{HERO_VISUAL === 'stack' ? <AiStack reduce={reduce} /> : HERO_VISUAL === 'instruct' ? <AiInstruct reduce={reduce} /> : HERO_VISUAL !== 'chat' ? (<>
             {/* Concept B or C from 640px; on phones their text would be too small, so the chat (concept A) shows there. */}
             <div className="hidden sm:block">{HERO_VISUAL === 'voices' ? <AiVoices reduce={reduce} /> : <AiHub reduce={reduce} />}</div>
             <div className="sm:hidden"><AiChat reduce={reduce} /></div>
-          </>) : <AiChat reduce={reduce} />}</Rise>
+          </>) : <AiChat reduce={reduce} />}</Rise>}
         </div>
       </div>
     </section>
@@ -491,21 +843,29 @@ function Where({ reduce }) {
         <div>
           <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Where it works</Eyebrow></ScrubText>
           <ScrubTitle reduce={reduce} id="mcp-where-title" className={H2}
-            lines={['Works with all major LLMs', <MarkedPhrase key="m" reduce={reduce}>and AI platforms</MarkedPhrase>]} />
+            lines={['Works with all major LLMs', 'and AI platforms']} />
+          {/* All plain Figtree: no lime highlighter and no Lora italic (user, 2026-11-24: "remove highlight", then "simple font"). */}
         </div>
-        <ul className="m-0 grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3 lg:gap-4">
+        {/* Every tile the same size, its logo centred above its name (user, 2026-11-24: "align centre all icons"). The
+            logo and name are centred in the middle of the tile (user, 2026-11-24: "logos should be in the centre of
+            the box"); every label box is one line tall, so the logos also line up across each row. */}
+        <ul className="m-0 grid list-none auto-rows-fr grid-cols-2 gap-3 p-0 sm:grid-cols-3 lg:gap-4">
           {TOOLS.map(([name, logo], i) => (
-            <ScrubText as="li" key={name} reduce={reduce} lag={i * 0.03}>
-              <span className="flex h-full items-center gap-3 rounded-[20px] bg-[#f6f4ef] px-5 py-5 ring-1 ring-inset ring-[#1a1714]/[0.05]">
-                <span className="block size-7 shrink-0">{logo}</span>
-                <span className={FIG + ' text-[18px] tracking-[-0.01em] text-ink'}>{name}</span>
+            <ScrubText as="li" key={name} reduce={reduce} lag={i * 0.03} className="h-full">
+              <span className="flex h-full min-h-[148px] flex-col items-center justify-center gap-3.5 rounded-[20px] bg-white px-4 py-6 text-center ring-1 ring-inset ring-[#1a1714]/[0.08]">
+                <span className="grid size-8 place-items-center"><span className="block size-8">{logo}</span></span>
+                <span className={FIG + ' text-[18px] leading-[1.2] tracking-[-0.01em] text-ink'}>{name}</span>
               </span>
             </ScrubText>
           ))}
-          <ScrubText as="li" reduce={reduce} lag={0.15}>
-            <span className="flex h-full items-center gap-3 rounded-[20px] bg-[#d1f899] px-5 py-5">
-              <img src={mcpLogo} alt="" className="block size-7 shrink-0" />
-              <span className="font-sans text-[15px] leading-[1.35] text-ink">and any MCP-compatible platform</span>
+          <ScrubText as="li" reduce={reduce} lag={0.15} className="h-full">
+            <span className="flex h-full min-h-[148px] flex-col items-center justify-center gap-3.5 rounded-[20px] bg-[#d1f899] px-4 py-6 text-center">
+              <img src={mcpLogo} alt="" className="block size-8" />
+              {/* The label box is one line tall, as in the other tiles, so this logo sits at the same height as theirs;
+                  the second line runs below it. */}
+              <span className="relative block h-[22px] w-full">
+                <span className={FIG + ' absolute inset-x-0 top-0 text-[16px] leading-[1.35] tracking-[-0.01em] text-ink [text-wrap:balance]'}>and any <span className="whitespace-nowrap">MCP-compatible</span> platform</span>
+              </span>
             </span>
           </ScrubText>
         </ul>
