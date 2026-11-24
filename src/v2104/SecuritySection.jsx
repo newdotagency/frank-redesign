@@ -16,7 +16,7 @@ export default function SecuritySection({ reduce, id = 'sec-title', className = 
   return (
     <section aria-labelledby={id} className={className}>
       <div className="mx-auto max-w-[1312px]">
-        <ScrubTitle reduce={reduce} id={id} className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['Enterprise-grade security', '& compliance']} />
+        <ScrubTitle reduce={reduce} id={id} className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['Enterprise-grade security', <span key="c" className="italic">&amp; compliance</span>]} />
         <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-3">
           {SECURITY.map((s, i) => (
             <ScrubText as="li" key={s.name} reduce={reduce} lag={i * 0.06}

@@ -12,6 +12,7 @@ import { ArrowRight, Check } from 'lucide-react';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow } from './titles';
+import MarkedPhrase from './MarkedPhrase';
 import { ScrubText, ScrubTitle } from './reveal';
 import { PL_LOGOS } from './logos/prelaunchBrands';
 import HowItWorks from './HowItWorks';
@@ -31,6 +32,8 @@ const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outli
 const BRANDS = [
   ['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23],
 ];
+// The big titles are set in two fonts: Figtree, with the closing phrase in Lora italic (the other pages' style).
+const It = ({ children }) => <span className="italic">{children}</span>;
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
 
 function Rise({ as = 'div', delay = 0, reduce, className, children, ...rest }) {
@@ -119,7 +122,7 @@ function Related({ slugs, reduce }) {
     <section aria-labelledby="ft-rel-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
       <div className="mx-auto max-w-[1312px]">
         <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Features</Eyebrow></ScrubText>
-        <ScrubTitle reduce={reduce} id="ft-rel-title" className={'m-0 leading-[1.04] text-ink [text-wrap:balance] ' + TITLE} lines={['Related features']} />
+        <ScrubTitle reduce={reduce} id="ft-rel-title" className={'m-0 leading-[1.04] text-ink [text-wrap:balance] ' + TITLE} lines={[<>Related <It>features</It></>]} />
         <ScrubText reduce={reduce} lag={0.1} className="mt-[clamp(32px,5vw,64px)] grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 xl:gap-24">
           <ul className="m-0 list-none p-0">
             {slugs.map((s, i) => {
@@ -212,14 +215,14 @@ export default function FeaturePage({ slug }) {
 
           {/* 3 — How it works: the home page's progress tabs, with the original page's visual in each step. */}
           <div className="pt-[clamp(88px,10vw,150px)]">
-            <HowItWorks steps={steps} label="How it works" lines={m.howLines} subtitle={null} id="ft-how-title" />
+            <HowItWorks steps={steps} label="How it works" lines={[m.howLines[0], <MarkedPhrase key="m" reduce={reduce}>{m.howLines[1]}</MarkedPhrase>]} subtitle={null} id="ft-how-title" />
           </div>
 
           {/* 4 — What you get */}
           <section aria-labelledby="ft-get-title" className="px-4 pt-[clamp(88px,10vw,150px)] md:px-10">
             <div className="rounded-[32px] bg-[#fffdf3] px-5 py-[clamp(56px,7vw,112px)] sm:px-10 md:rounded-[44px]">
               <div className="mx-auto max-w-[1200px]">
-                <ScrubTitle reduce={reduce} id="ft-get-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['What you get']} />
+                <ScrubTitle reduce={reduce} id="ft-get-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={[<>What <It>you get</It></>]} />
                 <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-3">
                   {f.get.map(([t, d], i) => <GetCard key={t} title={t} text={d} src={m.get[i]} i={i} reduce={reduce} />)}
                 </ul>
@@ -230,7 +233,7 @@ export default function FeaturePage({ slug }) {
           {/* 5 — Best use cases: the home page's use-case wheel */}
           <div className="pt-[clamp(88px,10vw,150px)]">
             <UseCases kit={kit} href={TRY} sectionClass="relative px-4 sm:px-[clamp(16px,4vw,48px)]"
-              head={{ eyebrow: 'Use cases', lines: ['Best use cases'], sub: null, titleId: 'ft-use-title' }} />
+              head={{ eyebrow: 'Use cases', lines: [<>Best <It>use cases</It></>], sub: null, titleId: 'ft-use-title' }} />
           </div>
 
           {/* 6 — Related features */}
@@ -241,11 +244,11 @@ export default function FeaturePage({ slug }) {
             <SecuritySection reduce={reduce} id="ft-sec-title" />
           </div>
 
-          <FAQ items={faqs} label="FAQ" lines={['Have questions?', 'We have answers']} id="ft-faq-title" />
+          <FAQ items={faqs} label="FAQ" lines={['Have questions?', <It key="a">We have answers</It>]} id="ft-faq-title" />
 
           {/* Closing: the home page's closing panel with this page's words */}
           <div className="pt-[clamp(88px,10vw,160px)]">
-            <ClosingCTA titleId="ft-cta-title" chips={false} lines={f.closeLines} sub={f.closeSub}
+            <ClosingCTA titleId="ft-cta-title" chips={false} lines={f.closeLines.map((l, i, a) => (i === a.length - 1 ? <It key={l}>{l}</It> : l))} sub={f.closeSub}
               primary={{ label: f.closeCta, href: SIGNUP }} secondary={{ label: 'Try a live demo', href: TRY, ext: true }} />
           </div>
         </main>

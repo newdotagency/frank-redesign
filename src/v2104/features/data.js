@@ -52,8 +52,8 @@ export const FEATURES = {
     title: 'Always on Availability: Customer Interviews 24/7 | Frank',
     description: 'Frank runs customer interviews 24/7, across time zones and moments that matter, so insight is always flowing.',
     label: 'Always on availability',
-    heroLines: ['Let your customers speak', 'even if you can’t listen'],
-    heroItalic: '',
+    heroLines: ['Let your customers speak'],
+    heroItalic: 'even if you can’t listen',
     sub: 'Frank runs customer interviews 24/7, across time zones and moments that matter, so insight is always flowing, even while you sleep.',
     cta: 'Start capturing insights',
     how: [
@@ -95,8 +95,8 @@ export const FEATURES = {
     title: 'Transparency & Security: Insights You Can Trace | Frank',
     description: 'Complete visibility into how insights are generated, sourced, and stored, with enterprise-grade security and zero black boxes.',
     label: 'Transparency & security',
-    heroLines: ['Know exactly where every', 'insight comes from'],
-    heroItalic: '',
+    heroLines: ['Know exactly where every'],
+    heroItalic: 'insight comes from',
     sub: 'Frank gives you complete visibility into how insights are generated, sourced, and stored — with enterprise-grade security and zero black boxes.',
     cta: 'Start getting clarity',
     how: [
@@ -135,8 +135,8 @@ export const FEATURES = {
     title: 'Automated Summaries: 100s of Interviews at a Glance | Frank',
     description: 'Frank automatically summarizes, structures, and highlights key moments in every interview.',
     label: 'Automated summaries',
-    heroLines: ['Review 100s of in-depth', 'interviews at a glance'],
-    heroItalic: '',
+    heroLines: ['Review 100s of in-depth'],
+    heroItalic: 'interviews at a glance',
     sub: 'Frank automatically summarizes, structures, and highlights key moments in every interview, so you spend zero time synthesizing and full time deciding.',
     cta: 'Start getting insights',
     how: [
