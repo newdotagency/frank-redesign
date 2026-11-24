@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Page from '../../v2104/BlogPostPage.jsx';
+import ARTICLES from '../../v2104/blog/articles.json';
+export function getStaticPaths() {
+  return ARTICLES.map(a => ({ params: { slug: a.slug }, props: { post: a } }));
+}
+const { post } = Astro.props;
+---
+<Base title={post.metaTitle || post.title} description={post.metaDescription || post.summary}>
+  <div id="root"><Page post={post} client:only="react" /></div>
+</Base>

@@ -45,7 +45,7 @@ const TOPIC_LABEL = Object.fromEntries(TOPICS.map(t => [t.id, t.label]));
 // Only Heghine has a photo on the live blog; the others get their initials.
 const PHOTOS = { 'Heghine Hambardzumyan': 'https://cdn.prod.website-files.com/69b3e3fe09ea7f89fea39479/69ccdc822e2d3e826961c8b0_Photo%201%20-%20Heghine%20Hambardzumyan.jpeg' };
 
-const hrefOf = p => `${SITE}/blog/${p.slug}`;
+const hrefOf = p => `/blog/${p.slug}`;
 const shortDate = d => d.replace(/^(\w{3})\w*/, '$1');
 const initials = n => n.split(' ').map(w => w[0]).join('').slice(0, 2);
 

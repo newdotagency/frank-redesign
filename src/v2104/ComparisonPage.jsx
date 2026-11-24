@@ -52,7 +52,7 @@ const COMPARE = [
   ['GetWhy', 'getwhy-alternatives', getwhyLogo, 19],
 ].map(([tool, slug, logo, h, page]) => {
   const p = POSTS.find(x => x.slug === slug);
-  return { tool, logo, h, title: p.title, excerpt: p.excerpt, date: p.date.replace(/^(\w{3})\w*/, '$1'), href: page || `${SITE}/blog/${slug}` };
+  return { tool, logo, h, title: p.title, excerpt: p.excerpt, date: p.date.replace(/^(\w{3})\w*/, '$1'), href: page || `/blog/${slug}` };
 });
 const MORE = POSTS.filter(p => p.topics.includes('comparisons')).length;
 // The blog's Comparisons topic. The page address and the topic stay apart so the build can rewrite the address.
