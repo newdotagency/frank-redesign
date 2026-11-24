@@ -1,0 +1,97 @@
+---
+// A legal page: the text is Markdown in src/content/legal/<slug>.md (title, effective date, source in the front matter), rendered
+// into static HTML, so the words are in the page for everyone (and for search) without any script. The page keeps hifrank.ai's
+// path (/privacy-policy, /terms-of-service, /cookies-settings). Header and footer are the site's.
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.jsx';
+import Footer from '../v2104/Footer.jsx';
+const { doc } = Astro.props;
+const { Content, frontmatter: fm } = doc;
+const headings = typeof doc.getHeadings === 'function' ? await doc.getHeadings() : (doc.headings ?? []);
+// "On this page": the top-level headings of the document (h2, or h3 when there are no h2).
+const level = headings.some(h => h.depth === 2) ? 2 : 3;
+const toc = headings.filter(h => h.depth === level);
+const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
+---
+<Base title={fm.metaTitle} description={`${fm.title}. Effective ${fm.effective}.`}>
+  <div class="fk v9 v19 relative" id="top" style="background:#ffffff">
+    <Header client:only="react" fixed mode="auto" mega adaptive hrefs={HREFS} />
+    <main id="main">
+      <header class="legal-head">
+        <div class="legal-wrap">
+          <p class="legal-eyebrow"><span>Legal</span></p>
+          <h1 id="legal-title">{fm.title}</h1>
+          <p class="legal-eff">Effective date: <time>{fm.effective}</time></p>
+        </div>
+      </header>
+      <section class="legal-body">
+        <div class="legal-wrap legal-grid">
+          {toc.length > 2 && (
+            <aside class="legal-toc" aria-label="On this page">
+              <p class="legal-toc-label">On this page</p>
+              <ul>
+                {toc.map(h => <li><a href={'#' + h.slug} data-toc={h.slug}>{h.text}</a></li>)}
+              </ul>
+            </aside>
+          )}
+          <article class="legal-prose"><Content /></article>
+        </div>
+      </section>
+    </main>
+    <Footer client:only="react" />
+  </div>
+</Base>
+
+<script>
+  // "On this page" follows the section nearest the top.
+  const links = [...document.querySelectorAll('[data-toc]')];
+  if (links.length) {
+    const els = links.map(a => document.getElementById(a.getAttribute('data-toc'))).filter(Boolean);
+    const io = new IntersectionObserver(es => {
+      const v = es.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (v) links.forEach(a => a.classList.toggle('on', a.getAttribute('data-toc') === v.target.id));
+    }, { rootMargin: '-100px 0px -70% 0px' });
+    els.forEach(e => io.observe(e));
+  }
+</script>
+
+<style is:global>
+  .legal-head { padding: 196px 16px 0; }
+  @media (min-width: 640px) { .legal-head { padding: 160px clamp(16px, 4vw, 48px) 0; } }
+  .legal-wrap { max-width: 1100px; margin: 0 auto; }
+  .legal-eyebrow { margin: 0 0 24px; }
+  .legal-eyebrow span { display: inline-flex; height: 32px; align-items: center; border-radius: 9999px; padding: 0 14px; font: 300 12.5px/1 Geist, ui-sans-serif, system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #1a1714; background: rgba(26,23,20,.02); box-shadow: inset 0 0 0 1px rgba(26,23,20,.045); }
+  #legal-title { margin: 0; font-size: clamp(32px, 4.4vw, 56px); line-height: 1.06; color: #1a1714; max-width: 18em; text-wrap: balance; }
+  .legal-eff { margin: 20px 0 0; font: 400 15.5px/1.5 Geist, ui-sans-serif, system-ui, sans-serif; color: #7d766e; }
+  .legal-eff time { color: #1a1714; }
+  .legal-body { padding: 48px 16px clamp(72px, 9vw, 128px); }
+  @media (min-width: 640px) { .legal-body { padding-left: clamp(16px, 4vw, 48px); padding-right: clamp(16px, 4vw, 48px); } }
+  .legal-grid { display: grid; gap: 40px; border-top: 1px solid rgba(26,23,20,.08); padding-top: 48px; }
+  @media (min-width: 1280px) { .legal-grid { grid-template-columns: 240px minmax(0, 1fr); gap: 64px; } }
+  .legal-toc { display: none; }
+  @media (min-width: 1280px) { .legal-toc { display: block; } .legal-toc > div, .legal-toc ul { position: sticky; } }
+  .legal-toc-label { margin: 0 0 12px; font: 300 11.5px/1 Geist, ui-sans-serif, system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #7d766e; position: sticky; top: 112px; }
+  .legal-toc ul { list-style: none; margin: 0; padding: 0; border-left: 1px solid rgba(26,23,20,.08); top: 138px; max-height: calc(100vh - 170px); overflow-y: auto; }
+  .legal-toc a { display: block; margin-left: -1px; padding: 6px 12px; border-left: 2px solid transparent; font: 400 13.5px/1.35 Geist, ui-sans-serif, system-ui, sans-serif; color: #7d766e; text-decoration: none; transition: color .2s; }
+  .legal-toc a:hover { color: #5c554d; }
+  .legal-toc a.on { color: #1a1714; border-left-color: #5f8f22; }
+
+  .legal-prose { min-width: 0; max-width: 760px; font: 400 17px/1.75 Geist, ui-sans-serif, system-ui, sans-serif; color: #5c554d; }
+  .legal-prose > * { margin: 0; }
+  .legal-prose > * + * { margin-top: 18px; }
+  .legal-prose h2, .legal-prose h3, .legal-prose h4 { font-family: Figtree, Geist, ui-sans-serif, system-ui, sans-serif; font-weight: 500; letter-spacing: -0.02em; color: #1a1714; scroll-margin-top: 110px; text-wrap: balance; }
+  .legal-prose h2 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.2; margin-top: 56px; }
+  .legal-prose h3 { font-size: clamp(20px, 2vw, 24px); line-height: 1.25; margin-top: 40px; }
+  .legal-prose h4 { font-size: 18px; line-height: 1.3; margin-top: 32px; }
+  .legal-prose > h2:first-child, .legal-prose > h3:first-child { margin-top: 0; }
+  .legal-prose strong { font-weight: 500; color: #1a1714; }
+  .legal-prose a { color: #1a1714; text-decoration: underline; text-decoration-color: #a0d05f; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .legal-prose a:hover { text-decoration-color: #1a1714; }
+  .legal-prose ul, .legal-prose ol { padding-left: 0; list-style: none; display: grid; gap: 10px; }
+  .legal-prose ul > li { position: relative; padding-left: 26px; }
+  .legal-prose ul > li::before { content: ""; position: absolute; left: 4px; top: .72em; width: 7px; height: 7px; border-radius: 9999px; background: #a0d05f; }
+  .legal-prose ol { counter-reset: li; }
+  .legal-prose ol > li { position: relative; padding-left: 40px; counter-increment: li; }
+  .legal-prose ol > li::before { content: counter(li); position: absolute; left: 0; top: .15em; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 9999px; background: #d1f899; font: 500 13px/1 Geist, ui-sans-serif, system-ui, sans-serif; color: #2a321e; }
+  .legal-prose hr { border: 0; height: 1px; background: rgba(26,23,20,.1); }
+</style>
