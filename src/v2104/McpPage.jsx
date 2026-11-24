@@ -16,6 +16,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowUp, Check, Mic, PhoneOff } from 'lucide-react';
 import { siGithubcopilot, siGooglegemini } from 'simple-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { HandshakeIcon, Megaphone01Icon, PackageIcon, Rocket01Icon } from '@hugeicons/core-free-icons';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import Glasses from '../v3/Glasses';
@@ -901,17 +903,63 @@ function How() {
   );
 }
 
-// ——— 4. Built for every team: the live page's four roles in simple cards (role, the question in quotes, the line),
+// ——— 4. Built for every team: the live page's four roles in simple cards (icon and role, the question as a prompt, the line),
 // laid out like the Churn page's "What you get" (user, 2026-11-24: "like this section"): the kicker, title and subtitle
 // pinned on the left; on the right the cards stack as you scroll, each new card sliding up over the one before, so one
 // team shows at a time. The cards are that section's cream with the corner glow. Plain CSS sticky (no scroll script).
 // Two equal columns from 1024px; below that the cards are a plain list.
 const TEAMS = [
-  ['Founders', 'Why are we losing these customers?', 'Pull together interviews from recent wins, losses, and cancellations. Find the patterns behind them and get to the answer before the next decision.'],
-  ['Product', 'What do users actually want next?', 'Explore interviews, test assumptions, compare customer segments, and pressure-test roadmap ideas without digging through research reports.'],
-  ['Marketing', 'Why do customers choose us?', 'Find the language customers naturally use, uncover objections and motivations, and understand what makes people convert.'],
-  ['Sales and accounts', 'Why did we win this deal?', 'Analyze winning and losing conversations to uncover the objections, competitors, buying triggers, and gaps shaping your sales funnel.'],
+  ['Founders', Rocket01Icon, 'Why are we losing these customers?', 'Pull together interviews from recent wins, losses, and cancellations. Find the patterns behind them and get to the answer before the next decision.'],
+  ['Product', PackageIcon, 'What do users actually want next?', 'Explore interviews, test assumptions, compare customer segments, and pressure-test roadmap ideas without digging through research reports.'],
+  ['Marketing', Megaphone01Icon, 'Why do customers choose us?', 'Find the language customers naturally use, uncover objections and motivations, and understand what makes people convert.'],
+  ['Sales and accounts', HandshakeIcon, 'Why did we win this deal?', 'Analyze winning and losing conversations to uncover the objections, competitors, buying triggers, and gaps shaping your sales funnel.'],
 ];
+
+// One team card: the icon tile and role, the question as a prompt in your AI (user, 2026-11-24: keep the icons and the
+// chat input), and the line. The question types in once the card is mostly in view and the send button darkens;
+// screen readers get the whole question as the heading. Reduced motion: shown typed.
+function TeamCard({ role, icon, q, text, reduce }) {
+  const ref = useRef(null);
+  const seen = useInView(ref, { once: true, amount: 0.6 });
+  const [n, setN] = useState(reduce ? q.length : 0);
+  useEffect(() => {
+    if (reduce) { setN(q.length); return; }
+    if (!seen) return;
+    let i = 0, id;
+    const tick = () => { i += 1; setN(i); if (i < q.length) id = setTimeout(tick, 34); };
+    id = setTimeout(tick, 300);
+    return () => clearTimeout(id);
+  }, [seen, reduce, q]);
+  const typed = n >= q.length;
+  return (
+    <div ref={ref} className="relative flex min-h-[320px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-1 ring-[#1a1714]/[0.06] sm:p-9">
+      {/* The Churn page's "What you get" card: cream with the faint grainy yellow glow in the corner. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
+      <span className="relative flex items-center gap-2.5 font-sans text-[15px] text-ink-2">
+        <span className="grid size-8 place-items-center rounded-[10px] bg-white text-ink ring-1 ring-inset ring-[#1a1714]/[0.07]">
+          <HugeiconsIcon icon={icon} size={17} strokeWidth={1.6} aria-hidden="true" />
+        </span>
+        {role}
+      </span>
+      <div className="relative mt-6 flex items-center gap-3 rounded-[18px] bg-white py-2.5 pl-4 pr-2.5 shadow-[0_8px_24px_-18px_rgba(26,23,20,0.35)] ring-1 ring-inset ring-[#1a1714]/[0.08] sm:pl-5">
+        <h3 className={FIG + ' relative m-0 min-w-0 flex-1 text-[clamp(19px,1.8vw,24px)] leading-[1.3] tracking-[-0.02em] text-ink'}>
+          <span className="sr-only">{q}</span>
+          <span aria-hidden="true" className="invisible block">{q}</span>
+          <span aria-hidden="true" className="absolute inset-0">
+            {q.slice(0, n)}
+            {!typed && <span className="ml-px inline-block h-[0.95em] w-[1.5px] translate-y-[0.12em] animate-pulse bg-ink" />}
+          </span>
+        </h3>
+        <span aria-hidden="true" className={'grid size-9 shrink-0 place-items-center rounded-full text-white transition-colors duration-300 ' + (typed ? 'bg-[#1a1714]' : 'bg-[#1a1714]/25')}>
+          <ArrowUp className="size-4" strokeWidth={2.25} />
+        </span>
+      </div>
+      <span aria-hidden="true" className="block min-h-6 flex-1" />
+      <p className="relative m-0 mt-6 max-w-[52ch] font-sans text-[16px] leading-[1.6] text-ink-2">{text}</p>
+    </div>
+  );
+}
+
 function Teams({ reduce }) {
   return (
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
@@ -925,16 +973,9 @@ function Teams({ reduce }) {
         </div>
 
         <ul aria-label="Teams" className="m-0 flex list-none flex-col gap-4 p-0 lg:gap-0">
-          {TEAMS.map(([role, q, text], i) => (
+          {TEAMS.map(([role, icon, q, text], i) => (
             <li key={role} className="lg:sticky lg:mb-[28vh] lg:last:mb-0" style={{ top: `${112 + i * 18}px` }}>
-              <div className="relative flex min-h-[300px] flex-col overflow-hidden rounded-[28px] bg-[#fffdf3] p-7 shadow-[0_-10px_30px_-12px_rgba(26,23,20,0.12)] ring-1 ring-[#1a1714]/[0.06] sm:p-9">
-                {/* The Churn page's "What you get" card: cream with the faint grainy yellow glow in the corner. */}
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={cornerGlowGrain} />
-                <span className="relative font-sans text-[15px] text-ink-2">{role}</span>
-                <h3 className={FIG + ' relative m-0 mt-6 text-[clamp(24px,2.3vw,30px)] leading-[1.2] tracking-[-0.02em] text-ink [text-wrap:balance]'}>&ldquo;{q}&rdquo;</h3>
-                <span aria-hidden="true" className="block min-h-6 flex-1" />
-                <p className="relative m-0 mt-6 max-w-[52ch] font-sans text-[16px] leading-[1.6] text-ink-2">{text}</p>
-              </div>
+              <TeamCard role={role} icon={icon} q={q} text={text} reduce={reduce} />
             </li>
           ))}
         </ul>
