@@ -246,8 +246,8 @@ function Why({ c, reduce }) {
             const Icon = ICONS[icon];
             return (
               <ScrubText as="li" key={title} reduce={reduce} lag={(i % 3) * 0.05}
-                className={'flex flex-col rounded-[24px] bg-[#f7f5f0] p-7 sm:p-8 ' + (c.why.points.length === 5 && i < 3 || c.why.points.length === 3 ? 'md:col-span-2' : 'md:col-span-3')}>
-                <span aria-hidden="true" className="grid size-11 place-items-center rounded-full bg-white text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.06)]">
+                className={'flex flex-col rounded-[24px] bg-[#fffdf3] p-7 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] sm:p-8 ' + (c.why.points.length === 5 && i < 3 || c.why.points.length === 3 ? 'md:col-span-2' : 'md:col-span-3')}>
+                <span aria-hidden="true" className="grid size-11 place-items-center rounded-full bg-[#d1f899] text-[#2a321e]">
                   <Icon className="size-[19px]" strokeWidth={1.5} />
                 </span>
                 <h3 className={FIG + ' m-0 mt-6 text-[20px] leading-[1.25] tracking-[-0.02em] text-ink'}>{title}</h3>
@@ -289,7 +289,7 @@ function Choose({ c, reduce }) {
               <List items={c.choose.frank.items} frank />
             </div>
           </ScrubText>
-          <ScrubText reduce={reduce} lag={0.08} className="rounded-[28px] bg-[#f7f5f0] p-8 sm:p-10">
+          <ScrubText reduce={reduce} lag={0.08} className="rounded-[28px] bg-[#fffdf3] p-8 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] sm:p-10">
             <h3 className={FIG + ' m-0 text-[26px] leading-[1.2] tracking-[-0.02em] text-ink'}>Choose {c.name} if…</h3>
             <p className="m-0 mt-2 font-sans text-[16px] text-ink-3">{c.choose.them.lead}</p>
             <List items={c.choose.them.items} />
@@ -315,7 +315,7 @@ function Others({ c, reduce }) {
             return (
               <ScrubText as="li" key={k} reduce={reduce} lag={i * 0.05}>
                 <a href={o.href}
-                  className={'group flex h-full flex-col rounded-[28px] bg-[#f7f5f0] p-1.5 text-ink no-underline shadow-[inset_0_0_0_1px_rgba(26,23,20,0.04)] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-safe:hover:-translate-y-1 hover:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05),0_28px_48px_-32px_rgba(42,50,30,0.45)] ' + FOCUS}>
+                  className={'group flex h-full flex-col rounded-[28px] bg-[#fffdf3] p-1.5 text-ink no-underline shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-safe:hover:-translate-y-1 hover:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05),0_28px_48px_-32px_rgba(42,50,30,0.45)] ' + FOCUS}>
                   <span className="grid aspect-[16/7] place-items-center"><Pair logo={o.logo} logoH={o.h} /></span>
                   <span className="flex flex-1 items-end justify-between gap-4 rounded-[22px] bg-white px-6 pb-5 pt-5 shadow-[0_1px_2px_rgba(26,23,20,0.04),0_10px_24px_-18px_rgba(42,50,30,0.3)]">
                     <span>
