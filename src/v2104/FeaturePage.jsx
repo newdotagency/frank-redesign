@@ -245,7 +245,7 @@ export default function FeaturePage({ slug }) {
 
           {/* Closing: the home page's closing panel with this page's words */}
           <div className="pt-[clamp(88px,10vw,160px)]">
-            <ClosingCTA titleId="ft-cta-title" chips={false} lines={f.closeLines} sub={f.closeSub}
+            <ClosingCTA titleId="ft-cta-title" chips={false} compact lines={f.closeLines} sub={f.closeSub}
               primary={{ label: f.closeCta, href: SIGNUP }} secondary={{ label: 'Try a live demo', href: TRY }} />
           </div>
         </main>

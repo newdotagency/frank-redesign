@@ -107,8 +107,8 @@ const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outli
 
 // Opt-in content for other pages (the home page passes none, so it is unchanged):
 //   lines: the title's lines; sub: the line under it; primary / secondary: { label, href, ext?, icon? } for the two buttons
-//   (primary's icon: 'arrow' or 'mic', default 'arrow'); titleId: the title's id; chips={false}: no floating pills.
-export default function ClosingCTA({ lines = null, sub = null, primary = null, secondary = null, titleId = 'cta-title', chips = true }) {
+//   (primary's icon: 'arrow' or 'mic', default 'arrow'); titleId: the title's id; chips={false}: no floating pills; compact: a panel only as tall as its content (not a screen).
+export default function ClosingCTA({ lines = null, sub = null, primary = null, secondary = null, titleId = 'cta-title', chips = true, compact = false }) {
   const reduce = !!useReducedMotion();
   const panel = useRef(null);
   const scrub = useScrubIn(panel, reduce);
@@ -155,22 +155,22 @@ export default function ClosingCTA({ lines = null, sub = null, primary = null, s
     <section aria-labelledby={titleId} className="relative px-4 pb-4 md:px-10 md:pb-10">
       <motion.div ref={panel} style={scrub}
         className="relative rounded-[44px]">
-        <div onPointerMove={onMove} onPointerLeave={onLeave} className="relative grid min-h-[calc(100svh-32px)] place-items-center overflow-hidden rounded-[44px] bg-[#d1f899] px-6 py-[clamp(64px,9vw,128px)] text-center md:min-h-[calc(100svh-80px)]">
+        <div onPointerMove={onMove} onPointerLeave={onLeave} className={'relative grid place-items-center overflow-hidden rounded-[44px] bg-[#d1f899] px-6 text-center ' + (compact ? 'py-[clamp(40px,4.5vw,64px)]' : 'min-h-[calc(100svh-32px)] py-[clamp(64px,9vw,128px)] md:min-h-[calc(100svh-80px)]')}>
           <div aria-hidden="true" className="pointer-events-none absolute inset-0"
             style={{ background: 'radial-gradient(70% 45% at 50% 0%, rgba(255,255,255,0.38), rgba(255,255,255,0) 100%)' }} />
           {chips && CHIPS.map((c, i) => <Chip key={i} p={chipsP} px={px} py={py} live={live} reduce={reduce} {...c} />)}
           <div className="relative z-[1] mx-auto max-w-[900px]">
-            <div aria-hidden="true" className="mx-auto w-[84px] sm:w-[104px]">
+            <div aria-hidden="true" className={'mx-auto ' + (compact ? 'w-[64px] sm:w-[72px]' : 'w-[84px] sm:w-[104px]')}>
               <Glasses pose={pose} reduced={reduce} />
             </div>
             <div ref={titleBox}>
-              <ScrubTitle reduce={reduce} id={titleId} className={'m-0 mt-8 leading-[1.06] text-ink [text-wrap:balance] sm:mt-10 ' + TITLE}
+              <ScrubTitle reduce={reduce} id={titleId} className={'m-0 leading-[1.06] text-ink [text-wrap:balance] ' + (compact ? 'mt-5 sm:mt-6 ' : 'mt-8 sm:mt-10 ') + TITLE}
                 lines={lines || ['Your customers have', 'something to say.', <>Maybe they want to <span className="italic">{tellFrank}</span></>]} />
             </div>
             <ScrubText as="p" reduce={reduce} lag={0.15} className={'mx-auto mb-0 max-w-[44ch] [text-wrap:balance] mt-6 ' + SUBTITLE}>
               {sub || 'Describe what you want to learn and hear from your customers before your next standup.'}
             </ScrubText>
-            <ScrubText reduce={reduce} lag={0.25} className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:mt-10">
+            <ScrubText reduce={reduce} lag={0.25} className={'flex flex-wrap items-center justify-center gap-3 ' + (compact ? 'mt-7' : 'mt-9 sm:mt-10')}>
               {/* Primary: the mic sits in its own circle at the button's end; on hover it nudges up and
                   out and grows a touch, on press the whole button sinks. */}
               <a href={primary ? primary.href : '#ie-title'} onClick={primary ? undefined : toInterview} {...look}
