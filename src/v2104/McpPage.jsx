@@ -913,6 +913,7 @@ function Teams({ reduce }) {
     <section aria-labelledby="mcp-teams-title" className={SECTION + PAD}>
       <div className="mx-auto max-w-[1312px]">
         <div className="max-w-[820px]">
+          <ScrubText reduce={reduce}><Eyebrow align="start" className="mb-6 sm:mb-8">Built for every team</Eyebrow></ScrubText>
           <ScrubTitle reduce={reduce} id="mcp-teams-title" className={H2} lines={['Customer research', 'built around your work']} />
           <ScrubText as="p" reduce={reduce} lag={0.12} className={'mb-0 mt-6 max-w-[62ch] ' + SUBTITLE}>
             You don’t need to become a researcher, learn new skills, or dedicate hours to managing interviews to reap the benefits of customer insights. With Frank connected to your AI, customer insight effortlessly becomes part of the work you already do every day.
