@@ -87,28 +87,35 @@ const useMac = () => { const [m, setM] = useState(false); useEffect(() => setM(/
 const Kbd = ({ children }) => <kbd className="inline-grid h-5 min-w-5 place-items-center rounded-[5px] bg-white px-1 font-gmono text-[11px] text-ink-3 ring-1 ring-[#1a1714]/[0.1]">{children}</kbd>;
 
 function TopBar({ onSearch, onMenu }) {
-  const mac = useMac();
   return (
     <header className="sticky top-0 z-40 border-0 border-b border-solid border-[#1a1714]/[0.07] bg-white/90 backdrop-blur-md" style={{ height: TOP }}>
-      <div className="mx-auto flex h-full max-w-[1440px] items-center gap-3 px-4 sm:gap-5 sm:px-6">
+      <div className="flex h-full items-center gap-3 px-4 sm:px-6">
         <button type="button" onClick={onMenu} aria-label="Browse the guides" className={'grid size-10 shrink-0 cursor-pointer place-items-center rounded-[10px] border-0 bg-transparent text-ink hover:bg-[#1a1714]/[0.05] lg:hidden ' + FOCUS}><Menu className="size-5" strokeWidth={1.75} /></button>
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex shrink-0 items-center gap-3 lg:w-[calc(272px-24px)]">
           <Logo />
           <span aria-hidden="true" className="hidden h-5 w-px bg-[#1a1714]/[0.12] sm:block" />
           <a href="/docs" className={'hidden rounded-[6px] font-sans text-[14.5px] text-ink-2 no-underline hover:text-ink sm:block ' + FOCUS}>Docs</a>
         </div>
-        <button type="button" onClick={onSearch} aria-label="Search the docs"
-          className={'ml-auto flex h-10 min-w-0 flex-1 cursor-pointer items-center gap-2.5 rounded-[12px] border-0 bg-[#1a1714]/[0.04] px-3.5 text-left font-sans text-[14.5px] text-ink-3 transition-colors duration-200 hover:bg-[#1a1714]/[0.07] sm:ml-6 sm:max-w-[420px] sm:flex-none sm:basis-[420px] lg:ml-[clamp(24px,8vw,120px)] ' + FOCUS}>
-          <Search aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.75} />
-          <span className="min-w-0 flex-1 truncate">Search the docs…</span>
-          <span aria-hidden="true" className="hidden items-center gap-1 sm:flex">{mac ? <Kbd><Command className="size-3" /></Kbd> : <Kbd>Ctrl</Kbd>}<Kbd>K</Kbd></span>
-        </button>
-        <div className="ml-auto hidden items-center gap-2 md:flex">
-          <a href="mailto:support@hifrank.ai" className={'inline-flex h-10 items-center gap-2 rounded-full px-4 font-sans text-[14px] text-ink no-underline transition-colors duration-200 hover:bg-[#1a1714]/[0.05] ' + FOCUS}><Mail className="size-4" strokeWidth={1.75} />Contact support</a>
+        <div className="ml-auto flex items-center gap-2">
+          <button type="button" onClick={onSearch} aria-label="Search the docs" className={'grid size-10 cursor-pointer place-items-center rounded-[10px] border-0 bg-transparent text-ink hover:bg-[#1a1714]/[0.05] lg:hidden ' + FOCUS}><Search className="size-5" strokeWidth={1.75} /></button>
+          <a href="mailto:support@hifrank.ai" className={'hidden h-10 items-center gap-2 rounded-full px-4 font-sans text-[14px] text-ink no-underline transition-colors duration-200 hover:bg-[#1a1714]/[0.05] md:inline-flex ' + FOCUS}><Mail className="size-4" strokeWidth={1.75} />Contact support</a>
           <a href={SIGNUP} className={'inline-flex h-10 items-center rounded-full bg-[#1a1714] px-5 font-sans text-[14px] font-medium text-white no-underline transition-colors duration-200 hover:bg-[#2a2622] ' + FOCUS}>Get started</a>
         </div>
       </div>
     </header>
+  );
+}
+
+// The sidebar's search box (opens the palette).
+function SideSearch({ onSearch }) {
+  const mac = useMac();
+  return (
+    <button type="button" onClick={onSearch} aria-label="Search the docs"
+      className={'mb-6 flex h-10 w-full cursor-pointer items-center gap-2.5 rounded-[12px] border-0 bg-[#1a1714]/[0.04] px-3.5 text-left font-sans text-[14.5px] text-ink-3 transition-colors duration-200 hover:bg-[#1a1714]/[0.07] ' + FOCUS}>
+      <Search aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.75} />
+      <span className="min-w-0 flex-1 truncate">Search…</span>
+      <span aria-hidden="true" className="flex items-center gap-1">{mac ? <Kbd><Command className="size-3" /></Kbd> : <Kbd>Ctrl</Kbd>}<Kbd>K</Kbd></span>
+    </button>
   );
 }
 
@@ -134,7 +141,7 @@ const QUICK = ARTICLES.faq.sections.flatMap(s => s.blocks.filter(b => b.t === 'q
 function DocsHome({ reduce, onSearch }) {
   const mac = useMac();
   return (
-    <main id="main" className="mx-auto max-w-[1040px] px-4 pb-[clamp(72px,9vw,128px)] pt-[clamp(36px,5vw,72px)] sm:px-8">
+    <main id="main" className="mx-auto w-full max-w-[1080px] px-4 pb-[clamp(72px,9vw,128px)] pt-[clamp(36px,5vw,72px)] sm:px-8 lg:px-10">
       <Rise reduce={reduce}><Eyebrow align="start" className="mb-6">Docs and guides</Eyebrow></Rise>
       <Rise as="h1" reduce={reduce} delay={0.05} id="dc-title" className={'m-0 leading-[1.04] text-ink [text-wrap:balance] ' + TITLE}>
         How can we <span className="italic">help you?</span>
@@ -231,15 +238,18 @@ export default function DocsPage() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="fk v9 v19 relative min-h-screen" id="top" style={{ background: '#fbfaf6' }}>
+      <div className="fk v9 v19 relative min-h-screen" id="top" style={{ background: '#ffffff' }}>
         <TopBar onSearch={() => setSearchOpen(true)} onMenu={() => setMenuOpen(true)} />
-        <div className="mx-auto flex max-w-[1440px]">
-          <aside className="sticky hidden w-[272px] shrink-0 self-start overflow-y-auto border-0 border-r border-solid border-[#1a1714]/[0.06] bg-white px-4 pb-10 pt-7 lg:block" style={{ top: TOP, height: `calc(100vh - ${TOP}px)` }}>
+        <div className="flex">
+          <aside className="sticky hidden w-[272px] shrink-0 self-start overflow-y-auto bg-white px-4 pb-10 pt-6 lg:block" style={{ top: TOP, height: `calc(100vh - ${TOP}px)` }}>
+            <SideSearch onSearch={() => setSearchOpen(true)} />
             <Nav active={route} />
           </aside>
-          <div className="min-w-0 flex-1">
+          {/* The content panel: from the sidebar to the right edge, its top-left corner rounded (as in Resend's docs);
+              the article (and "On this page") or the home page sit centred inside it. */}
+          <div className="min-w-0 flex-1 bg-[#fbfaf6] lg:rounded-tl-[24px] lg:shadow-[inset_1px_1px_0_rgba(26,23,20,0.07)]" style={{ minHeight: `calc(100vh - ${TOP}px)` }}>
             {article ? (
-              <main id="main" className="mx-auto max-w-[1080px] px-4 pb-[clamp(72px,9vw,128px)] pt-[clamp(28px,4vw,56px)] sm:px-8">
+              <main id="main" className="mx-auto w-full max-w-[1080px] px-4 pb-[clamp(72px,9vw,128px)] pt-[clamp(28px,4vw,56px)] sm:px-8 lg:px-10">
                 <DocArticle slug={route} a={article} prev={link(ORDER[idx - 1])} next={link(ORDER[idx + 1])} />
               </main>
             ) : <DocsHome reduce={reduce} onSearch={() => setSearchOpen(true)} />}
