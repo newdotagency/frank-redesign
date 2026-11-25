@@ -124,8 +124,8 @@ export function GlobalCover() {
           </svg>
         </div>
         <div className="mt-[18px] flex justify-center gap-4">
-          {[[Mic, '#3f4a2e'], [Video, '#4d5a3a'], [Phone, '#1a1714']].map(([Icon, bg], i) => (
-            <span key={i} aria-hidden="true" className="grid size-[42px] place-items-center rounded-full text-white" style={{ background: bg }}><Icon className={'size-[18px] ' + (i === 2 ? 'rotate-[135deg]' : '')} strokeWidth={1.7} /></span>
+          {[Mic, Video, Phone].map((Icon, i) => (
+            <span key={i} aria-hidden="true" className="grid size-[42px] place-items-center rounded-full bg-white text-[#1a1714] shadow-[0_8px_18px_-10px_rgba(26,23,20,0.4)] ring-1 ring-[#1a1714]/[0.08]"><Icon className={'size-[18px] ' + (i === 2 ? 'rotate-[135deg]' : '')} strokeWidth={1.7} /></span>
           ))}
         </div>
       </div>
