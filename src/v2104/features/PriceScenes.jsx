@@ -77,26 +77,28 @@ export function EffortScene({ active, reduce }) {
 // ——— 3. Iteration: Setup → Interview → Analyze, in a loop.
 export function IterationScene({ active, reduce }) {
   const on = active;
-  const nodes = [[260, 112, '01.', 'Setup'], [410, 372, '02.', 'Interview'], [110, 372, '03.', 'Analyze']];
+  const C = [260, 290], R = 196;
+  const at = deg => [C[0] + R * Math.cos(deg * Math.PI / 180), C[1] + R * Math.sin(deg * Math.PI / 180)];
+  const nodes = [[-90, 'Setup'], [30, 'Interview'], [150, 'Analyze']];
   return (
     <Stage>
       <Float on={on} reduce={reduce} at={0} className="inset-0">
         <svg aria-hidden="true" viewBox="0 0 520 578" className="absolute inset-0 size-full" fill="none">
-          <circle cx="260" cy="290" r="196" fill="#fffdf3" fillOpacity="0.6" />
-          <circle cx="260" cy="290" r="196" stroke="#1a1714" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 6" />
-          {[[372, 148, 38], [330, 482, 168], [138, 208, -78]].map(([x, y, r], i) => <path key={i} d="M-9 6 L9 0 L-9 -6 Z" fill="#3f6b12" transform={`translate(${x} ${y}) rotate(${r})`} />)}
+          <circle cx={C[0]} cy={C[1]} r={R} fill="#fffdf3" fillOpacity="0.6" />
+          <circle cx={C[0]} cy={C[1]} r={R} stroke="#1a1714" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 6" />
+          {[-30, 90, 210].map(d => { const [x, y] = at(d); return <path key={d} d="M-8 -7 L8 0 L-8 7 Z" fill="#3f6b12" transform={`translate(${x} ${y}) rotate(${d + 90})`} />; })}
         </svg>
       </Float>
       <Float on={on} reduce={reduce} at={0.1} className="left-[170px] top-[200px]">
         <span className={'grid size-[180px] place-items-center rounded-full bg-white shadow-[0_18px_36px_-18px_rgba(26,23,20,0.35)] ' + RING}><Mark className="w-[74%]" /></span>
       </Float>
-      {nodes.map(([x, y, n, t], i) => (
+      {nodes.map(([d, t], i) => { const [x, y] = at(d); return (
         <Float key={t} on={on} reduce={reduce} at={0.25 + i * 0.14} className="" style={{ left: x - 62, top: y - 62 }}>
-          <span className="grid size-[124px] place-items-center rounded-full bg-white text-center shadow-[0_16px_30px_-16px_rgba(26,23,20,0.4)] ring-1 ring-[#1a1714]/[0.06]">
-            <span className={FIG + ' leading-snug text-[#2a321e]'}><span className="block text-[15px] opacity-70">{n}</span><span className="block text-[18px] font-medium">{t}</span></span>
+          <span className="grid size-[124px] place-items-center rounded-full bg-[#d1f899] text-center shadow-[0_16px_30px_-16px_rgba(26,23,20,0.4)] ring-1 ring-[#1a1714]/[0.06]">
+            <span className={FIG + ' text-[19px] font-medium text-[#2a321e]'}>{t}</span>
           </span>
         </Float>
-      ))}
+      ); })}
     </Stage>
   );
 }
