@@ -70,7 +70,7 @@ export default function IndustryPage({ slug }) {
 
           {/* 2 — Key Customer Moments: progress tabs, the picture on the right */}
           <div className="pt-[clamp(88px,10vw,150px)]">
-            <HowItWorks steps={steps} label={d.momentsLabel} lines={d.momentsLines} subtitle={d.momentsSub} id="in-moments-title" />
+            <HowItWorks steps={steps} label={d.momentsLabel} lines={d.momentsLines} subtitle={d.momentsSub} id="in-moments-title" slider />
           </div>
 
           {/* 3 — How Frank Works */}
@@ -80,13 +80,15 @@ export default function IndustryPage({ slug }) {
                 <ScrubText reduce={reduce}><Eyebrow className="mb-6 sm:mb-8">{d.howLabel}</Eyebrow></ScrubText>
                 <ScrubTitle reduce={reduce} id="in-how-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={d.howLines} />
                 <ScrubText as="p" reduce={reduce} lag={0.05} className="mx-auto mb-0 mt-5 max-w-[56ch] text-center font-sans text-[16.5px] leading-[1.6] text-ink-2">{d.howSub}</ScrubText>
-                <ol className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-3">
+                <ol className="m-0 mt-12 grid list-none gap-5 p-0 sm:mt-16 md:grid-cols-3 md:gap-4">
                   {d.how.map(([t, text], i) => (
-                    <ScrubText as="li" key={t} reduce={reduce} lag={i * 0.06} className="flex flex-col rounded-[24px] bg-white p-7 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] sm:p-8">
+                    <motion.li key={t} className="flex flex-col rounded-[24px] bg-white p-7 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] max-md:shadow-[0_0_0_1.5px_rgba(26,23,20,0.14)] sm:p-8"
+                      initial={reduce ? false : { opacity: 0, y: 48, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.35 }}
+                      transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0 : (i % 3) * 0.08 }}>
                       <span aria-hidden="true" className="grid size-12 place-items-center rounded-full bg-[#d1f899] font-['Figtree',sans-serif] text-[18px] font-medium text-[#2a321e]">{i + 1}</span>
                       <h3 className="m-0 mt-6 font-['Figtree',sans-serif] text-[22px] font-medium leading-tight tracking-[-0.02em] text-ink">{t}</h3>
                       <p className="m-0 mt-3 font-sans text-[15.5px] leading-[1.6] text-ink-2">{text}</p>
-                    </ScrubText>
+                    </motion.li>
                   ))}
                 </ol>
               </div>
@@ -94,7 +96,7 @@ export default function IndustryPage({ slug }) {
           </section>
 
           {/* 4 — Roles */}
-          <section aria-labelledby="in-roles-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
+          <section aria-labelledby="in-roles-title" className="px-4 pb-[clamp(88px,10vw,150px)] pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
             <div className="mx-auto max-w-[1312px]">
               <ScrubTitle reduce={reduce} id="in-roles-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={d.rolesLines} />
               <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-3">

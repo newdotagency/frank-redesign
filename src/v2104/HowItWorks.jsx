@@ -61,13 +61,15 @@ const Body = ({ step, className = '' }) => step.body.map(t => (
 
 export default function HowItWorks({ eyebrow = true, steps = STEPS, label = 'How Frank works',
   lines = ['Your first customer interview', 'in under 5 minutes'],
-  subtitle = 'From question to answer, without writing a single line of code.', id = 'hiw-title', action = null }) {
+  subtitle = 'From question to answer, without writing a single line of code.', id = 'hiw-title', action = null, slider = false }) {
   const reduce = !!useReducedMotion();
   const N = steps.length;
   const tid = id.replace(/-title$/, '');
   const track = useRef(null);
   const tabs = useRef([]);
   const [active, setActive] = useState(0);
+  const [dot, setDot] = useState(0);
+  const onRail = e => { const el = e.currentTarget; const card = el.children[0]; if (!card) return; setDot(Math.max(0, Math.min(N - 1, Math.round(el.scrollLeft / (card.offsetWidth + 16))))); };
   const head = useRef(null);
   // The step card rises and grows in as the track scrolls up to the point where the columns pin.
   const cardIn = useScrubIn(track, reduce, { offset: ['start end', 'start start'] });
@@ -191,7 +193,24 @@ export default function HowItWorks({ eyebrow = true, steps = STEPS, label = 'How
         </div>
       </div>
 
-      {/* Below 1024px: stacked cards, outlined — visual, then the left-aligned title and description. */}
+      {/* Below 1024px: outlined cards, visual then the left-aligned title and description: stacked, or (slider) one swipeable row. */}
+      {slider ? (
+        <div className="lg:hidden">
+          <ol onScroll={onRail} aria-label={label} className="m-0 mt-12 flex list-none snap-x snap-mandatory items-stretch gap-4 overflow-x-auto scroll-px-4 px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-[clamp(16px,4vw,48px)]">
+            {steps.map((s, i) => (
+              <li key={s.name} className="w-[86%] max-w-[420px] shrink-0 snap-center rounded-[28px] bg-white p-3 text-left shadow-[0_0_0_1.5px_rgba(26,23,20,0.14)]">
+                <Visual index={i} reduce={reduce} scene={s.scene} />
+                <p className="m-0 mt-6 px-3 font-sans text-[14px] text-ink-2"><span className="tabular-nums">{i + 1}</span>&ensp;{s.name}</p>
+                <h3 className="hiw-step-title m-0 mt-2 px-3 text-[24px] leading-[1.15] text-ink">{s.title}</h3>
+                <div className="px-3 pb-3"><Body step={s} /></div>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-5 flex justify-center gap-2" aria-hidden="true">
+            {steps.map((s, i) => <span key={s.name} className={'h-2 rounded-full transition-all duration-300 ' + (i === dot ? 'w-6 bg-ink' : 'w-2 bg-ink/20')} />)}
+          </div>
+        </div>
+      ) : (
       <ol className="m-0 mt-12 flex list-none flex-col gap-14 px-4 sm:px-[clamp(16px,4vw,48px)] lg:hidden">
         {steps.map((s, i) => (
           <motion.li key={s.name} {...reveal(reduce, 0, { amount: 0.2 })} className="mx-auto w-full max-w-[480px] rounded-[28px] p-3 text-left shadow-[0_0_0_1.5px_rgba(26,23,20,0.14)]">
@@ -202,6 +221,7 @@ export default function HowItWorks({ eyebrow = true, steps = STEPS, label = 'How
           </motion.li>
         ))}
       </ol>
+      )}
       {action && <div className="mt-10 flex justify-center px-4 lg:hidden">{action}</div>}
     </section>
   );
