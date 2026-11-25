@@ -30,7 +30,7 @@ export function Stage({ children, w = W, h = H }) {
 }
 
 // Floats in (after `at` seconds) when the scene plays.
-function Float({ on, reduce, at = 0, className = '', style, children }) {
+export function Float({ on, reduce, at = 0, className = '', style, children }) {
   return (
     <motion.div className={'absolute ' + className} style={style} initial={false}
       animate={on || reduce ? { opacity: 1, transform: 'translateY(0px) scale(1)' } : { opacity: 0, transform: 'translateY(14px) scale(0.98)' }}
@@ -40,8 +40,8 @@ function Float({ on, reduce, at = 0, className = '', style, children }) {
   );
 }
 
-const CARD = 'rounded-[18px] bg-white shadow-[0_22px_50px_-22px_rgba(26,23,20,0.38)] ring-1 ring-[#1a1714]/[0.06]';
-const FIG = "font-['Figtree',sans-serif]";
+export const CARD = 'rounded-[18px] bg-white shadow-[0_22px_50px_-22px_rgba(26,23,20,0.38)] ring-1 ring-[#1a1714]/[0.06]';
+export const FIG = "font-['Figtree',sans-serif]";
 const Pill = ({ children, dot = true, className = '' }) => (
   <span className={'inline-flex items-center gap-2 rounded-full bg-[#f1f9e3] px-3.5 py-1.5 font-sans text-[14px] text-[#3f6b12] ' + className}>
     {dot && <span aria-hidden="true" className="size-2 rounded-full bg-[#5f8f22]" />}{children}

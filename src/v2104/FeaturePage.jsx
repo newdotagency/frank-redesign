@@ -24,6 +24,7 @@ import { FEATURES, RELATED_CARDS } from './features/data';
 import { MEDIA, iconSvg } from './features/media';
 import { imageScene } from './features/scenes';
 import { GLOBAL_SCENES } from './features/GlobalScenes';
+import { ALWAYS_ON_SCENES } from './features/AlwaysOnScenes';
 import { GLOBAL_GET_VISUALS } from './features/GlobalGetVisuals';
 import { COVERS } from './features/FeatureCovers';
 
@@ -81,8 +82,8 @@ function toHow(e) {
 }
 
 // The how-it-works steps for a page (scenes built once, so a step's visual keeps its identity between renders).
-// Global scalability has its own drawn scenes (features/GlobalScenes.jsx); the other pages show their original picture.
-const CUSTOM = { 'global-scalability': GLOBAL_SCENES };
+// Global scalability and Always on availability have their own drawn scenes (features/GlobalScenes.jsx, AlwaysOnScenes.jsx); the other pages show their original picture.
+const CUSTOM = { 'global-scalability': GLOBAL_SCENES, 'always-on-availability': ALWAYS_ON_SCENES };
 // ...and its three "What you get" visuals (features/GlobalGetVisuals.jsx).
 const CUSTOM_GET = { 'global-scalability': GLOBAL_GET_VISUALS };
 const STEPS = {};
