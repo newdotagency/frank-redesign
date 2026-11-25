@@ -1,110 +1,129 @@
 // QualityScenes (V21.04): the four "What Frank delivers" visuals of the Quality benefit page, redrawn in the V21.04 colours as plain HTML and
-// SVG (a 520 × 578 stage scaled to the card; Frank is the glasses, never the old wordmark):
+// SVG on a 520 × 578 stage scaled to the card. Each is one centred column: related things sit close, groups are set apart by one even gap.
+// Frank is the glasses, never the old wordmark.
 //   Rigor:    one interview guide branching into the same structured questions, every time.
-//   Evidence: "What are the main reasons users churn?" answered with themes and the quotes behind them.
+//   Evidence: "What are the main reasons users churn?" answered with themes and the quote behind each.
 //   Depth:    "What do users say about the onboarding?" answered with shares, interview counts and quotes.
 //   Analysis: a human interviewer's leading questions against Frank's neutral ones.
+import { motion } from 'framer-motion';
 import Glasses from '../../v3/Glasses';
-import { Avatar, FIG, Float, Stage } from './GlobalScenes';
+import { Avatar, FIG, Stage } from './GlobalScenes';
 
+const EASE = [0.23, 1, 0.32, 1];
 const RING = 'ring-1 ring-[#1a1714]/[0.06]';
 const SOFT = 'shadow-[0_10px_22px_-14px_rgba(26,23,20,0.3)]';
+const AMBER = 'bg-[#fbf3db] text-[#8a6100]';
 const Mark = ({ className = '' }) => <span className={'block ' + className}><Glasses pose="Thinking" reduced={false} /></span>;
 
-// ——— 1. Rigor: the same structure, every time.
-const BOXES = [
-  [260, 70, 150, 'root'],
-  [110, 190, 92], [260, 190, 92], [410, 190, 92],
-  [60, 300, 78], [165, 300, 78], [270, 300, 78], [375, 300, 78], [460, 300, 70],
-  [60, 400, 78], [165, 400, 78], [270, 400, 78], [375, 400, 78],
-  [112, 500, 92], [262, 500, 92], [412, 500, 92],
-];
-const LINES = [[260, 92, 260, 150], [110, 150, 410, 150], [110, 150, 110, 170], [260, 150, 260, 170], [410, 150, 410, 170], [110, 210, 110, 240], [60, 240, 165, 240], [60, 240, 60, 280], [165, 240, 165, 280], [410, 210, 410, 240], [270, 240, 375, 240], [270, 240, 270, 280], [375, 240, 375, 280], [60, 320, 60, 380], [165, 320, 165, 380], [270, 320, 270, 380], [375, 320, 375, 380], [60, 420, 60, 450], [60, 450, 262, 450], [262, 450, 262, 480], [112, 450, 112, 480], [375, 420, 375, 450], [262, 450, 412, 450], [412, 450, 412, 480]];
+// A block that rises in (in flow, so the column keeps its spacing).
+const Rise = ({ on, reduce, at = 0, className = '', style, children }) => (
+  <motion.div className={className} style={style} initial={false}
+    animate={on || reduce ? { opacity: 1, transform: 'translateY(0px)' } : { opacity: 0, transform: 'translateY(14px)' }}
+    transition={{ duration: reduce ? 0 : 0.6, ease: EASE, delay: on && !reduce ? at : 0 }}>{children}</motion.div>
+);
+const Column = ({ children, className = '' }) => <div className={'absolute inset-x-[44px] inset-y-0 flex flex-col justify-center ' + className}>{children}</div>;
+
+// ——— 1. Rigor: the same structure, every time. Guide → three branches → two questions each.
+const Bar = ({ w = '60%', tone = '#d1f899' }) => <span className="block h-1.5 rounded-full" style={{ width: w, background: tone }} />;
 export function RigorScene({ active, reduce }) {
   const on = active;
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0} className="inset-0">
-        <svg aria-hidden="true" viewBox="0 0 520 578" className="absolute inset-0 size-full" fill="none" stroke="#1a1714" strokeOpacity="0.28" strokeWidth="1.5">
-          {LINES.map(([a, b, c, d], i) => <path key={i} d={`M${a} ${b} L${c} ${d}`} />)}
-        </svg>
-      </Float>
-      {BOXES.map(([x, y, w, root], i) => (
-        <Float key={i} on={on} reduce={reduce} at={root ? 0.05 : 0.15 + (y / 500) * 0.5} className="" style={{ left: x - w / 2, top: y - (root ? 28 : 18), width: w }}>
-          {root
-            ? <div className={'grid h-[56px] place-items-center rounded-[16px] bg-white ' + SOFT + ' ' + RING}><Mark className="w-[56%]" /></div>
-            : <div className={'h-[36px] rounded-[11px] bg-white ' + RING} style={{ boxShadow: '0 8px 16px -12px rgba(26,23,20,0.3)' }}><span className="m-2.5 block h-1.5 w-[55%] rounded-full bg-[#d1f899]" /></div>}
-        </Float>
-      ))}
+      <Column className="items-center">
+        <Rise on={on} reduce={reduce} className={'grid h-[76px] w-[200px] place-items-center rounded-[18px] bg-white ' + SOFT + ' ' + RING}><Mark className="w-[58%]" /></Rise>
+        <Rise on={on} reduce={reduce} at={0.12} className="h-[34px] w-px bg-[#1a1714]/25" />
+        <Rise on={on} reduce={reduce} at={0.16} className="relative h-px w-[372px] bg-[#1a1714]/25">
+          {[0, 50, 100].map(p => <span key={p} className="absolute top-0 h-[26px] w-px bg-[#1a1714]/25" style={{ left: p + '%' }} />)}
+        </Rise>
+        <div className="mt-[26px] flex w-[432px] justify-between">
+          {[0, 1, 2].map(i => (
+            <Rise key={i} on={on} reduce={reduce} at={0.24 + i * 0.1} className="flex w-[136px] flex-col items-center">
+              <div className={'flex h-[54px] w-full items-center rounded-[13px] bg-white px-4 ' + SOFT + ' ' + RING}><Bar w="70%" tone="#5f8f22" /></div>
+              <span className="h-[22px] w-px bg-[#1a1714]/25" />
+              <div className="flex w-full flex-col gap-2.5">
+                {[0, 1].map(j => <div key={j} className={'flex h-[44px] items-center rounded-[11px] bg-white px-4 ' + RING}><Bar w={j ? '44%' : '62%'} /></div>)}
+              </div>
+            </Rise>
+          ))}
+        </div>
+      </Column>
     </Stage>
   );
 }
 
-// ——— shared chat pieces for 2 and 3.
-const Ask = ({ children }) => <div className={FIG + ' ml-auto w-fit max-w-[360px] rounded-[18px] bg-[#fffdf3] px-5 py-3.5 text-[16px] text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.08)]'}>{children}</div>;
-const Reply = ({ children }) => <div className={FIG + ' w-[420px] rounded-[18px] bg-white px-5 py-3.5 text-[15.5px] leading-snug text-ink ' + SOFT + ' ' + RING}>{children}</div>;
+// ——— chat pieces for 2 and 3: the question and Frank's answer sit together, the evidence below.
+const Ask = ({ children }) => <div className={FIG + ' ml-auto w-fit max-w-[340px] rounded-[16px] rounded-br-[5px] bg-[#fffdf3] px-4 py-3 text-[15px] text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.08)]'}>{children}</div>;
+const Reply = ({ children }) => <div className={FIG + ' w-fit max-w-[390px] rounded-[16px] rounded-bl-[5px] bg-white px-4 py-3 text-[15px] leading-snug text-ink ' + SOFT + ' ' + RING}>{children}</div>;
 
-// ——— 2. Evidence: themes and the words behind them.
+// ——— 2. Evidence.
 export function EvidenceScene({ active, reduce }) {
   const on = active;
-  const cards = [['Pricing confusion', 'bg-[#f6e3dc] text-[#9a4a32]', '38 interviews', '“I didn’t understand what I was paying for until the bill arrived.”', 'S', 'Sarah M. · Marketing Lead', 'Interview #47'], ['Onboarding drop-off', 'bg-[#e4f5c8] text-[#3f6b12]', '29 interviews', '“The setup took too long — I gave up after the third step.”', 'J', 'James K. · Product Designer', 'Interview #12']];
+  const cards = [['Pricing confusion', 'bg-[#f6e3dc] text-[#9a4a32]', '38 interviews', '“I didn’t understand what I was paying for until the bill arrived.”', 'S', 'Sarah M. · Marketing Lead'], ['Onboarding drop-off', 'bg-[#e4f5c8] text-[#3f6b12]', '29 interviews', '“The setup took too long — I gave up after the third step.”', 'J', 'James K. · Product Designer']];
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0} className="left-[40px] top-[60px] w-[440px]"><Ask>What are the main reasons users churn?</Ask></Float>
-      <Float on={on} reduce={reduce} at={0.2} className="left-[40px] top-[140px]"><Reply>Across 113 interviews, 3 themes come up consistently — here’s what customers actually said:</Reply></Float>
-      {cards.map(([t, tone, n, q, c, who, id], i) => (
-        <Float key={t} on={on} reduce={reduce} at={0.4 + i * 0.16} className="left-[40px] w-[420px]" style={{ top: 250 + i * 138 }}>
-          <div className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT + ' ' + RING}>
-            <div className="flex items-center justify-between"><span className={'rounded-full px-3 py-1 font-sans text-[12.5px] ' + tone}>{t}</span><span className="font-sans text-[12px] text-ink-2">{n}</span></div>
-            <p className="m-0 mt-2.5 font-sans text-[13.5px] text-ink">{q}</p>
-            <div className="mt-2.5 flex items-center gap-2 font-sans text-[12px] text-ink-2"><Avatar c={c} size={26} />{who}<span className="ml-auto">{id}</span></div>
-          </div>
-        </Float>
-      ))}
+      <Column>
+        <Rise on={on} reduce={reduce}><Ask>What are the main reasons users churn?</Ask></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 113 interviews, 3 themes come up consistently — here’s what customers actually said:</Reply></Rise>
+        <div className="mt-5 flex flex-col gap-2.5">
+          {cards.map(([t, tone, n, q, c, who], i) => (
+            <Rise key={t} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT + ' ' + RING}>
+              <div className="flex items-center justify-between"><span className={'rounded-full px-3 py-1 font-sans text-[12.5px] ' + tone}>{t}</span><span className="font-sans text-[12px] text-ink-2">{n}</span></div>
+              <p className="m-0 mt-2 font-sans text-[13.5px] leading-snug text-ink">{q}</p>
+              <div className="mt-2 flex items-center gap-2 font-sans text-[12px] text-ink-2"><Avatar c={c} size={24} />{who}</div>
+            </Rise>
+          ))}
+        </div>
+      </Column>
     </Stage>
   );
 }
 
-// ——— 3. Depth: shares of what customers said.
+// ——— 3. Depth.
 export function DepthScene({ active, reduce }) {
   const on = active;
   const cards = [['70%', '68 interviews', 70, '“Too many steps before I could do anything useful.”', true], ['30%', '29 interviews', 30, '“I didn’t know where to start — no guidance at all.”', false]];
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0} className="left-[40px] top-[60px] w-[440px]"><Ask>What do users say about the onboarding?</Ask></Float>
-      <Float on={on} reduce={reduce} at={0.2} className="left-[40px] top-[140px]"><Reply>Across 97 interviews on onboarding, two answers dominate:</Reply></Float>
-      {cards.map(([pct, n, w, q, top], i) => (
-        <Float key={pct} on={on} reduce={reduce} at={0.4 + i * 0.16} className="left-[40px] w-[420px]" style={{ top: 236 + i * 136 }}>
-          <div className={'rounded-[16px] bg-white px-5 py-4 ' + SOFT + ' ' + RING}>
-            <div className="flex items-baseline gap-3"><span className={FIG + ' text-[34px] leading-none ' + (top ? 'text-ink' : 'text-ink-2')}>{pct}</span><span className="font-sans text-[12px] text-ink-2">{n}</span>{top && <span className="ml-auto rounded-full bg-[#d1f899] px-3 py-1 font-sans text-[12px] text-[#2a321e]">most said</span>}</div>
-            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#1a1714]/[0.06]"><div className="h-full rounded-full" style={{ width: w + '%', background: top ? '#5f8f22' : '#c9d6b3' }} /></div>
-            <p className="m-0 mt-3 font-sans text-[13.5px] text-ink">{q}</p>
-          </div>
-        </Float>
-      ))}
-      <Float on={on} reduce={reduce} at={0.75} className="left-[40px] top-[512px]"><span className="font-sans text-[12.5px] text-ink-2">Based on 97 interviews · Themes cross-validated across sessions</span></Float>
+      <Column>
+        <Rise on={on} reduce={reduce}><Ask>What do users say about the onboarding?</Ask></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 97 interviews on onboarding, two answers dominate:</Reply></Rise>
+        <div className="mt-5 flex flex-col gap-2.5">
+          {cards.map(([pct, n, w, q, top], i) => (
+            <Rise key={pct} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT + ' ' + RING}>
+              <div className="flex items-center gap-2.5"><span className={FIG + ' text-[28px] leading-none ' + (top ? 'text-ink' : 'text-ink-2')}>{pct}</span><span className="font-sans text-[12px] text-ink-2">{n}</span>{top && <span className="ml-auto rounded-full bg-[#d1f899] px-3 py-1 font-sans text-[12px] text-[#2a321e]">most said</span>}</div>
+              <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-[#1a1714]/[0.06]"><div className="h-full rounded-full" style={{ width: w + '%', background: top ? '#5f8f22' : '#c9d6b3' }} /></div>
+              <p className="m-0 mt-2.5 font-sans text-[13.5px] leading-snug text-ink">{q}</p>
+            </Rise>
+          ))}
+        </div>
+        <Rise on={on} reduce={reduce} at={0.6} className="mt-3 font-sans text-[12px] text-ink-2">Based on 97 interviews · Themes cross-validated across sessions</Rise>
+      </Column>
     </Stage>
   );
 }
 
-// ——— 4. Analysis: leading vs neutral.
+// ——— 4. Analysis: leading questions against neutral ones.
 export function BiasScene({ active, reduce }) {
   const on = active;
   const human = ['“Do you always use our app while driving?”', '“How much did you love our new feature?”', '“Would you pay $50 for this?”', 'The customer said it was too expensive'];
   const frank = ['“How often do you use our app while driving?”', '“Walk me through your experience using this feature”', '“How much do you currently spend on this issue per month?”', 'The value between the Standard and Pro tiers isn’t clear'];
-  const Col = ({ x, title, pill, items, rose, at }) => (
-    <Float on={on} reduce={reduce} at={at} className="w-[226px]" style={{ left: x, top: 64 }}>
-      <div className="text-center"><div className="grid h-[52px] place-items-center">{title}</div><span className={'mx-auto mt-3 block w-fit rounded-full px-3.5 py-1 font-sans text-[12.5px] ' + (rose ? 'bg-[#f6e3dc] text-[#9a4a32]' : 'bg-[#d1f899] text-[#2a321e]')}>{pill}</span></div>
-      <div className="mt-6 flex flex-col gap-3">
-        {items.map(t => <div key={t} className={'flex min-h-[86px] items-center justify-center rounded-[14px] px-3.5 py-3 text-center font-sans text-[14px] leading-snug text-ink ' + (rose ? 'bg-[#fbe9e4] ring-1 ring-[#e9b9ae]' : 'bg-white ' + SOFT + ' ' + RING)}>{t}</div>)}
+  const Col = ({ title, pill, items, human: h, at }) => (
+    <Rise on={on} reduce={reduce} at={at} className="flex w-[212px] flex-col items-center">
+      <div className="grid h-[40px] place-items-center">{title}</div>
+      <span className={'mt-2 rounded-full px-3.5 py-1 font-sans text-[12.5px] ' + (h ? AMBER : 'bg-[#d1f899] text-[#2a321e]')}>{pill}</span>
+      <div className="mt-4 flex w-full flex-col gap-2">
+        {items.map(t => <div key={t} className={'flex h-[72px] items-center justify-center rounded-[14px] px-3 text-center font-sans text-[13.5px] leading-snug text-ink ' + (h ? 'bg-[#fffdf3] shadow-[inset_0_0_0_1px_rgba(138,97,0,0.18)]' : 'bg-white ' + SOFT + ' ' + RING)}>{t}</div>)}
       </div>
-    </Float>
+    </Rise>
   );
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0} className="left-[259px] top-[70px] h-[440px] w-px"><div className="h-full border-l border-dashed border-[#1a1714]/15" /></Float>
-      <Col x={24} title={<span className={FIG + ' text-[26px] text-ink'}>Human</span>} pill="personal bias" items={human} rose at={0.1} />
-      <Col x={270} title={<Mark className="mx-auto w-[78px]" />} pill="no bias" items={frank} at={0.3} />
+      <Column className="!inset-x-[28px]">
+        <div className="flex justify-between">
+          <Col title={<span className={FIG + ' text-[24px] text-ink'}>Human</span>} pill="personal bias" items={human} human at={0.05} />
+          <Col title={<Mark className="w-[64px]" />} pill="no bias" items={frank} at={0.25} />
+        </div>
+      </Column>
     </Stage>
   );
 }
