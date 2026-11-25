@@ -55,8 +55,8 @@ export function InsightsScene({ active, reduce }) {
   return (
     <Stage>
       <Column>
-        <Rise on={on} reduce={reduce}><Reply>Based on 113 interviews, here are the top themes I found. I can go deeper on any of these.</Reply></Rise>
-        <Rise on={on} reduce={reduce} at={0.15} className="mt-3"><Ask>Show me graphs for each topic with the top answers</Ask></Rise>
+        <Rise on={on} reduce={reduce}><Ask>Show me graphs for each topic with the top answers</Ask></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-3"><Reply>Here are the top themes from 113 interviews, charted by their most common answers.</Reply></Rise>
         <Rise on={on} reduce={reduce} at={0.32} className={'mt-5 w-[260px] rounded-[18px] bg-white p-4 ' + SOFT + ' ' + RING}>
           <div className={FIG + ' text-[15px] text-ink'}>Why users dropped off</div>
           <div className="mt-4 flex h-[110px] items-end gap-4">

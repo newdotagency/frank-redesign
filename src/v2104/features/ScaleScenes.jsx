@@ -69,8 +69,8 @@ export function DepthChartsScene({ active, reduce }) {
   return (
     <Stage>
       <Column>
-        <Rise on={on} reduce={reduce}><Reply>Based on 113 interviews, here are the top themes I found.</Reply></Rise>
-        <Rise on={on} reduce={reduce} at={0.15} className="mt-3"><Ask>Show me graphs for each topic with the top answers</Ask></Rise>
+        <Rise on={on} reduce={reduce}><Ask>Show me graphs for each topic with the top answers</Ask></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-3"><Reply>Based on 113 interviews, here are the top themes I found.</Reply></Rise>
         <div className="mt-5 grid grid-cols-2 gap-3">
           <Rise on={on} reduce={reduce} at={0.32} className={'rounded-[18px] bg-white p-4 ' + SOFT + ' ' + RING}>
             <div className={FIG + ' text-[15px] text-ink'}>Sentiment over time</div>
