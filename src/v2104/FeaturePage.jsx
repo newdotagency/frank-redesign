@@ -23,6 +23,7 @@ import Footer from './Footer';
 import { FEATURES, RELATED_CARDS } from './features/data';
 import { MEDIA, RELATED_IMG, iconSvg } from './features/media';
 import { imageScene } from './features/scenes';
+import { GLOBAL_SCENES } from './features/GlobalScenes';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const TRY = '/try-frank'; // the Try Frank page on this site
@@ -78,9 +79,11 @@ function toHow(e) {
 }
 
 // The how-it-works steps for a page (scenes built once, so a step's visual keeps its identity between renders).
+// Global scalability has its own drawn scenes (features/GlobalScenes.jsx); the other pages show their original picture.
+const CUSTOM = { 'global-scalability': GLOBAL_SCENES };
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = FEATURES[slug].how.map(([title, text], i) => ({
-  name: MEDIA[slug].names[i], title, body: [text], scene: imageScene(MEDIA[slug].how[i], title),
+  name: MEDIA[slug].names[i], title, body: [text], scene: CUSTOM[slug]?.[i] || imageScene(MEDIA[slug].how[i], title),
 })));
 
 // The use cases, in the home page's wheel: each with its original icon, drawn in the page's greens.
