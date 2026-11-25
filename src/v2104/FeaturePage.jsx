@@ -21,10 +21,11 @@ import ClosingCTA from './ClosingCTA';
 import FAQ from './FAQ';
 import Footer from './Footer';
 import { FEATURES, RELATED_CARDS } from './features/data';
-import { MEDIA, RELATED_IMG, iconSvg } from './features/media';
+import { MEDIA, iconSvg } from './features/media';
 import { imageScene } from './features/scenes';
 import { GLOBAL_SCENES } from './features/GlobalScenes';
 import { GLOBAL_GET_VISUALS } from './features/GlobalGetVisuals';
+import { COVERS } from './features/FeatureCovers';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const TRY = '/try-frank'; // the Try Frank page on this site
@@ -131,9 +132,7 @@ function Related({ slugs, reduce }) {
           {slugs.map((s, i) => (
             <ScrubText as="li" key={s} reduce={reduce} lag={i * 0.06}>
               <a href={'/features/' + s} className={'group flex h-full flex-col overflow-hidden rounded-[24px] bg-[#fffdf3] text-ink no-underline shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] transition-colors duration-300 hover:bg-[#fbf8e8] ' + FOCUS}>
-                <span className="grid aspect-[4/3] place-items-center overflow-hidden bg-[#d1f899]">
-                  <img src={RELATED_IMG[s]} alt="" loading="lazy" draggable={false} className="size-full object-cover" />
-                </span>
+                {(() => { const Cover = COVERS[s]; return <Cover />; })()}
                 <span className="flex flex-1 flex-col p-7 sm:p-8">
                   <span className="hiw-step-title block text-[22px] leading-tight text-ink">{RELATED_CARDS[s].title}</span>
                   <span className="mt-3 block font-sans text-[15.5px] leading-[1.6] text-ink-2">{RELATED_CARDS[s].text}</span>
