@@ -114,10 +114,10 @@ export default function CallCard({ data, reduce, className = '' }) {
               {person}
               <Wave on={speaking === 'customer'} reduce={reduce} />
             </span>
-            {/* Frank's self-view tile. */}
-            <span className={'absolute right-2.5 top-11 grid size-[52px] place-items-center rounded-[12px] bg-[#0f2e27] transition-shadow duration-300 sm:size-14 ' +
+            {/* Frank's self-view tile: his photo, a still from his greeting video (as the Voice page's phone shows him). */}
+            <span className={'absolute right-2.5 top-11 block size-[52px] overflow-hidden rounded-[12px] bg-[#0f2e27] transition-shadow duration-300 sm:size-14 ' +
               (speaking === 'frank' ? 'shadow-[0_0_0_2px_rgba(255,255,255,0.85)]' : 'shadow-[0_0_0_1px_rgba(255,255,255,0.15)]')}>
-              <span className="grid size-8 place-items-center rounded-full bg-[#d1f899]"><span className="block w-[64%]"><Glasses pose="Ready" reduced /></span></span>
+              <img src="/videos/frank-avatar.jpg" alt="" className="block size-full object-cover" />
             </span>
           </div>
           <div className="flex justify-center gap-2 py-2">
