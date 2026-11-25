@@ -89,6 +89,10 @@ export function SummaryScene({ active, reduce }) {
           </div>
         </div>
       </Float>
+      {/* A frosted layer over the quotes, behind the button, so the button stands out. */}
+      <Float on={on} reduce={reduce} at={0.3} className="left-[24px] top-[196px] h-[190px] w-[472px]">
+        <div aria-hidden="true" className="size-full bg-[#fffdf3]/80 backdrop-blur-[3px]" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent)' }} />
+      </Float>
       <Float on={on} reduce={reduce} at={0.35} className="left-[110px] top-[278px] w-[300px]">
         <div className="flex items-center justify-center gap-3 rounded-[20px] bg-white py-4 shadow-[0_22px_44px_-18px_rgba(26,23,20,0.45)] ring-1 ring-[#1a1714]/[0.07]">
           <span className={FIG + ' text-[20px] text-ink'}>Jump to interview</span><ExternalLink className="size-5 text-ink" strokeWidth={1.8} />
