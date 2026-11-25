@@ -6,6 +6,7 @@
 //   Depth:    "What do users say about the onboarding?" answered with shares, interview counts and quotes.
 //   Analysis: a human interviewer's leading questions against Frank's neutral ones.
 import { motion } from 'framer-motion';
+import { User } from 'lucide-react';
 import Glasses from '../../v3/Glasses';
 import { Avatar, FIG, Stage } from './GlobalScenes';
 
@@ -30,7 +31,7 @@ export function RigorScene({ active, reduce }) {
   return (
     <Stage>
       <Column className="items-center">
-        <Rise on={on} reduce={reduce} className={'grid h-[76px] w-[200px] place-items-center rounded-[18px] border-[1.5px] border-dashed border-[#1a1714]/50 bg-white/70'}><Mark className="w-[58%]" /></Rise>
+        <Rise on={on} reduce={reduce} className={'grid h-[76px] w-[200px] place-items-center rounded-[18px] bg-white ' + SOFT + ' ' + RING}><Mark className="w-[58%]" /></Rise>
         <Rise on={on} reduce={reduce} at={0.12} className="h-[34px] w-0 border-l-[1.5px] border-dashed border-[#1a1714]/50" />
         <Rise on={on} reduce={reduce} at={0.16} className="relative h-0 w-[372px] border-t-[1.5px] border-dashed border-[#1a1714]/50">
           {[0, 50, 100].map(p => <span key={p} className="absolute top-0 h-[26px] w-0 border-l-[1.5px] border-dashed border-[#1a1714]/50" style={{ left: p + '%' }} />)}
@@ -38,10 +39,10 @@ export function RigorScene({ active, reduce }) {
         <div className="mt-[26px] flex w-[432px] justify-between">
           {[0, 1, 2].map(i => (
             <Rise key={i} on={on} reduce={reduce} at={0.24 + i * 0.1} className="flex w-[136px] flex-col items-center">
-              <div className={'flex h-[54px] w-full items-center rounded-[13px] border-[1.5px] border-dashed border-[#1a1714]/50 bg-white/70 px-4'}><Bar w="70%" tone="#5f8f22" /></div>
+              <div className={'flex h-[54px] w-full items-center rounded-[13px] bg-white ' + SOFT + ' ' + RING + '  px-4'}><Bar w="70%" tone="#5f8f22" /></div>
               <span className="h-[22px] w-0 border-l-[1.5px] border-dashed border-[#1a1714]/50" />
               <div className="flex w-full flex-col gap-2.5">
-                {[0, 1].map(j => <div key={j} className={'flex h-[44px] items-center rounded-[11px] border-[1.5px] border-dashed border-[#1a1714]/50 bg-white/50 px-4'}><Bar w={j ? '44%' : '62%'} /></div>)}
+                {[0, 1].map(j => <div key={j} className={'flex h-[44px] items-center rounded-[11px] bg-white/80 px-4 ' + RING}><Bar w={j ? '44%' : '62%'} /></div>)}
               </div>
             </Rise>
           ))}
@@ -52,8 +53,19 @@ export function RigorScene({ active, reduce }) {
 }
 
 // ——— chat pieces for 2 and 3: the question and Frank's answer sit together, the evidence below.
-const Ask = ({ children }) => <div className={FIG + ' ml-auto w-fit max-w-[340px] rounded-[16px] rounded-br-[5px] bg-[#1a1714] px-4 py-3 text-[15px] text-white'}>{children}</div>;
-const Reply = ({ children }) => <div className={FIG + ' w-fit max-w-[390px] rounded-[16px] rounded-bl-[5px] bg-white px-4 py-3 text-[15px] leading-snug text-ink ' + SOFT}>{children}</div>;
+const Ico = ({ children }) => <span aria-hidden="true" className={'grid size-[42px] shrink-0 place-items-center rounded-full bg-white ' + SOFT + ' ' + RING}>{children}</span>;
+const Ask = ({ children }) => (
+  <div className="flex items-end justify-end gap-2.5">
+    <div className={FIG + ' max-w-[330px] rounded-[16px] rounded-br-[5px] bg-white px-4 py-3 text-[15px] text-ink ' + SOFT + ' ' + RING}>{children}</div>
+    <Ico><User className="size-5 text-[#3f6b12]" strokeWidth={1.8} /></Ico>
+  </div>
+);
+const Reply = ({ children }) => (
+  <div className="flex items-end gap-2.5">
+    <Ico><Mark className="w-[82%]" /></Ico>
+    <div className={FIG + ' max-w-[370px] rounded-[16px] rounded-bl-[5px] bg-[#fffdf3] px-4 py-3 text-[15px] leading-snug text-ink ' + SOFT + ' ' + RING}>{children}</div>
+  </div>
+);
 
 // ——— 2. Evidence.
 export function EvidenceScene({ active, reduce }) {
@@ -63,7 +75,7 @@ export function EvidenceScene({ active, reduce }) {
     <Stage>
       <Column>
         <Rise on={on} reduce={reduce}><Ask>What are the main reasons users churn?</Ask></Rise>
-        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 113 interviews, 3 themes come up consistently:</Reply></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-3"><Reply>Across 113 interviews, 3 themes come up consistently:</Reply></Rise>
         <div className="mt-5 flex flex-col gap-2.5">
           {cards.map(([t, tone, q], i) => (
             <Rise key={t} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT}>
@@ -85,7 +97,7 @@ export function DepthScene({ active, reduce }) {
     <Stage>
       <Column>
         <Rise on={on} reduce={reduce}><Ask>What do users say about the onboarding?</Ask></Rise>
-        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 97 interviews, two answers dominate:</Reply></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-3"><Reply>Across 97 interviews, two answers dominate:</Reply></Rise>
         <div className="mt-5 flex flex-col gap-2.5">
           {cards.map(([pct, w, q, top], i) => (
             <Rise key={pct} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT}>
