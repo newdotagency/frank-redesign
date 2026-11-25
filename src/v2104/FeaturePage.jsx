@@ -24,6 +24,7 @@ import { FEATURES, RELATED_CARDS } from './features/data';
 import { MEDIA, RELATED_IMG, iconSvg } from './features/media';
 import { imageScene } from './features/scenes';
 import { GLOBAL_SCENES } from './features/GlobalScenes';
+import { GLOBAL_GET_VISUALS } from './features/GlobalGetVisuals';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const TRY = '/try-frank'; // the Try Frank page on this site
@@ -81,6 +82,8 @@ function toHow(e) {
 // The how-it-works steps for a page (scenes built once, so a step's visual keeps its identity between renders).
 // Global scalability has its own drawn scenes (features/GlobalScenes.jsx); the other pages show their original picture.
 const CUSTOM = { 'global-scalability': GLOBAL_SCENES };
+// ...and its three "What you get" visuals (features/GlobalGetVisuals.jsx).
+const CUSTOM_GET = { 'global-scalability': GLOBAL_GET_VISUALS };
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = FEATURES[slug].how.map(([title, text], i) => ({
   name: MEDIA[slug].names[i], title, body: [text], scene: CUSTOM[slug]?.[i] || imageScene(MEDIA[slug].how[i], title),
@@ -100,12 +103,16 @@ const kitOf = slug => ({
 });
 
 // What you get: each feature with its visual, in a card.
-function GetCard({ title, text, src, i, reduce }) {
+function GetCard({ title, text, src, Visual, i, reduce }) {
   return (
     <ScrubText as="li" reduce={reduce} lag={i * 0.06} className="flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06)]">
-      <div className="grid aspect-[4/3] place-items-center bg-[#fffdf3] p-5 sm:p-6">
-        <img src={src} alt="" loading="lazy" draggable={false} className="max-h-full max-w-full rounded-[14px] object-contain" />
-      </div>
+      {Visual ? (
+        <div className="relative aspect-[4/3] overflow-hidden bg-[#fffdf3]"><Visual /></div>
+      ) : (
+        <div className="grid aspect-[4/3] place-items-center bg-[#fffdf3] p-5 sm:p-6">
+          <img src={src} alt="" loading="lazy" draggable={false} className="max-h-full max-w-full rounded-[14px] object-contain" />
+        </div>
+      )}
       <div className="p-7 sm:p-8">
         <h3 className="m-0 font-['Figtree',sans-serif] text-[22px] font-medium leading-tight tracking-[-0.02em] text-ink">{title}</h3>
         <p className="m-0 mt-3 font-sans text-[15.5px] leading-[1.6] text-ink-2">{text}</p>
@@ -202,7 +209,7 @@ export default function FeaturePage({ slug }) {
               <div className="mx-auto max-w-[1200px]">
                 <ScrubTitle reduce={reduce} id="ft-get-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['What you get']} />
                 <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-3">
-                  {f.get.map(([t, d], i) => <GetCard key={t} title={t} text={d} src={m.get[i]} i={i} reduce={reduce} />)}
+                  {f.get.map(([t, d], i) => <GetCard key={t} title={t} text={d} src={m.get[i]} Visual={CUSTOM_GET[slug]?.[i]} i={i} reduce={reduce} />)}
                 </ul>
               </div>
             </div>

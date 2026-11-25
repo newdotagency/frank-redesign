@@ -13,18 +13,18 @@ import { BadgeCheck, Layers, LayoutTemplate, Mic } from 'lucide-react';
 const W = 520, H = 578;
 const EASE = [0.23, 1, 0.32, 1];
 
-function Stage({ children }) {
+export function Stage({ children, w = W, h = H }) {
   const box = useRef(null);
   const [k, setK] = useState(1);
   useLayoutEffect(() => {
     const el = box.current; if (!el) return;
-    const ro = new ResizeObserver(([e]) => setK(e.contentRect.width / W));
+    const ro = new ResizeObserver(([e]) => setK(e.contentRect.width / w));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
   return (
     <div ref={box} className="absolute inset-0">
-      <div className="absolute left-0 top-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${k})` }}>{children}</div>
+      <div className="absolute left-0 top-0 origin-top-left" style={{ width: w, height: h, transform: `scale(${k})` }}>{children}</div>
     </div>
   );
 }
@@ -49,7 +49,7 @@ const Pill = ({ children, dot = true, className = '' }) => (
 );
 
 // Flags, drawn small (36 × 26, rounded).
-function Flag({ code, w = 36 }) {
+export function Flag({ code, w = 36 }) {
   const h = Math.round(w * 26 / 36);
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
   const body = {
@@ -75,6 +75,19 @@ function Flag({ code, w = 36 }) {
     fr: <>
       <rect width="12" height="26" fill="#3b5aa8" /><rect x="12" width="12" height="26" fill="#fff" /><rect x="24" width="12" height="26" fill="#d8403a" />
     </>,
+    it: <>
+      <rect width="12" height="26" fill="#2f8a4f" /><rect x="12" width="12" height="26" fill="#fff" /><rect x="24" width="12" height="26" fill="#d8403a" />
+    </>,
+    es: <>
+      <rect width="36" height="26" fill="#d8403a" /><rect y="6.5" width="36" height="13" fill="#f2c230" />
+    </>,
+    se: <>
+      <rect width="36" height="26" fill="#3b5aa8" /><rect x="10" width="5.5" height="26" fill="#f2c230" /><rect y="10.2" width="36" height="5.6" fill="#f2c230" />
+    </>,
+    no: <>
+      <rect width="36" height="26" fill="#d8403a" /><rect x="9.5" width="7.5" height="26" fill="#fff" /><rect y="9.2" width="36" height="7.6" fill="#fff" />
+      <rect x="11.5" width="3.5" height="26" fill="#3b5aa8" /><rect y="11.2" width="36" height="3.6" fill="#3b5aa8" />
+    </>,
   }[code];
   const id = 'fl' + uid;
   return (
@@ -88,7 +101,7 @@ function Flag({ code, w = 36 }) {
 
 // A waveform that moves while `live` (the voice page's bars).
 const PATTERN = [3, 6, 10, 5, 8, 14, 9, 4, 12, 16, 7, 5, 11, 15, 8, 4, 9, 13, 6, 3, 8, 12];
-function Bars({ live, n = 22, h = 28, w = 3, gap = 3, color = 'rgba(26,23,20,0.22)' }) {
+export function Bars({ live, n = 22, h = 28, w = 3, gap = 3, color = 'rgba(26,23,20,0.22)' }) {
   return (
     <span aria-hidden="true" className={'vo-wave flex items-center ' + (live ? 'on' : '')} style={{ height: h, gap }}>
       {Array.from({ length: n }, (_, i) => PATTERN[i % PATTERN.length]).map((b, i) => (
@@ -97,7 +110,7 @@ function Bars({ live, n = 22, h = 28, w = 3, gap = 3, color = 'rgba(26,23,20,0.2
     </span>
   );
 }
-const Avatar = ({ c, size = 40 }) => (
+export const Avatar = ({ c, size = 40 }) => (
   <span aria-hidden="true" className="grid shrink-0 place-items-center rounded-full bg-[#f1f9e3] font-sans text-[15px] font-medium text-[#3f6b12]" style={{ width: size, height: size }}>{c}</span>
 );
 
