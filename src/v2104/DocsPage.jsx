@@ -247,7 +247,7 @@ export default function DocsPage() {
           </aside>
           {/* The content panel: from the sidebar to the right edge, its top-left corner rounded (as in Resend's docs);
               the article (and "On this page") or the home page sit centred inside it. */}
-          <div className="min-w-0 flex-1 bg-[#fbfaf6] lg:rounded-tl-[24px] lg:shadow-[inset_1px_1px_0_rgba(26,23,20,0.07)]" style={{ minHeight: `calc(100vh - ${TOP}px)` }}>
+          <div className="min-w-0 flex-1 bg-[#fffdf3] lg:rounded-tl-[24px] lg:shadow-[inset_1px_1px_0_rgba(26,23,20,0.07)]" style={{ minHeight: `calc(100vh - ${TOP}px)` }}>
             {article ? (
               <main id="main" className="mx-auto w-full max-w-[1080px] px-4 pb-[clamp(72px,9vw,128px)] pt-[clamp(28px,4vw,56px)] sm:px-8 lg:px-10">
                 <DocArticle slug={route} a={article} prev={link(ORDER[idx - 1])} next={link(ORDER[idx + 1])} />

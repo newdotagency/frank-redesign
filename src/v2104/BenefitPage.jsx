@@ -1,13 +1,12 @@
 // BenefitPage (V21.04): one of the four "Benefits" pages of hifrank.ai (/benefits/price, /quality, /scale, /speed) in the V21.04 style. They
 // share one layout on the live site, kept here: hero → "Trusted by" → "What Frank delivers" (tabs, each with its picture) → "When X
-// matters most" (four cards with icons) → "Traditional research vs Frank AI Interviewer" (three columns) → one customer quote →
-// closing. The words and pictures are the live pages' (benefits/benefits.json, public/benefits/<slug>/); the hero has no picture,
+// matters most" (four cards with icons) → "Traditional research vs Frank AI Interviewer" (three columns) → the home page's Testimonials
+// section → closing. The words and pictures are the live pages' (benefits/benefits.json, public/benefits/<slug>/); the hero has no picture,
 // only the site's general hero panel. The pictures are the originals, to be re-coloured later.
 //   · "What Frank delivers" is the home page's progress tabs (HowItWorks), each step showing its original picture;
 //   · the comparison is one grid: the row names, Traditional research, and Frank (dark) side by side; on phones each row is a card.
 import { useMemo } from 'react';
 import { MotionConfig, useReducedMotion } from 'framer-motion';
-import { Check } from 'lucide-react';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow } from './titles';
@@ -15,6 +14,7 @@ import { ScrubText, ScrubTitle } from './reveal';
 import { PL_LOGOS } from './logos/prelaunchBrands';
 import HowItWorks from './HowItWorks';
 import ClosingCTA from './ClosingCTA';
+import Testimonials from './Testimonials';
 import Footer from './Footer';
 import BENEFITS from './benefits/benefits.json';
 import { siteHref } from '../lib/sitePaths';
@@ -48,7 +48,7 @@ function toHow(e) {
 // The scenes are built once per page, so a step's picture keeps its identity between renders.
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = BENEFITS[slug].delivery.items.map(it => ({
-  name: '', icon: it.icon, title: it.title, body: [it.text], scene: imageScene(it.img, it.title),
+  name: '', title: it.title, body: [it.text], scene: imageScene(it.img, it.title),
 })));
 
 function Comparison({ b, reduce }) {
@@ -62,7 +62,7 @@ function Comparison({ b, reduce }) {
           <div role="table" aria-label="Traditional research and Frank compared" className="grid grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)_minmax(0,1fr)] gap-x-3">
             <div role="row" className="contents">
               <div role="columnheader" aria-label="Row" />
-              <div role="columnheader" className="rounded-t-[24px] bg-[#f4f2ec] px-7 py-6 font-['Figtree',sans-serif] text-[20px] font-medium tracking-[-0.02em] text-ink">{b.comparison.tradTitle}</div>
+              <div role="columnheader" className="rounded-t-[24px] bg-[#fffdf3] px-7 py-6 font-['Figtree',sans-serif] text-[20px] font-medium tracking-[-0.02em] text-ink">{b.comparison.tradTitle}</div>
               <div role="columnheader" className="flex items-center rounded-t-[24px] bg-[#0f2e27] px-7 py-6"><img src="/benefits/frank-logo.svg" alt="Frank" className="block h-[22px] w-auto" /></div>
             </div>
             {rows.map(([label, trad, frank], i) => {
@@ -70,10 +70,8 @@ function Comparison({ b, reduce }) {
               return (
                 <div role="row" key={label} className="contents">
                   <div role="rowheader" className="flex items-center border-0 border-t border-solid border-[#1a1714]/[0.07] py-5 pr-4 font-sans text-[15.5px] font-medium text-ink first:border-t-0">{label}</div>
-                  <div role="cell" className={'flex items-center border-0 border-t border-solid border-[#1a1714]/[0.08] bg-[#f4f2ec] px-7 py-5 font-sans text-[15.5px] leading-[1.45] text-ink-2 ' + (last ? 'rounded-b-[24px]' : '')}>{trad}</div>
-                  <div role="cell" className={'flex items-center gap-3 border-0 border-t border-solid border-white/[0.1] bg-[#0f2e27] px-7 py-5 font-sans text-[15.5px] leading-[1.45] text-white ' + (last ? 'rounded-b-[24px]' : '')}>
-                    <span aria-hidden="true" className="grid size-5 shrink-0 place-items-center rounded-full bg-[#d1f899] text-[#0f2e27]"><Check className="size-3" strokeWidth={2.6} /></span>{frank}
-                  </div>
+                  <div role="cell" className={'flex items-center border-0 border-t border-solid border-[#1a1714]/[0.08] bg-[#fffdf3] px-7 py-5 font-sans text-[15.5px] leading-[1.45] text-ink-2 ' + (last ? 'rounded-b-[24px]' : '')}>{trad}</div>
+                  <div role="cell" className={'flex items-center border-0 border-t border-solid border-white/[0.1] bg-[#0f2e27] px-7 py-5 font-sans text-[15.5px] leading-[1.45] text-white ' + (last ? 'rounded-b-[24px]' : '')}>{frank}</div>
                 </div>
               );
             })}
@@ -166,23 +164,8 @@ export default function BenefitPage({ slug }) {
           {/* 5 — Traditional research vs Frank */}
           <Comparison b={b} reduce={reduce} />
 
-          {/* 6 — One customer quote */}
-          <section aria-labelledby="bn-quote-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
-            <div className="mx-auto grid max-w-[1200px] items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-              <div>
-                <ScrubTitle reduce={reduce} id="bn-quote-title" className={'m-0 leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={b.testimonial.lines} />
-                <ScrubText as="p" reduce={reduce} lag={0.1} className="m-0 mt-6 max-w-[44ch] font-sans text-[17px] leading-[1.6] text-ink-2">{b.testimonial.intro}</ScrubText>
-              </div>
-              <ScrubText reduce={reduce} lag={0.1}>
-                <figure className="m-0 rounded-[28px] bg-[#fffdf3] p-8 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] sm:p-10">
-                  <blockquote className="m-0">
-                    {b.testimonial.quote.map((t, i) => <p key={i} className={'m-0 font-serif leading-[1.45] text-ink ' + (i ? 'mt-4 text-[clamp(19px,1.8vw,23px)]' : 'text-[clamp(22px,2.2vw,28px)] italic')}>{t}</p>)}
-                  </blockquote>
-                  <figcaption className="mt-8"><img src={b.testimonial.logo} alt="Narwal" draggable={false} className="block h-8 w-auto" /></figcaption>
-                </figure>
-              </ScrubText>
-            </div>
-          </section>
+          {/* 6 — Testimonials: the home page's section */}
+          <div className="pt-[clamp(88px,10vw,150px)]"><Testimonials /></div>
 
           {/* 7 — Closing: the home page's closing panel with this page's words */}
           <div className="pt-[clamp(88px,10vw,160px)]">

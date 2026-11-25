@@ -100,7 +100,7 @@ const kitOf = slug => ({
 function GetCard({ title, text, src, i, reduce }) {
   return (
     <ScrubText as="li" reduce={reduce} lag={i * 0.06} className="flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06)]">
-      <div className="grid aspect-[4/3] place-items-center bg-[#f4f2ec] p-5 sm:p-6">
+      <div className="grid aspect-[4/3] place-items-center bg-[#fffdf3] p-5 sm:p-6">
         <img src={src} alt="" loading="lazy" draggable={false} className="max-h-full max-w-full rounded-[14px] object-contain" />
       </div>
       <div className="p-7 sm:p-8">

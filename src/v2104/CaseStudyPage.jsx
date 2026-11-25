@@ -67,12 +67,12 @@ export default function CaseStudyPage({ slug }) {
               </Rise>
               <Rise as="h1" reduce={reduce} delay={0.08} id="cst-title" className={'m-0 mt-5 max-w-[20em] text-[clamp(32px,4.4vw,56px)] leading-[1.06] text-ink [text-wrap:balance] ' + TITLE}>{c.title}</Rise>
               <Rise reduce={reduce} delay={0.16} className="mt-8 flex justify-end">
-                <button type="button" onClick={copy} className={'inline-flex h-9 cursor-pointer items-center gap-2 rounded-full border-0 bg-white px-3.5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.1)] transition-colors duration-200 hover:bg-[#f6f4ee] ' + FOCUS}>
+                <button type="button" onClick={copy} className={'inline-flex h-9 cursor-pointer items-center gap-2 rounded-full border-0 bg-white px-3.5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.1)] transition-colors duration-200 hover:bg-[#fffdf3] ' + FOCUS}>
                   {copied ? <Check className="size-4 text-[#3f6b12]" strokeWidth={2.25} /> : <Link2 className="size-4" strokeWidth={1.75} />}{copied ? 'Link copied' : 'Copy link'}
                 </button>
               </Rise>
               <Rise reduce={reduce} delay={0.22} className="mt-6">
-                <img src={c.hero} alt="" draggable={false} className="block aspect-video w-full rounded-[24px] bg-[#efede8] object-cover sm:rounded-[32px]" />
+                <img src={c.hero} alt="" draggable={false} className="block aspect-video w-full rounded-[24px] bg-[#fffdf3] object-cover sm:rounded-[32px]" />
               </Rise>
             </div>
           </header>

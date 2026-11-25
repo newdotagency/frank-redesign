@@ -114,7 +114,7 @@ function Shot({ b }) {
   return (
     <figure className="m-0">
       <button type="button" onClick={() => setBig(true)} aria-label={'Enlarge: ' + (b.alt || 'screenshot')}
-        className={'block w-full cursor-zoom-in overflow-hidden rounded-[18px] border-0 bg-[#f6f4ee] p-2 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] ' + FOCUS}>
+        className={'block w-full cursor-zoom-in overflow-hidden rounded-[18px] border-0 bg-[#fffdf3] p-2 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] ' + FOCUS}>
         <img src={b.src} alt={b.alt || ''} loading="lazy" className="block h-auto w-full rounded-[12px] bg-white" />
       </button>
       {b.cap && <figcaption className="mt-2.5 px-1 font-sans text-[13.5px] leading-snug text-ink-3"><Inline x={b.cap} /></figcaption>}
@@ -182,7 +182,7 @@ function Block({ b, sid }) {
       <div className="overflow-x-auto rounded-[16px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.08)]">
         <table className="w-full min-w-[560px] border-collapse font-sans text-[14.5px]">
           <thead>
-            <tr className="bg-[#f6f4ee]">
+            <tr className="bg-[#fffdf3]">
               {b.head.map((h, i) => <th key={i} className="whitespace-nowrap px-4 py-2.5 text-left text-[12.5px] font-medium uppercase tracking-[0.04em] text-ink-3">{h}</th>)}
             </tr>
           </thead>
@@ -308,7 +308,7 @@ export default function DocArticle({ slug, a, prev, next }) {
         <div className="mt-5 flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
           <h1 className="m-0 min-w-0 max-w-[22ch] flex-1 basis-[300px] font-['Figtree',sans-serif] text-[clamp(30px,4vw,44px)] font-medium leading-[1.08] tracking-[-0.03em] text-ink [text-wrap:balance]">{a.title}</h1>
           <button type="button" onClick={() => copyText(toMarkdown(a), () => { setMdCopied(true); setTimeout(() => setMdCopied(false), 1800); })}
-            className={'inline-flex h-9 shrink-0 cursor-pointer items-center gap-2 rounded-full border-0 bg-white px-3.5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.1)] transition-colors duration-200 hover:bg-[#f6f4ee] ' + FOCUS}>
+            className={'inline-flex h-9 shrink-0 cursor-pointer items-center gap-2 rounded-full border-0 bg-white px-3.5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.1)] transition-colors duration-200 hover:bg-[#fffdf3] ' + FOCUS}>
             {mdCopied ? <Check className="size-4 text-[#3f6b12]" strokeWidth={2.25} /> : <Copy className="size-4" strokeWidth={1.75} />}{mdCopied ? 'Copied as Markdown' : 'Copy page'}
           </button>
         </div>

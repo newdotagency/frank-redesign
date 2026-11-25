@@ -57,7 +57,7 @@ function Block({ b }) {
       );
     case 'img':
       return (
-        <figure className="m-0 mt-7 overflow-hidden rounded-[22px] bg-[#f4f2ec] p-3 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] sm:p-4">
+        <figure className="m-0 mt-7 overflow-hidden rounded-[22px] bg-[#fffdf3] p-3 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] sm:p-4">
           <img src={b.src} alt={b.alt || ''} loading="lazy" draggable={false} className="block w-full rounded-[14px] bg-white ring-1 ring-[#1a1714]/[0.06]" />
         </figure>
       );

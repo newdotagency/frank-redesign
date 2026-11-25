@@ -14,7 +14,7 @@ export default function Banner({ p, className = '', imgClass = '', eager, square
   // An image the browser already had cached may finish before React's onLoad is attached.
   useEffect(() => { const el = img.current; if (el && el.complete) setState(el.naturalWidth ? 'ok' : 'failed'); }, []);
   return (
-    <span className={'relative block overflow-hidden bg-[#efede8] ' + (square ? 'size-full' : 'aspect-video w-full') + ' ' + className}>
+    <span className={'relative block overflow-hidden bg-[#fffdf3] ' + (square ? 'size-full' : 'aspect-video w-full') + ' ' + className}>
       <span aria-hidden="true" className="absolute inset-0 grid place-items-center text-[#1a1714]/25">
         <ImageIcon className={square ? 'size-7' : 'size-9'} strokeWidth={1.5} />
       </span>

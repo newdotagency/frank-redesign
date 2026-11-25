@@ -81,7 +81,7 @@ export default function CaseStudiesPage() {
                       <p className="m-0 mt-1 font-sans text-[15px] text-ink-3">We are writing up more teams’ stories. They will appear here.</p>
                     </div>
                   </div>
-                  <a href={siteHref('/blog')} className={'inline-flex h-11 items-center rounded-full bg-white px-5 font-sans text-[15px] font-medium text-ink no-underline shadow-[0_0_0_1px_rgba(26,23,20,0.12)] transition-colors duration-200 hover:bg-[#f6f4ee] ' + FOCUS}>Read the blog meanwhile</a>
+                  <a href={siteHref('/blog')} className={'inline-flex h-11 items-center rounded-full bg-white px-5 font-sans text-[15px] font-medium text-ink no-underline shadow-[0_0_0_1px_rgba(26,23,20,0.12)] transition-colors duration-200 hover:bg-[#fffdf3] ' + FOCUS}>Read the blog meanwhile</a>
                 </div>
               </ScrubText>
             </div>

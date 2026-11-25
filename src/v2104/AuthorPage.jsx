@@ -47,7 +47,7 @@ export default function AuthorPage({ slug }) {
               </Rise>
               <div className="mt-8 grid gap-10 border-0 border-b border-solid border-[#1a1714]/[0.08] pb-14 md:grid-cols-[minmax(0,320px)_minmax(0,1fr)] md:gap-14 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:gap-20 lg:pb-20">
                 <Rise reduce={reduce} delay={0.06}>
-                  <div className="aspect-[4/5] w-full max-w-[380px] overflow-hidden rounded-[28px] bg-[#efede8] shadow-[0_0_0_1px_rgba(26,23,20,0.06)] sm:rounded-[32px]">
+                  <div className="aspect-[4/5] w-full max-w-[380px] overflow-hidden rounded-[28px] bg-[#fffdf3] shadow-[0_0_0_1px_rgba(26,23,20,0.06)] sm:rounded-[32px]">
                     <img src={a.photo} alt={a.name} draggable={false} className="size-full object-cover" />
                   </div>
                 </Rise>
@@ -95,7 +95,7 @@ export default function AuthorPage({ slug }) {
               {shown < posts.length && (
                 <div className="mt-14 flex justify-center">
                   <button type="button" onClick={() => setShown(n => n + PAGE)}
-                    className={'inline-flex h-12 cursor-pointer items-center rounded-full border-0 bg-white px-7 font-sans text-[15.5px] font-medium text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.12)] transition-colors duration-200 hover:bg-[#f6f4ee] ' + FOCUS}>
+                    className={'inline-flex h-12 cursor-pointer items-center rounded-full border-0 bg-white px-7 font-sans text-[15.5px] font-medium text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.12)] transition-colors duration-200 hover:bg-[#fffdf3] ' + FOCUS}>
                     Show more articles
                   </button>
                 </div>

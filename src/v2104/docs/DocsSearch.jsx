@@ -110,7 +110,7 @@ export default function DocsSearch({ open, onClose }) {
                 );
               })}
             </div>
-            <div className="flex items-center gap-4 border-0 border-t border-solid border-[#1a1714]/[0.08] bg-[#faf9f5] px-5 py-2.5 font-sans text-[12.5px] text-ink-3">
+            <div className="flex items-center gap-4 border-0 border-t border-solid border-[#1a1714]/[0.08] bg-[#fffdf3] px-5 py-2.5 font-sans text-[12.5px] text-ink-3">
               <span className="flex items-center gap-1.5"><kbd className="rounded-[5px] bg-white px-1.5 py-0.5 font-gmono text-[11px] ring-1 ring-[#1a1714]/[0.1]">↑</kbd><kbd className="rounded-[5px] bg-white px-1.5 py-0.5 font-gmono text-[11px] ring-1 ring-[#1a1714]/[0.1]">↓</kbd>to move</span>
               <span className="flex items-center gap-1.5"><kbd className="rounded-[5px] bg-white px-1.5 py-0.5 ring-1 ring-[#1a1714]/[0.1]"><CornerDownLeft className="size-3" /></kbd>to open</span>
               <span className="ml-auto hidden sm:block">{INDEX.length} sections in {Object.keys(ARTICLES).length} guides</span>

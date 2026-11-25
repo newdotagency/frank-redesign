@@ -134,13 +134,13 @@ export default function BlogPostPage({ post }) {
                   <Avatar author={post.author} />
                   <span className="flex flex-col font-sans leading-[1.35]"><span className="text-[13px] text-ink-3">Written by</span><span className="text-[15.5px] text-ink">{post.author.name}</span></span>
                 </a>
-                <button type="button" onClick={copy} className={'inline-flex h-9 cursor-pointer items-center gap-2 rounded-full border-0 bg-white px-3.5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.1)] transition-colors duration-200 hover:bg-[#f6f4ee] ' + FOCUS}>
+                <button type="button" onClick={copy} className={'inline-flex h-9 cursor-pointer items-center gap-2 rounded-full border-0 bg-white px-3.5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.1)] transition-colors duration-200 hover:bg-[#fffdf3] ' + FOCUS}>
                   {copied ? <Check className="size-4 text-[#3f6b12]" strokeWidth={2.25} /> : <Link2 className="size-4" strokeWidth={1.75} />}{copied ? 'Link copied' : 'Copy link'}
                 </button>
               </Rise>
               {post.hero && (
                 <Rise reduce={reduce} delay={0.3} className="mt-10">
-                  <img src={post.hero} alt="" draggable={false} className="block aspect-video w-full rounded-[24px] bg-[#efede8] object-cover sm:rounded-[32px]" />
+                  <img src={post.hero} alt="" draggable={false} className="block aspect-video w-full rounded-[24px] bg-[#fffdf3] object-cover sm:rounded-[32px]" />
                 </Rise>
               )}
             </div>

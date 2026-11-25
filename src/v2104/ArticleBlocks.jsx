@@ -13,7 +13,7 @@ function Table({ b }) {
       <table className="w-full border-collapse font-sans text-[14.5px]" style={{ minWidth: Math.max(640, (b.head.length || (b.rows[0] || []).length) * 150) }}>
         {b.head.length > 0 && (
           <thead>
-            <tr className="bg-[#f6f4ee]">{b.head.map((h, i) => <th key={i} className="px-4 py-3 text-left align-bottom text-[12.5px] font-medium uppercase tracking-[0.04em] text-ink-3"><Inline x={h} /></th>)}</tr>
+            <tr className="bg-[#fffdf3]">{b.head.map((h, i) => <th key={i} className="px-4 py-3 text-left align-bottom text-[12.5px] font-medium uppercase tracking-[0.04em] text-ink-3"><Inline x={h} /></th>)}</tr>
           </thead>
         )}
         <tbody>
@@ -68,7 +68,7 @@ export function Block({ b, ids }) {
     );
     case 'img': return (
       <figure className="m-0 my-2">
-        <div className="overflow-hidden rounded-[20px] bg-[#f4f2ec] p-2.5 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] sm:p-3">
+        <div className="overflow-hidden rounded-[20px] bg-[#fffdf3] p-2.5 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] sm:p-3">
           <img src={b.src} alt={b.alt || ''} loading="lazy" draggable={false} className="block h-auto w-full rounded-[13px] bg-white" />
         </div>
         {b.cap && <figcaption className="mt-2.5 px-1 font-sans text-[13.5px] leading-snug text-ink-3"><Inline x={b.cap} /></figcaption>}
@@ -77,7 +77,7 @@ export function Block({ b, ids }) {
     case 'table': return <Table b={b} />;
     case 'quote': return <blockquote className="m-0 border-0 border-l-2 border-solid border-[#a0d05f] pl-5 font-serif text-[20px] italic leading-[1.55] text-ink"><Inline x={b.x} /></blockquote>;
     case 'hr': return <hr className="m-0 h-px border-0 bg-[#1a1714]/[0.1]" />;
-    case 'embed': return <div className="aspect-video overflow-hidden rounded-[18px] bg-[#f4f2ec]"><iframe src={b.src} title="Embedded content" loading="lazy" className="size-full border-0" allowFullScreen /></div>;
+    case 'embed': return <div className="aspect-video overflow-hidden rounded-[18px] bg-[#fffdf3]"><iframe src={b.src} title="Embedded content" loading="lazy" className="size-full border-0" allowFullScreen /></div>;
     default: return null;
   }
 }
