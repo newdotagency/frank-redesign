@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
+import { Lightbulb, MessageCircle, MousePointerClick } from 'lucide-react';
 import HowItWorks from './HowItWorks';
 import FAQ from './FAQ';
 import ClosingCTA from './ClosingCTA';
@@ -19,6 +20,7 @@ import { FOCUS, Rise } from './product-updates/parts';
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
 const EASE = [0.23, 1, 0.32, 1];
+const HOW_ICONS = [MousePointerClick, MessageCircle, Lightbulb];
 
 // A moment's picture, filling the step card (the live page's photo or screen).
 const photoScene = (src, alt) => function PhotoScene({ active, reduce }) {
@@ -73,23 +75,31 @@ export default function IndustryPage({ slug }) {
             <HowItWorks steps={steps} label={d.momentsLabel} lines={d.momentsLines} subtitle={d.momentsSub} id="in-moments-title" slider />
           </div>
 
-          {/* 3 — How Frank Works */}
+          {/* 3 — How Frank Works: as on the live page, the title on the left, the three steps one below the other on the right */}
           <section aria-labelledby="in-how-title" className="px-4 pt-[clamp(88px,10vw,150px)] md:px-10">
-            <div className="rounded-[32px] bg-[#fffdf3] px-5 py-[clamp(56px,7vw,112px)] sm:px-10 md:rounded-[44px]">
-              <div className="mx-auto max-w-[1200px]">
-                <ScrubText reduce={reduce}><Eyebrow className="mb-6 sm:mb-8">{d.howLabel}</Eyebrow></ScrubText>
-                <ScrubTitle reduce={reduce} id="in-how-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={d.howLines} />
-                <ScrubText as="p" reduce={reduce} lag={0.05} className="mx-auto mb-0 mt-5 max-w-[56ch] text-center font-sans text-[16.5px] leading-[1.6] text-ink-2">{d.howSub}</ScrubText>
-                <ol className="m-0 mt-12 grid list-none gap-5 p-0 sm:mt-16 md:grid-cols-3 md:gap-4">
-                  {d.how.map(([t, text], i) => (
-                    <motion.li key={t} className="flex flex-col rounded-[24px] bg-white p-7 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] max-md:shadow-[0_0_0_1.5px_rgba(26,23,20,0.14)] sm:p-8"
-                      initial={reduce ? false : { opacity: 0, y: 48, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.35 }}
-                      transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0 : (i % 3) * 0.08 }}>
-                      <span aria-hidden="true" className="grid size-12 place-items-center rounded-full bg-[#d1f899] font-['Figtree',sans-serif] text-[18px] font-medium text-[#2a321e]">{i + 1}</span>
-                      <h3 className="m-0 mt-6 font-['Figtree',sans-serif] text-[22px] font-medium leading-tight tracking-[-0.02em] text-ink">{t}</h3>
-                      <p className="m-0 mt-3 font-sans text-[15.5px] leading-[1.6] text-ink-2">{text}</p>
-                    </motion.li>
-                  ))}
+            <div className="relative overflow-hidden rounded-[32px] bg-[#0f2e27] px-5 py-[clamp(56px,7vw,112px)] sm:px-10 md:rounded-[44px]">
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
+              <div className="relative mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-20">
+                <div className="text-center lg:text-left">
+                  <ScrubText reduce={reduce}><Eyebrow className="mb-6 !text-white/85 sm:mb-8 lg:!justify-start">{d.howLabel}</Eyebrow></ScrubText>
+                  <ScrubTitle reduce={reduce} id="in-how-title" className={'m-0 leading-[1.06] text-white [text-wrap:balance] ' + TITLE} lines={d.howLines} />
+                  <ScrubText as="p" reduce={reduce} lag={0.05} className="mx-auto mb-0 mt-5 max-w-[46ch] font-sans text-[16.5px] leading-[1.6] text-white/70 lg:mx-0">{d.howSub}</ScrubText>
+                </div>
+                <ol className="m-0 flex list-none flex-col gap-4 p-0">
+                  {d.how.map(([t, text], i) => {
+                    const Icon = HOW_ICONS[i];
+                    return (
+                      <motion.li key={t} className="flex items-start gap-5 rounded-[24px] bg-white/[0.06] p-6 text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] sm:p-7"
+                        initial={reduce ? false : { opacity: 0, y: 48, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.35 }}
+                        transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0 : 0.05 }}>
+                        <span aria-hidden="true" className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d1f899] text-[#2a321e]"><Icon className="size-6" strokeWidth={1.7} /></span>
+                        <div>
+                          <h3 className="m-0 font-['Figtree',sans-serif] text-[20px] font-medium leading-tight tracking-[-0.02em] text-white sm:text-[22px]">{i + 1}. {t}</h3>
+                          <p className="m-0 mt-2.5 font-sans text-[15.5px] leading-[1.6] text-white/70">{text}</p>
+                        </div>
+                      </motion.li>
+                    );
+                  })}
                 </ol>
               </div>
             </div>
