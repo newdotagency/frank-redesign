@@ -6,6 +6,7 @@
 //   FAQ; ClosingCTA (the home page's closing panel, with this page's words); Footer.
 // The words are the live pages' (hifrank.ai/features/<slug>, in features/data.js); the visuals are theirs too
 // (features/media.js, public/features/<slug>/), in the original's own cream and olive.
+import BrandMarquee from './BrandMarquee';
 import { useMemo } from 'react';
 import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
@@ -26,6 +27,7 @@ import { imageScene } from './features/scenes';
 import { GLOBAL_SCENES } from './features/GlobalScenes';
 import { ALWAYS_ON_SCENES } from './features/AlwaysOnScenes';
 import { GLOBAL_GET_VISUALS } from './features/GlobalGetVisuals';
+import { ALWAYS_ON_GET_VISUALS } from './features/AlwaysOnGetVisuals';
 import { COVERS } from './features/FeatureCovers';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
@@ -85,7 +87,7 @@ function toHow(e) {
 // Global scalability and Always on availability have their own drawn scenes (features/GlobalScenes.jsx, AlwaysOnScenes.jsx); the other pages show their original picture.
 const CUSTOM = { 'global-scalability': GLOBAL_SCENES, 'always-on-availability': ALWAYS_ON_SCENES };
 // ...and its three "What you get" visuals (features/GlobalGetVisuals.jsx).
-const CUSTOM_GET = { 'global-scalability': GLOBAL_GET_VISUALS };
+const CUSTOM_GET = { 'global-scalability': GLOBAL_GET_VISUALS, 'always-on-availability': ALWAYS_ON_GET_VISUALS };
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = FEATURES[slug].how.map(([title, text], i) => ({
   name: MEDIA[slug].names[i], title, body: [text], scene: CUSTOM[slug]?.[i] || imageScene(MEDIA[slug].how[i], title),
@@ -107,7 +109,7 @@ const kitOf = slug => ({
 // What you get: each feature with its visual, in a card.
 function GetCard({ title, text, src, Visual, i, reduce }) {
   return (
-    <ScrubText as="li" reduce={reduce} lag={i * 0.06} className="flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06)]">
+    <ScrubText as="li" reduce={reduce} lag={i * 0.06} className="flex flex-col overflow-hidden rounded-[24px] bg-white text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] max-sm:shadow-[0_0_0_1.5px_rgba(26,23,20,0.16)]">
       {Visual ? (
         <div className="relative aspect-[4/3] overflow-hidden bg-[#fffdf3]"><Visual /></div>
       ) : (
@@ -187,14 +189,7 @@ export default function FeaturePage({ slug }) {
           <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
             <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
               <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ brands</p>
-              <ul className="m-0 mt-8 flex list-none flex-wrap items-center justify-center gap-x-10 gap-y-6 p-0 text-[#a39d93] sm:gap-x-14">
-                {BRANDS.map(([name, key, h]) => (
-                  <li key={key} className="flex items-center">
-                    <span className="sr-only">{name}</span>
-                    <span aria-hidden="true" className="flex items-center [&>svg]:h-full [&>svg]:w-auto" style={{ height: h }} dangerouslySetInnerHTML={{ __html: PL_LOGOS[key] }} />
-                  </li>
-                ))}
-              </ul>
+              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
             </ScrubText>
           </section>
 

@@ -5,6 +5,7 @@
 // only the site's general hero panel. The pictures are the originals, to be re-coloured later.
 //   · "What Frank delivers" is the home page's progress tabs (HowItWorks), each step showing its original picture;
 //   · the comparison is one grid: the row names, Traditional research, and Frank (dark) side by side; on phones each row is a card.
+import BrandMarquee from './BrandMarquee';
 import { useMemo } from 'react';
 import { MotionConfig, useReducedMotion } from 'framer-motion';
 import Header from '../components/Header';
@@ -126,14 +127,7 @@ export default function BenefitPage({ slug }) {
           <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
             <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
               <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ industry-leading brands</p>
-              <ul className="m-0 mt-8 flex list-none flex-wrap items-center justify-center gap-x-10 gap-y-6 p-0 text-[#a39d93] sm:gap-x-14">
-                {BRANDS.map(([name, key, h]) => (
-                  <li key={key} className="flex items-center">
-                    <span className="sr-only">{name}</span>
-                    <span aria-hidden="true" className="flex items-center [&>svg]:h-full [&>svg]:w-auto" style={{ height: h }} dangerouslySetInnerHTML={{ __html: PL_LOGOS[key] }} />
-                  </li>
-                ))}
-              </ul>
+              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
             </ScrubText>
           </section>
 

@@ -191,14 +191,14 @@ export default function HowItWorks({ eyebrow = true, steps = STEPS, label = 'How
         </div>
       </div>
 
-      {/* Below 1024px: stacked cards — visual, then the centred title and description. */}
+      {/* Below 1024px: stacked cards, outlined — visual, then the left-aligned title and description. */}
       <ol className="m-0 mt-12 flex list-none flex-col gap-14 px-4 sm:px-[clamp(16px,4vw,48px)] lg:hidden">
         {steps.map((s, i) => (
-          <motion.li key={s.name} {...reveal(reduce, 0, { amount: 0.2 })} className="mx-auto w-full max-w-[480px] text-center">
+          <motion.li key={s.name} {...reveal(reduce, 0, { amount: 0.2 })} className="mx-auto w-full max-w-[480px] rounded-[28px] p-3 text-left shadow-[0_0_0_1.5px_rgba(26,23,20,0.14)]">
             <Visual index={i} reduce={reduce} scene={s.scene} />
-            <p className="m-0 mt-6 font-sans text-[14px] text-ink-2"><span className="tabular-nums">{i + 1}</span>&ensp;{s.name}</p>
-            <h3 className="hiw-step-title m-0 mt-2 text-[24px] leading-[1.15] text-ink">{s.title}</h3>
-            <Body step={s} />
+            <p className="m-0 mt-6 px-3 font-sans text-[14px] text-ink-2"><span className="tabular-nums">{i + 1}</span>&ensp;{s.name}</p>
+            <h3 className="hiw-step-title m-0 mt-2 px-3 text-[24px] leading-[1.15] text-ink">{s.title}</h3>
+            <div className="px-3 pb-3"><Body step={s} /></div>
           </motion.li>
         ))}
       </ol>

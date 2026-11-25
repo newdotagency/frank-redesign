@@ -13,6 +13,7 @@
 //   7. Security (SOC 2, the ESOMAR award, GDPR), the FAQ, a lime closing panel, then the footer.
 // Entrance: the hero rises in once on load; everything else rises in with the scroll (reveal.jsx).
 // Motion inside the scenes runs only while they're on screen; reduced motion: they hold still.
+import BrandMarquee from './BrandMarquee';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check, List, MicOff, PhoneOff } from 'lucide-react';
@@ -446,14 +447,7 @@ export default function VoicePage() {
           <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
             <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
               <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ brands</p>
-              <ul className="m-0 mt-8 flex list-none flex-wrap items-center justify-center gap-x-10 gap-y-6 p-0 text-[#a39d93] sm:gap-x-14">
-                {BRANDS.map(([name, key, h]) => (
-                  <li key={key} className="flex items-center">
-                    <span className="sr-only">{name}</span>
-                    <span aria-hidden="true" className="flex items-center [&>svg]:h-full [&>svg]:w-auto" style={{ height: h }} dangerouslySetInnerHTML={{ __html: PL_LOGOS[key] }} />
-                  </li>
-                ))}
-              </ul>
+              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
             </ScrubText>
           </section>
 
