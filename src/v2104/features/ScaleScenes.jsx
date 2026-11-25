@@ -32,25 +32,27 @@ export function DataScene({ active, reduce }) {
 export function ReachScene({ active, reduce }) {
   const on = active;
   const C = [260, 289];
-  const langs = [['de', 'German', -112], ['fr', 'France', -52], ['se', 'Swedish', 8], ['no', 'Norwegian', 68], ['es', 'Spanish', 128], ['it', 'Italian', 188]];
-  const RX = 148, RY = 200;
+  const langs = [['de', 'German', -90], ['fr', 'France', -30], ['se', 'Swedish', 30], ['no', 'Norwegian', 90], ['es', 'Spanish', 150], ['it', 'Italian', 210]];
+  const R = 165;
   return (
     <Stage>
       <Float on={on} reduce={reduce} at={0} className="inset-0">
         <svg aria-hidden="true" viewBox="0 0 520 578" className="absolute inset-0 size-full" fill="none">
           <circle cx={C[0]} cy={C[1]} r="206" fill="#fffdf3" fillOpacity="0.55" />
-          {[206, 150, 96].map(r => <circle key={r} cx={C[0]} cy={C[1]} r={r} stroke="#1a1714" strokeOpacity="0.1" strokeWidth="1.2" />)}
+          {[165, 112, 72].map(r => <circle key={r} cx={C[0]} cy={C[1]} r={r} stroke="#1a1714" strokeOpacity={r === 165 ? 0.22 : 0.1} strokeWidth="1.2" strokeDasharray={r === 165 ? '4 6' : undefined} />)}
         </svg>
       </Float>
       <Float on={on} reduce={reduce} at={0.1} className="left-[200px] top-[229px]">
         <span className={'grid size-[120px] place-items-center rounded-full bg-white ' + SOFT + ' ' + RING}><Mark className="w-[70%]" /></span>
       </Float>
       {langs.map(([code, name, deg], i) => {
-        const x = C[0] + RX * Math.cos(deg * Math.PI / 180), y = C[1] + RY * Math.sin(deg * Math.PI / 180);
+        const x = C[0] + R * Math.cos(deg * Math.PI / 180), y = C[1] + R * Math.sin(deg * Math.PI / 180);
         return (
-          <Float key={code} on={on} reduce={reduce} at={0.25 + i * 0.08} className="" style={{ left: x, top: y, transform: 'translate(-50%,-50%)' }}>
-            <span className={'flex items-center gap-2.5 whitespace-nowrap rounded-full bg-white py-2.5 pl-3.5 pr-5 font-sans text-[15px] text-ink shadow-[0_12px_24px_-12px_rgba(26,23,20,0.4)] ' + RING}><Flag code={code} w={30} />{name}</span>
-          </Float>
+          <div key={code} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: x, top: y }}>
+            <Rise on={on} reduce={reduce} at={0.25 + i * 0.08}>
+              <span className={'flex items-center gap-2.5 whitespace-nowrap rounded-full bg-white py-2.5 pl-3.5 pr-5 font-sans text-[15px] text-ink shadow-[0_12px_24px_-12px_rgba(26,23,20,0.4)] ' + RING}><Flag code={code} w={30} />{name}</span>
+            </Rise>
+          </div>
         );
       })}
     </Stage>
