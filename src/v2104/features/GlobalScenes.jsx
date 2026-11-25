@@ -181,52 +181,52 @@ export function ParallelScene({ active, reduce }) {
   );
 }
 
-// ——— 3. Roll-up: all insights, translated.
+// ——— 3. Roll-up: all insights, translated. One panel holds it all: the tabs float on top as their own card, then the top themes
+// and a transcript preview.
 export function RollupScene({ active, reduce }) {
   const on = active;
   const tabs = ['All insights', 'By theme', 'By region', 'By language'];
   const themes = [['Onboarding friction', '48 mentions'], ['Feature discovery', '37 mentions'], ['Pricing perception', '29 mentions']];
-  const rows = [['S', 'Sarah M.', 'Marketing Lead', 'gb', 'English', '01:40:00'], ['L', 'Luca D.', 'Project Manager', 'mx', 'Mexico', '00:32:10']];
-  const ViewAll = () => <span className="inline-flex h-9 items-center rounded-[10px] bg-white px-5 font-sans text-[13.5px] text-ink shadow-[0_0_0_1px_rgba(26,23,20,0.12)]">View all</span>;
+  const rows = [['S', 'Sarah M.', 'Marketing Lead', 'gb', 'English'], ['L', 'Luca D.', 'Project Manager', 'mx', 'Mexico']];
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0.05} className="left-[36px] top-[36px] w-[448px]">
-        <div className="grid grid-cols-4 overflow-hidden rounded-[14px] bg-[#fffdf3] shadow-[inset_0_0_0_1px_rgba(26,23,20,0.06)]">
+      {/* The panel everything sits in. */}
+      <Float on={on} reduce={reduce} at={0} className="left-[28px] top-[28px] h-[524px] w-[464px]">
+        <div className="size-full rounded-[28px] bg-[#fffdf3] shadow-[0_26px_60px_-26px_rgba(26,23,20,0.42)] ring-1 ring-[#1a1714]/[0.06]" />
+      </Float>
+      {/* The tabs, floating above it. */}
+      <Float on={on} reduce={reduce} at={0.15} className="left-[48px] top-[46px] w-[424px]">
+        <div className="grid grid-cols-4 gap-1 rounded-[18px] bg-white p-1.5 shadow-[0_18px_36px_-14px_rgba(26,23,20,0.35)] ring-1 ring-[#1a1714]/[0.07]">
           {tabs.map((t, i) => (
-            <span key={t} className={'py-3 text-center font-sans text-[13.5px] ' + (i === 0 ? 'bg-white font-medium text-ink shadow-[inset_0_-2px_0_#1a1714]' : 'text-ink-3')}>{t}</span>
+            <span key={t} className={'rounded-[13px] py-2.5 text-center font-sans text-[13.5px] ' + (i === 0 ? 'bg-[#d1f899] font-medium text-[#2a321e]' : 'text-ink-3')}>{t}</span>
           ))}
         </div>
       </Float>
-      <Float on={on} reduce={reduce} at={0.25} className="left-[36px] top-[100px] w-[448px]">
-        <div className="flex items-center justify-between">
-          <span className={FIG + ' text-[16px] font-medium text-ink'}>Top themes (translated)</span><ViewAll />
-        </div>
+      <Float on={on} reduce={reduce} at={0.3} className="left-[50px] top-[124px] w-[420px]">
+        <span className={FIG + ' text-[16px] font-medium text-ink'}>Top themes (translated)</span>
       </Float>
       {themes.map(([t, m], i) => (
-        <Float key={t} on={on} reduce={reduce} at={0.4 + i * 0.12} className="left-[36px] w-[448px]" style={{ top: 152 + i * 54 }}>
-          <div className="flex items-center justify-between rounded-[12px] bg-white px-4 py-3 ring-1 ring-[#1a1714]/[0.06]">
+        <Float key={t} on={on} reduce={reduce} at={0.42 + i * 0.12} className="left-[50px] w-[420px]" style={{ top: 158 + i * 54 }}>
+          <div className="flex items-center justify-between rounded-[13px] bg-white px-4 py-3 shadow-[0_8px_18px_-12px_rgba(26,23,20,0.3)] ring-1 ring-[#1a1714]/[0.06]">
             <span className="flex items-center gap-3 font-sans text-[15px] text-ink"><span aria-hidden="true" className="size-2.5 rounded-full bg-[#5f8f22]" />{t}</span>
             <span className="font-sans text-[13.5px] text-ink-3">{m}</span>
           </div>
         </Float>
       ))}
-      <Float on={on} reduce={reduce} at={0.8} className="left-[36px] top-[332px] w-[448px]">
-        <div className="flex items-center justify-between">
-          <span className={FIG + ' text-[16px] font-medium text-ink'}>Transcript preview</span><ViewAll />
-        </div>
+      <Float on={on} reduce={reduce} at={0.8} className="left-[50px] top-[338px] w-[420px]">
+        <span className={FIG + ' text-[16px] font-medium text-ink'}>Transcript preview</span>
       </Float>
-      {rows.map(([c, name, role, flag, lang, time], i) => (
-        <Float key={name} on={on} reduce={reduce} at={0.95 + i * 0.14} className="left-[36px] w-[448px]" style={{ top: 384 + i * 84 }}>
-          <div className={CARD + ' flex items-center gap-3.5 px-4 py-3.5'}>
-            <Avatar c={c} size={38} />
+      {rows.map(([c, name, role, flag, lang], i) => (
+        <Float key={name} on={on} reduce={reduce} at={0.92 + i * 0.14} className="left-[50px] w-[420px]" style={{ top: 374 + i * 84 }}>
+          <div className="flex items-center gap-3.5 rounded-[16px] bg-white px-4 py-3.5 shadow-[0_10px_22px_-14px_rgba(26,23,20,0.32)] ring-1 ring-[#1a1714]/[0.06]">
+            <Avatar c={c} size={40} />
             <span className="flex w-[104px] shrink-0 flex-col leading-tight">
-              <span className="font-sans text-[14px] font-medium text-ink">{name}</span>
+              <span className="font-sans text-[14.5px] font-medium text-ink">{name}</span>
               <span className="mt-0.5 font-sans text-[11.5px] text-ink-3">{role}</span>
             </span>
             <span aria-hidden="true" className="h-8 w-px shrink-0 bg-[#1a1714]/[0.08]" />
             <span className="flex w-[78px] shrink-0 items-center gap-2 font-sans text-[13px] text-ink"><Flag code={flag} w={22} />{lang}</span>
-            <span className="flex flex-1 justify-center"><Bars live={false} n={14} h={22} /></span>
-            <span className="shrink-0 font-sans text-[13.5px] tabular-nums text-ink-2">{time}</span>
+            <span className="flex min-w-0 flex-1 justify-end"><Bars live={false} n={14} h={22} /></span>
           </div>
         </Float>
       ))}
