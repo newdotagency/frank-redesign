@@ -5,11 +5,12 @@
 //   Iteration: Setup → Interview → Analyze, around Frank, again and again.
 //   Pricing:   everything included, orbiting Frank.
 import { BarChart3, Brain, Globe, MessageSquare, Phone, Play, Search, ShieldCheck, Sparkles, User, Video } from 'lucide-react';
+import Glasses from '../../v3/Glasses';
 import { Avatar, Bars, FIG, Float, Stage } from './GlobalScenes';
 
 const RING = 'ring-1 ring-[#1a1714]/[0.06]';
 const SOFT = 'shadow-[0_10px_22px_-14px_rgba(26,23,20,0.3)]';
-const Wordmark = ({ className = '' }) => <img src="/benefits/frank-logo-ink.svg" alt="" draggable={false} className={'w-auto ' + className} />;
+const Mark = ({ className = '', pose = 'Thinking' }) => <span className={'block ' + className}><Glasses pose={pose} reduced={false} /></span>;
 
 // ——— 1. Cost.
 export function CostScene({ active, reduce }) {
@@ -67,7 +68,7 @@ export function EffortScene({ active, reduce }) {
         <span aria-hidden="true" className={'grid size-[88px] place-items-center rounded-full bg-white text-[#9a4a32] ' + SOFT + ' ' + RING}><User className="size-10" strokeWidth={1.5} /></span>
       </Float>
       <Float on={on} reduce={reduce} at={0.42} className="left-[330px] top-[400px]">
-        <span aria-hidden="true" className="grid size-[130px] place-items-center rounded-full bg-[#1a1714] shadow-[0_24px_40px_-18px_rgba(26,23,20,0.45)]"><img src="/benefits/frank-logo.svg" alt="" draggable={false} className="h-7 w-auto" /></span>
+        <span aria-hidden="true" className="grid size-[130px] place-items-center rounded-full bg-white shadow-[0_24px_40px_-18px_rgba(26,23,20,0.45)] ring-1 ring-[#1a1714]/[0.08]"><Mark className="w-[84%]" /></span>
       </Float>
     </Stage>
   );
@@ -87,7 +88,7 @@ export function IterationScene({ active, reduce }) {
         </svg>
       </Float>
       <Float on={on} reduce={reduce} at={0.1} className="left-[170px] top-[200px]">
-        <span className={'grid size-[180px] place-items-center rounded-full bg-white shadow-[0_18px_36px_-18px_rgba(26,23,20,0.35)] ' + RING}><Wordmark className="h-10" /></span>
+        <span className={'grid size-[180px] place-items-center rounded-full bg-white shadow-[0_18px_36px_-18px_rgba(26,23,20,0.35)] ' + RING}><Mark className="w-[74%]" /></span>
       </Float>
       {nodes.map(([x, y, n, t], i) => (
         <Float key={t} on={on} reduce={reduce} at={0.25 + i * 0.14} className="" style={{ left: x - 62, top: y - 62 }}>
@@ -118,7 +119,7 @@ export function PricingScene({ active, reduce }) {
         </svg>
       </Float>
       <Float on={on} reduce={reduce} at={0.1} className="left-[185px] top-[213px]">
-        <span className={'grid size-[150px] place-items-center rounded-full bg-white shadow-[0_18px_40px_-16px_rgba(26,23,20,0.4)] ' + RING}><Wordmark className="h-9" /></span>
+        <span className={'grid size-[150px] place-items-center rounded-full bg-white shadow-[0_18px_40px_-16px_rgba(26,23,20,0.4)] ' + RING}><Mark className="w-[78%]" /></span>
       </Float>
       {inner.map(([x, y, I], i) => <Node key={'i' + i} x={x} y={y} Icon={I} d={0.25 + i * 0.07} size={60} />)}
       {outer.map(([x, y, I], i) => <Node key={'o' + i} x={x} y={y} Icon={I} d={0.4 + i * 0.07} size={68} />)}

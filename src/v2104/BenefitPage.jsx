@@ -67,7 +67,7 @@ function Comparison({ b, reduce }) {
             <div role="row" className="contents">
               <div role="columnheader" aria-label="Row" />
               <div role="columnheader" className="rounded-t-[24px] bg-[#fffdf3] px-7 py-6 font-['Figtree',sans-serif] text-[20px] font-medium tracking-[-0.02em] text-ink">{b.comparison.tradTitle}</div>
-              <div role="columnheader" className="flex items-center rounded-t-[24px] bg-[#0f2e27] px-7 py-6"><img src="/benefits/frank-logo.svg" alt="Frank" className="block h-[22px] w-auto" /></div>
+              <div role="columnheader" className="flex items-center rounded-t-[24px] bg-[#0f2e27] px-7 py-6"><img src="/frank-logo.png" alt="Frank" className="block h-[22px] w-auto brightness-0 invert" /></div>
             </div>
             {rows.map(([label, trad, frank], i) => {
               const last = i === rows.length - 1;
