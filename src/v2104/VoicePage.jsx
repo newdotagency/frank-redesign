@@ -219,6 +219,8 @@ function PhoneScene({ reduce }) {
       <div className="absolute inset-[6%] flex items-center justify-center">
         {/* The phone's shape comes from its height and aspect ratio; its content sits on an absolute layer that fills it,
             and that layer is the size container. (Safari mis-sizes cqw when the container itself gets its width from aspect-ratio.) */}
+        {/* The video square has an explicit width (100cqw less its 6cqw margins): Safari sizes a stretched aspect-square
+            flex item from the full width, margins ignored, so it overflowed the phone's right edge. */}
         <div className="relative h-full w-auto max-w-full overflow-hidden rounded-[28px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06),0_28px_56px_-30px_rgba(42,50,30,0.45)] [aspect-ratio:436/756]">
         <div className="absolute inset-0 flex flex-col [container-type:inline-size]">
           {/* A soft lime light behind the two avatars. */}
@@ -234,7 +236,7 @@ function PhoneScene({ reduce }) {
           {/* The customer on video, big and square; Frank (the bot: a still photo, no video) as a small square
               avatar in its top-right corner, like a call's picture-in-picture. The timer sits top-left; her name bottom-left.
               Whoever is speaking gets the lime: rings breathing out of Frank's avatar, or a lime edge on her video. */}
-          <div className="relative mx-[6cqw] mt-[4cqw] aspect-square">
+          <div className="relative mx-[6cqw] mt-[4cqw] aspect-square w-[88cqw] shrink-0">
             <div className={'absolute inset-0 overflow-hidden rounded-[6cqw] bg-[#efeee9] transition-shadow duration-500 ' + (who === 1 ? 'shadow-[0_0_0_0.9cqw_#d1f899]' : 'shadow-[0_0_0_0.9cqw_rgba(26,23,20,0.04)]')}>
               <video ref={vid} src="/videos/call-09-card.mp4" poster="/videos/call-09-card.jpg" muted loop playsInline preload="metadata"
                 className="block size-full object-cover [object-position:50%_28%]" />
