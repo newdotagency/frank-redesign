@@ -26,7 +26,9 @@ import { MEDIA, iconSvg } from './features/media';
 import { imageScene } from './features/scenes';
 import { GLOBAL_SCENES } from './features/GlobalScenes';
 import { ALWAYS_ON_SCENES } from './features/AlwaysOnScenes';
+import { TRANSPARENCY_SCENES } from './features/TransparencyScenes';
 import { GLOBAL_GET_VISUALS } from './features/GlobalGetVisuals';
+import { TRANSPARENCY_GET_VISUALS } from './features/TransparencyGetVisuals';
 import { ALWAYS_ON_GET_VISUALS } from './features/AlwaysOnGetVisuals';
 import { COVERS } from './features/FeatureCovers';
 
@@ -85,9 +87,9 @@ function toHow(e) {
 
 // The how-it-works steps for a page (scenes built once, so a step's visual keeps its identity between renders).
 // Global scalability and Always on availability have their own drawn scenes (features/GlobalScenes.jsx, AlwaysOnScenes.jsx); the other pages show their original picture.
-const CUSTOM = { 'global-scalability': GLOBAL_SCENES, 'always-on-availability': ALWAYS_ON_SCENES };
+const CUSTOM = { 'global-scalability': GLOBAL_SCENES, 'always-on-availability': ALWAYS_ON_SCENES, 'transparency-security': TRANSPARENCY_SCENES };
 // ...and its three "What you get" visuals (features/GlobalGetVisuals.jsx).
-const CUSTOM_GET = { 'global-scalability': GLOBAL_GET_VISUALS, 'always-on-availability': ALWAYS_ON_GET_VISUALS };
+const CUSTOM_GET = { 'global-scalability': GLOBAL_GET_VISUALS, 'always-on-availability': ALWAYS_ON_GET_VISUALS, 'transparency-security': TRANSPARENCY_GET_VISUALS };
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = FEATURES[slug].how.map(([title, text], i) => ({
   name: MEDIA[slug].names[i], title, body: [text], scene: CUSTOM[slug]?.[i] || imageScene(MEDIA[slug].how[i], title),
