@@ -217,7 +217,10 @@ function PhoneScene({ reduce }) {
     // A taller card than the other scenes (4:5), so the phone is big enough to read.
     <div ref={box} aria-hidden="true" className={CARD + ' mx-auto aspect-[4/5] max-w-[480px]'}>
       <div className="absolute inset-[6%] flex items-center justify-center">
-        <div className="relative flex h-full w-auto max-w-full flex-col overflow-hidden rounded-[28px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06),0_28px_56px_-30px_rgba(42,50,30,0.45)] [aspect-ratio:436/756] [container-type:inline-size]">
+        {/* The phone's shape comes from its height and aspect ratio; its content sits on an absolute layer that fills it,
+            and that layer is the size container. (Safari mis-sizes cqw when the container itself gets its width from aspect-ratio.) */}
+        <div className="relative h-full w-auto max-w-full overflow-hidden rounded-[28px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06),0_28px_56px_-30px_rgba(42,50,30,0.45)] [aspect-ratio:436/756]">
+        <div className="absolute inset-0 flex flex-col [container-type:inline-size]">
           {/* A soft lime light behind the two avatars. */}
           <span className="pointer-events-none absolute inset-x-0 top-0 h-[60%]" style={{ background: 'radial-gradient(80% 50% at 50% 32%, rgba(209,248,153,0.32), rgba(209,248,153,0) 100%)' }} />
           {/* Status bar. */}
@@ -266,6 +269,7 @@ function PhoneScene({ reduce }) {
             <span className={ctl + ' size-[11cqw] bg-[#1a1714]/[0.04] text-ink-2'}><MicOff className="size-[5cqw]" strokeWidth={1.75} /></span>
           </div>
           <span className="relative mx-auto mb-[2.5cqw] block h-[1.2cqw] w-[32cqw] rounded-full bg-[#1a1714]" />
+        </div>
         </div>
       </div>
     </div>
