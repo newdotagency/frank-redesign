@@ -17,7 +17,7 @@ export function SourcedScene({ active, reduce }) {
   const rows = [['S', 'Sarah M.', 'Marketing Lead', ['“I almost didn’t upgrade because I ', 'wasn’t sure it was worth it.', ''], ROSE], ['L', 'Luca D.', 'Project Manager', ['“We pull data from ', 'five different tools', ' just to build one report.”'], GREEN]];
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0} className="left-[24px] top-[44px] w-[472px]">
+      <Float on={on} reduce={reduce} at={0} className="left-[24px] top-[70px] w-[472px]">
         <div className={CARD + ' overflow-hidden !rounded-[26px]'}>
           <div className="px-6 pb-5 pt-6">
             <div className="flex items-center gap-2.5 font-sans text-[16px] text-ink"><Zap className="size-5 text-[#8a6100]" strokeWidth={1.8} />Key Insight</div>
@@ -26,7 +26,7 @@ export function SourcedScene({ active, reduce }) {
         </div>
       </Float>
       {rows.map(([c, n, r, q, tone], i) => (
-        <Float key={n} on={on} reduce={reduce} at={0.2 + i * 0.14} className="left-[44px] w-[432px]" style={{ top: 214 + i * 96 }}>
+        <Float key={n} on={on} reduce={reduce} at={0.2 + i * 0.14} className="left-[44px] w-[432px]" style={{ top: 240 + i * 88 }}>
           <div className={'flex items-center gap-3 rounded-[16px] bg-white px-4 py-3 ' + SOFT + ' ' + RING}>
             <Avatar c={c} size={44} />
             <span className="flex w-[104px] shrink-0 flex-col leading-tight"><span className={FIG + ' text-[15px] text-ink'}>{n}</span><span className="text-[12px] text-ink-2">{r}</span></span>
@@ -34,13 +34,7 @@ export function SourcedScene({ active, reduce }) {
           </div>
         </Float>
       ))}
-      <Float on={on} reduce={reduce} at={0.5} className="left-[24px] top-[412px] w-[472px]">
-        <div className="flex items-center justify-between rounded-[18px] bg-[#fffdf3] px-5 py-4 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.07)]">
-          <span className="font-sans text-[15px] text-ink-2">Source: 12 interviews</span>
-          <span className={'inline-flex items-center gap-2 rounded-[10px] bg-white px-4 py-2 font-sans text-[14px] text-ink ' + RING}>View all sources<ExternalLink className="size-4" strokeWidth={1.8} /></span>
-        </div>
-      </Float>
-      <Float on={on} reduce={reduce} at={0.65} className="left-[24px] top-[490px] w-[472px]">
+      <Float on={on} reduce={reduce} at={0.5} className="left-[24px] top-[432px] w-[472px]">
         <div className={'flex items-center justify-center gap-3 rounded-[18px] bg-white py-4 ' + SOFT + ' ' + RING}>
           <TriangleAlert className="size-5 text-[#3f6b12]" strokeWidth={1.8} /><span className={FIG + ' text-[17px] text-ink'}>100% verified from real conversations</span>
         </div>
@@ -52,27 +46,22 @@ export function SourcedScene({ active, reduce }) {
 // ——— 2. Secure by default.
 function Badge({ kind }) {
   if (kind === 'soc') return (
-    <div className="flex flex-col items-center text-center"><span className="grid size-[62px] place-items-center rounded-full border-[5px] border-[#1a1714] font-sans text-[13px] font-semibold text-ink">SOC 2</span><span className="mt-2 font-sans text-[12px] text-ink">SOC 2</span><span className="font-sans text-[9.5px] leading-tight text-ink-2">Independently audited for top-tier security and privacy.</span></div>
+    <div className="flex flex-col items-center text-center"><span className="grid size-[84px] place-items-center rounded-full border-[6px] border-[#1a1714] font-sans text-[17px] font-semibold text-ink">SOC 2</span></div>
   );
   if (kind === 'esomar') return (
-    <div className="flex flex-col items-center text-center"><span className={FIG + ' text-[11px] font-semibold uppercase leading-tight tracking-[0.08em] text-ink'}>The ESOMAR<br />Awards 2025</span><span className="mt-2 font-sans text-[12px] text-ink">Award Winning Methodology</span><span className="font-sans text-[9.5px] leading-tight text-ink-2">Silver Winner for Breakthrough Research Methodology.</span></div>
+    <div className="flex flex-col items-center text-center"><span className={FIG + ' text-[17px] font-semibold uppercase leading-tight tracking-[0.1em] text-ink'}>The ESOMAR<br />Awards 2025</span></div>
   );
   return (
-    <div className="flex flex-col items-center text-center"><span className="grid size-[62px] place-items-center rounded-full bg-[#2a3a2c] font-sans text-[12px] font-semibold text-[#d1f899]">GDPR</span><span className="mt-2 font-sans text-[12px] text-ink">GDPR</span><span className="font-sans text-[9.5px] leading-tight text-ink-2">Privacy built to meet EU regulations.</span></div>
+    <div className="flex flex-col items-center text-center"><span className="grid size-[84px] place-items-center rounded-full bg-[#2a3a2c] font-sans text-[16px] font-semibold text-[#d1f899]">GDPR</span></div>
   );
 }
 export function SecureScene({ active, reduce }) {
   const on = active;
-  const rows = [['soc', Lock, 'End-to-end encryption', 'All data is encrypted in transit and at rest'], ['esomar', Users, 'Strict access controls', 'Role-based permissions and least-privilege access'], ['gdpr', Database, 'Secure storage', 'Industry-standard cloud infrastructure']];
   return (
     <Stage>
-      {rows.map(([k, Icon, t, d], i) => (
-        <Float key={t} on={on} reduce={reduce} at={i * 0.16} className="left-[24px] flex w-[472px] gap-3" style={{ top: 62 + i * 166 }}>
-          <div className={'grid h-[148px] w-[138px] shrink-0 place-items-center rounded-[18px] bg-white p-3 ' + RING}><Badge kind={k} /></div>
-          <div className={'flex h-[148px] flex-1 items-center gap-4 rounded-[20px] bg-white px-5 ' + SOFT + ' ' + RING}>
-            <span aria-hidden="true" className="grid size-[48px] shrink-0 place-items-center rounded-full bg-[#d1f899] text-[#2a321e]"><Icon className="size-6" strokeWidth={1.7} /></span>
-            <span className="flex flex-col leading-snug"><span className={FIG + ' text-[18px] font-medium text-ink'}>{t}</span><span className="mt-1 font-sans text-[14px] text-ink-2">{d}</span></span>
-          </div>
+      {['soc', 'esomar', 'gdpr'].map((k, i) => (
+        <Float key={k} on={on} reduce={reduce} at={i * 0.16} className="left-[90px] w-[340px]" style={{ top: 70 + i * 154 }}>
+          <div className={'grid h-[132px] place-items-center rounded-[22px] bg-white ' + SOFT + ' ' + RING}><Badge kind={k} /></div>
         </Float>
       ))}
     </Stage>
@@ -85,25 +74,16 @@ export function YoursScene({ active, reduce }) {
   const ctl = [[Eye, 'Control access'], [SlidersHorizontal, 'Manage data use'], [Clock, 'Set retention']];
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0} className="left-[24px] top-[48px] w-[330px] opacity-60">
-        <div className="flex flex-col gap-4">
-          {[['Sarah M.', 'Marketing Lead'], ['Luca D.', 'Project Manager'], ['Sarah M.', 'Marketing Lead']].map(([n, r], i) => (
-            <div key={i} className={'rounded-[16px] bg-white px-5 py-5 ' + RING} style={{ opacity: 1 - i * 0.25 }}>
-              <div className="font-sans text-[18px] text-ink-2">{n}</div><div className="font-sans text-[14px] text-ink-3">{r}</div>
-            </div>
-          ))}
-        </div>
-      </Float>
-      <Float on={on} reduce={reduce} at={0.12} className="left-[236px] top-[40px] h-[480px] w-[260px]">
-        <div className={'size-full rounded-[22px] bg-[#fffdf3] p-4 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.07)]'}>
-          <div className="flex items-center gap-3 rounded-[14px] bg-white p-2.5 opacity-70"><span className="size-9 shrink-0 rounded-[9px] bg-[#d1f899]" /><Bars live={false} n={22} h={26} w={2.5} gap={3} /></div>
-          <div className="mt-4 rounded-[14px] bg-white p-4 font-sans text-[12.5px] leading-[1.9] text-ink-3 opacity-70">
-            01:34<br />…hours every week on <Mark tone={GREEN}>manual reporting,</Mark><br />… <Mark tone={WARM}>wasn’t sure it was worth it.</Mark>
+      <Float on={on} reduce={reduce} at={0} className="left-[24px] top-[60px] h-[460px] w-[472px]">
+        <div className="size-full rounded-[22px] bg-[#fffdf3] p-5 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.07)]">
+          <div className="flex items-center gap-3 rounded-[14px] bg-white p-3 opacity-70"><span className="size-10 shrink-0 rounded-[10px] bg-[#d1f899]" /><Bars live={false} n={34} h={28} w={2.5} gap={3} /></div>
+          <div className="mt-4 rounded-[14px] bg-white p-5 font-sans text-[14px] leading-[2] text-ink-3 opacity-70">
+            01:34<br />…hours every week on <Mark tone={GREEN}>manual reporting,</Mark> <Mark tone={WARM}>wasn’t sure it was worth it.</Mark><br />I just froze on it for weeks.
           </div>
         </div>
       </Float>
       {ctl.map(([Icon, t], i) => (
-        <Float key={t} on={on} reduce={reduce} at={0.3 + i * 0.14} className="left-[60px] w-[290px]" style={{ top: 188 + i * 92 }}>
+        <Float key={t} on={on} reduce={reduce} at={0.3 + i * 0.14} className="left-[80px] w-[290px]" style={{ top: 214 + i * 92 }}>
           <div className={'flex items-center gap-4 rounded-[18px] bg-white p-3.5 shadow-[0_18px_34px_-16px_rgba(26,23,20,0.4)] ' + RING}>
             <span aria-hidden="true" className="grid size-[58px] shrink-0 place-items-center rounded-[14px] bg-[#d1f899] text-[#2a321e]"><Icon className="size-6" strokeWidth={1.7} /></span>
             <span className={FIG + ' text-[18px] font-medium text-ink'}>{t}</span>
