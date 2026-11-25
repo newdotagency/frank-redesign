@@ -11,18 +11,18 @@ import Glasses from '../../v3/Glasses';
 import { Avatar, FIG, Stage } from './GlobalScenes';
 
 const EASE = [0.23, 1, 0.32, 1];
-const RING = 'ring-1 ring-[#1a1714]/[0.06]';
-const SOFT = 'shadow-[0_10px_22px_-14px_rgba(26,23,20,0.3)]';
+export const RING = 'ring-1 ring-[#1a1714]/[0.06]';
+export const SOFT = 'shadow-[0_10px_22px_-14px_rgba(26,23,20,0.3)]';
 const AMBER = 'bg-[#fbf3db] text-[#8a6100]';
-const Mark = ({ className = '' }) => <span className={'block ' + className}><Glasses pose="Thinking" reduced={false} /></span>;
+export const Mark = ({ className = '' }) => <span className={'block ' + className}><Glasses pose="Thinking" reduced={false} /></span>;
 
 // A block that rises in (in flow, so the column keeps its spacing).
-const Rise = ({ on, reduce, at = 0, className = '', style, children }) => (
+export const Rise = ({ on, reduce, at = 0, className = '', style, children }) => (
   <motion.div className={className} style={style} initial={false}
     animate={on || reduce ? { opacity: 1, transform: 'translateY(0px)' } : { opacity: 0, transform: 'translateY(14px)' }}
     transition={{ duration: reduce ? 0 : 0.6, ease: EASE, delay: on && !reduce ? at : 0 }}>{children}</motion.div>
 );
-const Column = ({ children, className = '' }) => <div className={'absolute inset-x-[44px] inset-y-0 flex flex-col justify-center ' + className}>{children}</div>;
+export const Column = ({ children, className = '' }) => <div className={'absolute inset-x-[44px] inset-y-0 flex flex-col justify-center ' + className}>{children}</div>;
 
 // ——— 1. Rigor: the same structure, every time. Guide → three branches → two questions each.
 const Bar = ({ w = '60%', tone = '#d1f899' }) => <span className="block h-1.5 rounded-full" style={{ width: w, background: tone }} />;
@@ -53,14 +53,14 @@ export function RigorScene({ active, reduce }) {
 }
 
 // ——— chat pieces for 2 and 3: the question and Frank's answer sit together, the evidence below.
-const Ico = ({ children }) => <span aria-hidden="true" className={'grid size-[42px] shrink-0 place-items-center rounded-full bg-white ' + SOFT + ' ' + RING}>{children}</span>;
-const Ask = ({ children }) => (
+export const Ico = ({ children }) => <span aria-hidden="true" className={'grid size-[42px] shrink-0 place-items-center rounded-full bg-white ' + SOFT + ' ' + RING}>{children}</span>;
+export const Ask = ({ children }) => (
   <div className="flex items-end justify-end gap-2.5">
     <div className={FIG + ' max-w-[330px] rounded-[16px] rounded-br-[5px] bg-white px-4 py-3 text-[15px] text-ink ' + SOFT + ' ' + RING}>{children}</div>
     <Ico><User className="size-5 text-[#3f6b12]" strokeWidth={1.8} /></Ico>
   </div>
 );
-const Reply = ({ children }) => (
+export const Reply = ({ children }) => (
   <div className="flex items-end gap-2.5">
     <Ico><Mark className="w-[82%]" /></Ico>
     <div className={FIG + ' max-w-[370px] rounded-[16px] rounded-bl-[5px] bg-[#fffdf3] px-4 py-3 text-[15px] leading-snug text-ink ' + SOFT + ' ' + RING}>{children}</div>

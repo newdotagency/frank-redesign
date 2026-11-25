@@ -23,8 +23,9 @@ import { FOCUS, Rise } from './product-updates/parts';
 import { imageScene } from './features/scenes';
 import { PRICE_SCENES } from './features/PriceScenes';
 import { QUALITY_SCENES } from './features/QualityScenes';
+import { SPEED_SCENES } from './features/SpeedScenes';
 
-const CUSTOM = { price: PRICE_SCENES, quality: QUALITY_SCENES };
+const CUSTOM = { price: PRICE_SCENES, quality: QUALITY_SCENES, speed: SPEED_SCENES };
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
