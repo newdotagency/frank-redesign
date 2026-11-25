@@ -30,18 +30,18 @@ export function RigorScene({ active, reduce }) {
   return (
     <Stage>
       <Column className="items-center">
-        <Rise on={on} reduce={reduce} className={'grid h-[76px] w-[200px] place-items-center rounded-[18px] bg-white ' + SOFT + ' ' + RING}><Mark className="w-[58%]" /></Rise>
-        <Rise on={on} reduce={reduce} at={0.12} className="h-[34px] w-px bg-[#1a1714]/25" />
-        <Rise on={on} reduce={reduce} at={0.16} className="relative h-px w-[372px] bg-[#1a1714]/25">
-          {[0, 50, 100].map(p => <span key={p} className="absolute top-0 h-[26px] w-px bg-[#1a1714]/25" style={{ left: p + '%' }} />)}
+        <Rise on={on} reduce={reduce} className={'grid h-[76px] w-[200px] place-items-center rounded-[18px] border-[1.5px] border-dashed border-[#1a1714]/50 bg-white/70'}><Mark className="w-[58%]" /></Rise>
+        <Rise on={on} reduce={reduce} at={0.12} className="h-[34px] w-0 border-l-[1.5px] border-dashed border-[#1a1714]/50" />
+        <Rise on={on} reduce={reduce} at={0.16} className="relative h-0 w-[372px] border-t-[1.5px] border-dashed border-[#1a1714]/50">
+          {[0, 50, 100].map(p => <span key={p} className="absolute top-0 h-[26px] w-0 border-l-[1.5px] border-dashed border-[#1a1714]/50" style={{ left: p + '%' }} />)}
         </Rise>
         <div className="mt-[26px] flex w-[432px] justify-between">
           {[0, 1, 2].map(i => (
             <Rise key={i} on={on} reduce={reduce} at={0.24 + i * 0.1} className="flex w-[136px] flex-col items-center">
-              <div className={'flex h-[54px] w-full items-center rounded-[13px] bg-white px-4 ' + SOFT + ' ' + RING}><Bar w="70%" tone="#5f8f22" /></div>
-              <span className="h-[22px] w-px bg-[#1a1714]/25" />
+              <div className={'flex h-[54px] w-full items-center rounded-[13px] border-[1.5px] border-dashed border-[#1a1714]/50 bg-white/70 px-4'}><Bar w="70%" tone="#5f8f22" /></div>
+              <span className="h-[22px] w-0 border-l-[1.5px] border-dashed border-[#1a1714]/50" />
               <div className="flex w-full flex-col gap-2.5">
-                {[0, 1].map(j => <div key={j} className={'flex h-[44px] items-center rounded-[11px] bg-white px-4 ' + RING}><Bar w={j ? '44%' : '62%'} /></div>)}
+                {[0, 1].map(j => <div key={j} className={'flex h-[44px] items-center rounded-[11px] border-[1.5px] border-dashed border-[#1a1714]/50 bg-white/50 px-4'}><Bar w={j ? '44%' : '62%'} /></div>)}
               </div>
             </Rise>
           ))}
@@ -52,24 +52,23 @@ export function RigorScene({ active, reduce }) {
 }
 
 // ——— chat pieces for 2 and 3: the question and Frank's answer sit together, the evidence below.
-const Ask = ({ children }) => <div className={FIG + ' ml-auto w-fit max-w-[340px] rounded-[16px] rounded-br-[5px] bg-[#fffdf3] px-4 py-3 text-[15px] text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.08)]'}>{children}</div>;
-const Reply = ({ children }) => <div className={FIG + ' w-fit max-w-[390px] rounded-[16px] rounded-bl-[5px] bg-white px-4 py-3 text-[15px] leading-snug text-ink ' + SOFT + ' ' + RING}>{children}</div>;
+const Ask = ({ children }) => <div className={FIG + ' ml-auto w-fit max-w-[340px] rounded-[16px] rounded-br-[5px] bg-[#1a1714] px-4 py-3 text-[15px] text-white'}>{children}</div>;
+const Reply = ({ children }) => <div className={FIG + ' w-fit max-w-[390px] rounded-[16px] rounded-bl-[5px] bg-white px-4 py-3 text-[15px] leading-snug text-ink ' + SOFT}>{children}</div>;
 
 // ——— 2. Evidence.
 export function EvidenceScene({ active, reduce }) {
   const on = active;
-  const cards = [['Pricing confusion', 'bg-[#f6e3dc] text-[#9a4a32]', '38 interviews', '“I didn’t understand what I was paying for until the bill arrived.”', 'S', 'Sarah M. · Marketing Lead'], ['Onboarding drop-off', 'bg-[#e4f5c8] text-[#3f6b12]', '29 interviews', '“The setup took too long — I gave up after the third step.”', 'J', 'James K. · Product Designer']];
+  const cards = [['Pricing confusion', 'bg-[#fbf3db] text-[#8a6100]', '“I didn’t understand what I was paying for until the bill arrived.”'], ['Onboarding drop-off', 'bg-[#e4f5c8] text-[#3f6b12]', '“The setup took too long — I gave up after the third step.”']];
   return (
     <Stage>
       <Column>
         <Rise on={on} reduce={reduce}><Ask>What are the main reasons users churn?</Ask></Rise>
-        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 113 interviews, 3 themes come up consistently — here’s what customers actually said:</Reply></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 113 interviews, 3 themes come up consistently:</Reply></Rise>
         <div className="mt-5 flex flex-col gap-2.5">
-          {cards.map(([t, tone, n, q, c, who], i) => (
-            <Rise key={t} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT + ' ' + RING}>
-              <div className="flex items-center justify-between"><span className={'rounded-full px-3 py-1 font-sans text-[12.5px] ' + tone}>{t}</span><span className="font-sans text-[12px] text-ink-2">{n}</span></div>
-              <p className="m-0 mt-2 font-sans text-[13.5px] leading-snug text-ink">{q}</p>
-              <div className="mt-2 flex items-center gap-2 font-sans text-[12px] text-ink-2"><Avatar c={c} size={24} />{who}</div>
+          {cards.map(([t, tone, q], i) => (
+            <Rise key={t} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT}>
+              <span className={'rounded-full px-3 py-1 font-sans text-[12.5px] ' + tone}>{t}</span>
+              <p className="m-0 mt-2.5 font-sans text-[13.5px] leading-snug text-ink">{q}</p>
             </Rise>
           ))}
         </div>
@@ -81,22 +80,21 @@ export function EvidenceScene({ active, reduce }) {
 // ——— 3. Depth.
 export function DepthScene({ active, reduce }) {
   const on = active;
-  const cards = [['70%', '68 interviews', 70, '“Too many steps before I could do anything useful.”', true], ['30%', '29 interviews', 30, '“I didn’t know where to start — no guidance at all.”', false]];
+  const cards = [['70%', 70, '“Too many steps before I could do anything useful.”', true], ['30%', 30, '“I didn’t know where to start — no guidance at all.”', false]];
   return (
     <Stage>
       <Column>
         <Rise on={on} reduce={reduce}><Ask>What do users say about the onboarding?</Ask></Rise>
-        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 97 interviews on onboarding, two answers dominate:</Reply></Rise>
+        <Rise on={on} reduce={reduce} at={0.15} className="mt-2"><Reply>Across 97 interviews, two answers dominate:</Reply></Rise>
         <div className="mt-5 flex flex-col gap-2.5">
-          {cards.map(([pct, n, w, q, top], i) => (
-            <Rise key={pct} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT + ' ' + RING}>
-              <div className="flex items-center gap-2.5"><span className={FIG + ' text-[28px] leading-none ' + (top ? 'text-ink' : 'text-ink-2')}>{pct}</span><span className="font-sans text-[12px] text-ink-2">{n}</span>{top && <span className="ml-auto rounded-full bg-[#d1f899] px-3 py-1 font-sans text-[12px] text-[#2a321e]">most said</span>}</div>
+          {cards.map(([pct, w, q, top], i) => (
+            <Rise key={pct} on={on} reduce={reduce} at={0.32 + i * 0.14} className={'rounded-[16px] bg-white px-4 py-3.5 ' + SOFT}>
+              <div className="flex items-center gap-2.5"><span className={FIG + ' text-[28px] leading-none ' + (top ? 'text-ink' : 'text-ink-2')}>{pct}</span>{top && <span className="ml-auto rounded-full bg-[#d1f899] px-3 py-1 font-sans text-[12px] text-[#2a321e]">most said</span>}</div>
               <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-[#1a1714]/[0.06]"><div className="h-full rounded-full" style={{ width: w + '%', background: top ? '#5f8f22' : '#c9d6b3' }} /></div>
               <p className="m-0 mt-2.5 font-sans text-[13.5px] leading-snug text-ink">{q}</p>
             </Rise>
           ))}
         </div>
-        <Rise on={on} reduce={reduce} at={0.6} className="mt-3 font-sans text-[12px] text-ink-2">Based on 97 interviews · Themes cross-validated across sessions</Rise>
       </Column>
     </Stage>
   );
@@ -105,14 +103,14 @@ export function DepthScene({ active, reduce }) {
 // ——— 4. Analysis: leading questions against neutral ones.
 export function BiasScene({ active, reduce }) {
   const on = active;
-  const human = ['“Do you always use our app while driving?”', '“How much did you love our new feature?”', '“Would you pay $50 for this?”', 'The customer said it was too expensive'];
-  const frank = ['“How often do you use our app while driving?”', '“Walk me through your experience using this feature”', '“How much do you currently spend on this issue per month?”', 'The value between the Standard and Pro tiers isn’t clear'];
+  const human = ['“Do you always use our app?”', '“How much did you love it?”', '“Would you pay $50?”', 'Customer said it was too expensive'];
+  const frank = ['“How often do you use our app?”', '“Walk me through your experience”', '“What do you spend on this today?”', 'Pro tier value isn’t clear'];
   const Col = ({ title, pill, items, human: h, at }) => (
     <Rise on={on} reduce={reduce} at={at} className="flex w-[212px] flex-col items-center">
       <div className="grid h-[40px] place-items-center">{title}</div>
       <span className={'mt-2 rounded-full px-3.5 py-1 font-sans text-[12.5px] ' + (h ? AMBER : 'bg-[#d1f899] text-[#2a321e]')}>{pill}</span>
       <div className="mt-4 flex w-full flex-col gap-2">
-        {items.map(t => <div key={t} className={'flex h-[72px] items-center justify-center rounded-[14px] px-3 text-center font-sans text-[13.5px] leading-snug text-ink ' + (h ? 'bg-[#fffdf3] shadow-[inset_0_0_0_1px_rgba(138,97,0,0.18)]' : 'bg-white ' + SOFT + ' ' + RING)}>{t}</div>)}
+        {items.map((t, i) => <div key={t} style={{ opacity: [1, 1, 0.55, 0.28][i] }} className={'flex h-[64px] items-center justify-center rounded-[14px] px-3 text-center font-sans text-[13.5px] leading-snug text-ink ' + (h ? 'bg-[#fffdf3] shadow-[inset_0_0_0_1px_rgba(138,97,0,0.18)]' : 'bg-white ' + SOFT + ' ' + RING)}>{t}</div>)}
       </div>
     </Rise>
   );
