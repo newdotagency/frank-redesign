@@ -305,7 +305,7 @@ function CalendarScene({ reduce }) {
 // there.
 const HELLOS = [
   ['Hello', 'English'], ['Hola', 'Spanish'], ['Bonjour', 'French'], ['Hallo', 'German'], ['Ciao', 'Italian'],
-  ['Olá', 'Portuguese'], ['こんにちは', 'Japanese'], ['안녕하세요', 'Korean'], ['你好', 'Chinese'], ['Merhaba', 'Turkish'],
+  ['Olá', 'Portuguese'], ['こんにちは', 'Japanese'], ['안녕하세요', 'Korean'], ['你好', 'Chinese'],
   ['नमस्ते', 'Hindi'], ['مرحبا', 'Arabic'],
 ];
 function ReachScene({ reduce }) {
