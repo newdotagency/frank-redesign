@@ -5,10 +5,11 @@
 //   Cost:      "10 interviews" and "10k interviews" over a list of conversations, "Same operational effort" floating on top.
 // Each is drawn on a 400 × 300 stage (the card's 4:3) scaled to its width; the orbit and the floating card drift slowly, and hold still with
 // reduced motion.
-import { useMemo } from 'react';
+import { useId, useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { Bars, Flag, Stage } from './GlobalScenes';
+import { LAND, LINKS, REGION_POINTS } from './worldMap';
 
 const W = 400, H = 300;
 const FIG = "font-['Figtree',sans-serif]";
@@ -63,32 +64,25 @@ export function LanguageVisual() {
   );
 }
 
-// ——— 2. A lined world map with each region's score.
-const LANDS = [
-  'M34 42 L82 28 L126 32 L152 50 L146 70 L130 84 L116 100 L102 120 L86 108 L70 88 L50 72 L34 58 Z',   // North America
-  'M168 20 L196 16 L202 30 L184 40 L168 34 Z',                                                         // Greenland
-  'M112 132 L142 126 L158 148 L152 178 L136 208 L122 212 L118 178 L108 152 Z',                          // South America
-  'M190 54 L216 44 L240 50 L234 74 L216 82 L196 78 Z',                                                 // Europe
-  'M194 94 L234 92 L254 114 L250 152 L234 186 L216 188 L206 152 L190 120 Z',                            // Africa
-  'M246 44 L302 34 L354 48 L374 76 L358 102 L324 110 L302 130 L276 114 L254 86 Z',                      // Asia
-  'M332 152 L368 148 L376 174 L346 184 L328 170 Z',                                                    // Australia
-];
-const REGIONS = [['N. America', 82, 64, 98], ['S. America', 74, 100, 204], ['Europe', 67, 222, 108], ['Asia', 91, 330, 96]];
+// ——— 2. A lined world map (Natural Earth land, see worldMap.js) with each region's score.
+const REGIONS = [['N. America', 82, REGION_POINTS.na], ['S. America', 74, REGION_POINTS.sa], ['Europe', 67, REGION_POINTS.eu], ['Asia', 91, REGION_POINTS.as]];
 
 export function PatternsVisual() {
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
+  const [cx, cy, cr] = LINKS.circle, [ex, ey, erx, ery] = LINKS.ellipse;
   return (
     <Stage w={W} h={H}>
       <svg aria-hidden="true" viewBox={`0 0 ${W} ${H}`} width={W} height={H} className="absolute inset-0" fill="none">
         <defs>
-          <pattern id="map-lines" width="3.4" height="3.4" patternUnits="userSpaceOnUse"><path d="M1.2 0V3.4" stroke="rgba(26,23,20,0.34)" strokeWidth="1" /></pattern>
+          <pattern id={'ml' + uid} width="2.6" height="2.6" patternUnits="userSpaceOnUse"><path d="M1 0V2.6" stroke="rgba(26,23,20,0.4)" strokeWidth="0.9" /></pattern>
         </defs>
-        <g transform="translate(0 22)" fill="url(#map-lines)">{LANDS.map(d => <path key={d} d={d} />)}</g>
+        <path d={LAND} fill={`url(#ml${uid})`} stroke="rgba(26,23,20,0.28)" strokeWidth="0.5" strokeLinejoin="round" />
         <g stroke="rgba(26,23,20,0.55)" strokeWidth="1.3" strokeDasharray="5 5" strokeLinecap="round">
-          <circle cx="134" cy="152" r="78" />
-          <ellipse cx="282" cy="140" rx="72" ry="52" />
+          <circle cx={cx} cy={cy} r={cr} />
+          <ellipse cx={ex} cy={ey} rx={erx} ry={ery} />
         </g>
       </svg>
-      {REGIONS.map(([name, pct, x, y]) => (
+      {REGIONS.map(([name, pct, [x, y]]) => (
         <div key={name} className={'absolute grid size-[62px] place-items-center ' + PILL} style={{ left: x, top: y, transform: 'translate(-50%,-50%)' }}>
           <span className="flex flex-col items-center leading-none">
             <svg aria-hidden="true" viewBox="0 0 12 14" width="11" height="13" fill="none" stroke="#5f8f22" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 12.5V2M2 5.5 6 1.5l4 4" /></svg>
@@ -122,6 +116,8 @@ export function CostVisual() {
           <svg aria-hidden="true" viewBox="0 0 14 16" width="14" height="16" className="shrink-0"><path d="M2 2.2c0-.9 1-1.4 1.7-.9l8.4 5.8c.6.4.6 1.4 0 1.8l-8.4 5.8c-.7.5-1.7 0-1.7-.9z" fill="#5f8f22" /></svg>
         </div>
       ))}
+      {/* A frosted layer over the rows, behind the card, so the card stands out. */}
+      <div aria-hidden="true" className="absolute left-[16px] top-[96px] h-[196px] w-[368px] rounded-[22px] bg-[#fffdf3]/75 backdrop-blur-[3px]" style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent)', maskImage: 'linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent)' }} />
       <Drift reduce={reduce} dy={5} dur={4.6} className="left-1/2 top-[132px] -translate-x-1/2">
         <span className="block whitespace-nowrap rounded-[18px] bg-white px-9 py-4 font-sans text-[19px] text-ink shadow-[0_24px_46px_-18px_rgba(26,23,20,0.5)] ring-1 ring-[#1a1714]/[0.07]">Same operational effort</span>
       </Drift>
