@@ -21,6 +21,9 @@ import BENEFITS from './benefits/benefits.json';
 import { siteHref } from '../lib/sitePaths';
 import { FOCUS, Rise } from './product-updates/parts';
 import { imageScene } from './features/scenes';
+import { PRICE_SCENES } from './features/PriceScenes';
+
+const CUSTOM = { price: PRICE_SCENES };
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
@@ -48,8 +51,8 @@ function toHow(e) {
 
 // The scenes are built once per page, so a step's picture keeps its identity between renders.
 const STEPS = {};
-const stepsOf = slug => STEPS[slug] || (STEPS[slug] = BENEFITS[slug].delivery.items.map(it => ({
-  name: it.name, title: it.title, body: [it.text], scene: imageScene(it.img, it.title),
+const stepsOf = slug => STEPS[slug] || (STEPS[slug] = BENEFITS[slug].delivery.items.map((it, i) => ({
+  name: it.name, title: it.title, body: [it.text], scene: CUSTOM[slug]?.[i] || imageScene(it.img, it.title),
 })));
 
 function Comparison({ b, reduce }) {
