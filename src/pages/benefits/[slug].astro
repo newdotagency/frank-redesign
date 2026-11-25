@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Route from '../../v2104/BenefitRoute.jsx';
+import BENEFITS from '../../v2104/benefits/benefits.json';
+export function getStaticPaths() {
+  return Object.values(BENEFITS).map(b => ({ params: { slug: b.slug }, props: { slug: b.slug, title: b.metaTitle, description: b.metaDescription } }));
+}
+const { slug, title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <div id="root"><Route slug={slug} client:only="react" /></div>
+</Base>

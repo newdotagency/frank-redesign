@@ -14,7 +14,7 @@
 // Opt-in content (V21.04, for the AI voice interviewer page): `steps` ({ name, title, body, scene? — a
 // StepVisuals scene to show instead of that step's own}), `label` (the
 // eyebrow), `lines` (the title), `subtitle` (null for none), `id` (the title's id; tab ids derive from it) and
-// `action` (one element under the whole list of steps, e.g. a "Try it now" button). The homepage passes none.
+// `icon` on a step (an image address: a small icon beside its number), `name` may be empty; `action` (one element under the whole list of steps, e.g. a "Try it now" button). The homepage passes none.
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import BackgroundPaths from '@/components/ui/background-paths';
@@ -149,7 +149,8 @@ export default function HowItWorks({ eyebrow = true, steps = STEPS, label = 'How
                       aria-selected={on} aria-controls={`${tid}-panel-${i}`} tabIndex={on ? 0 : -1} onClick={() => goTo(i)}
                       className={'group block w-full cursor-pointer border-0 bg-transparent p-0 pt-7 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1a1714]' + (i === 0 ? ' !pt-1' : '') + (i === N - 1 && !on ? ' pb-1' : '')}>
                       <span className={'block font-sans text-[14px] leading-none' + (on ? ' text-ink-2' : ' text-ink-3')}>
-                        <span className="mr-2 tabular-nums">{i + 1}</span>{s.name}
+                        <span className="mr-2 tabular-nums">{i + 1}</span>
+                        {s.icon && <img src={s.icon} alt="" aria-hidden="true" draggable={false} className={'mr-2 inline-block size-[15px] align-[-2px] ' + (on ? 'opacity-70' : 'opacity-35')} />}{s.name}
                       </span>
                       <span className={'hiw-step-title mt-2.5 block leading-[1.15] [text-wrap:balance]' + (reduce ? '' : ' transition-[color] duration-300 ease-out')
                         + (on ? ' text-[30px] text-ink' : ' text-[22px] text-ink-3 group-hover:text-ink-2')}>

@@ -1,0 +1,535 @@
+{
+ "price": {
+  "slug": "price",
+  "metaTitle": "Enterprise Research at Startup Prices | Frank",
+  "metaDescription": "Forget $500–$1,000 interviews, endless moderation, and weeks of waiting. With Frank, you get deep, qualitative insight at a fraction of the cost and scale your learning without scaling your budget.",
+  "hero": {
+   "label": "Price",
+   "lines": [
+    "Enterprise-grade research.",
+    "Without the enterprise price."
+   ],
+   "p": "Forget $500–$1,000 interviews, endless moderation, and weeks of waiting. With Frank, you get deep, qualitative insight at a fraction of the cost and scale your learning without scaling your budget.",
+   "primary": {
+    "label": "Start saving today",
+    "href": "https://app.hifrank.ai/signup"
+   },
+   "secondary": {
+    "label": "See how it works",
+    "href": "/try-frank"
+   }
+  },
+  "delivery": {
+   "label": "What Frank delivers",
+   "lines": [
+    "From question to insight,",
+    "in record time."
+   ],
+   "items": [
+    {
+     "title": "Enterprise-grade customer research with startup pricing",
+     "text": "Traditional moderated interviews can cost anywhere from $100 to $1,000+ per participant. With Frank, cost-per-interview drops so low that you can run dozens or hundreds of interviews for the price of a single agency session.",
+     "img": "/benefits/price/step-1.webp",
+     "icon": "/benefits/price/step-1-icon.svg"
+    },
+    {
+     "title": "No moderators. No scheduling. No overhead.",
+     "text": "Forget recruiting, coordination, calendar management, prep calls, and moderation time. Your AI Interviewer handles 100s of simultaneous conversations around the world automatically without adding a single hour to your team’s workload.",
+     "img": "/benefits/price/step-2.webp",
+     "icon": "/benefits/price/step-2-icon.svg"
+    },
+    {
+     "title": "Unlimited iteration. Same budget.",
+     "text": "When resources are low, research and learning are always the first to go… But now you can run follow-ups, re-test features, validate revisions, and explore new ideas without ever worrying about hourly rates or billable time, even on a shoestring budget!",
+     "img": "/benefits/price/step-3.webp",
+     "icon": "/benefits/price/step-3-icon.svg"
+    },
+    {
+     "title": "Predictable pricing. Zero surprises.",
+     "text": "No hidden fees. No extra charges for transcripts, analysis, or reporting. You pay only for what you need, and can always purchase additional credits to run additional interviews as needed. Everything — interviews, analysis, tagging, summaries is included.",
+     "img": "/benefits/price/step-4.webp",
+     "icon": "/benefits/price/step-4-icon.svg"
+    }
+   ]
+  },
+  "benefit": {
+   "label": "When price matters most",
+   "title": "Enterprise research, startup price.",
+   "cards": [
+    {
+     "icon": "/benefits/price/benefit-1.svg",
+     "title": "Research you can actually afford to do every week",
+     "text": "Most teams want to talk to customers. They just can’t justify the cost. Frank makes continuous qualitative research financially realistic, even for small teams."
+    },
+    {
+     "icon": "/benefits/price/benefit-2.svg",
+     "title": "More data for the same budget",
+     "text": "Keep doing what you’re doing, but better! With the same spend, you’ll soon be having 50-100× more conversations. Meaning stronger signals, clearer patterns, and more confident decisions."
+    },
+    {
+     "icon": "/benefits/price/benefit-3.svg",
+     "title": "Reduced time cost for your team",
+     "text": "What used to take days of preparation, interviewing, and follow-up now takes… minutes. Your team stays focused on building while Frank does the heavy lifting."
+    },
+    {
+     "icon": "/benefits/price/benefit-4.svg",
+     "title": "Free your budget for development, marketing, and growth",
+     "text": "When your research costs shrink, you can reallocate the budget where it drives revenue without sacrificing insight."
+    }
+   ]
+  },
+  "comparison": {
+   "tradTitle": "Traditional research",
+   "rows": [
+    [
+     "Interview Scale",
+     "5–20/month max",
+     "1,000+ simultaneously"
+    ],
+    [
+     "Global Coverage",
+     "Requires large teams & vendors",
+     "30+ languages out-of-the-box"
+    ],
+    [
+     "Cost per additional customer/user",
+     "Scales linearly",
+     "Scales almost to zero"
+    ],
+    [
+     "Operational effort",
+     "Scheduling, moderation, logistics",
+     "Share link, insights begin"
+    ],
+    [
+     "Research velocity at scale",
+     "Slows as volume increases",
+     "Accelerates with volume"
+    ],
+    [
+     "Quality of insights",
+     "Manual, inconsistent",
+     "Consistent, structured, thematic"
+    ]
+   ]
+  },
+  "testimonial": {
+   "lines": [
+    "Real insights.",
+    "Real impact."
+   ],
+   "intro": "From startups to scale-ups, teams rely on Frank to replace weeks of research with clear, actionable insights in hours.",
+   "quote": [
+    "Qualitative research used to be one of the hardest things.",
+    "With Frank’s AI Researcher the trade-off is gone. We can now access global users without worrying about scheduling, availability, or high agency costs."
+   ],
+   "logo": "/benefits/narwal.webp"
+  },
+  "cta": {
+   "lines": [
+    "Scale conversations.",
+    "Scale clarity. Scale confidence."
+   ],
+   "sub": "And do it without scaling your team.",
+   "button": "Start scaling today"
+  }
+ },
+ "quality": {
+  "slug": "quality",
+  "metaTitle": "Customer Insights You Can Actually Trust | Frank",
+  "metaDescription": "Manual interviews vary — moderators differ and analysis is subjective. With Frank, every interview produces consistent, structured insights you can trust for real decisions.",
+  "hero": {
+   "label": "Quality",
+   "lines": [
+    "High-quality customer insights.",
+    "Every time, at any scale."
+   ],
+   "p": "Manual interviews vary — moderators differ and analysis is subjective. With Frank, every interview produces consistent, structured insights you can trust for real decisions.",
+   "primary": {
+    "label": "Get Insights",
+    "href": "https://app.hifrank.ai/signup"
+   },
+   "secondary": {
+    "label": "See how it works",
+    "href": "/try-frank"
+   }
+  },
+  "delivery": {
+   "label": "What Frank delivers",
+   "lines": [
+    "From question to insight,",
+    "in record time."
+   ],
+   "items": [
+    {
+     "title": "Rigorous, structured interviewing. Every. Single. Time.",
+     "text": "Human interviews vary in skill, energy, and depth. Especially when run by non-professional researchers. Frank follows a consistent, proven qualitative framework — probing deeply, asking smart follow-ups, and never leading the participant.",
+     "img": "/benefits/quality/step-1.webp",
+     "icon": "/benefits/quality/step-1-icon.svg"
+    },
+    {
+     "title": "Verifiable & referenced insights",
+     "text": "Every insight comes with the evidence behind it. Timestamped quotes, conversation threads, themes, underlying patterns… Nothing is hand-waved. And you can always trace every insight and conclusion back to real customer words.",
+     "img": "/benefits/quality/step-2.webp",
+     "icon": "/benefits/quality/step-2-icon.svg"
+    },
+    {
+     "title": "Qualitative depth at survey scale",
+     "text": "One interview shows a feeling. A hundred interviews show a fact. Frank aggregates individual conversations into repeatable, cross-validated insight, revealing the patterns behind the stories. All with survey-scale sample sizes that traditional qual can’t touch.",
+     "img": "/benefits/quality/step-3.webp",
+     "icon": "/benefits/quality/step-3-icon.svg"
+    },
+    {
+     "title": "Instant, consistent analysis with zero human bias",
+     "text": "Have you ever tuned out during an interview? Get distracted by a notification? Lead an answer based on your bias? Frank doesn’t get tired, isn’t selective, has no bias. And it always does everything with the same level of rigor whether you run 5 interviews or 500.",
+     "img": "/benefits/quality/step-4.webp",
+     "icon": "/benefits/quality/step-4-icon.svg"
+    }
+   ]
+  },
+  "benefit": {
+   "label": "When quality matters most",
+   "title": "What high quality interviews unlock",
+   "cards": [
+    {
+     "icon": "/benefits/quality/benefit-1.svg",
+     "title": "Confidence in the decisions you make",
+     "text": "Your recommendations aren’t based on guesses or a handful of conversations — they’re backed by deep, consistent evidence."
+    },
+    {
+     "icon": "/benefits/quality/benefit-2.svg",
+     "title": "Know where your insights come from",
+     "text": "Leadership wants to know why customers churned and the data behind it. With Frank, every insight is backed by the conversation it came from."
+    },
+    {
+     "icon": "/benefits/quality/benefit-3.svg",
+     "title": "Reliable quantifiable signals. Not noisy opinions.",
+     "text": "Frank turns qualitative interviews into clear, quantifiable signals validated across many participants — not just one opinion."
+    },
+    {
+     "icon": "/benefits/quality/benefit-4.svg",
+     "title": "Alignment across teams without debate",
+     "text": "Traceable evidence helps teams align faster. Frank turns data into clear insights and next steps — no more debating opinions."
+    }
+   ]
+  },
+  "comparison": {
+   "tradTitle": "Traditional research",
+   "rows": [
+    [
+     "Interview quality",
+     "Varies by moderator",
+     "Consistent & structured"
+    ],
+    [
+     "Depth of probing",
+     "Depends on skill/energy",
+     "Always deep & contextual"
+    ],
+    [
+     "Sample size for qual",
+     "5–20 interviews",
+     "Hundreds+ reliably"
+    ],
+    [
+     "Evidence & traceability",
+     "Notes, selective quotes",
+     "Full transcripts, linked insights"
+    ],
+    [
+     "Analytical consistency",
+     "Human interpretation",
+     "Real-time, bias-free analysis"
+    ],
+    [
+     "Signal strength",
+     "Weak + anecdotal",
+     "Cross-validated patterns"
+    ]
+   ]
+  },
+  "testimonial": {
+   "lines": [
+    "Real insights.",
+    "Real impact."
+   ],
+   "intro": "From startups to scale-ups, teams rely on Frank to replace weeks of research with clear, actionable insights in hours.",
+   "quote": [
+    "Qualitative research used to be one of the hardest things.",
+    "With Frank’s AI Researcher the trade-off is gone. We can now access global users without worrying about scheduling, availability, or high agency costs."
+   ],
+   "logo": "/benefits/narwal.webp"
+  },
+  "cta": {
+   "lines": [
+    "High-quality insight isn’t slow or expensive anymore."
+   ],
+   "sub": "With Frank, it’s automatic.",
+   "button": "Get insights today"
+  }
+ },
+ "scale": {
+  "slug": "scale",
+  "metaTitle": "100+ Customer Interviews. All at Once | Frank",
+  "metaDescription": "Talk to 10, 100, or even 1,000+ customers at once without adding headcount, extra hours, or operational overhead.",
+  "hero": {
+   "label": "Scale",
+   "lines": [
+    "Scale research beyond",
+    "human limits with Frank"
+   ],
+   "p": "Talk to 10, 100, or even 1,000+ customers at once without adding headcount, extra hours, or operational overhead.",
+   "primary": {
+    "label": "Start scaling today",
+    "href": "https://app.hifrank.ai/signup"
+   },
+   "secondary": {
+    "label": "See how it works",
+    "href": "/try-frank"
+   }
+  },
+  "delivery": {
+   "label": "What Frank delivers",
+   "lines": [
+    "From question to insight,",
+    "in record time."
+   ],
+   "items": [
+    {
+     "title": "Unlimited interview capacity",
+     "text": "Interview 1 user or 10,000 without any increase in effort on your part. Frank runs conversations in parallel, 24/7, across markets, segments, and time zones. So your research time is never a bottleneck in the sprint.",
+     "img": "/benefits/scale/step-1.webp",
+     "icon": "/benefits/scale/step-1-icon.svg"
+    },
+    {
+     "title": "Massive qualitative data. Zero operational load",
+     "text": "No interviewer training. No panel management. No scheduling chaos. Our AI Research Assistant guides you through the process of setting research goals and building your interview outline. All you have to do is share the link!",
+     "img": "/benefits/scale/step-2.webp",
+     "icon": "/benefits/scale/step-2-icon.svg"
+    },
+    {
+     "title": "Global access in 30+ languages",
+     "text": "Move beyond your home market instantly. Talk to customers in any region or language and query the insights in your own language, getting actionable next steps you can work on immediately, no matter the market.",
+     "img": "/benefits/scale/step-3.webp",
+     "icon": "/benefits/scale/step-3-icon.svg"
+    },
+    {
+     "title": "Scale depth. Not just volume",
+     "text": "Imagine being able to get survey-scale qualitative data. Every response is automatically tagged, clustered, analyzed, and connected. So you’re no longer looking at one-off qualitative insights, you can find patterns and quantify the reach of your insights.",
+     "img": "/benefits/scale/step-4.webp",
+     "icon": "/benefits/scale/step-4-icon.svg"
+    }
+   ]
+  },
+  "benefit": {
+   "label": "When scale matters most",
+   "title": "When scale matters most",
+   "cards": [
+    {
+     "icon": "/benefits/scale/benefit-1.svg",
+     "title": "Bigger samples. Stronger confidence",
+     "text": "One enthusiastic early adopter is an anecdote, but one thousand aligned interviews are evidence."
+    },
+    {
+     "icon": "/benefits/scale/benefit-2.svg",
+     "title": "Faster market validation",
+     "text": "Not sure if demand exists? Launch interviews across segments and countries and see patterns emerge within hours, not quarters."
+    },
+    {
+     "icon": "/benefits/scale/benefit-3.svg",
+     "title": "Expansion without expanding your team",
+     "text": "You don’t need more researchers to uncover more insights. You simply need a research system that scales for you."
+    },
+    {
+     "icon": "/benefits/scale/benefit-4.svg",
+     "title": "Build products for real markets. Not small samples.",
+     "text": "When you scale customer understanding, decisions stop being guesses. You get clarity grounded in real behavior across a meaningful sample size."
+    }
+   ]
+  },
+  "comparison": {
+   "tradTitle": "Traditional research",
+   "rows": [
+    [
+     "Interview Scale",
+     "5–20/month max",
+     "1,000+ simultaneously"
+    ],
+    [
+     "Global Coverage",
+     "Requires large teams & vendors",
+     "30+ languages out-of-the-box"
+    ],
+    [
+     "Cost per additional customer/user",
+     "Scales linearly",
+     "Scales almost to zero"
+    ],
+    [
+     "Operational effort",
+     "Scheduling, moderation, logistics",
+     "Share link, insights begin"
+    ],
+    [
+     "Research velocity at scale",
+     "Slows as volume increases",
+     "Accelerates with volume"
+    ],
+    [
+     "Quality of insights",
+     "Manual, inconsistent",
+     "Consistent, structured, thematic"
+    ]
+   ]
+  },
+  "testimonial": {
+   "lines": [
+    "Real insights.",
+    "Real impact."
+   ],
+   "intro": "From startups to scale-ups, teams rely on Frank to replace weeks of research with clear, actionable insights in hours.",
+   "quote": [
+    "Qualitative research used to be one of the hardest things.",
+    "With Frank’s AI Researcher the trade-off is gone. We can now access global users without worrying about scheduling, availability, or high agency costs."
+   ],
+   "logo": "/benefits/narwal.webp"
+  },
+  "cta": {
+   "lines": [
+    "Scale conversations.",
+    "Scale clarity. Scale confidence."
+   ],
+   "sub": "And do it without scaling your team.",
+   "button": "Start scaling today"
+  }
+ },
+ "speed": {
+  "slug": "speed",
+  "metaTitle": "Customer Insights Overnight, Not in Weeks | Frank",
+  "metaDescription": "With Frank AI Interviewer, you can run 100+ deep interviews overnight, get instant analysis, and move from question to insight to decision before your competitors even wake up!",
+  "hero": {
+   "label": "Speed",
+   "lines": [
+    "Understand customers.",
+    "Outpace competitors."
+   ],
+   "p": "With Frank AI Interviewer, you can run 100+ deep interviews overnight, get instant analysis, and move from question to insight to decision before your competitors even wake up!",
+   "primary": {
+    "label": "Start learning faster",
+    "href": "https://app.hifrank.ai/signup"
+   },
+   "secondary": {
+    "label": "See how it works",
+    "href": "/try-frank"
+   }
+  },
+  "delivery": {
+   "label": "What Frank delivers",
+   "lines": [
+    "From question to insight,",
+    "in record time."
+   ],
+   "items": [
+    {
+     "title": "Start learning faster",
+     "text": "Launch customer interviews within minutes — no scheduling, no coordinating, no calendar dead zones. Our AI Research Assistant guides you through the process of setting research goals and building your interview outline.",
+     "img": "/benefits/speed/step-1.webp",
+     "icon": "/benefits/speed/step-1-icon.svg"
+    },
+    {
+     "title": "100+ interviews overnight",
+     "text": "Scale conversations automatically, 24/7, globally, while your team sleeps. Just share the link, add it to a funnel, send it in a newsletter, include it in your cancellation flow, or anywhere else and let people join at their own pace.",
+     "img": "/benefits/speed/step-2.webp",
+     "icon": "/benefits/speed/step-2-icon.svg"
+    },
+    {
+     "title": "Instant summaries & insights",
+     "text": "Every interview is analyzed in real time to surface themes, patterns, sentiment instantly. And as more people participate in your research, their insights are added to the context, and your AI Research Assistant becomes smarter.",
+     "img": "/benefits/speed/step-3.webp",
+     "icon": "/benefits/speed/step-3-icon.svg"
+    }
+   ]
+  },
+  "benefit": {
+   "label": "When speed matters most",
+   "title": "Make informed decisions faster",
+   "cards": [
+    {
+     "icon": "/benefits/speed/benefit-1.svg",
+     "title": "Faster development sprints",
+     "text": "What normally takes weeks, now happens overnight. Discovery, validation, iteration — all in a single cycle."
+    },
+    {
+     "icon": "/benefits/speed/benefit-2.svg",
+     "title": "Faster insight-to-action",
+     "text": "Discuss a drop in conversion in the morning, run same-day interviews with 100+ customers, ship changes by afternoon."
+    },
+    {
+     "icon": "/benefits/speed/benefit-3.svg",
+     "title": "Innovation advantage",
+     "text": "While competitors struggle to understand why churn is up, you have already fixed it, shipped it, and moved on."
+    },
+    {
+     "icon": "/benefits/speed/benefit-4.svg",
+     "title": "Faster product decisions",
+     "text": "Confident decisions replace guesswork. Learn fast, adapt fast, and move faster than your competition."
+    }
+   ]
+  },
+  "comparison": {
+   "tradTitle": "Traditional research",
+   "rows": [
+    [
+     "Interview Speed",
+     "1-2 per week",
+     "100+ per night"
+    ],
+    [
+     "Time to insights",
+     "1-2 weeks after fieldwork",
+     "Instant"
+    ],
+    [
+     "Preparation + scheduling",
+     "~1 week minimum",
+     "Minutes"
+    ],
+    [
+     "Analysis & reporting",
+     "Manual, slow, expensive",
+     "Real-time & automated"
+    ],
+    [
+     "Iteration speed",
+     "Slow, linear",
+     "Rapid & continuous"
+    ],
+    [
+     "Competitive advantage",
+     "Easily matched",
+     "Compounding speed advantage"
+    ]
+   ]
+  },
+  "testimonial": {
+   "lines": [
+    "Real insights.",
+    "Real impact."
+   ],
+   "intro": "From startups to scale-ups, teams rely on Frank to replace weeks of research with clear, actionable insights in hours.",
+   "quote": [
+    "Qualitative research used to be one of the hardest things.",
+    "With Frank’s AI Researcher the trade-off is gone. We can now access global users without worrying about scheduling, availability, or high agency costs."
+   ],
+   "logo": "/benefits/narwal.webp"
+  },
+  "cta": {
+   "lines": [
+    "Learn overnight.",
+    "Decide tomorrow."
+   ],
+   "sub": "Out-learn and out-ship your competition.",
+   "button": "Start learning faster"
+  }
+ }
+}

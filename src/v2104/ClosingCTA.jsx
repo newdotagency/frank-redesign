@@ -106,7 +106,7 @@ function Chip({ p, px, py, live, reduce, at, from: [dx, dy], lag, depth, dur, de
 const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink';
 
 // Opt-in content for other pages (the home page passes none, so it is unchanged):
-//   lines: the title's lines; sub: the line under it; primary / secondary: { label, href, ext?, icon? } for the two buttons
+//   lines: the title's lines; sub: the line under it; primary / secondary: { label, href, ext?, icon? } for the two buttons (secondary={false}: one button)
 //   (primary's icon: 'arrow' or 'mic', default 'arrow'); titleId: the title's id; chips={false}: no floating pills; compact: a panel only as tall as its content (not a screen).
 export default function ClosingCTA({ lines = null, sub = null, primary = null, secondary = null, titleId = 'cta-title', chips = true, compact = false }) {
   const reduce = !!useReducedMotion();
@@ -181,11 +181,11 @@ export default function ClosingCTA({ lines = null, sub = null, primary = null, s
                   {primary && primary.icon !== 'mic' ? <ArrowRight className="size-[18px]" strokeWidth={1.75} /> : <Mic className="size-[18px]" strokeWidth={1.75} />}
                 </span>
               </a>
-              <a href={secondary ? secondary.href : '#signup'} {...look}
+              {secondary !== false && <a href={secondary ? secondary.href : '#signup'} {...look}
                 {...(secondary?.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className={'inline-flex h-14 items-center rounded-full bg-white/75 px-7 font-sans text-[16px] text-ink no-underline ring-1 ring-[#1a1714]/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white active:scale-[0.98] ' + FOCUS}>
                 {secondary ? secondary.label : 'Sign up'}
-              </a>
+              </a>}
             </ScrubText>
           </div>
         </div>

@@ -10,6 +10,7 @@ const HOSTED = [
   /^\/docs\/[\w-]+$/,
   /^\/features\/[\w-]+$/,
   /^\/product-updates(\/[\w-]+)?$/,
+  /^\/benefits\/(price|quality|scale|speed)$/,
   /^\/use-case\/ai-churn-interviews$/,
   /^\/competitors\/(conveo|listen-labs|outset|strella)$/,
 ];
