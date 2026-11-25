@@ -23,7 +23,7 @@ export const MEDIA = {
   },
   'transparency-security': {
     hero: f('transparency-security', 'feature-transparency.png'),
-    names: ['Sourced', 'Secure', 'Yours'],
+    names: ['Sourced', 'Compliance', 'Yours'],
     howLines: ['Every insight,', 'traced to its source'],
     how: ['insights-are-always-sourced.jpg', 'insights-are-secure-by-default.jpg', 'insights-are-under-your-control.jpg'].map(n => f('transparency-security', n)),
     get: ['fully-traceable-insights.jpg', 'enterprise-grade-data-security.jpg', 'clear-auditability.jpg'].map(n => f('transparency-security', n)),

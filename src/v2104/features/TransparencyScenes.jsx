@@ -4,6 +4,9 @@
 //   Secure:  SOC 2, ESOMAR and GDPR beside what they cover: encryption, access controls, secure storage.
 //   Yours:   Control access, Manage data use, Set retention, floating over the insights and a transcript.
 import { Clock, Eye, Lock, SlidersHorizontal, Database, Users, Zap, ExternalLink, TriangleAlert } from 'lucide-react';
+import soc2 from '../logos/soc2.png';
+import gdpr from '../logos/gdpr.png';
+import esomar from '../logos/esomar.png';
 import { Avatar, Bars, CARD, FIG, Float, Stage } from './GlobalScenes';
 
 const RING = 'ring-1 ring-[#1a1714]/[0.06]';
@@ -17,7 +20,7 @@ export function SourcedScene({ active, reduce }) {
   const rows = [['S', 'Sarah M.', 'Marketing Lead', ['“I almost didn’t upgrade because I ', 'wasn’t sure it was worth it.', ''], ROSE], ['L', 'Luca D.', 'Project Manager', ['“We pull data from ', 'five different tools', ' just to build one report.”'], GREEN]];
   return (
     <Stage>
-      <Float on={on} reduce={reduce} at={0} className="left-[24px] top-[70px] w-[472px]">
+      <Float on={on} reduce={reduce} at={0} className="left-[24px] top-[96px] w-[472px]">
         <div className={CARD + ' overflow-hidden !rounded-[26px]'}>
           <div className="px-6 pb-5 pt-6">
             <div className="flex items-center gap-2.5 font-sans text-[16px] text-ink"><Zap className="size-5 text-[#8a6100]" strokeWidth={1.8} />Key Insight</div>
@@ -26,15 +29,15 @@ export function SourcedScene({ active, reduce }) {
         </div>
       </Float>
       {rows.map(([c, n, r, q, tone], i) => (
-        <Float key={n} on={on} reduce={reduce} at={0.2 + i * 0.14} className="left-[44px] w-[432px]" style={{ top: 240 + i * 88 }}>
-          <div className={'flex items-center gap-3 rounded-[16px] bg-white px-4 py-3 ' + SOFT + ' ' + RING}>
+        <Float key={n} on={on} reduce={reduce} at={0.2 + i * 0.14} className="left-[44px] w-[432px]" style={{ top: 258 + i * 84 }}>
+          <div className={'flex items-center gap-3 rounded-[16px] bg-white px-4 py-3.5 ' + SOFT + ' ' + RING}>
             <Avatar c={c} size={44} />
             <span className="flex w-[104px] shrink-0 flex-col leading-tight"><span className={FIG + ' text-[15px] text-ink'}>{n}</span><span className="text-[12px] text-ink-2">{r}</span></span>
             <span className="font-sans text-[11.5px] leading-[1.5] text-ink-2">{q[0]}<Mark tone={tone}>{q[1]}</Mark>{q[2]}</span>
           </div>
         </Float>
       ))}
-      <Float on={on} reduce={reduce} at={0.5} className="left-[24px] top-[432px] w-[472px]">
+      <Float on={on} reduce={reduce} at={0.5} className="left-[24px] top-[430px] w-[472px]">
         <div className={'flex items-center justify-center gap-3 rounded-[18px] bg-white py-4 ' + SOFT + ' ' + RING}>
           <TriangleAlert className="size-5 text-[#3f6b12]" strokeWidth={1.8} /><span className={FIG + ' text-[17px] text-ink'}>100% verified from real conversations</span>
         </div>
@@ -44,17 +47,8 @@ export function SourcedScene({ active, reduce }) {
 }
 
 // ——— 2. Secure by default.
-function Badge({ kind }) {
-  if (kind === 'soc') return (
-    <div className="flex flex-col items-center text-center"><span className="grid size-[84px] place-items-center rounded-full border-[6px] border-[#1a1714] font-sans text-[17px] font-semibold text-ink">SOC 2</span></div>
-  );
-  if (kind === 'esomar') return (
-    <div className="flex flex-col items-center text-center"><span className={FIG + ' text-[17px] font-semibold uppercase leading-tight tracking-[0.1em] text-ink'}>The ESOMAR<br />Awards 2025</span></div>
-  );
-  return (
-    <div className="flex flex-col items-center text-center"><span className="grid size-[84px] place-items-center rounded-full bg-[#2a3a2c] font-sans text-[16px] font-semibold text-[#d1f899]">GDPR</span></div>
-  );
-}
+const LOGO = { soc: [soc2, 'h-[92px]'], esomar: [esomar, 'h-[70px]'], gdpr: [gdpr, 'h-[92px]'] };
+function Badge({ kind }) { const [src, cls] = LOGO[kind]; return <img src={src} alt="" draggable={false} className={'w-auto object-contain ' + cls} />; }
 export function SecureScene({ active, reduce }) {
   const on = active;
   return (
@@ -83,7 +77,7 @@ export function YoursScene({ active, reduce }) {
         </div>
       </Float>
       {ctl.map(([Icon, t], i) => (
-        <Float key={t} on={on} reduce={reduce} at={0.3 + i * 0.14} className="left-[80px] w-[290px]" style={{ top: 214 + i * 92 }}>
+        <Float key={t} on={on} reduce={reduce} at={0.3 + i * 0.14} className="left-[115px] w-[290px]" style={{ top: 214 + i * 92 }}>
           <div className={'flex items-center gap-4 rounded-[18px] bg-white p-3.5 shadow-[0_18px_34px_-16px_rgba(26,23,20,0.4)] ' + RING}>
             <span aria-hidden="true" className="grid size-[58px] shrink-0 place-items-center rounded-[14px] bg-[#d1f899] text-[#2a321e]"><Icon className="size-6" strokeWidth={1.7} /></span>
             <span className={FIG + ' text-[18px] font-medium text-ink'}>{t}</span>
