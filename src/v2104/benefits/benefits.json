@@ -30,25 +30,29 @@
      "title": "Enterprise-grade customer research with startup pricing",
      "text": "Traditional moderated interviews can cost anywhere from $100 to $1,000+ per participant. With Frank, cost-per-interview drops so low that you can run dozens or hundreds of interviews for the price of a single agency session.",
      "img": "/benefits/price/step-1.webp",
-     "icon": "/benefits/price/step-1-icon.svg"
+     "icon": "/benefits/price/step-1-icon.svg",
+     "name": "Cost"
     },
     {
      "title": "No moderators. No scheduling. No overhead.",
      "text": "Forget recruiting, coordination, calendar management, prep calls, and moderation time. Your AI Interviewer handles 100s of simultaneous conversations around the world automatically without adding a single hour to your team’s workload.",
      "img": "/benefits/price/step-2.webp",
-     "icon": "/benefits/price/step-2-icon.svg"
+     "icon": "/benefits/price/step-2-icon.svg",
+     "name": "Effort"
     },
     {
      "title": "Unlimited iteration. Same budget.",
      "text": "When resources are low, research and learning are always the first to go… But now you can run follow-ups, re-test features, validate revisions, and explore new ideas without ever worrying about hourly rates or billable time, even on a shoestring budget!",
      "img": "/benefits/price/step-3.webp",
-     "icon": "/benefits/price/step-3-icon.svg"
+     "icon": "/benefits/price/step-3-icon.svg",
+     "name": "Iteration"
     },
     {
      "title": "Predictable pricing. Zero surprises.",
      "text": "No hidden fees. No extra charges for transcripts, analysis, or reporting. You pay only for what you need, and can always purchase additional credits to run additional interviews as needed. Everything — interviews, analysis, tagging, summaries is included.",
      "img": "/benefits/price/step-4.webp",
-     "icon": "/benefits/price/step-4-icon.svg"
+     "icon": "/benefits/price/step-4-icon.svg",
+     "name": "Pricing"
     }
    ]
   },
@@ -165,25 +169,29 @@
      "title": "Rigorous, structured interviewing. Every. Single. Time.",
      "text": "Human interviews vary in skill, energy, and depth. Especially when run by non-professional researchers. Frank follows a consistent, proven qualitative framework — probing deeply, asking smart follow-ups, and never leading the participant.",
      "img": "/benefits/quality/step-1.webp",
-     "icon": "/benefits/quality/step-1-icon.svg"
+     "icon": "/benefits/quality/step-1-icon.svg",
+     "name": "Rigor"
     },
     {
      "title": "Verifiable & referenced insights",
      "text": "Every insight comes with the evidence behind it. Timestamped quotes, conversation threads, themes, underlying patterns… Nothing is hand-waved. And you can always trace every insight and conclusion back to real customer words.",
      "img": "/benefits/quality/step-2.webp",
-     "icon": "/benefits/quality/step-2-icon.svg"
+     "icon": "/benefits/quality/step-2-icon.svg",
+     "name": "Evidence"
     },
     {
      "title": "Qualitative depth at survey scale",
      "text": "One interview shows a feeling. A hundred interviews show a fact. Frank aggregates individual conversations into repeatable, cross-validated insight, revealing the patterns behind the stories. All with survey-scale sample sizes that traditional qual can’t touch.",
      "img": "/benefits/quality/step-3.webp",
-     "icon": "/benefits/quality/step-3-icon.svg"
+     "icon": "/benefits/quality/step-3-icon.svg",
+     "name": "Depth"
     },
     {
      "title": "Instant, consistent analysis with zero human bias",
      "text": "Have you ever tuned out during an interview? Get distracted by a notification? Lead an answer based on your bias? Frank doesn’t get tired, isn’t selective, has no bias. And it always does everything with the same level of rigor whether you run 5 interviews or 500.",
      "img": "/benefits/quality/step-4.webp",
-     "icon": "/benefits/quality/step-4-icon.svg"
+     "icon": "/benefits/quality/step-4-icon.svg",
+     "name": "Analysis"
     }
    ]
   },
@@ -299,25 +307,29 @@
      "title": "Unlimited interview capacity",
      "text": "Interview 1 user or 10,000 without any increase in effort on your part. Frank runs conversations in parallel, 24/7, across markets, segments, and time zones. So your research time is never a bottleneck in the sprint.",
      "img": "/benefits/scale/step-1.webp",
-     "icon": "/benefits/scale/step-1-icon.svg"
+     "icon": "/benefits/scale/step-1-icon.svg",
+     "name": "Capacity"
     },
     {
      "title": "Massive qualitative data. Zero operational load",
      "text": "No interviewer training. No panel management. No scheduling chaos. Our AI Research Assistant guides you through the process of setting research goals and building your interview outline. All you have to do is share the link!",
      "img": "/benefits/scale/step-2.webp",
-     "icon": "/benefits/scale/step-2-icon.svg"
+     "icon": "/benefits/scale/step-2-icon.svg",
+     "name": "Data"
     },
     {
      "title": "Global access in 30+ languages",
      "text": "Move beyond your home market instantly. Talk to customers in any region or language and query the insights in your own language, getting actionable next steps you can work on immediately, no matter the market.",
      "img": "/benefits/scale/step-3.webp",
-     "icon": "/benefits/scale/step-3-icon.svg"
+     "icon": "/benefits/scale/step-3-icon.svg",
+     "name": "Reach"
     },
     {
      "title": "Scale depth. Not just volume",
      "text": "Imagine being able to get survey-scale qualitative data. Every response is automatically tagged, clustered, analyzed, and connected. So you’re no longer looking at one-off qualitative insights, you can find patterns and quantify the reach of your insights.",
      "img": "/benefits/scale/step-4.webp",
-     "icon": "/benefits/scale/step-4-icon.svg"
+     "icon": "/benefits/scale/step-4-icon.svg",
+     "name": "Depth"
     }
    ]
   },
@@ -434,19 +446,22 @@
      "title": "Start learning faster",
      "text": "Launch customer interviews within minutes — no scheduling, no coordinating, no calendar dead zones. Our AI Research Assistant guides you through the process of setting research goals and building your interview outline.",
      "img": "/benefits/speed/step-1.webp",
-     "icon": "/benefits/speed/step-1-icon.svg"
+     "icon": "/benefits/speed/step-1-icon.svg",
+     "name": "Launch"
     },
     {
      "title": "100+ interviews overnight",
      "text": "Scale conversations automatically, 24/7, globally, while your team sleeps. Just share the link, add it to a funnel, send it in a newsletter, include it in your cancellation flow, or anywhere else and let people join at their own pace.",
      "img": "/benefits/speed/step-2.webp",
-     "icon": "/benefits/speed/step-2-icon.svg"
+     "icon": "/benefits/speed/step-2-icon.svg",
+     "name": "Interviews"
     },
     {
      "title": "Instant summaries & insights",
      "text": "Every interview is analyzed in real time to surface themes, patterns, sentiment instantly. And as more people participate in your research, their insights are added to the context, and your AI Research Assistant becomes smarter.",
      "img": "/benefits/speed/step-3.webp",
-     "icon": "/benefits/speed/step-3-icon.svg"
+     "icon": "/benefits/speed/step-3-icon.svg",
+     "name": "Insights"
     }
    ]
   },

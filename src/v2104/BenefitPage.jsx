@@ -48,7 +48,7 @@ function toHow(e) {
 // The scenes are built once per page, so a step's picture keeps its identity between renders.
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = BENEFITS[slug].delivery.items.map(it => ({
-  name: '', title: it.title, body: [it.text], scene: imageScene(it.img, it.title),
+  name: it.name, title: it.title, body: [it.text], scene: imageScene(it.img, it.title),
 })));
 
 function Comparison({ b, reduce }) {
