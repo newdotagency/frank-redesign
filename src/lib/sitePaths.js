@@ -11,6 +11,7 @@ const HOSTED = [
   /^\/features\/[\w-]+$/,
   /^\/product-updates(\/[\w-]+)?$/,
   /^\/benefits\/(price|quality|scale|speed)$/,
+  /^\/industries\/(saas|ecommerce)$/,
   /^\/use-case\/ai-churn-interviews$/,
   /^\/competitors\/(conveo|listen-labs|outset|strella)$/,
 ];

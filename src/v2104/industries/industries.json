@@ -1,0 +1,285 @@
+{
+ "saas": {
+  "title": "AI Customer Interviews for SaaS Teams | Frank",
+  "description": "Frank uses AI-powered interviews to uncover why users sign up, activate, adopt features, upgrade, or churn. Turn those answers into actionable product insights.",
+  "label": "SaaS",
+  "hero": [
+   "Automate Your SaaS Product’s",
+   "User Interviews"
+  ],
+  "heroP": "Frank uses AI-powered interviews to uncover why users sign up, activate, adopt features, upgrade, or churn. Turn those answers into actionable product insights.",
+  "momentsLabel": "Key Customer Moments",
+  "momentsLines": [
+   "AI Customer Interviews",
+   "Across the SaaS Journey"
+  ],
+  "momentsSub": "Frank interviews users at key product moments to uncover the why behind their behavior.",
+  "moments": [
+   [
+    "User Discovery",
+    "Learn what users need.",
+    "Understand user goals, pain points, and expectations from the start.",
+    "user-discovery"
+   ],
+   [
+    "Onboarding & Activation",
+    "Find out why users don't activate.",
+    "Uncover onboarding friction, confusion, and what prevents users from reaching value.",
+    "onboarding-and-activation"
+   ],
+   [
+    "Feature Adoption",
+    "Understand why features succeed or fail.",
+    "Learn what users like, what confuses them, and what prevents adoption.",
+    "feature-adoption"
+   ],
+   [
+    "Product Discovery",
+    "Build what users actually need.",
+    "Validate product ideas and uncover unmet needs before investing development time.",
+    "product-discovery"
+   ],
+   [
+    "Churn",
+    "Understand why users leave.",
+    "Uncover the real reasons users downgrade, cancel, or stop using your product.",
+    "churn"
+   ]
+  ],
+  "roles": [
+   [
+    "For UX Researchers",
+    "ux-researchers"
+   ],
+   [
+    "For Product Managers",
+    "product-managers"
+   ],
+   [
+    "For Growth Teams",
+    "growth-teams"
+   ]
+  ],
+  "howLabel": "How Frank Works",
+  "howLines": [
+   "Turn Customer Interactions",
+   "Into Actionable Insights"
+  ],
+  "howSub": "Frank connects to your customer journey, interviews customers, and turns every conversation into actionable insights.",
+  "how": [
+   [
+    "Choose a Customer Touchpoint",
+    "Add Frank to key moments in your customer journey — such as checkout, abandoned carts, returns, cancellations, or post-purchase."
+   ],
+   [
+    "Frank Interviews Your Customers",
+    "Frank conducts AI-powered interviews and asks adaptive follow-up questions to uncover the why behind customer behavior."
+   ],
+   [
+    "Turn Interviews Into Insights",
+    "Frank automatically summarizes conversations, identifies trends, and surfaces actionable insights — building your Customer Brain over time."
+   ]
+  ],
+  "rolesLines": [
+   "Built for Teams Shape",
+   "the Customer Experience"
+  ],
+  "cta": {
+   "lines": [
+    "Turn Customer Interactions",
+    "Into Insights"
+   ],
+   "sub": "Use AI interviews to understand why customers buy, abandon, return, or churn.",
+   "button": "Run 10 Free Interviews"
+  },
+  "faqs": [
+   [
+    "Will users actually talk to an AI interviewer?",
+    [
+     "Yes. Frank reaches users at the moment they're already thinking about your product — after signing up, trying a feature, upgrading, or cancelling. Conversations feel natural, require no scheduling, and consistently generate richer feedback than traditional surveys."
+    ]
+   ],
+   [
+    "Where can I add Frank inside my product?",
+    [
+     "You can easily integrate Frank anywhere in your product. Common touchpoints include sign-up flows, onboarding, feature releases, upgrade prompts, cancellation flows, support interactions, beta programs, and post-launch feedback requests.",
+     "You can also share Frank through email, chat, or a simple interview link."
+    ]
+   ],
+   [
+    "Can Frank interview users after they use a specific feature?",
+    [
+     "Absolutely. Trigger interviews immediately after someone uses or struggles to use a feature to understand what they expected, what confused them, what they loved, and what almost stopped them from succeeding."
+    ]
+   ],
+   [
+    "How is this different from product analytics or surveys?",
+    [
+     "Analytics tell you what happened. Surveys tell you what users say. Frank uncovers why. Through adaptive AI interviews, Frank asks intelligent follow-up questions, explores unexpected responses, and gets to the motivations behind user behavior."
+    ]
+   ],
+   [
+    "Can Frank help reduce churn?",
+    [
+     "Yes. Frank replaces static cancellation surveys with adaptive conversations that uncover the real reasons users leave.",
+     "Over time, you'll spot recurring patterns across customers, cohorts, pricing plans, and segments — helping you prioritize the improvements that have the biggest impact on retention."
+    ]
+   ],
+   [
+    "What happens after every interview?",
+    [
+     "Frank automatically summarizes the conversation, identifies themes, extracts action items, links every insight back to customer quotes, and adds everything to your growing Customer Brain.",
+     "As more interviews are completed, your understanding becomes richer, revealing trends and opportunities that aren't visible from individual conversations alone."
+    ]
+   ],
+   [
+    "Can I review the original interviews and transcripts?",
+    [
+     "Always. Every insight is fully traceable back to the original interview, transcript, recording, and customer quotes, so you can explore the full context whenever you need it. Users can also follow live transcripts during the interview, ensuring Frank accurately captures what they mean."
+    ]
+   ]
+  ],
+  "slug": "saas"
+ },
+ "ecommerce": {
+  "title": "AI Customer Interviews for Ecommerce Teams | Frank",
+  "description": "Frank uses AI-powered interviews to uncover why customers buy, hesitate, abandon carts, return products, or churn. Turn those answers into actionable customer insights to increase conversion and reduce churn.",
+  "label": "Ecommerce",
+  "hero": [
+   "Automate customer interviews",
+   "across your ecommerce journey."
+  ],
+  "heroP": "Frank uses AI-powered interviews to uncover why customers buy, hesitate, abandon carts, return products, or churn. Turn those answers into actionable customer insights to increase conversion and reduce churn.",
+  "momentsLabel": "Key Customer Moments",
+  "momentsLines": [
+   "Every Customer Journey",
+   "Builds Customer Intelligence"
+  ],
+  "momentsSub": "Frank interviews customers at key moments to uncover the why behind their behavior.",
+  "moments": [
+   [
+    "Cart Abandonment",
+    "Find out why customers don't buy",
+    "Uncover pricing concerns, trust issues, shipping objections, and other reasons customers abandon their carts.",
+    "cart-abandonment"
+   ],
+   [
+    "Post-Purchase Experience",
+    "Understand the customer experience after checkout.",
+    "Learn whether expectations were met, what customers loved, and what could lead to buyer's remorse.",
+    "post-purchase-experience"
+   ],
+   [
+    "Returns & Refunds",
+    "Understand why customers return products.",
+    "Go beyond \"wrong size\" or \"changed my mind\" to uncover product issues, unmet expectations, and reasons behind returns.",
+    "returns-and-refunds"
+   ],
+   [
+    "Subscription & Churn",
+    "Find out why customers leave.",
+    "Uncover the real reasons customers cancel, pause, or downgrade — and identify opportunities to improve retention.",
+    "subscription-and-churn"
+   ],
+   [
+    "Product Research",
+    "Discover what customers actually want.",
+    "Validate product ideas, uncover unmet needs, and learn what customers want before investing in new products.",
+    "product-research"
+   ]
+  ],
+  "roles": [
+   [
+    "For Growth Teams",
+    "growth-teams"
+   ],
+   [
+    "For Brand Managers",
+    "brand-managers"
+   ],
+   [
+    "For Founders",
+    "founders"
+   ]
+  ],
+  "howLabel": "How Frank Works",
+  "howLines": [
+   "Turn Customer Interactions",
+   "Into Actionable Insights"
+  ],
+  "howSub": "Frank connects to your customer journey, interviews customers, and turns every conversation into actionable insights.",
+  "how": [
+   [
+    "Choose a Customer Touchpoint",
+    "Add Frank to key moments in your customer journey — such as checkout, abandoned carts, returns, cancellations, or post-purchase."
+   ],
+   [
+    "Frank Interviews Your Customers",
+    "Frank conducts AI-powered interviews and asks adaptive follow-up questions to uncover the why behind customer behavior."
+   ],
+   [
+    "Turn Interviews Into Insights",
+    "Frank automatically summarizes conversations, identifies trends, and surfaces actionable insights — building your Customer Brain over time."
+   ]
+  ],
+  "rolesLines": [
+   "Built for Teams Shape",
+   "the Customer Experience"
+  ],
+  "cta": {
+   "lines": [
+    "Turn Customer Interactions",
+    "Into Insights"
+   ],
+   "sub": "Use AI interviews to understand why customers buy, abandon, return, or churn.",
+   "button": "Run 10 Free Interviews"
+  },
+  "faqs": [
+   [
+    "Will customers actually complete AI interviews?",
+    [
+     "Yes. Frank meets customers at the moment they're already thinking about your product — after a purchase, during a cancellation, after a return, or when abandoning a cart. Conversations feel natural, require no scheduling, and consistently generate richer feedback than traditional surveys."
+    ]
+   ],
+   [
+    "Where can I add Frank in my customer journey?",
+    [
+     "Anywhere. Common touchpoints include abandoned carts, post-purchase emails, lead generation funnels, delivery follow-ups, return requests, cancellation flows, onboarding, loyalty programs, and product launches."
+    ]
+   ],
+   [
+    "Does Frank work with Shopify, WooCommerce or BigCommerce?",
+    [
+     "Yes. Frank can be embedded into Shopify experiences and works alongside the ecommerce platforms and marketing tools your team already uses, including WooCommerce, BigCommerce, Klaviyo, Recharge, and more. You can also easily embed it into any custom website or app."
+    ]
+   ],
+   [
+    "Can Frank interview customers in different countries?",
+    [
+     "Absolutely. Frank conducts interviews in more than 30 languages, making it easy to understand customers across global markets without hiring multilingual researchers. And as Frank is ‘always on’, it doesn’t matter what time of day or night customers want to join the interview!"
+    ]
+   ],
+   [
+    "How is this different from post-purchase surveys?",
+    [
+     "Surveys collect answers. Frank holds conversations.",
+     "Instead of static questions, Frank asks intelligent follow-ups, explores unexpected responses, and uncovers the reasoning behind customer decisions."
+    ]
+   ],
+   [
+    "What happens after each interview?",
+    [
+     "Frank automatically creates summaries, extracts themes, identifies action items, links every insight to supporting customer quotes, and adds the interview to your growing Customer Brain.",
+     "Over time, your Customer Brain becomes more layered and detailed, surfacing trends and common themes, and understanding opportunities and issues that might not be apparent from one conversation."
+    ]
+   ],
+   [
+    "Does Frank provide transcripts?",
+    [
+     "Always. Every insight is fully traceable back to the original interview, transcript, recording, and customer quotes so your team can explore the context whenever needed. Customers can also follow live transcripts during the interview, to ensure Frank properly captured their intent."
+    ]
+   ]
+  ],
+  "slug": "ecommerce"
+ }
+}
