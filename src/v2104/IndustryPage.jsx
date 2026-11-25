@@ -89,7 +89,7 @@ export default function IndustryPage({ slug }) {
                   {d.how.map(([t, text], i) => {
                     const Icon = HOW_ICONS[i];
                     return (
-                      <motion.li key={t} className="flex items-start gap-5 rounded-[24px] bg-white/[0.06] p-6 text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] sm:p-7"
+                      <motion.li key={t} className="flex flex-col items-start gap-5 rounded-[24px] bg-white/[0.06] p-6 text-left shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] sm:flex-row sm:p-7"
                         initial={reduce ? false : { opacity: 0, y: 48, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.35 }}
                         transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0 : 0.05 }}>
                         <span aria-hidden="true" className="grid size-12 shrink-0 place-items-center rounded-full bg-[#d1f899] text-[#2a321e]"><Icon className="size-6" strokeWidth={1.7} /></span>
