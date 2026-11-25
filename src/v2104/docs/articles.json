@@ -265,7 +265,7 @@
           },
           {
             "t": "p",
-            "x": "If you don't have a product connected yet, you'll land on the New Product page (Home > Products > [New Product](https://www.hifrank.ai/help/how-to-create-a-new-product)). This is a split-screen form: you fill in details on the left, and Frank auto-generates a live Product Brief on the right as you type."
+            "x": "If you don't have a product connected yet, you'll land on the New Product page (Home > Products > [New Product](/docs/how-to-create-a-new-product)). This is a split-screen form: you fill in details on the left, and Frank auto-generates a live Product Brief on the right as you type."
           },
           {
             "t": "p",
@@ -770,7 +770,7 @@
           {
             "t": "list",
             "items": [
-              "[Add to your site/app](https://www.hifrank.ai/help/website-widget-embedding-frank-on-your-site) — embed the interview widget into an external website or product",
+              "[Add to your site/app](/docs/website-widget-embedding-frank-on-your-site) — embed the interview widget into an external website or product",
               "**AI interviewer link —** generate a shareable link so participants can complete an AI-moderated interview on their own",
               "**Stop Interviews —** pause or close new signups/sessions for this study",
               "**Info icon (i) —** opens the Study Info panel — see *Study info panel* below",
@@ -2053,7 +2053,7 @@
           },
           {
             "t": "p",
-            "x": "Prefer to call Frank directly instead? The same data is available over the [REST API](https://www.hifrank.ai/docs/frank-public-api-developer-guide)."
+            "x": "Prefer to call Frank directly instead? The same data is available over the [REST API](/docs/frank-public-api-developer-guide)."
           }
         ]
       }
@@ -2677,7 +2677,7 @@
         "blocks": [
           {
             "t": "p",
-            "x": "The payload identifies the interview; the transcript and the rest of its detail come from the authenticated API using `data.interviewId`. See the [API documentation](https://www.hifrank.ai/docs/frank-public-api-developer-guide)."
+            "x": "The payload identifies the interview; the transcript and the rest of its detail come from the authenticated API using `data.interviewId`. See the [API documentation](/docs/frank-public-api-developer-guide)."
           }
         ]
       },
