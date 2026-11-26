@@ -34,9 +34,10 @@ export const DISCOVERY = {
     eyebrow: 'Discovery calls with Frank',
     lead: 'What is a',
     phrase: 'discovery call?',
-    sub: 'A discovery call is a short conversation with someone who just signed up or bought for the first time.',
-    para: 'It finds out what they were looking for, the problem behind it, how they found you, what else they considered, and how they plan to use what they chose.',
-    quote: 'Your attribution data shows the last click before sign-up. It doesn’t show the podcast they heard three months ago, the colleague who recommended you, or the two tools they tried first.',
+    // The doc's paragraphs, in the doc's order: the problem statement under the title, then the definition (whole).
+    sub: 'Your attribution data shows the last click before sign-up. It doesn’t show the podcast they heard three months ago, the colleague who recommended you, or the two tools they tried first.',
+    para: 'A discovery call is a short conversation with someone who just signed up or bought for the first time. It finds out what they were looking for, the problem behind it, how they found you, what else they considered, and how they plan to use what they chose.',
+    quote: null,
   },
   when: [
     [UserAdd01Icon, 'Right after sign-up or a first purchase', 'Show the interview pop-up on your welcome screen or order confirmation page, while the reasons are still fresh.'],

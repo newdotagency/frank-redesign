@@ -7,9 +7,9 @@
    "eyebrow": "Activation interviews with Frank",
    "lead": "What is an",
    "phrase": "activation interview?",
-   "sub": "An activation interview is a short conversation with someone who signed up but never reached their first useful result.",
-   "para": "It asks what they came to do, what they tried, where they got stuck, and what they did instead.",
-   "quote": "Your analytics show where new users stop. They don’t show why they stopped or what your users were hoping to do when they stopped."
+   "sub": "Your analytics show where new users stop. They don’t show why they stopped or what your users were hoping to do when they stopped.",
+   "para": "An activation interview is a short conversation with someone who signed up but never reached their first useful result. It asks what they came to do, what they tried, where they got stuck, and what they did instead.",
+   "quote": null
   },
   "when": [
    [
@@ -274,7 +274,7 @@
    "phrase": "trial conversion interview?",
    "sub": "A trial conversion interview is a short conversation with someone whose trial ended without a purchase.",
    "para": "It covers what they set out to test, what they actually tried, which questions stayed open, and what made the final call.",
-   "quote": null
+   "quote": "An expired trial looks like silence. It’s a decision, and the person who made it knows exactly why."
   },
   "when": [
    [
@@ -537,9 +537,9 @@
    "eyebrow": "Feature adoption interviews with Frank",
    "lead": "What is a",
    "phrase": "feature adoption interview?",
-   "sub": "A feature adoption interview is a short conversation with customers about one specific feature.",
-   "para": "It finds out whether they know it exists, whether they need it, whether they can get it to work, and why they love or hate using it.",
-   "quote": "Your usage data shows who opened the feature and who didn’t. It doesn’t show you who never noticed it, who tried it once and gave up, who solved the problem another way, or how they are struggling with it and what they would change."
+   "sub": "Your usage data shows who opened the feature and who didn’t. It doesn’t show you who never noticed it, who tried it once and gave up, who solved the problem another way, or how they are struggling with it and what they would change.",
+   "para": "A feature adoption interview is a short conversation with customers about one specific feature. It finds out whether they know it exists, whether they need it, whether they can get it to work, and why they love or hate using it.",
+   "quote": null
   },
   "when": [
    [
@@ -802,9 +802,9 @@
    "eyebrow": "Funnel drop-off interviews with Frank",
    "lead": "What is a",
    "phrase": "funnel drop-off interview?",
-   "sub": "A funnel drop-off interview is a short conversation with someone who started a process and didn’t finish it.",
-   "para": "It focuses on one step: what happened there, what they expected instead, and what they did next.",
-   "quote": "Your funnel report shows which step loses people and how many. It doesn’t show what they were looking at, what they expected, or what made them close the tab."
+   "sub": "Your funnel report shows which step loses people and how many. It doesn’t show what they were looking at, what they expected, or what made them close the tab.",
+   "para": "A funnel drop-off interview is a short conversation with someone who started a process and didn’t finish it. It focuses on one step: what happened there, what they expected instead, and what they did next.",
+   "quote": null
   },
   "when": [
    [
@@ -1073,9 +1073,9 @@
    "eyebrow": "Declining engagement interviews with Frank",
    "lead": "What is a",
    "phrase": "declining engagement interview?",
-   "sub": "A declining engagement interview is a short conversation with a customer who used to be active and now uses the product less.",
-   "para": "It finds out what changed, when it started, and what they use instead.",
-   "quote": "Your usage data shows fewer logins and fewer actions each week. It doesn’t show whether the customer’s needs changed, the product stopped fitting, or something else quietly replaced it."
+   "sub": "Your usage data shows fewer logins and fewer actions each week. It doesn’t show whether the customer’s needs changed, the product stopped fitting, or something else quietly replaced it.",
+   "para": "A declining engagement interview is a short conversation with a customer who used to be active and now uses the product less. It finds out what changed, when it started, and what they use instead.",
+   "quote": null
   },
   "when": [
    [
@@ -1344,9 +1344,9 @@
    "eyebrow": "Upgrade barriers interviews with Frank",
    "lead": "What is an",
    "phrase": "upgrade barriers interview?",
-   "sub": "An upgrade barriers interview is a short conversation with a customer who has stayed on their current plan.",
-   "para": "It finds out how they use the product today, whether they need more, and what stands between them and a higher plan.",
-   "quote": "Your billing data shows who stays on the same plan and who hits plan limits. It doesn’t show whether they need more, whether they understand what the next plan offers, or who would have to approve the cost."
+   "sub": "Your billing data shows who stays on the same plan and who hits plan limits. It doesn’t show whether they need more, whether they understand what the next plan offers, or who would have to approve the cost.",
+   "para": "An upgrade barriers interview is a short conversation with a customer who has stayed on their current plan. It finds out how they use the product today, whether they need more, and what stands between them and a higher plan.",
+   "quote": null
   },
   "when": [
    [

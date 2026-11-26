@@ -1,5 +1,5 @@
 // The use-case pages for the templates in the doc "[Frank] Templates" (Activation barriers, Trial conversion, Feature adoption, Funnel drop-off,
-// Declining engagement, Upgrade barriers). The page words are the doc's, unchanged apart from headings in sentence case and curly quotes: they
+// Declining engagement, Upgrade barriers). The page words are the doc's, in the doc's order, unchanged apart from headings in sentence case and curly quotes: they
 // live in ./doc-templates.json (generated from the doc, one entry per template). Drafted here, because the doc has no words for it: each page's
 // hero conversation (it acts out the doc's own examples) and the icons. Churn keeps its own page (ChurnPage.jsx) and Discovery calls its own data
 // (./discovery.js). Templates the doc doesn't cover (requests, value, checkout, downgrade) have no page yet. Read by ../UseCasePage.jsx.
