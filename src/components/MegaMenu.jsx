@@ -23,12 +23,12 @@ import {
   Video, Zap, ArrowRight, PhoneCall, Lightbulb, Puzzle, Compass, Trophy,
 } from 'lucide-react';
 
-import { siteHref } from '../lib/sitePaths';
+import { siteHref, TEMPLATE_PATHS } from '../lib/sitePaths';
 const SITE = 'https://www.hifrank.ai';
 const it = (icon, title, desc, path) => ({ icon, title, desc, href: siteHref(path) });
 // A use case: one of the interview templates from the home page's use-case wheel (v2104/UseCases.jsx), with its Figma icon. Churn reasons opens the
-// Churn page; the others open the home page with that template chosen (Header maps '#template-<id>' to the home page).
-const tp = (tpl, title, desc) => ({ tpl, title, desc, href: tpl === 'churn' ? siteHref('/churn') : '#template-' + tpl });
+// template's page (TEMPLATE_PATHS); a template without a page opens the home page with that template chosen (Header maps '#template-<id>' to the home page).
+const tp = (tpl, title, desc) => ({ tpl, title, desc, href: TEMPLATE_PATHS[tpl] ? siteHref(TEMPLATE_PATHS[tpl]) : '#template-' + tpl });
 
 export const MENUS = {
   Platform: {

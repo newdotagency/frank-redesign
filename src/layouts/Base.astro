@@ -21,7 +21,9 @@ const { title, description } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Figtree:wght@500&family=Geist+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Homemade+Apple&family=Caveat:wght@600&family=Kalam:wght@700&display=swap" rel="stylesheet" />
     <!-- TODO-DESIGN markers, after every link to a page that is not signed off yet:
            red    = still the old live site (not migrated);
-           yellow = migrated here, design still in review: features, benefits, blog posts, authors, case studies, comparisons, legal.
+           yellow = migrated here, design still in review: features, benefits, blog posts, authors, case studies, comparisons, legal;
+           green  = the interview-template use-case pages added from the home page's wheel (activation … downgrade), linked from the menu, footer and wheel;
+           red    also marks a template link that still has no page (an anchor, "#template-<id>", on the home page's wheel).
          Delete this <style> block to hide the dots. A page that is approved leaves the yellow list below (as the home, pricing, docs,
          product updates, blog list and comparison pages already have); a live-site page leaves red when it is added to src/lib/sitePaths.js. -->
     <style is:global>
@@ -37,7 +39,8 @@ const { title, description } = Astro.props;
       a[href^="/competitors/"]:not([tabindex="-1"])::after,
       a[href="/privacy-policy"]:not([tabindex="-1"])::after,
       a[href="/terms-of-service"]:not([tabindex="-1"])::after,
-      a[href="/cookies-settings"]:not([tabindex="-1"])::after {
+      a[href="/cookies-settings"]:not([tabindex="-1"])::after,
+      a[href*="#template-"]:not([tabindex="-1"])::after {
         content: ""; display: inline-block; flex: none; width: 7px; height: 7px; margin-left: 6px;
         border-radius: 9999px; background: #e5322d; vertical-align: middle; box-shadow: 0 0 0 2px rgba(229, 50, 45, 0.18);
       }
@@ -54,6 +57,20 @@ const { title, description } = Astro.props;
       a[href="/terms-of-service"]:not([tabindex="-1"])::after,
       a[href="/cookies-settings"]:not([tabindex="-1"])::after {
         background: #f5b800; box-shadow: 0 0 0 2px rgba(245, 184, 0, 0.25);
+      }
+      /* new template pages: green */
+      a[href="/use-case/activation-barriers"]:not([tabindex="-1"])::after,
+      a[href="/use-case/trial-conversion"]:not([tabindex="-1"])::after,
+      a[href="/use-case/feature-adoption"]:not([tabindex="-1"])::after,
+      a[href="/use-case/funnel-drop-off"]:not([tabindex="-1"])::after,
+      a[href="/use-case/declining-engagement"]:not([tabindex="-1"])::after,
+      a[href="/use-case/upgrade-barriers"]:not([tabindex="-1"])::after,
+      a[href="/use-case/feature-request-discovery"]:not([tabindex="-1"])::after,
+      a[href="/use-case/customer-value-drivers"]:not([tabindex="-1"])::after,
+      a[href="/use-case/checkout-abandonment"]:not([tabindex="-1"])::after,
+      a[href="/use-case/downgrade-reasons"]:not([tabindex="-1"])::after {
+        content: ""; display: inline-block; flex: none; width: 7px; height: 7px; margin-left: 6px;
+        border-radius: 9999px; background: #2fb35a; vertical-align: middle; box-shadow: 0 0 0 2px rgba(47, 179, 90, 0.22);
       }
     </style>
   </head>
