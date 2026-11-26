@@ -609,5 +609,158 @@
       "sub": "Set up in 5 minutes. Insights overnight. More capacity starting tomorrow.",
       "button": "Run 10 Free Interviews"
     }
+  },
+  "brand-managers": {
+    "slug": "brand-managers",
+    "title": "AI Researcher for Brand Managers | Frank",
+    "description": "Frank interviews your customers continuously to uncover perception, emotion, trust, positioning and purchase drivers, so you can build a brand people choose and believe in.",
+    "label": "For Brand Managers",
+    "hero": [
+      "Know & shape what your",
+      "brand means to customers"
+    ],
+    "heroP": "Frank interviews your customers continuously to uncover perception, emotion, trust, positioning, and purchase drivers, so you can build a brand people choose, remember, and believe in.",
+    "heroCards": [
+      {
+        "kind": "quote",
+        "answer": "It feels trustworthy, but a bit generic.",
+        "followUp": "What would make it feel more like you?"
+      },
+      {
+        "kind": "phrases",
+        "label": "How customers describe you",
+        "items": [
+          "“reliable”",
+          "“friendly”",
+          "“a bit generic”"
+        ]
+      },
+      {
+        "kind": "ring",
+        "pct": 78,
+        "value": "78%",
+        "label": "Positive sentiment"
+      },
+      {
+        "kind": "count",
+        "label": "Customers heard",
+        "value": "112"
+      }
+    ],
+    "trust": "Developed by Prelaunch.com. Delivering consumer insights to 1,000+ brands globally for 7+ years",
+    "problem": {
+      "label": "The problem",
+      "lines": [
+        "Brand decisions are too important",
+        "to base on internal opinion."
+      ],
+      "sub": "What customers feel is often unclear. What teams believe is often loud."
+    },
+    "features": [
+      [
+        "Hear perception directly from the market.",
+        "Frank uncovers what customers associate with your brand, how they describe it, what they trust, and where confusion exists.",
+        "feature-1",
+        "Customer perceptions grouped into themes",
+        "Perception",
+        "quality.1"
+      ],
+      [
+        "Replace subjective debates with customer truth.",
+        "Instead of endless internal discussion, Frank reveals what language resonates and what narratives fall flat.",
+        "feature-2",
+        "Customer quotes on what resonates",
+        "Language",
+        "summaries.2"
+      ],
+      [
+        "Measure immediate response and lasting sentiment.",
+        "Track how customers feel, how perception shifts over time, and whether campaigns strengthen trust or dilute it.",
+        "feature-3",
+        "Sentiment over time and segment breakdown",
+        "Sentiment",
+        "scale.3"
+      ],
+      [
+        "Understand where you stand, and how to win.",
+        "Learn why customers choose competitors, what emotional territory they own, and where your whitespace opportunity lives.",
+        "feature-4",
+        "Answers on why customers choose a brand",
+        "Position",
+        "quality.2"
+      ]
+    ],
+    "how": {
+      "label": "How Frank works for brand managers",
+      "lines": [
+        "Continuous brand intelligence,",
+        "built from real conversations."
+      ],
+      "sub": "Frank becomes your always-on source of customer truth, helping you manage perception, sharpen positioning, and protect brand value.",
+      "steps": [
+        [
+          "Listen deeply",
+          "Understand what customers really feel.",
+          "Frank explores emotion, trust, identity, desirability, and associations that surveys often miss."
+        ],
+        [
+          "Sharpen positioning",
+          "Find the messages customers naturally respond to.",
+          "Uncover the language, promises, and proof points that make your brand feel relevant and credible."
+        ],
+        [
+          "Track movement",
+          "See how perception changes over time.",
+          "Every conversation builds your Customer Brain, helping you monitor shifts after launches, campaigns, or market changes."
+        ],
+        [
+          "Act with confidence",
+          "Build brands on evidence, not instinct alone.",
+          "Walk into reviews, planning sessions, and leadership meetings with sourced customer truth behind every recommendation."
+        ]
+      ]
+    },
+    "useCases": {
+      "label": "What brand managers use Frank for",
+      "lines": [
+        "The brand questions",
+        "that matter most"
+      ],
+      "sub": "Frank covers the moments that shape how customers see your brand.",
+      "cards": [
+        [
+          "Discovery calls",
+          "Turn every new customer into a deep discovery conversation.",
+          "/use-case/ai-discovery-calls",
+          "bubble-chat"
+        ],
+        [
+          "Churn",
+          "Capture feedback exactly when customers cancel or disengage, all while the context is fresh.",
+          "/use-case/ai-churn-interviews",
+          "analytics-down"
+        ],
+        [
+          "Product discovery",
+          "Know what to build, before you build it.",
+          "/use-case/ai-product-discovery",
+          "search-02"
+        ],
+        [
+          "Feature discovery",
+          "Learn how users experience new features, where they struggle, and what to improve next.",
+          "/use-case/ai-feature-discovery",
+          "idea"
+        ]
+      ]
+    },
+    "cta": {
+      "lines": [
+        "Great brands aren’t guessed into existence.",
+        "They’re understood into existence."
+      ],
+      "sub": "Set up in 5 minutes. Insights overnight. Stronger brand decisions tomorrow.",
+      "button": "Run 10 Free Interviews"
+    }
   }
 }
