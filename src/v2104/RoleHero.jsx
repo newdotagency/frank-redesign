@@ -93,10 +93,10 @@ export default function RoleHero({ d, person }) {
               <a href="https://app.hifrank.ai/signup" className={'inline-flex h-12 items-center rounded-full bg-[#d1f899] px-6 font-sans text-[15.5px] font-medium text-ink no-underline transition-[background-color] duration-300 hover:bg-[#c4ef84] ' + FOCUS}>Run 10 Free Interviews</a>
             </Rise>
           </div>
-          {/* The person, cut at the waist and faded into the panel; cards float around them */}
-          <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[330px] w-full max-w-[440px] sm:h-[430px] lg:h-[610px] lg:max-w-[560px] lg:self-end">
-            <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,#000_66%,transparent)]">
-              <img src={person} alt="" draggable={false} className={'absolute left-1/2 top-[2%] h-auto max-w-none -translate-x-1/2 select-none ' + (d.heroFlip ? '-scale-x-100 w-[130%] sm:w-[118%] lg:w-[150%]' : 'w-[108%] sm:w-[100%] lg:w-full')} />
+          {/* The person, cut at the waist by the panel's bottom edge (no gap under the photo); cards float around them */}
+          <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[330px] w-full max-w-[440px] sm:h-[430px] lg:h-auto lg:max-w-[560px] lg:self-end">
+            <div className="absolute inset-0 overflow-hidden lg:static lg:overflow-visible">
+              <img src={person} alt="" draggable={false} className={'absolute left-1/2 top-0 block h-auto max-w-none -translate-x-1/2 select-none lg:relative lg:left-0 lg:top-0 lg:translate-x-0 ' + (d.heroFlip ? '-scale-x-100 w-[130%] sm:w-[118%] lg:w-[150%]' : 'w-[108%] sm:w-[100%] lg:w-full')} />
             </div>
             {d.heroCards.map((c, i) => {
               const C = KIND[c.kind];
