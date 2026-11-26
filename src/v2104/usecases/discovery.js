@@ -23,7 +23,7 @@ export const DISCOVERY = {
       ['frank', 'What made you start looking now?'],
       ['customer', 'I was tired of chasing late payments every month.'],
       ['frank', 'How did you first hear about us?'],
-      ['customer', 'My accountant mentioned you in March. I searched for you weeks later.'],
+      ['customer', 'My accountant mentioned you. I searched weeks later.'],
       ['frank', 'What else did you look at?'],
       ['customer', 'Two other tools, but they felt built for teams of twenty.'],
     ],

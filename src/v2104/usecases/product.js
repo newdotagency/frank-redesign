@@ -17,7 +17,7 @@ export const PRODUCT = {
     focus: 0.59,
     person: 'Jordan',
     turns: [
-      ['frank', 'Tell me about the last time you planned a team offsite.'],
+      ['frank', 'Tell me about the last time you planned an offsite.'],
       ['customer', 'It took me three weeks and about forty emails.'],
       ['frank', 'What made it take so long?'],
       ['customer', 'Everyone’s availability lives in different calendars.'],
