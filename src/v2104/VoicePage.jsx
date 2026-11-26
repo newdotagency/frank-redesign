@@ -102,9 +102,9 @@ function Wave({ live, n = WAVE.length, color = 'currentColor', h = 44, gap = 3, 
 // behind, a little smaller and turned. Every few seconds the front card steps back to the end of the queue
 // and the next comes forward (a spring). Runs while on screen; reduced motion: the stack, still.
 // avatar: a square still from the clip, picked with eyes open and mouth closed (frames pulled on this Mac,
-// 320×320), for the voice cards. The voice page's people (01, 04, 08, 05) differ from the video page's (09, 02,
+// 320×320, cropped on the face Vision finds so it sits in the middle of the circle), for the voice cards. The voice page's people (01, 04, 08, 05) differ from the video page's (09, 02,
 // 10, 11, 03), so each page has its own faces.
-const clipOf = n => ({ video: `/videos/call-${n}-card.mp4`, poster: `/videos/call-${n}-card.jpg`, avatar: `/videos/call-${n}-avatar.jpg` });
+const clipOf = n => ({ video: `/videos/call-${n}-card.mp4`, poster: `/videos/call-${n}-card.jpg`, avatar: `/videos/call-${n}-avatar.jpg?v=2` });  // ?v: bump when an avatar is re-cropped, so browsers fetch it again
 const CROWD = [
   { ...clipOf('01'), name: 'Amara J.', q: 'I couldn’t work out how to invite my team.', tag: 'Confused', tone: 'bg-[#e8eefb] text-[#2e4f8a]' },
   { ...clipOf('04'), name: 'Sophie R.', q: 'I’d pay more if setup took five minutes.', tag: 'Eager', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
