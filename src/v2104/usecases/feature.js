@@ -1,0 +1,140 @@
+// Feature discovery use-case page. Drafted in the same structure as the Churn and Discovery calls pages, from the
+// live hifrank.ai Feature Discovery page's pains and learnings (adoption lower than expected, drop-offs without the
+// friction behind them, scattered feedback). The study numbers and quotes are invented examples, labelled as such.
+// Read by ../UseCasePage.jsx.
+import { Puzzle } from 'lucide-react';
+import { Rocket01Icon, AnalyticsUpIcon, Flag01Icon, Wrench01Icon } from '@hugeicons/core-free-icons';
+
+export const FEATURE = {
+  slug: 'ai-feature-discovery',
+  title: 'Feature discovery interviews — Frank',
+  description: 'In a short voice or video interview, Frank talks to users right after they try a feature, or skip it, and uncovers what they expected, where they got stuck and what they did instead.',
+  icon: Puzzle,
+  label: 'Feature discovery',
+  name: 'Feature interview',
+  exclude: [],
+  hero: {
+    clip: 'call-05-card',
+    focus: 0.59,
+    person: 'Jordan',
+    turns: [
+      ['frank', 'What did you expect when you tried the new report builder?'],
+      ['customer', 'Something like the dashboard, just faster to set up.'],
+      ['frank', 'What happened when you opened it?'],
+      ['customer', 'I couldn’t tell where to start, so I left.'],
+      ['frank', 'What did you do instead?'],
+      ['customer', 'I exported the data and built the chart in a spreadsheet.'],
+      ['frank', 'What would have made you stay?'],
+      ['customer', 'A template to start from.'],
+    ],
+    title: ['Frank finds out why users ', 'adopt or ignore a feature'],
+    text: 'In a short voice or video interview, Frank talks to users right after they try a feature, or skip it. It uncovers what they expected, where they got stuck, and what they did instead. Then it ranks every finding by how many users raised it.',
+  },
+  what: {
+    eyebrow: 'Feature discovery with Frank',
+    lead: 'What is a',
+    phrase: 'feature interview?',
+    sub: 'A feature interview is a short conversation with a user who just tried a new feature, or chose not to.',
+    para: 'It finds out what they expected, what they did, where it got confusing, and what they used instead.',
+    quote: 'Usage numbers show who clicked. They don’t show who gave up halfway, who never noticed the feature, or who found it and still didn’t trust it.',
+  },
+  when: [
+    [Rocket01Icon, 'Right after a feature launch', 'Trigger the interview the first time a user opens the feature, while the experience is fresh.'],
+    [AnalyticsUpIcon, 'When adoption is lower than expected', 'Analytics show how many used it. Talk to the users behind the number, including the ones who never tried it.'],
+    [Flag01Icon, 'At a drop-off point', 'When users start the feature but don’t finish, ask what happened at that step.'],
+    [Wrench01Icon, 'Before you extend or retire it', 'Learn what to improve, simplify or remove before the next sprint.'],
+  ],
+  guide: {
+    eyebrow: 'Typical interview structure',
+    title: ['The feature interview', 'research guide.'],
+    sub: 'Feature interviews generally follow a six-part guideline built to gather the verifiable insights you need. Every question is editable, and the AI Researcher helps you adapt the Research Guide to your feature.',
+    steps: [
+      ['What they expected', 'What they thought the feature would do, and what made them try it.'],
+      ['How they found it', 'Whether they noticed it on their own, were told about it, or went looking. Frank asks where they first saw it.'],
+      ['What they actually did', 'The steps they took, in order, and where they hesitated.'],
+      ['Where they got stuck', 'Frank asks for a specific moment instead of accepting “it was confusing.”'],
+      ['What they did instead', 'A workaround, another tool, a colleague, or nothing at all. This is what the feature is really competing with.'],
+      ['What would make them use it again', 'What would need to change, and what they would tell a teammate about it.'],
+    ],
+    note: 'Frank doesn’t stop at the first answer. It follows up when a reply is vague and comes back to topics later in the conversation. That’s how “it was confusing” becomes “I didn’t know the filters applied to the whole report, so I thought it was broken.”',
+  },
+  vs: {
+    eyebrow: 'Comparison: Frank vs in-app feedback prompts',
+    title: ['An in-app prompt rates the feature.', 'Frank explains the rating.'],
+    aria: 'In-app feedback prompt compared with a Frank feature interview',
+    other: 'In-app prompt', shortOther: 'Prompt', frank: 'feature interview',
+    groups: [
+      ['In the interview', [
+        ['What the user does', 'Taps a thumbs up or down, maybe adds a line', 'Talks through what they tried and what they expected'],
+        ['“Confusing”', 'Logged as a usability problem', 'Followed up: which step, and what did you expect to happen there?'],
+        ['Follow-up questions', 'None', 'Asked whenever an answer is vague or doesn’t add up'],
+        ['Users who skipped it', 'Never asked', 'Interviewed too, with what stopped them'],
+        ['What they did instead', 'Rarely captured', 'Named, along with why it worked better'],
+      ]],
+      ['After the interview', [
+        ['Analysis', 'You read open-text comments one by one', 'Themes ranked by how many users raised them'],
+        ['What you can act on', 'A satisfaction score', 'Action Items, each linked to the moment in the recording'],
+        ['Evidence for your team', 'A chart in a dashboard', 'The user’s own voice, ready to play in a sprint review'],
+      ]],
+    ],
+    close: ['Keep the prompt for a quick score.', 'Run Frank when you need to know what to change.'],
+  },
+  out: {
+    eyebrow: 'Frank interview outcomes',
+    title: ['What you get'],
+    intro: 'Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many users raised each one, and turns the biggest into Action Items.',
+    caption: 'Why a new report builder went unused. Example: 46 feature interviews.',
+    aria: 'Why a new report builder went unused',
+    total: 46,
+    unit: 'users',
+    rows: [
+      [19, 'People couldn’t tell where to start', 'Most of these users first said the feature was “too complicated.” Follow-ups traced it to an empty first screen with no example to build from.', 'I opened it, saw a blank page, and had no idea what a good report looked like.'],
+      [14, 'They didn’t know it replaced their spreadsheet export', 'Most had seen the feature but kept exporting, because nothing told them the two did the same job.', 'I saw the new button, but I figured the export was still the real way to do it.'],
+      [8, 'They didn’t trust the numbers', 'These users compared the results with their own spreadsheet and stopped when two figures differed.', 'One total didn’t match my sheet, so I never opened it again.'],
+      [5, 'It was set up for admins, not for the people using it every day', null, 'It asked me to pick a data source. That’s not something I can do.'],
+    ],
+  },
+  where: {
+    title: 'What they did instead',
+    slices: [
+      ['Exported to a spreadsheet', 18, '#6e9738'],
+      ['Asked a colleague', 10, '#ba86fc'],
+      ['Used another tool', 9, '#4e7ff9'],
+      ['Nothing', 9, '#7d766e'],
+    ],
+  },
+  actions: {
+    title: 'Action Items',
+    items: [
+      ['Add a starter template to the empty first screen.', 19],
+      ['Tell users the feature replaces the export, in the product and in the release notes.', 14],
+      ['Show where each figure comes from, next to the number.', 8],
+    ],
+    note: 'Every insight links to the exact moment in the recording. Click through and hear it from the user.',
+  },
+  faq: [
+    { q: 'Who should I interview?',
+      a: ['Users who tried the feature in the last few days, and users who saw it but didn’t. Both are equally valuable.'] },
+    { q: 'Can I talk to users who never opened the feature?',
+      a: ['Yes. Trigger the interview from behavior, for example when a user has been active for weeks but hasn’t tried the feature. Frank asks what stopped them.'] },
+    { q: 'When should the interview appear?',
+      a: ['Right after the first use, after repeated use, or at a drop-off point. Keep it short and optional, and let users pick voice, video or WhatsApp (coming soon).'] },
+    { q: 'How many interviews do I need?',
+      a: ['In most studies, the main findings start repeating within the first 15 to 20 interviews. Frank shows how many users raised each theme, so you can see when patterns settle.'] },
+    { q: 'How do I launch it?',
+      a: ['Start from this template, and the AI Researcher helps you adapt the Research Guide to your feature. Then add the interview next to the feature as a floating button, an inline card, or a pop-up from your own button. You can also connect it through the API.'] },
+    { q: 'Can I change the questions?',
+      a: ['Yes. Every question in the template is editable. Add questions about a specific screen, a recent redesign or a workflow the feature replaces.'] },
+    { q: 'Does this replace our analytics?',
+      a: ['No. Analytics shows what happened at scale. Frank explains why, so you can decide what to change.'] },
+    { q: 'What languages does Frank support?',
+      a: ['Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more.'] },
+    { q: 'What happens after the interviews?',
+      a: ['You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table.'] },
+  ],
+  closing: {
+    title: 'Every feature has a story the numbers can’t tell.',
+    marker: 'Hear it.',
+    sub: 'Your analytics show what users did. Frank asks them why.',
+  },
+};

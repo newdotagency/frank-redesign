@@ -44,6 +44,7 @@ const COLUMNS = [
     ['Product discovery', '/use-case/ai-product-discovery'],
     ['Feature discovery', '/use-case/ai-feature-discovery'],
     ['Market discovery', '/use-case/market-discovery'],
+    ['Win/loss analysis', '/use-case/win-loss-analysis'],
   ] },
   { title: 'Features', links: [
     ['Global scalability', '/features/global-scalability'],
