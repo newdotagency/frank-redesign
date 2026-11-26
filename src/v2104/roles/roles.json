@@ -23,28 +23,32 @@
         "Run simultaneous voice or video interviews and wake up to a structured insight report.",
         "feature-1",
         "Four audio message bars with profile pictures and a text bar reading +113 additional interviews",
-        "Speed"
+        "Speed",
+        "speed.1"
       ],
       [
         "Scale to 100+ interviews with zero scheduling overhead",
         "Frank meets users in the moment: no recruiting, no email blasts, no no-shows, and a 75%+ completion rate.",
         "feature-2",
         "Interview completion and scale",
-        "Scale"
+        "Scale",
+        "price.1"
       ],
       [
         "Uncover the reasoning behind every data point",
         "When an answer is shallow, Frank probes deeper to capture motivations and friction.",
         "feature-3",
         "Frank probing deeper into an answer",
-        "Depth"
+        "Depth",
+        "quality.2"
       ],
       [
         "UX evidence you can put in a roadmap review",
         "Every insight is traceable to the second in each interview, with no hallucinations and an ESOMAR-recognised methodology.",
         "feature-4",
         "Insights linked to the interview recording",
-        "Evidence"
+        "Evidence",
+        "transparency.0"
       ]
     ],
     "how": {
@@ -200,28 +204,32 @@
         "Frank interviews real prospects and customers to uncover the pains, desires, objections, and motivations driving action, so messaging starts with your customers’ reality, in their own voice.",
         "feature-1",
         "Customers’ interview answers grouped by what they care about",
-        "Listen"
+        "Listen",
+        "quality.1"
       ],
       [
         "Discover what’s stopping people from buying.",
         "Frank probes into hesitation, trust gaps, pricing friction, confusion, and emotional blockers that analytics can’t explain.",
         "feature-2",
         "Interview insights on what stops people from buying",
-        "Blockers"
+        "Blockers",
+        "quality.2"
       ],
       [
         "Get customer language you can use immediately.",
         "Frank surfaces the exact phrases customers use to describe their problems, desired outcomes, frustrations, and buying triggers.",
         "feature-3",
         "Customer phrases surfaced from interviews",
-        "Language"
+        "Language",
+        "summaries.2"
       ],
       [
         "Launch insight-backed campaigns this week.",
         "Interview 100+ customers overnight and wake up to actionable findings you can use in copy, offers, positioning, creative, and CRO.",
         "feature-4",
         "Interview findings ready for campaigns",
-        "Launch"
+        "Launch",
+        "speed.2"
       ]
     ],
     "how": {

@@ -5,6 +5,11 @@ import { useMemo } from 'react';
 import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import UseCases from './UseCases';
 import { iconSvg } from './features/media';
+import { SPEED_SCENES } from './features/SpeedScenes';
+import { PRICE_SCENES } from './features/PriceScenes';
+import { QUALITY_SCENES } from './features/QualityScenes';
+import { SUMMARIES_SCENES } from './features/SummariesScenes';
+import { TRANSPARENCY_SCENES } from './features/TransparencyScenes';
 import Header from '../components/Header';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
@@ -37,6 +42,10 @@ const kitOf = slug => ({
 });
 const BRANDS = [['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23]];
 
+// The tabs' pictures: the feature and benefit pages' own scenes (drawn in the page's colours), picked per tab in roles.json as "set.index".
+const SCENE_SETS = { speed: SPEED_SCENES, price: PRICE_SCENES, quality: QUALITY_SCENES, summaries: SUMMARIES_SCENES, transparency: TRANSPARENCY_SCENES };
+const sceneOf = key => { const [set, i] = (key || '').split('.'); return SCENE_SETS[set]?.[+i]; };
+
 // A tab's picture, filling the step card (the live page's picture).
 const photoScene = (src, alt) => function PhotoScene({ active, reduce }) {
   return (
@@ -52,8 +61,8 @@ const photoScene = (src, alt) => function PhotoScene({ active, reduce }) {
 
 // Built once per page, so a tab's picture keeps its identity between renders.
 const TABS = {}, STACK = {};
-const tabsOf = slug => TABS[slug] || (TABS[slug] = ROLES[slug].features.map(([title, text, img, alt, name]) => ({
-  name, title, body: [text], scene: photoScene(`/roles/${slug}/${img}.webp`, alt),
+const tabsOf = slug => TABS[slug] || (TABS[slug] = ROLES[slug].features.map(([title, text, img, alt, name, scene]) => ({
+  name, title, body: [text], scene: sceneOf(scene) || photoScene(`/roles/${slug}/${img}.webp`, alt),
 })));
 const stackOf = slug => STACK[slug] || (STACK[slug] = ROLES[slug].how.steps.map(([name, title, text]) => ({ name, title, text })));
 
