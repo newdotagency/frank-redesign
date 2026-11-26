@@ -46,18 +46,6 @@ const COLUMNS = [
     ['Market discovery', '/use-case/market-discovery'],
     ['Win/loss analysis', '/use-case/win-loss-analysis'],
   ] },
-  { title: 'Templates', links: [
-    ['Activation barriers', '/use-case/activation-barriers'],
-    ['Trial conversion', '/use-case/trial-conversion'],
-    ['Feature adoption', '/use-case/feature-adoption'],
-    ['Funnel drop-off', '/use-case/funnel-drop-off'],
-    ['Declining engagement', '/use-case/declining-engagement'],
-    ['Upgrade barriers', '/use-case/upgrade-barriers'],
-    ['Feature request discovery', '/use-case/feature-request-discovery'],
-    ['Customer value drivers', '/use-case/customer-value-drivers'],
-    ['Checkout abandonment', '/use-case/checkout-abandonment'],
-    ['Downgrade reasons', '/use-case/downgrade-reasons'],
-  ] },
   { title: 'Features', links: [
     ['Global scalability', '/features/global-scalability'],
     ['Always-on availability', '/features/always-on-availability'],
@@ -90,7 +78,7 @@ export default function Footer() {
   return (
     <footer className="relative mt-[clamp(72px,9vw,128px)] overflow-hidden px-4 sm:px-[clamp(16px,4vw,48px)]">
       <div className="mx-auto max-w-[1312px]">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-[minmax(0,1.4fr)_repeat(6,minmax(0,1fr))] lg:gap-y-12">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-[minmax(0,1.5fr)_repeat(5,minmax(0,1fr))] lg:gap-y-12">
           <div className="col-span-2 max-w-[340px] sm:col-span-3 lg:col-span-1">
             <a href="#top" aria-label="Frank, back to top" className={'inline-block ' + FOCUS}>
               <img src={LOGO} alt="" width="84" height="24" className="block h-6 w-auto" />

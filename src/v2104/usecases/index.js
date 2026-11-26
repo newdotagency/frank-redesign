@@ -4,8 +4,5 @@ import { FEATURE } from './feature';
 import { PRODUCT } from './product';
 import { MARKET } from './market';
 import { WINLOSS } from './winloss';
-import { ACTIVATION, TRIAL, ADOPTION, FUNNEL, ENGAGEMENT } from './templates-a';
-import { UPGRADE, REQUESTS, VALUE, CHECKOUT, DOWNGRADE } from './templates-b';
 
-export const USECASES = Object.fromEntries([DISCOVERY, PRODUCT, FEATURE, MARKET, WINLOSS, ACTIVATION, TRIAL, ADOPTION, FUNNEL, ENGAGEMENT, UPGRADE, REQUESTS, VALUE, CHECKOUT, DOWNGRADE].map(d => [d.slug, d]));
-
+export const USECASES = Object.fromEntries([DISCOVERY, PRODUCT, FEATURE, MARKET, WINLOSS].map(d => [d.slug, d]));

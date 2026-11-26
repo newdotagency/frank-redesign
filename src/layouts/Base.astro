@@ -22,8 +22,9 @@ const { title, description } = Astro.props;
     <!-- TODO-DESIGN markers, after every link to a page that is not signed off yet:
            red    = still the old live site (not migrated);
            yellow = migrated here, design still in review: features, benefits, blog posts, authors, case studies, comparisons, legal;
-           green  = the interview-template use-case pages added from the home page's wheel (activation … downgrade), linked from the menu, footer and wheel;
-           red    also marks a template link that still has no page (an anchor, "#template-<id>", on the home page's wheel).
+           green  = a use-case page built strictly from the doc "[Frank] Templates" (so far: Discovery calls);
+           red    also marks an interview template in the menu that has no page yet (its link is an anchor, "#template-<id>", on the home page's wheel):
+                  the doc has no content for it. When a template's page is built from the doc, link it in MegaMenu.jsx and add it to the green rule.
          Delete this <style> block to hide the dots. A page that is approved leaves the yellow list below (as the home, pricing, docs,
          product updates, blog list and comparison pages already have); a live-site page leaves red when it is added to src/lib/sitePaths.js. -->
     <style is:global>
@@ -58,17 +59,8 @@ const { title, description } = Astro.props;
       a[href="/cookies-settings"]:not([tabindex="-1"])::after {
         background: #f5b800; box-shadow: 0 0 0 2px rgba(245, 184, 0, 0.25);
       }
-      /* new template pages: green */
-      a[href="/use-case/activation-barriers"]:not([tabindex="-1"])::after,
-      a[href="/use-case/trial-conversion"]:not([tabindex="-1"])::after,
-      a[href="/use-case/feature-adoption"]:not([tabindex="-1"])::after,
-      a[href="/use-case/funnel-drop-off"]:not([tabindex="-1"])::after,
-      a[href="/use-case/declining-engagement"]:not([tabindex="-1"])::after,
-      a[href="/use-case/upgrade-barriers"]:not([tabindex="-1"])::after,
-      a[href="/use-case/feature-request-discovery"]:not([tabindex="-1"])::after,
-      a[href="/use-case/customer-value-drivers"]:not([tabindex="-1"])::after,
-      a[href="/use-case/checkout-abandonment"]:not([tabindex="-1"])::after,
-      a[href="/use-case/downgrade-reasons"]:not([tabindex="-1"])::after {
+      /* built from the doc: green */
+      a[href="/use-case/ai-discovery-calls"]:not([tabindex="-1"])::after {
         content: ""; display: inline-block; flex: none; width: 7px; height: 7px; margin-left: 6px;
         border-radius: 9999px; background: #2fb35a; vertical-align: middle; box-shadow: 0 0 0 2px rgba(47, 179, 90, 0.22);
       }
