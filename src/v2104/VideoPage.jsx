@@ -8,7 +8,7 @@
 //   4. Two answers, alternating sides: "Watch how customers actually feel" (a video interview: CallCard) and
 //      "Let AI do it all" (the calendar filling with interviews).
 //   5. "Try the AI interviewer yourself" with the live widget ("Try it now" across the page scrolls to it).
-//   6. How it works (the homepage's layout), 7. security, the FAQ and the lime closing panel.
+//   6. How it works: the homepage's own section, as it is there (its title, steps and scenes), 7. security, the FAQ and the lime closing panel.
 import { useRef } from 'react';
 import { MotionConfig, useReducedMotion } from 'framer-motion';
 import { Video } from 'lucide-react';
@@ -22,7 +22,6 @@ import { PL_LOGOS } from './logos/prelaunchBrands';
 import { InterviewRoom, SCRIPTS } from './LiveInterview';
 import { PLATE, GRAIN } from './InterviewExample';
 import HowItWorks from './HowItWorks';
-import { Share } from './StepVisuals';
 import FAQ from './FAQ';
 import SecuritySection from './SecuritySection';
 import Footer from './Footer';
@@ -80,19 +79,6 @@ const ANSWERS = [
   { id: 'vi-auto', kicker: 'Hours on moderation & transcription?', title: ['Let AI do it all'], Scene: CalendarScene, flip: true,
     text: ['Traditional video interviews are powerful, but painful to manage. Scheduling, recording, transcribing, summarizing… It’s a full-time job!',
       'Frank’s AI Video Interviewer automates everything: it runs the interview, asks adaptive follow-up questions, and delivers distilled insights in minutes.'] },
-];
-
-// ——— 6. How it works: the homepage's layout, with the live page's three steps.
-const STEPS = [
-  { name: 'Set up', title: 'Set up your goals', body: [
-    'Tell the AI what you want to learn. Early product discovery, usability feedback, post-launch reactions, churn analysis, or anything else you’re interested in knowing more about.',
-    'Our Research Agent creates a tailored interview guide for you, that you can edit and review.'] },
-  { name: 'Share', title: 'Share the video interview link & let the AI lead the conversation', scene: Share, body: [
-    'Place your interview link anywhere — your site, an email, or in-product. Participants can join on their own time, from any browser or phone.',
-    'The AI interviewer engages your participants naturally, adapting questions in real time based on their responses. It captures both what they say and how they say it, from tone to emotion to body language.'] },
-  { name: 'Analyze', title: 'Analyze & act on insights', body: [
-    'Instantly access insights powered by emotion and sentiment analysis.',
-    'View key insight highlights, summaries, and side-by-side comparisons of different interview segments, all ready to share with your team.'] },
 ];
 
 const FAQS = [
@@ -195,9 +181,8 @@ export default function VideoPage() {
             </div>
           </section>
 
-          {/* 6 — How it works, in the homepage's layout. */}
-          <HowItWorks steps={STEPS} label="How it works" lines={['From a goal to real reactions', 'in three steps']} subtitle={null}
-            id="vi-how-title" action={<Btn href={TRY} onClick={toTry} tone="white">Try it now</Btn>} />
+          {/* 6 — How it works: the homepage's section, unchanged (user, 2026-11-26). */}
+          <HowItWorks />
 
           {/* 7 — Security, the FAQ, then the closing panel in Frank's lime. */}
           <SecuritySection reduce={reduce} id="vi-sec-title" />

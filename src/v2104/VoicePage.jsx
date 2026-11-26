@@ -9,7 +9,7 @@
 //      one lit at a time.
 //   5. "Try the AI interviewer yourself": the live voice widget from the homepage, so the visitor can talk to
 //      Frank right here ("Try it now" across the page scrolls to it).
-//   6. How it works: the homepage's layout (pinned, steps on the left, the step's scene on the right).
+//   6. How it works: the homepage's own section, as it is there (its title, steps and scenes).
 //   7. Security (SOC 2, the ESOMAR award, GDPR), the FAQ, a lime closing panel, then the footer.
 // Entrance: the hero rises in once on load; everything else rises in with the scroll (reveal.jsx).
 // Motion inside the scenes runs only while they're on screen; reduced motion: they hold still.
@@ -28,7 +28,6 @@ import { PL_LOGOS } from './logos/prelaunchBrands';
 import { InterviewRoom, SCRIPTS } from './LiveInterview';
 import { PLATE, GRAIN } from './InterviewExample';
 import HowItWorks from './HowItWorks';
-import { Share } from './StepVisuals';
 import FAQ from './FAQ';
 import SecuritySection from './SecuritySection';
 import Footer from './Footer';
@@ -395,19 +394,6 @@ export function Answer({ a, reduce, first }) {
   );
 }
 
-// ——— 6. How it works: the homepage's layout (HowItWorks, with this page's steps): pinned while you scroll
-// through it, the steps on the left, one card on the right whose scene changes with the step.
-const STEPS = [
-  { name: 'Set up', title: 'Set up your goals', body: ['Tell the AI what you’re exploring, whether it’s a new product idea, feature feedback, or churn analysis. Frank’s Research Agent helps you build the perfect interview guide in minutes.'] },
-  // Step 2 gets its own scene (Share: the link going out, a customer tapping it, Frank leading the call).
-  { name: 'Share', title: 'Share the link & let the AI lead the conversation', scene: Share, body: [
-    'Embed your AI Voice Interview link anywhere — on your site, in your app, post-purchase, or via email. Users simply click, speak, and share their thoughts, whenever it suits them.',
-    'The AI listens, asks natural follow-up questions, and adjusts in real time. Just like a skilled human moderator! Each conversation is automatically transcribed, summarized, and analyzed.'] },
-  { name: 'Analyze', title: 'Analyze & act on insights', body: [
-    'Instantly see emotional sentiment, top pain points, feature love, and emerging themes… all visualized and searchable.',
-    'Revisit transcripts or listen to key audio clips to share real customer voices with your team.'] },
-];
-
 const FAQS = [
   { q: 'Do people feel comfortable talking to AI by voice?', a: ['Yes! And they actually open up more easily. The AI’s conversational tone builds comfort and trust, leading to more candid answers.'] },
   { q: 'Can the AI Voice Interviewer handle different accents and languages?', a: ['No problem. The AI Interviewer supports 30+ languages and automatically adapts to accents and speech patterns.'] },
@@ -523,9 +509,8 @@ export default function VoicePage() {
             </div>
           </section>
 
-          {/* 6 — How it works, in the homepage's layout. */}
-          <HowItWorks steps={STEPS} label="How it works" lines={['From a goal to real voices', 'in three steps']} subtitle={null}
-            id="vo-how-title" action={<Btn href={TRY} onClick={toTry} tone="white">Try it now</Btn>} />
+          {/* 6 — How it works: the homepage's section, unchanged (user, 2026-11-26). */}
+          <HowItWorks />
 
           {/* 7 — Security (shared with the feature pages). */}
           <SecuritySection reduce={reduce} id="vo-sec-title" />
