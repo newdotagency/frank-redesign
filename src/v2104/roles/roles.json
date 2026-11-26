@@ -459,5 +459,155 @@
       "sub": "Set up in 5 minutes. Insights overnight. Better decisions starting tomorrow.",
       "button": "Run 10 Free Interviews"
     }
+  },
+  "ux-researchers": {
+    "slug": "ux-researchers",
+    "title": "AI Researcher for UX Researchers | Frank",
+    "description": "Frank interviews 100+ users overnight and delivers structured, traceable qualitative insight, so UX researchers can scale output without losing rigor.",
+    "label": "For UX Researchers",
+    "hero": [
+      "Run more studies.",
+      "Go deeper. Prove every insight."
+    ],
+    "heroP": "Frank interviews 100+ users overnight and delivers structured, traceable qualitative insight, so you can scale research output without sacrificing rigor, depth, or credibility.",
+    "heroCards": [
+      {
+        "kind": "count",
+        "label": "Interviews in the field",
+        "value": "113"
+      },
+      {
+        "kind": "quote",
+        "answer": "I gave up on the second screen.",
+        "followUp": "What were you expecting to see there?"
+      },
+      {
+        "kind": "theme",
+        "tag": "Theme",
+        "title": "Navigation confuses new users",
+        "note": "41 of 113 interviews"
+      },
+      {
+        "kind": "ring",
+        "pct": 100,
+        "value": "100%",
+        "label": "Quotes linked to recordings"
+      }
+    ],
+    "trust": "Developed by Prelaunch.com. Delivering consumer insights to 1,000+ brands globally for 7+ years",
+    "problem": {
+      "label": "The problem",
+      "lines": [
+        "UX research demand keeps growing.",
+        "Time and headcount don’t."
+      ],
+      "sub": "Too many requests. Too few hours. Too much manual synthesis. Not enough space for strategic research."
+    },
+    "features": [
+      [
+        "Scale qualitative research without adding researchers.",
+        "Frank runs hundreds of moderated-style interviews simultaneously, helping you support product, design, and growth teams without becoming a bottleneck.",
+        "feature-1",
+        "Interviews running side by side",
+        "Scale",
+        "speed.1"
+      ],
+      [
+        "Eliminate operational drag.",
+        "No recruiting coordination, calendar wrangling, transcription cleanup, or endless tagging. Frank handles the heavy lifting so you focus on insight quality.",
+        "feature-2",
+        "Frank taking over the scheduling",
+        "Operations",
+        "price.1"
+      ],
+      [
+        "Deliver fast without sacrificing standards.",
+        "Frank provides sourced, traceable findings with transcripts, quotes, themes, and recordings, so fast research still stands up to scrutiny.",
+        "feature-3",
+        "A key insight with the quotes behind it",
+        "Rigor",
+        "transparency.0"
+      ],
+      [
+        "Build institutional customer memory.",
+        "Every study adds to one searchable source of truth, so your team can revisit past findings instead of starting from scratch.",
+        "feature-4",
+        "Interview themes with the quote behind each",
+        "Memory",
+        "summaries.1"
+      ]
+    ],
+    "how": {
+      "label": "How Frank works for UX researchers",
+      "lines": [
+        "Less execution.",
+        "More strategy."
+      ],
+      "sub": "Frank handles repetitive research execution while giving you stronger evidence, cleaner synthesis, and more time for strategic thinking.",
+      "steps": [
+        [
+          "Plan faster",
+          "Start with stronger studies.",
+          "Brief Frank on objectives like onboarding friction, feature usability, churn drivers, or concept validation. It helps structure high-quality interview flows in minutes."
+        ],
+        [
+          "Field at scale",
+          "Run studies beyond human limits.",
+          "Interview users simultaneously through voice, video, or chat across time zones and languages, without compromising consistency."
+        ],
+        [
+          "Synthesize instantly",
+          "From raw interviews to decision-ready findings.",
+          "Themes, sentiment, behavioral patterns, clips, transcripts, and referenced quotes are ready immediately after fieldwork."
+        ],
+        [
+          "Elevate your role",
+          "Spend more time on strategy, less on logistics.",
+          "Use your expertise where it matters most: framing problems, influencing decisions, and guiding product direction."
+        ]
+      ]
+    },
+    "useCases": {
+      "label": "What UX researchers use Frank for",
+      "lines": [
+        "Clear your research",
+        "backlog in a day"
+      ],
+      "sub": "Frank covers the studies that fill a UX researcher’s backlog.",
+      "cards": [
+        [
+          "Discovery calls",
+          "Turn every new customer into a deep discovery conversation.",
+          "/use-case/ai-discovery-calls",
+          "bubble-chat"
+        ],
+        [
+          "Churn",
+          "Capture feedback exactly when customers cancel or disengage, all while the context is fresh.",
+          "/use-case/ai-churn-interviews",
+          "analytics-down"
+        ],
+        [
+          "Product discovery",
+          "Know what to build, before you build it.",
+          "/use-case/ai-product-discovery",
+          "search-02"
+        ],
+        [
+          "Feature discovery",
+          "Learn how users experience new features, where they struggle, and what to improve next.",
+          "/use-case/ai-feature-discovery",
+          "idea"
+        ]
+      ]
+    },
+    "cta": {
+      "lines": [
+        "Do more research. Deliver stronger evidence.",
+        "Become even more strategic."
+      ],
+      "sub": "Set up in 5 minutes. Insights overnight. More capacity starting tomorrow.",
+      "button": "Run 10 Free Interviews"
+    }
   }
 }
