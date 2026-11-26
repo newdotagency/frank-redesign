@@ -1,7 +1,6 @@
 // LiveUseCasePage (V21.04): the four use-case pages that are not on the doc's template (Product discovery, Feature discovery, Market discovery,
 // Win/loss analysis), copied from the live hifrank.ai pages in the live pages' own order: hero → "Trusted by" → "What you're dealing with" (the
-// pains, in quotes) → "The Frank Solution" → "How Frank Runs" (three steps with the live pictures) → "What You'll Learn" → FAQ → closing →
-// the other use cases. The words and pictures are the live pages' (usecases/live.json, public/use-case/<slug>/); the hero has no picture, only
+// pains, in quotes) → "The Frank Solution" → "How Frank Runs" (three steps with the live pictures) → "What You'll Learn" (the Roles pages' stacked cards) → the site's template wheel → FAQ → closing. The words and pictures are the live pages' (usecases/live.json, public/use-case/<slug>/); the hero has no picture, only
 // the site's general hero panel. The live Feature discovery FAQ has six answers with no question: they are left out.
 import { useMemo } from 'react';
 import { MotionConfig, useReducedMotion } from 'framer-motion';
@@ -14,11 +13,12 @@ import BrandMarquee from './BrandMarquee';
 import { PL_LOGOS } from './logos/prelaunchBrands';
 import HowItWorks from './HowItWorks';
 import FAQ from './FAQ';
+import RoleStack from './RoleStack';
+import UseCases from './UseCases';
 import ClosingCTA from './ClosingCTA';
 import Footer from './Footer';
 import { imageScene } from './features/scenes';
 import LIVE from './usecases/live.json';
-import { siteHref } from '../lib/sitePaths';
 import { FOCUS, Rise } from './product-updates/parts';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
@@ -112,51 +112,25 @@ export default function LiveUseCasePage({ slug }) {
             <HowItWorks steps={steps} label={d.label} lines={[d.how.title]} subtitle={null} id="lu-how-title" slider />
           </div>
 
-          {/* 6 — What You'll Learn */}
-          <section aria-labelledby="lu-learn-title" className="px-4 pt-[clamp(88px,10vw,150px)] md:px-10">
-            <div className="rounded-[32px] bg-[#fffdf3] px-5 py-[clamp(56px,7vw,112px)] sm:px-10 md:rounded-[44px]">
-              <div className="mx-auto max-w-[1200px]">
-                <ScrubTitle reduce={reduce} id="lu-learn-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={[d.learn.title]} />
-                <ScrubText as="p" reduce={reduce} lag={0.05} className={SUBTITLE + ' mx-auto mb-0 mt-6 max-w-[56ch] text-center'}>{d.learn.intro}</ScrubText>
-                <ul className={'m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 sm:grid-cols-2 ' + (d.learn.items.length > 4 ? 'xl:grid-cols-3' : 'xl:grid-cols-4')}>
-                  {d.learn.items.map((it, i) => (
-                    <ScrubText as="li" key={it.title} reduce={reduce} lag={(i % 4) * 0.05} className="flex flex-col rounded-[24px] bg-white p-7 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] max-md:shadow-[0_0_0_1px_rgba(26,23,20,0.14)] sm:p-8">
-                      <span aria-hidden="true" className="grid size-12 place-items-center rounded-full bg-[#d1f899]"><img src={it.icon} alt="" draggable={false} className="size-6" /></span>
-                      <h3 className="m-0 mt-6 font-['Figtree',sans-serif] text-[20px] font-medium leading-[1.25] tracking-[-0.02em] text-ink">{it.title}</h3>
-                      <p className="m-0 mt-3 font-sans text-[15.5px] leading-[1.6] text-ink-2">{it.text}</p>
-                    </ScrubText>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </section>
+          {/* 6 — What You'll Learn: the Roles pages' stacked cards, one below the other, fading up */}
+          <RoleStack id="lu-learn-title" reduce={reduce} d={{ label: d.label, lines: [d.learn.title], sub: d.learn.intro }}
+            steps={d.learn.items.map(it => ({ title: it.title, text: it.text }))} />
 
-          {/* 7 — FAQ */}
-          <FAQ items={d.faq} label="FAQ" lines={['Have questions?', 'We have answers']} id="lu-faq-title" />
+          {/* 7 — More templates: the home page's use-case wheel, as on the other use-case pages */}
+          <UseCases href={SIGNUP} sectionClass="pt-[clamp(112px,13vw,200px)] px-4 sm:px-[clamp(16px,4vw,48px)]"
+            head={{ eyebrow: 'Build your study on the right foundation', lines: ['Discover more Frank', 'interview templates'], sub: null, titleId: 'lu-tpl-title', titleClass: 'm-0 text-[clamp(32px,4.4vw,56px)] leading-[1.06] text-ink [text-wrap:balance] ' + TITLE }} />
 
-          {/* 8 — Closing */}
+          {/* 8 — FAQ */}
+          <div className="pt-[clamp(112px,13vw,200px)]">
+            <FAQ items={d.faq} label="FAQ" lines={['Have questions?', 'We have answers']} id="lu-faq-title" />
+          </div>
+
+          {/* 9 — Closing */}
           <div className="pt-[clamp(40px,5vw,80px)]">
             <ClosingCTA titleId="lu-cta-title" chips={false} compact lines={[d.cta.title]} sub={d.cta.sub}
               primary={{ label: d.cta.button, href: SIGNUP }} secondary={false} />
           </div>
 
-          {/* 9 — Other use cases */}
-          <section aria-labelledby="lu-more-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
-            <div className="mx-auto max-w-[1200px]">
-              <ScrubTitle reduce={reduce} id="lu-more-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['Other Use Cases']} />
-              <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 sm:grid-cols-2 xl:grid-cols-4">
-                {d.others.map(([path, name, text], i) => (
-                  <ScrubText as="li" key={path} reduce={reduce} lag={(i % 4) * 0.05}>
-                    <a href={siteHref(path)} className={'flex h-full flex-col rounded-[24px] bg-[#fffdf3] p-7 text-left text-ink no-underline shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] transition-colors duration-300 hover:bg-[#fbf8e8] max-md:bg-white max-md:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)] ' + FOCUS}>
-                      <h3 className="m-0 font-['Figtree',sans-serif] text-[20px] font-medium leading-[1.25] tracking-[-0.02em]">{name}</h3>
-                      <p className="m-0 mt-3 font-sans text-[15px] leading-[1.55] text-ink-2">{text}</p>
-                    </a>
-                  </ScrubText>
-                ))}
-              </ul>
-            </div>
-          </section>
-          <div className="pb-[clamp(56px,7vw,112px)]" />
         </main>
         <Footer />
       </div>
