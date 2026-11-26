@@ -65,7 +65,7 @@ export default function RolePage({ slug }) {
   const kit = useMemo(() => kitOf(slug), [slug]);
   return (
     <MotionConfig reducedMotion="user">
-      <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
+      <div className="fk v9 v19 relative [text-wrap:pretty]" id="top" style={{ background: '#ffffff' }}>
         <Header fixed mode="auto" mega adaptive hrefs={HREFS} />
         <main id="main">
           {/* 1 — Hero: a person standing on white, cards floating around them */}

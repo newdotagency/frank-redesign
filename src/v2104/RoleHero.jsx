@@ -71,8 +71,8 @@ const KIND = { phrases: Phrases, count: Count, quote: Quote, ring: Ring, theme: 
 // desktop, the first two on phones, smaller and at the edges so the face stays clear.
 const SPOTS = [
   'left-0 top-[34%] max-sm:origin-top-left max-sm:scale-[0.7] sm:top-[44%] lg:left-0',
-  'right-0 top-[58%] max-sm:origin-top-right max-sm:scale-[0.7] sm:top-[16%] lg:right-6',
-  'hidden lg:block lg:right-6 lg:top-[62%]',
+  'right-0 top-[58%] max-sm:origin-top-right max-sm:scale-[0.7] sm:top-[16%] lg:-right-12',
+  'hidden lg:block lg:right-0 lg:top-[62%]',
 ];
 
 export default function RoleHero({ d, person }) {
@@ -82,7 +82,7 @@ export default function RoleHero({ d, person }) {
       <div className="relative overflow-hidden rounded-[32px] bg-[#0f2e27] px-5 pt-14 sm:px-10 md:rounded-[44px] lg:pt-0">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(40% 60% at 74% 50%, rgba(209,248,153,0.16), rgba(209,248,153,0) 70%)' }} />
-        <div className="mx-auto grid max-w-[1200px] items-center gap-10 lg:min-h-[610px] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8">
+        <div className="mx-auto grid max-w-[1200px] items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8">
           <div className="relative text-center lg:py-[clamp(72px,7vw,112px)] lg:text-left">
             <Rise reduce={reduce}><Eyebrow className="mb-6 !text-white/85 sm:mb-8 lg:!justify-start">{d.label}</Eyebrow></Rise>
             <Rise as="h1" reduce={reduce} delay={0.06} id="rl-title" className={'m-0 pb-1 leading-[1.06] text-white [text-wrap:balance] ' + TITLE}>
@@ -94,9 +94,9 @@ export default function RoleHero({ d, person }) {
             </Rise>
           </div>
           {/* The person, cut at the waist and faded into the panel; cards float around them */}
-          <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[330px] w-full max-w-[440px] sm:h-[430px] lg:absolute lg:bottom-0 lg:right-0 lg:mx-0 lg:h-[610px] lg:w-[min(620px,52%)] lg:max-w-none">
+          <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[330px] w-full max-w-[440px] sm:h-[430px] lg:h-[610px] lg:max-w-[560px] lg:self-end">
             <div className="absolute inset-0 overflow-hidden">
-              <img src={person} alt="" draggable={false} className={'absolute left-1/2 top-[2%] h-auto max-w-none -translate-x-1/2 select-none ' + (d.heroFlip ? '-scale-x-100 w-[130%] sm:w-[118%] lg:w-[150%]' : 'w-[108%] sm:w-[100%] lg:w-full')} />
+              <img src={person} alt="" draggable={false} className={'absolute left-1/2 top-[2%] h-auto max-w-none -translate-x-1/2 select-none ' + (d.heroFlip ? '-scale-x-100 w-[130%] sm:w-[118%] lg:w-[150%]' : 'w-[108%] sm:w-[100%] lg:w-full [mask-image:linear-gradient(to_right,#000_80%,transparent)]')} />
               <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[30%]" style={{ background: 'linear-gradient(to bottom, rgba(15,46,39,0) 0%, #0f2e27 88%)' }} />
             </div>
             {d.heroCards.map((c, i) => {
