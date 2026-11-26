@@ -39,13 +39,13 @@ const COLUMNS = [
     ['Scale', '/benefits/scale'],
   ] },
   { title: 'Use cases', links: [
-    ['Churn', '/use-case/ai-churn-interviews', '/use-case/ai-churn-interviews'],
     ['Product discovery', '/use-case/ai-product-discovery'],
     ['Feature discovery', '/use-case/ai-feature-discovery'],
     ['Market discovery', '/use-case/market-discovery'],
     ['Win/loss analysis', '/use-case/win-loss-analysis'],
   ] },
   { title: 'Templates', links: [
+    ['Churn', '/use-case/ai-churn-interviews', '/use-case/ai-churn-interviews'],
     ['Discovery calls', '/use-case/ai-discovery-calls'],
     ['Activation barriers', '/use-case/activation-barriers'],
     ['Trial conversion', '/use-case/trial-conversion'],
