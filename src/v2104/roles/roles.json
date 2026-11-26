@@ -309,5 +309,155 @@
       "button": "Run 10 Free Interviews"
     },
     "trust": "Developed by Prelaunch.com. Delivering consumer insights to 1,000+ brands globally for 7+ years"
+  },
+  "founders": {
+    "slug": "founders",
+    "title": "AI Researcher for Founders & CEOs | Frank",
+    "description": "Frank interviews 100+ customers overnight so founders and CEOs make high-stakes decisions on customer truth, not internal opinion.",
+    "label": "For Founders",
+    "hero": [
+      "Always Know Exactly",
+      "What Your Customers Are Thinking"
+    ],
+    "heroP": "Frank interviews 100+ customers overnight to uncover what they want, what they fear, and why they buy, so every high-stakes decision is backed by customer truth.",
+    "heroCards": [
+      {
+        "kind": "quote",
+        "answer": "Nobody told us pricing was the reason.",
+        "followUp": "When did it first become a problem?"
+      },
+      {
+        "kind": "count",
+        "label": "Customers heard",
+        "value": "104"
+      },
+      {
+        "kind": "ring",
+        "pct": 100,
+        "value": "100%",
+        "label": "Insights traced to a source"
+      },
+      {
+        "kind": "theme",
+        "tag": "Risk spotted",
+        "title": "Onboarding takes too long",
+        "note": "31 of 104 customers"
+      }
+    ],
+    "trust": "Developed by Prelaunch.com. Delivering consumer insights to 1,000+ brands globally for 7+ years",
+    "problem": {
+      "label": "The problem",
+      "lines": [
+        "How often are you making high-stakes",
+        "decisions with incomplete information?"
+      ],
+      "sub": "Too many opinions. Too little customer truth. Too much riding on every call."
+    },
+    "features": [
+      [
+        "Replace guesswork with customer-backed clarity.",
+        "Frank continuously interviews your market, customers, churned users, and prospects, so your next move is based on reality, not internal assumptions.",
+        "feature-1",
+        "Customer themes with the quotes behind them",
+        "Clarity",
+        "quality.1"
+      ],
+      [
+        "Validate bets before they become expensive mistakes.",
+        "Before launching features, entering markets, changing pricing, or shifting strategy, Frank uncovers what customers actually think first.",
+        "feature-2",
+        "Sentiment and segment charts drawn from interviews",
+        "Bets",
+        "scale.3"
+      ],
+      [
+        "Stay close to customers as you scale.",
+        "As the company grows, most founders lose direct customer contact. Frank restores that connection in a scalable way.",
+        "feature-3",
+        "Interviews running side by side",
+        "Scale",
+        "scale.0"
+      ],
+      [
+        "Create alignment with evidence.",
+        "When everyone has a theory, Frank gives you sourced customer truth that cuts through politics and speeds up decisions.",
+        "feature-4",
+        "Customer quotes, each one click from its interview",
+        "Alignment",
+        "summaries.2"
+      ]
+    ],
+    "how": {
+      "label": "How Frank works for founders & CEOs",
+      "lines": [
+        "Your always-on customer",
+        "intelligence advantage."
+      ],
+      "sub": "Frank becomes your Customer Brain, a living system that continuously learns from customers and gives you answers whenever strategy demands them.",
+      "steps": [
+        [
+          "See around corners",
+          "Spot risks before they hit metrics.",
+          "Understand churn drivers, weak onboarding, pricing resistance, feature confusion, and shifting sentiment before dashboards catch up."
+        ],
+        [
+          "Move with confidence",
+          "Make cleaner decisions, faster.",
+          "Whether it’s roadmap, hiring, GTM, pricing, or expansion, Frank gives you real customer evidence so you can act decisively."
+        ],
+        [
+          "Stay close at scale",
+          "Know customers without living in interviews.",
+          "As the company grows, most founders lose direct customer contact. Frank restores that connection in a scalable way."
+        ],
+        [
+          "Compound intelligence",
+          "Every conversation makes the business smarter.",
+          "Insights don’t disappear into notes or decks. They accumulate into a searchable source of truth your whole company can learn from."
+        ]
+      ]
+    },
+    "useCases": {
+      "label": "What founders & CEOs use Frank for",
+      "lines": [
+        "The decisions founders",
+        "can’t afford to guess on"
+      ],
+      "sub": "Frank covers the decisions that matter most to founders and CEOs.",
+      "cards": [
+        [
+          "Discovery calls",
+          "Turn every new customer into a deep discovery conversation.",
+          "/use-case/ai-discovery-calls",
+          "bubble-chat"
+        ],
+        [
+          "Churn",
+          "Capture feedback exactly when customers cancel or disengage, all while the context is fresh.",
+          "/use-case/ai-churn-interviews",
+          "analytics-down"
+        ],
+        [
+          "Product discovery",
+          "Know what to build, before you build it.",
+          "/use-case/ai-product-discovery",
+          "search-02"
+        ],
+        [
+          "Feature discovery",
+          "Learn how users experience new features, where they struggle, and what to improve next.",
+          "/use-case/ai-feature-discovery",
+          "idea"
+        ]
+      ]
+    },
+    "cta": {
+      "lines": [
+        "Great companies move fast.",
+        "Smart companies move fast with truth."
+      ],
+      "sub": "Set up in 5 minutes. Insights overnight. Better decisions starting tomorrow.",
+      "button": "Run 10 Free Interviews"
+    }
   }
 }

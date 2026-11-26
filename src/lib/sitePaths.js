@@ -12,7 +12,7 @@ const HOSTED = [
   /^\/product-updates(\/[\w-]+)?$/,
   /^\/benefits\/(price|quality|scale|speed)$/,
   /^\/industries\/(saas|ecommerce)$/,
-  /^\/roles\/(product-managers|growth-teams)$/,
+  /^\/roles\/(product-managers|growth-teams|founders)$/,
   /^\/use-case\/ai-churn-interviews$/,
   /^\/competitors\/(conveo|listen-labs|outset|strella)$/,
 ];

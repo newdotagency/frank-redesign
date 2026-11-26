@@ -6,6 +6,7 @@ import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import UseCases from './UseCases';
 import { iconSvg } from './features/media';
 import { SPEED_SCENES } from './features/SpeedScenes';
+import { SCALE_SCENES } from './features/ScaleScenes';
 import { PRICE_SCENES } from './features/PriceScenes';
 import { QUALITY_SCENES } from './features/QualityScenes';
 import { SUMMARIES_SCENES } from './features/SummariesScenes';
@@ -43,7 +44,7 @@ const kitOf = slug => ({
 const BRANDS = [['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23]];
 
 // The tabs' pictures: the feature and benefit pages' own scenes (drawn in the page's colours), picked per tab in roles.json as "set.index".
-const SCENE_SETS = { speed: SPEED_SCENES, price: PRICE_SCENES, quality: QUALITY_SCENES, summaries: SUMMARIES_SCENES, transparency: TRANSPARENCY_SCENES };
+const SCENE_SETS = { speed: SPEED_SCENES, scale: SCALE_SCENES, price: PRICE_SCENES, quality: QUALITY_SCENES, summaries: SUMMARIES_SCENES, transparency: TRANSPARENCY_SCENES };
 const sceneOf = key => { const [set, i] = (key || '').split('.'); return SCENE_SETS[set]?.[+i]; };
 
 // A tab's picture, filling the step card (the live page's picture).
