@@ -164,7 +164,9 @@ function DocsHome({ reduce, onSearch }) {
       <Rise reduce={reduce} delay={0.24} className="mt-12">
         <a href={VIDEO} target="_blank" rel="noopener noreferrer"
           className={'group relative flex aspect-[16/7] min-h-[200px] w-full flex-col justify-between overflow-hidden rounded-[24px] bg-[#0f2e27] p-6 no-underline sm:p-8 ' + FOCUS}>
-          <span aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(70% 60% at 85% 10%, rgba(209,248,153,0.22), rgba(209,248,153,0) 70%)' }} />
+          {/* The video's own YouTube thumbnail, under a dark gradient so the title and the play button stay readable. */}
+          <img src="/docsimg/video-guide-thumb.webp" alt="" width="1280" height="720" loading="lazy" draggable={false} className="pointer-events-none absolute inset-0 size-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.02]" />
+          <span aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,46,39,0.88) 0%, rgba(15,46,39,0.45) 55%, rgba(15,46,39,0.2) 100%)' }} />
           <span className="relative flex items-center gap-3">
             <span className="grid size-11 place-items-center rounded-full bg-[#d1f899]"><span className="block w-[64%]"><Glasses pose="Ready" reduced={reduce} /></span></span>
             <span className="font-sans text-[13.5px] text-white/70">Video guide</span>
