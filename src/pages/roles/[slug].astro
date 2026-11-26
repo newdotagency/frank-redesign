@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Route from '../../v2104/RoleRoute.jsx';
+import ROLES from '../../v2104/roles/roles.json';
+export function getStaticPaths() {
+  return Object.values(ROLES).map(d => ({ params: { slug: d.slug }, props: { slug: d.slug, title: d.title, description: d.description } }));
+}
+const { slug, title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <div id="root"><Route slug={slug} client:only="react" /></div>
+</Base>

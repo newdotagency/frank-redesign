@@ -1,0 +1,166 @@
+{
+  "product-managers": {
+    "slug": "product-managers",
+    "title": "AI Researcher for Product Managers | Frank",
+    "description": "Frank interviews 100+ users overnight and delivers insights before your next sprint. No researcher needed.",
+    "label": "For Product Managers",
+    "hero": [
+      "Ship Decisions Your Customers",
+      "Already Made For You."
+    ],
+    "heroP": "Frank interviews 100+ users overnight and delivers insights before the next sprint, with no researcher needed.",
+    "trust": {
+      "title": "Developed by Prelaunch.com",
+      "sub": "Delivering consumer insights to 1,000+ brands globally for 7+ years",
+      "badges": [
+        [
+          "SOC 2",
+          "Independently audited for security and privacy"
+        ],
+        [
+          "Award-winning methodology",
+          "Silver Winner of the ESOMAR Award for Breakthrough Research Methodology"
+        ],
+        [
+          "GDPR",
+          "Privacy built to meet EU regulations"
+        ]
+      ]
+    },
+    "problem": {
+      "label": "The problem",
+      "lines": [
+        "How often do interviews get",
+        "deprioritized by “urgent” tasks?"
+      ],
+      "sub": "No scheduling calls. No skimming survey responses. No distractions from shipping."
+    },
+    "features": [
+      [
+        "Interview 100 users overnight, before your next sprint",
+        "Run simultaneous voice or video interviews and wake up to a structured insight report.",
+        "feature-1",
+        "Four audio message bars with profile pictures and a text bar reading +113 additional interviews"
+      ],
+      [
+        "Scale to 100+ interviews with zero scheduling overhead",
+        "Frank meets users in the moment: no recruiting, no email blasts, no no-shows, and a 75%+ completion rate.",
+        "feature-2",
+        "Interview completion and scale"
+      ],
+      [
+        "Uncover the reasoning behind every data point",
+        "When an answer is shallow, Frank probes deeper to capture motivations and friction.",
+        "feature-3",
+        "Frank probing deeper into an answer"
+      ],
+      [
+        "UX evidence you can put in a roadmap review",
+        "Every insight is traceable to the second in each interview, with no hallucinations and an ESOMAR-recognised methodology.",
+        "feature-4",
+        "Insights linked to the interview recording"
+      ]
+    ],
+    "how": {
+      "label": "How Frank works for product managers",
+      "lines": [
+        "Agile Teams",
+        "Don’t Wait For Research"
+      ],
+      "sub": "Embed Frank in sign-up, check-out, upgrade, churn and cancellation flows for real-time insight.",
+      "steps": [
+        [
+          "Setup",
+          "Brief Frank in 5 minutes",
+          "Describe the learning goal and Frank structures the interview.",
+          "setup"
+        ],
+        [
+          "Interview",
+          "Ask the follow-ups a survey misses",
+          "Frank explores the reasoning behind every answer.",
+          "interview"
+        ],
+        [
+          "Scale",
+          "Reach 100+ users overnight",
+          "Voice or video interviews run at the same time, with results ready by morning.",
+          "scale"
+        ],
+        [
+          "Build",
+          "Hit your sprint running with behavioral insights",
+          "Themes, quotes and recommendations, each linked to the recording and transcript.",
+          "build"
+        ]
+      ]
+    },
+    "useCases": {
+      "label": "What PMs use Frank for",
+      "lines": [
+        "The research your roadmap",
+        "actually needs"
+      ],
+      "sub": "Frank covers the moments that matter most in a PM’s workflow.",
+      "cards": [
+        [
+          "Discovery calls",
+          "Turn every new customer into a deep discovery conversation.",
+          "/use-case/ai-discovery-calls",
+          "Phone"
+        ],
+        [
+          "Churn",
+          "Capture feedback when customers cancel or disengage.",
+          "/use-case/ai-churn-interviews",
+          "TrendingDown"
+        ],
+        [
+          "Product discovery",
+          "Know what to build, before you build it.",
+          "/use-case/ai-product-discovery",
+          "Search"
+        ],
+        [
+          "Feature discovery",
+          "Learn how users experience new features and where they struggle.",
+          "/use-case/ai-feature-discovery",
+          "Compass"
+        ]
+      ]
+    },
+    "cta": {
+      "lines": [
+        "Your next sprint could be your",
+        "most customer-informed yet"
+      ],
+      "sub": "Set up in 5 minutes. Insights overnight. No researcher, no scheduling, no waiting.",
+      "button": "Run 10 Free Interviews"
+    },
+    "heroCards": [
+      {
+        "kind": "count",
+        "label": "Interviews overnight",
+        "value": "113",
+        "note": "+ more in progress"
+      },
+      {
+        "kind": "quote",
+        "answer": "I almost cancelled after the import step.",
+        "followUp": "What made the import feel hard?"
+      },
+      {
+        "kind": "ring",
+        "pct": 75,
+        "value": "75%+",
+        "label": "Interview completion"
+      },
+      {
+        "kind": "theme",
+        "tag": "Top theme",
+        "title": "Import setup is confusing",
+        "note": "38 of 113 users"
+      }
+    ]
+  }
+}
