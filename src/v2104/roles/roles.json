@@ -9,24 +9,6 @@
       "Already Made For You."
     ],
     "heroP": "Frank interviews 100+ users overnight and delivers insights before the next sprint, with no researcher needed.",
-    "trust": {
-      "title": "Developed by Prelaunch.com",
-      "sub": "Delivering consumer insights to 1,000+ brands globally for 7+ years",
-      "badges": [
-        [
-          "SOC 2",
-          "Independently audited for security and privacy"
-        ],
-        [
-          "Award-winning methodology",
-          "Silver Winner of the ESOMAR Award for Breakthrough Research Methodology"
-        ],
-        [
-          "GDPR",
-          "Privacy built to meet EU regulations"
-        ]
-      ]
-    },
     "problem": {
       "label": "The problem",
       "lines": [
@@ -40,25 +22,29 @@
         "Interview 100 users overnight, before your next sprint",
         "Run simultaneous voice or video interviews and wake up to a structured insight report.",
         "feature-1",
-        "Four audio message bars with profile pictures and a text bar reading +113 additional interviews"
+        "Four audio message bars with profile pictures and a text bar reading +113 additional interviews",
+        "Speed"
       ],
       [
         "Scale to 100+ interviews with zero scheduling overhead",
         "Frank meets users in the moment: no recruiting, no email blasts, no no-shows, and a 75%+ completion rate.",
         "feature-2",
-        "Interview completion and scale"
+        "Interview completion and scale",
+        "Scale"
       ],
       [
         "Uncover the reasoning behind every data point",
         "When an answer is shallow, Frank probes deeper to capture motivations and friction.",
         "feature-3",
-        "Frank probing deeper into an answer"
+        "Frank probing deeper into an answer",
+        "Depth"
       ],
       [
         "UX evidence you can put in a roadmap review",
         "Every insight is traceable to the second in each interview, with no hallucinations and an ESOMAR-recognised methodology.",
         "feature-4",
-        "Insights linked to the interview recording"
+        "Insights linked to the interview recording",
+        "Evidence"
       ]
     ],
     "how": {
@@ -162,12 +148,7 @@
         "note": "38 of 113 users"
       }
     ],
-    "featureIcons": [
-      "Zap",
-      "Users",
-      "Search",
-      "ShieldCheck"
-    ]
+    "trust": "Developed by Prelaunch.com. Delivering consumer insights to 1,000+ brands globally for 7+ years"
   },
   "growth-teams": {
     "slug": "growth-teams",
@@ -207,24 +188,6 @@
         "note": "41 of 112 customers"
       }
     ],
-    "trust": {
-      "title": "Developed by Prelaunch.com",
-      "sub": "Delivering consumer insights to 1,000+ brands globally for 7+ years",
-      "badges": [
-        [
-          "SOC 2",
-          "Independently audited for security and privacy"
-        ],
-        [
-          "Award-winning methodology",
-          "Silver Winner of the ESOMAR Award for Breakthrough Research Methodology"
-        ],
-        [
-          "GDPR",
-          "Privacy built to meet EU regulations"
-        ]
-      ]
-    },
     "problem": {
       "label": "The problem",
       "lines": [
@@ -233,36 +196,34 @@
       ],
       "sub": "No waiting weeks for research. No relying on opinions. No writing copy in the dark."
     },
-    "featureIcons": [
-      "MessageCircle",
-      "AlertTriangle",
-      "Quote",
-      "CalendarCheck"
-    ],
     "features": [
       [
         "Hear what customers actually care about.",
         "Frank interviews real prospects and customers to uncover the pains, desires, objections, and motivations driving action, so messaging starts with your customers’ reality, in their own voice.",
         "feature-1",
-        "Customers’ interview answers grouped by what they care about"
+        "Customers’ interview answers grouped by what they care about",
+        "Listen"
       ],
       [
         "Discover what’s stopping people from buying.",
         "Frank probes into hesitation, trust gaps, pricing friction, confusion, and emotional blockers that analytics can’t explain.",
         "feature-2",
-        "Interview insights on what stops people from buying"
+        "Interview insights on what stops people from buying",
+        "Blockers"
       ],
       [
         "Get customer language you can use immediately.",
         "Frank surfaces the exact phrases customers use to describe their problems, desired outcomes, frustrations, and buying triggers.",
         "feature-3",
-        "Customer phrases surfaced from interviews"
+        "Customer phrases surfaced from interviews",
+        "Language"
       ],
       [
         "Launch insight-backed campaigns this week.",
         "Interview 100+ customers overnight and wake up to actionable findings you can use in copy, offers, positioning, creative, and CRO.",
         "feature-4",
-        "Interview findings ready for campaigns"
+        "Interview findings ready for campaigns",
+        "Launch"
       ]
     ],
     "how": {
@@ -340,6 +301,7 @@
       ],
       "sub": "Set up in 5 minutes. Insights overnight. Better messaging by tomorrow.",
       "button": "Run 10 Free Interviews"
-    }
+    },
+    "trust": "Developed by Prelaunch.com. Delivering consumer insights to 1,000+ brands globally for 7+ years"
   }
 }

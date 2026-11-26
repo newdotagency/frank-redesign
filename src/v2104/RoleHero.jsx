@@ -1,14 +1,17 @@
-// RoleHero (V21.04): the hero of the Roles pages. Centred copy, then a person (cut out, standing on white) with a few plain HTML cards
-// floating around them, in the site's colours. The cards drift slowly and hold still with reduced motion. `cards` are named blocks:
-//   count (interviews overnight), quote (a user's answer with Frank's follow-up), ring (a rate), theme (an insight).
+// RoleHero (V21.04): the hero of the Roles pages, in the features/benefits hero panel (forest green, grain and glow). The copy sits on the
+// left; on the right a person (cut out, cropped at the waist and faded into the panel) with a few dark glass cards floating around them.
+// From 1024px two columns, below it the copy then the person, centred. The cards drift slowly and hold still with reduced motion.
+// `heroCards` kinds: count (a number), quote (an answer and Frank's follow-up), ring (a rate), theme (an insight), phrases (customer words).
 import { motion, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import Glasses from '../v3/Glasses';
+import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow } from './titles';
 import { FOCUS, Rise } from './product-updates/parts';
 
 const FIG = "font-['Figtree',sans-serif]";
-const CARD = 'rounded-[18px] bg-white text-left shadow-[0_18px_40px_-18px_rgba(26,23,20,0.4)] ring-1 ring-[#1a1714]/[0.07]';
+const CARD = 'rounded-[18px] bg-[#143a32]/80 text-left text-white shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)] ring-1 ring-white/[0.14] backdrop-blur-md';
+const CAP = 'm-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-white/55';
 
 function Drift({ reduce, dy = 6, dur = 5, delay = 0, className = '', children }) {
   return (
@@ -19,76 +22,83 @@ function Drift({ reduce, dy = 6, dur = 5, delay = 0, className = '', children })
 }
 
 const Count = ({ d }) => (
-  <div className={CARD + ' w-[196px] p-4'}>
-    <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">{d.label}</p>
-    <p className={FIG + ' m-0 mt-1 text-[30px] font-medium leading-none tracking-[-0.03em] text-ink'}>{d.value}</p>
-    <div className="mt-3 flex items-center">
-      {['#d1f899', '#0f2e27', '#f1ead2', '#9bc653'].map((c, i) => <span key={i} className="-ml-1.5 size-6 rounded-full ring-2 ring-white first:ml-0" style={{ background: c }} />)}
-      <span className="ml-2 font-sans text-[12px] text-ink-2">{d.note}</span>
+  <div className={CARD + ' w-[184px] p-3.5'}>
+    <p className={CAP}>{d.label}</p>
+    <p className={FIG + ' m-0 mt-1 text-[28px] font-medium leading-none tracking-[-0.03em]'}>{d.value}</p>
+    <div className="mt-2.5 flex items-center">
+      {['#d1f899', '#9bc653', '#f1ead2', '#5f8f22'].map((c, i) => <span key={i} className="-ml-1.5 size-5 rounded-full ring-2 ring-[#143a32] first:ml-0" style={{ background: c }} />)}
+      <span className="ml-2 font-sans text-[12px] text-white/65">{d.note}</span>
     </div>
   </div>
 );
 const Quote = ({ d }) => (
-  <div className={CARD + ' w-[236px] p-4'}>
-    <p className="m-0 font-sans text-[14px] leading-[1.4] text-ink">“{d.answer}”</p>
-    <div className="mt-3 flex items-start gap-2.5 rounded-[12px] bg-[#0f2e27] p-2.5">
+  <div className={CARD + ' w-[216px] p-3.5'}>
+    <p className="m-0 font-sans text-[13.5px] leading-[1.4] text-white">“{d.answer}”</p>
+    <div className="mt-2.5 flex items-start gap-2.5 rounded-[12px] bg-white/[0.08] p-2.5">
       <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#d1f899] p-1"><Glasses pose="Curious" className="block h-auto w-full" /></span>
-      <p className="m-0 font-sans text-[12.5px] leading-[1.35] text-white">{d.followUp}</p>
+      <p className="m-0 font-sans text-[12.5px] leading-[1.35] text-white/85">{d.followUp}</p>
     </div>
   </div>
 );
 const Ring = ({ d }) => (
-  <div className={CARD + ' flex w-[168px] items-center gap-3 p-3.5'}>
-    <svg aria-hidden="true" viewBox="0 0 44 44" className="size-11 shrink-0 -rotate-90"><circle cx="22" cy="22" r="18" fill="none" stroke="#eef6df" strokeWidth="5" /><circle cx="22" cy="22" r="18" fill="none" stroke="#5f8f22" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${d.pct * 1.131} 113.1`} /></svg>
-    <div><p className={FIG + ' m-0 text-[20px] font-medium leading-none tracking-[-0.02em] text-ink'}>{d.value}</p><p className="m-0 mt-1 font-sans text-[12px] leading-[1.25] text-ink-2">{d.label}</p></div>
+  <div className={CARD + ' flex w-[164px] items-center gap-3 p-3.5'}>
+    <svg aria-hidden="true" viewBox="0 0 44 44" className="size-11 shrink-0 -rotate-90"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="5" /><circle cx="22" cy="22" r="18" fill="none" stroke="#d1f899" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${d.pct * 1.131} 113.1`} /></svg>
+    <div><p className={FIG + ' m-0 text-[20px] font-medium leading-none tracking-[-0.02em]'}>{d.value}</p><p className="m-0 mt-1 font-sans text-[12px] leading-[1.25] text-white/65">{d.label}</p></div>
   </div>
 );
 const Theme = ({ d }) => (
-  <div className={CARD + ' w-[214px] p-4'}>
+  <div className={CARD + ' w-[200px] p-3.5'}>
     <span className="inline-flex items-center gap-1.5 rounded-full bg-[#d1f899] px-2.5 py-1 font-sans text-[11.5px] font-medium text-[#2a321e]"><Check className="size-3.5" strokeWidth={2.4} />{d.tag}</span>
-    <p className={FIG + ' m-0 mt-2.5 text-[16px] font-medium leading-[1.25] tracking-[-0.01em] text-ink'}>{d.title}</p>
-    <p className="m-0 mt-1 font-sans text-[12.5px] text-ink-2">{d.note}</p>
+    <p className={FIG + ' m-0 mt-2.5 text-[15.5px] font-medium leading-[1.25] tracking-[-0.01em]'}>{d.title}</p>
+    <p className="m-0 mt-1 font-sans text-[12.5px] text-white/65">{d.note}</p>
   </div>
 );
 const Phrases = ({ d }) => (
-  <div className={CARD + ' w-[204px] p-4'}>
-    <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">{d.label}</p>
-    <div className="mt-2.5 flex flex-wrap gap-1.5">{d.items.map(t => <span key={t} className="rounded-full bg-[#d1f899] px-2.5 py-1 font-sans text-[12.5px] text-[#2a321e]">{t}</span>)}</div>
+  <div className={CARD + ' w-[196px] p-3.5'}>
+    <p className={CAP}>{d.label}</p>
+    <div className="mt-2.5 flex flex-wrap gap-1.5">{d.items.map(t => <span key={t} className="rounded-full bg-[#d1f899]/15 px-2.5 py-1 font-sans text-[12.5px] text-[#d1f899]">{t}</span>)}</div>
   </div>
 );
 const KIND = { phrases: Phrases, count: Count, quote: Quote, ring: Ring, theme: Theme };
 
-// Where each card sits, around a 360px-wide person in a 760px stage (desktop); on phones only the first two show, smaller and low at the edges so the face stays clear.
+// Where each card sits around the person (the stage is 440px wide on phones, up to 520px from 1024px). The first three show on
+// desktop, the first two on phones, smaller and at the edges so the face stays clear.
 const SPOTS = [
-  'left-0 top-[46%] max-sm:origin-top-left max-sm:scale-[0.66] sm:left-[2%] sm:top-[10%]',
-  'right-0 top-[68%] max-sm:origin-top-right max-sm:scale-[0.66] sm:right-0 sm:top-[8%]',
-  'hidden sm:block sm:left-[8%] sm:top-[62%]',
-  'hidden sm:block sm:right-[4%] sm:top-[58%]',
+  'left-0 top-[44%] max-sm:origin-top-left max-sm:scale-[0.7] lg:-left-4',
+  'right-0 top-[16%] max-sm:origin-top-right max-sm:scale-[0.7] lg:-right-2',
+  'hidden lg:block lg:right-0 lg:top-[62%]',
 ];
 
 export default function RoleHero({ d, person }) {
   const reduce = !!useReducedMotion();
   return (
-    <section aria-labelledby="rl-title" className="relative overflow-hidden px-4 pt-[188px] sm:pt-[124px] md:px-10">
-      <div className="mx-auto max-w-[1200px] pt-[clamp(40px,5vw,72px)] text-center">
-        <Rise reduce={reduce}><Eyebrow className="mb-6 sm:mb-8">{d.label}</Eyebrow></Rise>
-        <Rise as="h1" reduce={reduce} delay={0.06} id="rl-title" className={'m-0 pb-1 leading-[1.06] text-ink [text-wrap:balance] ' + TITLE}>
-          {d.hero.map(l => <span key={l} className="block">{l}</span>)}
-        </Rise>
-        <Rise as="p" reduce={reduce} delay={0.14} className="mx-auto mb-0 mt-6 max-w-[52ch] font-sans text-[16.5px] leading-[1.6] text-ink-2 sm:text-[17px]">{d.heroP}</Rise>
-        <Rise reduce={reduce} delay={0.22} className="mt-9 flex justify-center">
-          <a href="https://app.hifrank.ai/signup" className={'inline-flex h-12 items-center rounded-full bg-[#d1f899] px-6 font-sans text-[15.5px] font-medium text-ink no-underline transition-[background-color] duration-300 hover:bg-[#c4ef84] ' + FOCUS}>Run 10 Free Interviews</a>
-        </Rise>
-        <Rise reduce={reduce} delay={0.3} className="relative mx-auto mt-[clamp(32px,4vw,56px)] h-[460px] max-w-[760px] sm:h-[520px]">
-          {/* a soft lime disc behind, and a shadow where they stand */}
-          <div aria-hidden="true" className="absolute left-1/2 top-[14%] size-[300px] -translate-x-1/2 rounded-full sm:size-[360px]" style={{ background: 'radial-gradient(closest-side, rgba(209,248,153,0.7), rgba(209,248,153,0.25) 70%, rgba(209,248,153,0) 100%)' }} />
-          <div aria-hidden="true" className="absolute bottom-0 left-1/2 h-5 w-[200px] -translate-x-1/2 rounded-[50%] bg-[#1a1714]/[0.12] blur-[10px]" />
-          <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain" />
-          {d.heroCards.map((c, i) => {
-            const C = KIND[c.kind];
-            return <Drift key={c.kind + i} reduce={reduce} dy={5 + (i % 2) * 2} dur={4.4 + i * 0.6} delay={i * 0.35} className={SPOTS[i]}><C d={c} /></Drift>;
-          })}
-        </Rise>
+    <section aria-labelledby="rl-title" className="relative px-4 pt-[188px] sm:pt-[124px] md:px-10">
+      <div className="relative overflow-hidden rounded-[32px] bg-[#0f2e27] px-5 pt-14 sm:px-10 md:rounded-[44px] lg:pt-0">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(40% 60% at 74% 50%, rgba(209,248,153,0.16), rgba(209,248,153,0) 70%)' }} />
+        <div className="relative mx-auto grid max-w-[1200px] items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8">
+          <div className="text-center lg:py-[clamp(72px,7vw,112px)] lg:text-left">
+            <Rise reduce={reduce}><Eyebrow className="mb-6 !text-white/85 sm:mb-8 lg:!justify-start">{d.label}</Eyebrow></Rise>
+            <Rise as="h1" reduce={reduce} delay={0.06} id="rl-title" className={'m-0 pb-1 leading-[1.06] text-white [text-wrap:balance] ' + TITLE}>
+              {d.hero.map(l => <span key={l} className="block">{l}</span>)}
+            </Rise>
+            <Rise as="p" reduce={reduce} delay={0.14} className="mx-auto mb-0 mt-6 max-w-[50ch] font-sans text-[16.5px] leading-[1.6] text-white/70 sm:text-[17px] lg:mx-0">{d.heroP}</Rise>
+            <Rise reduce={reduce} delay={0.22} className="mt-9 flex justify-center lg:justify-start">
+              <a href="https://app.hifrank.ai/signup" className={'inline-flex h-12 items-center rounded-full bg-[#d1f899] px-6 font-sans text-[15.5px] font-medium text-ink no-underline transition-[background-color] duration-300 hover:bg-[#c4ef84] ' + FOCUS}>Run 10 Free Interviews</a>
+            </Rise>
+          </div>
+          {/* The person, cut at the waist and faded into the panel; cards float around them */}
+          <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[380px] w-full max-w-[440px] sm:h-[420px] lg:h-[500px] lg:max-w-[520px] lg:self-end">
+            <div className="absolute inset-0 overflow-hidden">
+              <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute left-1/2 top-[3%] h-auto w-[86%] max-w-none sm:w-[72%] -translate-x-1/2 select-none lg:w-[84%]" />
+              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[42%]" style={{ background: 'linear-gradient(to bottom, rgba(15,46,39,0) 0%, #0f2e27 88%)' }} />
+            </div>
+            {d.heroCards.map((c, i) => {
+              const C = KIND[c.kind];
+              return SPOTS[i] ? <Drift key={c.kind + i} reduce={reduce} dy={5 + (i % 2) * 2} dur={4.4 + i * 0.6} delay={i * 0.35} className={SPOTS[i]}><C d={c} /></Drift> : null;
+            })}
+          </Rise>
+        </div>
       </div>
     </section>
   );
