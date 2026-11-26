@@ -1,4 +1,4 @@
-// RoleStack (V21.04): "How Frank works" on the Roles pages: the title on the left, the steps as cards on the right, one below the other.
+// RoleStack (V21.04): "How Frank works" on the Roles pages: the title centred on top, the steps as centred cards below it, one below the other.
 // From 1024px it is one pinned stage (as the Churn page's reasons): a tall track with a sticky stage; scrolling slides each next card up
 // from below the screen over the one before, each stopping 18px lower so the earlier ones show above it; after the last the stage holds one
 // more step, then the title and the cards scroll away as one block. Below 1024px, and with reduced motion, the cards are a plain list.
@@ -10,28 +10,23 @@ import { ScrubText, ScrubTitle } from './reveal';
 
 const PIN = 112, STEP = 18;
 
-function Card({ step, i, n }) {
+function Card({ step, i }) {
   return (
-    <div className="flex h-full flex-col gap-5 rounded-[24px] bg-[#fffdf3] p-6 text-left shadow-[0_24px_50px_-26px_rgba(0,0,0,0.6)] sm:p-7 max-lg:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)] max-lg:bg-white">
-      <div className="flex items-start gap-4">
-        <span aria-hidden="true" className="grid size-10 shrink-0 place-items-center rounded-full bg-[#d1f899] font-['Figtree',sans-serif] text-[16px] font-medium text-[#2a321e]">{i + 1}</span>
-        <div>
-          <p className="m-0 font-sans text-[12px] font-light uppercase tracking-[0.08em] text-ink-3">{step.name}</p>
-          <h3 className="m-0 mt-1 font-['Figtree',sans-serif] text-[20px] font-medium leading-[1.25] tracking-[-0.02em] text-ink sm:text-[22px]">{step.title}</h3>
-          <p className="m-0 mt-2.5 font-sans text-[15.5px] leading-[1.6] text-ink-2">{step.text}</p>
-        </div>
-      </div>
-      <div className="grid min-h-[150px] place-items-center rounded-[16px] bg-white p-4 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.06)]">{step.visual}</div>
+    <div className="flex h-full flex-col items-center rounded-[24px] bg-[#fffdf3] px-6 py-8 text-center shadow-[0_24px_50px_-26px_rgba(0,0,0,0.6)] sm:px-10 sm:py-9 max-lg:bg-white max-lg:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)]">
+      <span aria-hidden="true" className="grid size-10 place-items-center rounded-full bg-[#d1f899] font-['Figtree',sans-serif] text-[16px] font-medium text-[#2a321e]">{i + 1}</span>
+      <p className="m-0 mt-4 font-sans text-[12px] font-light uppercase tracking-[0.08em] text-ink-3">{step.name}</p>
+      <h3 className="m-0 mt-1.5 max-w-[26ch] font-['Figtree',sans-serif] text-[21px] font-medium leading-[1.25] tracking-[-0.02em] text-ink sm:text-[24px]">{step.title}</h3>
+      <p className="m-0 mt-3 max-w-[52ch] font-sans text-[15.5px] leading-[1.6] text-ink-2">{step.text}</p>
     </div>
   );
 }
 
 function Header({ d, reduce }) {
   return (
-    <div className="text-center lg:text-left">
-      <ScrubText reduce={reduce}><Eyebrow className="mb-6 !text-white/85 sm:mb-8 lg:!justify-start">{d.label}</Eyebrow></ScrubText>
+    <div className="text-center">
+      <ScrubText reduce={reduce}><Eyebrow className="mb-6 !text-white/85 sm:mb-8">{d.label}</Eyebrow></ScrubText>
       <ScrubTitle reduce={reduce} id="rl-how-title" className={'m-0 leading-[1.06] text-white [text-wrap:balance] ' + TITLE} lines={d.lines} />
-      <ScrubText as="p" reduce={reduce} lag={0.05} className="mx-auto mb-0 mt-5 max-w-[46ch] font-sans text-[16.5px] leading-[1.6] text-white/70 lg:mx-0">{d.sub}</ScrubText>
+      <ScrubText as="p" reduce={reduce} lag={0.05} className="mx-auto mb-0 mt-5 max-w-[50ch] font-sans text-[16.5px] leading-[1.6] text-white/70">{d.sub}</ScrubText>
     </div>
   );
 }
@@ -66,10 +61,10 @@ function Pinned({ d, steps, reduce }) {
   return (
     <div ref={track} className="relative" style={{ height: `calc(${stageH}px + ${units * 55}svh)` }}>
       <div ref={stage} className="sticky" style={{ top: PIN }}>
-        <div className="mx-auto grid max-w-[1200px] grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-center gap-16 xl:gap-20">
+        <div className="mx-auto max-w-[760px]">
           <Header d={d} reduce={reduce} />
-          <ol aria-label={d.label} className="m-0 grid list-none p-0" style={{ paddingBottom: (steps.length - 1) * STEP }}>
-            {steps.map((s, i) => <Slide key={s.name} i={i} progress={scrollYProgress} from={from} units={units}><Card step={s} i={i} n={steps.length} /></Slide>)}
+          <ol aria-label={d.label} className="m-0 mt-10 grid list-none p-0" style={{ paddingBottom: (steps.length - 1) * STEP }}>
+            {steps.map((s, i) => <Slide key={s.name} i={i} progress={scrollYProgress} from={from} units={units}><Card step={s} i={i} /></Slide>)}
           </ol>
         </div>
       </div>
@@ -91,10 +86,10 @@ export default function RoleStack({ d, steps, reduce }) {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
         <div className="relative">
           {wide && !reduce ? <Pinned d={d} steps={steps} reduce={reduce} /> : (
-            <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-20">
+            <div className="mx-auto max-w-[760px]">
               <Header d={d} reduce={reduce} />
-              <ol aria-label={d.label} className="m-0 flex list-none flex-col gap-4 p-0">
-                {steps.map((s, i) => <li key={s.name}><Card step={s} i={i} n={steps.length} /></li>)}
+              <ol aria-label={d.label} className="m-0 mt-10 flex list-none flex-col gap-4 p-0">
+                {steps.map((s, i) => <li key={s.name}><Card step={s} i={i} /></li>)}
               </ol>
             </div>
           )}

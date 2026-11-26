@@ -3,7 +3,6 @@
 // use cases → closing. The words and the pictures are the live pages' (roles/roles.json, public/roles/<slug>/).
 import { useMemo } from 'react';
 import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
-import { Check } from 'lucide-react';
 import UseCases from './UseCases';
 import { iconSvg } from './features/media';
 import Header from '../components/Header';
@@ -51,47 +50,12 @@ const photoScene = (src, alt) => function PhotoScene({ active, reduce }) {
   );
 };
 
-// The small pictures in the "How Frank works" cards: the live page's picture where it has one, else a plain card drawn here.
-const VISUALS = {
-  interview: (
-    <div className="flex w-full max-w-[320px] flex-col gap-2.5 font-sans text-[14px] leading-[1.4]">
-      <p className="m-0 max-w-[85%] self-end rounded-[14px] rounded-br-[4px] bg-[#f3f1e6] px-3.5 py-2.5 text-ink">It was fine, I guess.</p>
-      <p className="m-0 max-w-[90%] self-start rounded-[14px] rounded-bl-[4px] bg-[#0f2e27] px-3.5 py-2.5 text-white">Fine how? What did you expect to happen?</p>
-      <p className="m-0 max-w-[85%] self-end rounded-[14px] rounded-br-[4px] bg-[#f3f1e6] px-3.5 py-2.5 text-ink">I expected the import to just work.</p>
-    </div>),
-  progress: (
-    <div className="w-full max-w-[320px]">
-      <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">Overnight</p>
-      <p className={FIG + ' m-0 mt-1 text-[36px] font-medium leading-none tracking-[-0.03em] text-ink'}>112 / 100+</p>
-      <div className="mt-3.5 h-2 overflow-hidden rounded-full bg-[#eef6df]"><div className="h-full w-[92%] rounded-full bg-[#9bc653]" /></div>
-      <p className="m-0 mt-3 flex items-center gap-1.5 font-sans text-[13px] text-ink-2"><Check className="size-4 text-[#5f8f22]" strokeWidth={2.2} />Results ready by morning</p>
-    </div>),
-  drivers: (
-    <div className="w-full max-w-[320px]">
-      <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">What moved them</p>
-      {[['Clear pricing page', 82], ['A friend’s referral', 64], ['Free trial', 51]].map(([t, v]) => (
-        <div key={t} className="mt-3">
-          <div className="flex justify-between font-sans text-[13.5px] text-ink"><span>{t}</span><span className="text-ink-2">{v}%</span></div>
-          <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-[#eef6df]"><div className="h-full rounded-full bg-[#9bc653]" style={{ width: v + '%' }} /></div>
-        </div>
-      ))}
-    </div>),
-  leaks: (
-    <div className="w-full max-w-[320px]">
-      <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">Landing page leak</p>
-      <p className={FIG + ' m-0 mt-2 text-[17px] font-medium leading-[1.3] tracking-[-0.01em] text-ink'}>“I couldn’t tell what the plans included.”</p>
-      <div className="mt-3.5 flex items-center gap-2 rounded-[12px] bg-[#d1f899] px-3.5 py-2.5 font-sans text-[13.5px] font-medium text-[#2a321e]"><Check className="size-4" strokeWidth={2.4} />Fix: add a plan comparison table</div>
-      <p className="m-0 mt-3 font-sans text-[13px] text-ink-2">Mentioned by 41 of 112 customers</p>
-    </div>),
-};
-const visualOf = (slug, img) => VISUALS[img] || <img src={`/roles/${slug}/${img}.webp`} alt="" loading="lazy" draggable={false} className="h-auto max-h-[200px] w-auto max-w-full rounded-[10px] object-contain" />;
-
 // Built once per page, so a tab's picture keeps its identity between renders.
 const TABS = {}, STACK = {};
 const tabsOf = slug => TABS[slug] || (TABS[slug] = ROLES[slug].features.map(([title, text, img, alt, name]) => ({
   name, title, body: [text], scene: photoScene(`/roles/${slug}/${img}.webp`, alt),
 })));
-const stackOf = slug => STACK[slug] || (STACK[slug] = ROLES[slug].how.steps.map(([name, title, text, img]) => ({ name, title, text, visual: visualOf(slug, img) })));
+const stackOf = slug => STACK[slug] || (STACK[slug] = ROLES[slug].how.steps.map(([name, title, text]) => ({ name, title, text })));
 
 export default function RolePage({ slug }) {
   const d = ROLES[slug];

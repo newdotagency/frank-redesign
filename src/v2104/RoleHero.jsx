@@ -96,7 +96,7 @@ export default function RoleHero({ d, person }) {
           {/* The person, cut at the waist and faded into the panel; cards float around them */}
           <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[380px] w-full max-w-[440px] sm:h-[420px] lg:h-[500px] lg:max-w-[520px] lg:self-end">
             <div className="absolute inset-0 overflow-hidden">
-              <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute left-1/2 top-0 h-auto w-[122%] max-w-none -translate-x-1/2 -scale-x-100 select-none sm:w-[108%] lg:w-[128%]" />
+              <img src={person} alt="" draggable={false} className={'absolute left-1/2 top-0 h-auto max-w-none -translate-x-1/2 select-none ' + (d.heroFlip ? '-scale-x-100 w-[122%] sm:w-[108%] lg:w-[128%]' : 'w-[104%] sm:w-[92%] lg:w-[98%]')} />
               <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[42%]" style={{ background: 'linear-gradient(to bottom, rgba(15,46,39,0) 0%, #0f2e27 88%)' }} />
             </div>
             {d.heroCards.map((c, i) => {
