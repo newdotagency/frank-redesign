@@ -1,0 +1,1610 @@
+{
+ "Activation Barriers": {
+  "hero": {
+   "text": "In a short voice or video interview, Frank learns what new users hoped to get done and what stopped them before their first useful result. Then it ranks every barrier by how many users ran into it."
+  },
+  "what": {
+   "eyebrow": "Activation interviews with Frank",
+   "lead": "What is an",
+   "phrase": "activation interview?",
+   "sub": "An activation interview is a short conversation with someone who signed up but never reached their first useful result.",
+   "para": "It asks what they came to do, what they tried, where they got stuck, and what they did instead.",
+   "quote": "Your analytics show where new users stop. They don’t show why they stopped or what your users were hoping to do when they stopped."
+  },
+  "when": [
+   [
+    "When a new account stalls",
+    "Show the interview pop-up in your product when a new user hasn’t completed setup after a few days, while their first session is still easy to remember."
+   ],
+   [
+    "When activation rates dip",
+    "Sign-ups are growing but fewer accounts get going. Talk to the new user profiles you’re targeting to understand how needs differ before you rebuild onboarding."
+   ],
+   [
+    "Before an onboarding redesign",
+    "Find out what new users actually need from their first session, so the new flow fixes the right problem."
+   ],
+   [
+    "After opening a new acquisition channel",
+    "A new campaign or partner brings people with different expectations. Learn whether the product matched what they were promised."
+   ]
+  ],
+  "guide": {
+   "eyebrow": "Typical interview structure",
+   "title": [
+    "The activation interview",
+    "research guide."
+   ],
+   "sub": "Activation interviews generally follow a six-part guideline built to gather the verifiable insights you need. Every question is editable, and the AI Researcher helps you adapt the Research Guide to your product.",
+   "steps": [
+    [
+     "What brought them here",
+     "The problem they wanted to solve, and why they signed up now rather than last month."
+    ],
+    [
+     "What success looked like",
+     "The first result they hoped to get, and how quickly they expected it."
+    ],
+    [
+     "What they tried",
+     "Where they went first, what they set up, and how far they got."
+    ],
+    [
+     "Where they got stuck",
+     "The moment things stalled: a confusing step, missing data, an integration, a teammate they needed. Frank asks them to walk through it step by step."
+    ],
+    [
+     "What they did instead",
+     "Went back to the old way, tried another tool, or meant to come back later. This tells you what you’re competing with in week one."
+    ],
+    [
+     "What would have helped",
+     "The guide, template, setting or person that would have got them to a result."
+    ]
+   ],
+   "note": "Frank doesn’t stop at the first answer. It follows up when a reply is vague and comes back to topics later in the conversation. That’s how “I didn’t have time” becomes “I needed our customer data in first, and I don’t have admin access.”"
+  },
+  "vs": {
+   "eyebrow": "Comparison: Frank vs onboarding surveys",
+   "title": [
+    "A survey asks how onboarding went.",
+    "Frank finds out what got in the way."
+   ],
+   "other": "Onboarding survey",
+   "shortOther": "Survey",
+   "frank": "activation interview",
+   "groups": [
+    [
+     "In the interview",
+     [
+      [
+       "What the new user does",
+       "Rates the setup from 1 to 5, maybe adds a comment",
+       "Talks through what they were trying to do"
+      ],
+      [
+       "“It was confusing”",
+       "Logged as a low score",
+       "Followed up: which step, and what did you expect to happen?"
+      ],
+      [
+       "Follow-up questions",
+       "None",
+       "Asked whenever an answer is vague or doesn’t add up"
+      ],
+      [
+       "Their original goal",
+       "Rarely asked",
+       "The starting point of every interview"
+      ],
+      [
+       "Barriers you didn’t anticipate",
+       "Buried in “Other”",
+       "Captured and grouped into new themes"
+      ]
+     ]
+    ],
+    [
+     "After the interview",
+     [
+      [
+       "Analysis",
+       "You read open-text comments one by one",
+       "Themes ranked by how many users raised them"
+      ],
+      [
+       "What you can act on",
+       "An average satisfaction score",
+       "Action Items, each linked to the moment in the recording"
+      ],
+      [
+       "Evidence for your team",
+       "A row in a spreadsheet",
+       "The new user’s own voice, ready to play in a meeting"
+      ]
+     ]
+    ]
+   ],
+   "close": [
+    "Keep the survey for the satisfaction score.",
+    "Run Frank when you need to know what to fix in onboarding."
+   ]
+  },
+  "out": {
+   "eyebrow": "Frank interview outcomes",
+   "title": [
+    "What you get"
+   ],
+   "intro": "Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many users raised each one, and turns the biggest into Action Items.",
+   "caption": "Top barriers to a first result. Example: 36 activation barriers interviews.",
+   "aria": "Top barriers to a first result",
+   "total": 36,
+   "unit": "users",
+   "rows": [
+    [
+     15,
+     "Importing contacts stopped setup cold",
+     "Most of these users first said they “ran out of time.” Follow-ups showed they hit an import error and never came back.",
+     "My list was a store export with odd columns. I got an error, closed the tab, and meant to fix it later."
+    ],
+    [
+     11,
+     "Setup needed someone they had to wait for",
+     "Sending required a domain change that only IT or a developer could make.",
+     "It asked me to add a record to our domain. I’m the marketer. By the time IT got to it, I’d moved on."
+    ],
+    [
+     7,
+     "The templates didn’t look like their brand",
+     "They came to send a launch or sale email and couldn’t find a starting point that fit.",
+     "Everything looked like a corporate newsletter. I wanted something that looked like our shop."
+    ],
+    [
+     3,
+     "They signed up to compare, not to start",
+     null,
+     "I was trying three tools that week. I only wanted to see the editor."
+    ]
+   ]
+  },
+  "where": {
+   "title": "Where they are now",
+   "slices": [
+    [
+     "Back on their old tool",
+     14
+    ],
+    [
+     "Planning to return",
+     10
+    ],
+    [
+     "Set up with a competitor",
+     7
+    ],
+    [
+     "Not sending email at all",
+     5
+    ]
+   ]
+  },
+  "actions": {
+   "title": "Action Items",
+   "items": [
+    [
+     "Accept common store exports at the import step, and help fix errors instead of failing.",
+     15
+    ],
+    [
+     "Let users send the domain setup request to a teammate from inside the product.",
+     11
+    ],
+    [
+     "Add retail launch and sale templates to the first template picker.",
+     7
+    ]
+   ],
+   "note": "Every insight links to the exact moment in the recording. Click through and hear it from the user."
+  },
+  "faq": [
+   {
+    "q": "Will people who barely used the product agree to an interview?",
+    "a": [
+     "More than you’d expect, if you ask while it’s fresh. Show the interview in your product when setup stalls, keep it short, and let users pick voice or video. Most people are happy to explain what they were trying to do."
+    ]
+   },
+   {
+    "q": "Who should I interview?",
+    "a": [
+     "People who signed up in the last week or two and haven’t completed your key first action, like creating a project or sending a first campaign. If you’re not sure what that action is, start with users who never finished setup."
+    ]
+   },
+   {
+    "q": "Doesn’t our product analytics already show this?",
+    "a": [
+     "It shows where new users stop and how many. It can’t show what they were trying to do, what they expected, or what they did instead. Use analytics to pick who to interview, and Frank to find out why."
+    ]
+   },
+   {
+    "q": "How many interviews do I need?",
+    "a": [
+     "In most studies, the main reasons start repeating within the first 15 to 20 interviews. Frank shows how many users raised each theme, so you can see when patterns settle. By running the interview consistently with an automatic trigger, you can see how perception changes as you make changes in real-time."
+    ]
+   },
+   {
+    "q": "How do I launch it?",
+    "a": [
+     "Start from this template, and the AI Researcher helps you adapt the Research Guide to your product. Then add the interview to your onboarding flow as a floating button, an inline card, or a pop-up from your own button. You can also connect it through the API or easily add it to your site using your favorite AI Agent, LLM, or MCP server."
+    ]
+   },
+   {
+    "q": "Can I change the questions?",
+    "a": [
+     "Yes. Every question in the template is editable. Add questions about a specific setup step, an integration, or your onboarding emails."
+    ]
+   },
+   {
+    "q": "What languages does Frank support?",
+    "a": [
+     "Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more."
+    ]
+   },
+   {
+    "q": "What happens after the interviews?",
+    "a": [
+     "You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table."
+    ]
+   }
+  ],
+  "closing": {
+   "title": "Your new users know what got in the way.",
+   "marker": "Let them tell Frank.",
+   "sub": "Describe what you want to learn and hear from your customers before your next standup."
+  },
+  "_h1": "Frank finds out why new sign-ups never get started",
+  "_slug": "activation-barriers"
+ },
+ "Trial Conversion": {
+  "hero": {
+   "text": "In a short voice or video interview, Frank learns whether trial users saw enough value, what stayed unresolved, and what stopped them from paying. Then it ranks every reason by how many users raised it."
+  },
+  "what": {
+   "eyebrow": "Trial conversion interviews with Frank",
+   "lead": "What is a",
+   "phrase": "trial conversion interview?",
+   "sub": "A trial conversion interview is a short conversation with someone whose trial ended without a purchase.",
+   "para": "It covers what they set out to test, what they actually tried, which questions stayed open, and what made the final call.",
+   "quote": null
+  },
+  "when": [
+   [
+    "When a trial ends without a purchase",
+    "Show the interview pop-up when the trial expires, while the evaluation is still fresh. A month later, they won’t remember what they compared."
+   ],
+   [
+    "When trial conversion drops",
+    "More trials, fewer customers. Talk to the users behind the gap before you change your trial length or pricing."
+   ],
+   [
+    "Before you change the trial",
+    "Considering a shorter trial, a free plan, or a sales-assisted trial? Find out what trial users actually needed to decide."
+   ],
+   [
+    "After a new plan or price",
+    "Learn whether the price on your upgrade page matched the value users saw during the trial."
+   ]
+  ],
+  "guide": {
+   "eyebrow": "Typical interview structure",
+   "title": [
+    "The trial conversion interview",
+    "research guide."
+   ],
+   "sub": "Trial conversion interviews generally follow a six-part guideline built to gather the verifiable insights you need. Every question is editable, and the AI Researcher helps you adapt the Research Guide to your product.",
+   "steps": [
+    [
+     "What they wanted to test",
+     "The problem they were solving, and what the product had to prove before they’d pay."
+    ],
+    [
+     "Who else had a say",
+     "Whether they decided alone, or needed a manager, finance or IT to sign off."
+    ],
+    [
+     "What they actually tried",
+     "Which features they used, how far they got, and whether they reached a real result with their own data."
+    ],
+    [
+     "Where value fell short",
+     "Frank asks for a specific example instead of accepting a general complaint."
+    ],
+    [
+     "What stayed unresolved",
+     "Open questions about price, security, integrations or fit that nobody answered before the trial ended."
+    ],
+    [
+     "What they chose instead",
+     "A competitor, the tool they already had, a longer evaluation, or nothing. And whether anything would have changed their mind."
+    ]
+   ],
+   "note": "Frank doesn’t stop at the first answer. It follows up when a reply is vague and comes back to topics later in the conversation. That’s how “it wasn’t the right time” becomes “my manager wanted to see it working with our CRM, and the trial ran out before I set that up.”"
+  },
+  "vs": {
+   "eyebrow": "Comparison: Frank vs trial exit surveys",
+   "title": [
+    "A survey records the decision.",
+    "Frank explains it."
+   ],
+   "other": "Trial exit survey",
+   "shortOther": "Survey",
+   "frank": "trial conversion interview",
+   "groups": [
+    [
+     "In the interview",
+     [
+      [
+       "What the user does",
+       "Picks a reason from a list, maybe adds a comment",
+       "Talks through how they evaluated the product"
+      ],
+      [
+       "“Not the right time”",
+       "Logged as a timing issue",
+       "Followed up: what would need to change, and who else was involved?"
+      ],
+      [
+       "Follow-up questions",
+       "None",
+       "Asked whenever an answer is vague or doesn’t add up"
+      ],
+      [
+       "Who made the decision",
+       "Rarely asked",
+       "Mapped: who had to approve, and what they needed to see"
+      ],
+      [
+       "Reasons you didn’t list",
+       "Buried in “Other”",
+       "Captured and grouped into new themes"
+      ]
+     ]
+    ],
+    [
+     "After the interview",
+     [
+      [
+       "Analysis",
+       "You read open-text comments one by one",
+       "Themes ranked by how many users raised them"
+      ],
+      [
+       "What you can act on",
+       "A percentage per reason",
+       "Action Items, each linked to the moment in the recording"
+      ],
+      [
+       "Evidence for your team",
+       "A row in a spreadsheet",
+       "The trial user’s own voice, ready to play in a meeting"
+      ]
+     ]
+    ]
+   ],
+   "close": [
+    "Keep the survey for the quick tally.",
+    "Run Frank when you need to know what would have made them buy."
+   ]
+  },
+  "out": {
+   "eyebrow": "Frank interview outcomes",
+   "title": [
+    "What you get"
+   ],
+   "intro": "Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many users raised each one, and turns the biggest into Action Items.",
+   "caption": "Top reasons trial users didn’t buy. Example: 42 trial conversion interviews.",
+   "aria": "Top reasons trial users didn’t buy",
+   "total": 42,
+   "unit": "users",
+   "rows": [
+    [
+     16,
+     "They never tried it with their own data",
+     "Most of these users first said they “didn’t have enough time.” Follow-ups showed they only explored the demo workspace and couldn’t judge the product.",
+     "I clicked around the sample inbox. It looked fine, but I never connected our real support email, so I couldn’t tell if it would work for us."
+    ],
+    [
+     12,
+     "The person who signs off never saw it",
+     "The trial user was convinced but couldn’t make the case to a manager or finance.",
+     "I was sold. My manager asked what it would cost per agent and how it compared to what we have. I didn’t have good answers."
+    ],
+    [
+     9,
+     "The feature they tested was on a higher plan",
+     "They found out at the upgrade page.",
+     "Automations were the reason we tried it. Then I saw they’re only on the Pro plan, which was double what I’d budgeted."
+    ],
+    [
+     5,
+     "Security questions stayed open",
+     null,
+     "Our IT team needed a security document before approving anything. I emailed twice and the trial ended first."
+    ]
+   ]
+  },
+  "where": {
+   "title": "Where they went",
+   "slices": [
+    [
+     "Stayed with their current tool",
+     18
+    ],
+    [
+     "Chose a competitor",
+     11
+    ],
+    [
+     "Still deciding",
+     8
+    ],
+    [
+     "Dropped the project",
+     5
+    ]
+   ]
+  },
+  "actions": {
+   "title": "Action Items",
+   "items": [
+    [
+     "Prompt users to connect their own inbox on day one, before they explore the demo data.",
+     16
+    ],
+    [
+     "Add a one-page summary of cost and results that trial users can share with whoever approves the purchase.",
+     12
+    ],
+    [
+     "Show which plan each feature belongs to while users are trying it.",
+     9
+    ]
+   ],
+   "note": "Every insight links to the exact moment in the recording. Click through and hear it from the user."
+  },
+  "faq": [
+   {
+    "q": "Will people who didn’t buy agree to an interview?",
+    "a": [
+     "More than you’d expect, if you ask at the right moment. Show the interview when the trial ends, keep it short, and let users pick voice or video. People who just evaluated a product usually have clear opinions about it."
+    ]
+   },
+   {
+    "q": "Who should I interview?",
+    "a": [
+     "Users whose trial ended in the last few weeks without a purchase. Focus on those who actually used the product, since they can tell you what they saw. Users who barely logged in are a better fit for an Activation Barriers study."
+    ]
+   },
+   {
+    "q": "Should I also interview users who bought?",
+    "a": [
+     "It helps. A handful of interviews with users who converted shows what convinced them, which makes the gaps for everyone else easier to see."
+    ]
+   },
+   {
+    "q": "How many interviews do I need?",
+    "a": [
+     "In most studies, the main reasons start repeating within the first 15 to 20 interviews. Frank shows how many users raised each theme, so you can see when patterns settle. By running the interview consistently with an automatic trigger, you can see how perception changes as you make changes in real-time."
+    ]
+   },
+   {
+    "q": "How do I launch it?",
+    "a": [
+     "Start from this template, and the AI Researcher helps you adapt the Research Guide to your product. Then add the interview to your trial-end screen or upgrade page as a floating button, an inline card, or a pop-up from your own button. You can also connect it through the API or easily add it to your site using your favorite AI Agent, LLM, or MCP server."
+    ]
+   },
+   {
+    "q": "Can I change the questions?",
+    "a": [
+     "Yes. Every question in the template is editable. Add questions about a specific competitor, your trial length, or a plan you recently changed."
+    ]
+   },
+   {
+    "q": "What languages does Frank support?",
+    "a": [
+     "Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more."
+    ]
+   },
+   {
+    "q": "What happens after the interviews?",
+    "a": [
+     "You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table."
+    ]
+   }
+  ],
+  "closing": {
+   "title": "Your trial users already decided.",
+   "marker": "Hear what tipped it.",
+   "sub": "Describe what you want to learn and hear from your customers before your next standup."
+  },
+  "_h1": "Frank finds out why trial users don’t buy",
+  "_slug": "trial-conversion"
+ },
+ "Feature Adoption": {
+  "hero": {
+   "text": "In a short voice or video interview, Frank learns whether customers know about the feature, need it, and can make it work, and why they love or hate using it. Then it ranks every reason by how many customers raised it."
+  },
+  "what": {
+   "eyebrow": "Feature adoption interviews with Frank",
+   "lead": "What is a",
+   "phrase": "feature adoption interview?",
+   "sub": "A feature adoption interview is a short conversation with customers about one specific feature.",
+   "para": "It finds out whether they know it exists, whether they need it, whether they can get it to work, and why they love or hate using it.",
+   "quote": "Your usage data shows who opened the feature and who didn’t. It doesn’t show you who never noticed it, who tried it once and gave up, who solved the problem another way, or how they are struggling with it and what they would change."
+  },
+  "when": [
+   [
+    "A few weeks after launch",
+    "Once the launch announcement has faded, find out whether the feature reached the customers it was built for."
+   ],
+   [
+    "When usage is lower than planned",
+    "Before you redesign it or promote it harder, learn whether the problem is awareness, need or usability."
+   ],
+   [
+    "When customers try it once and stop",
+    "Show the interview pop-up to customers who tried the feature but haven’t come back, and hear what happened after the first use."
+   ],
+   [
+    "During the beta testing, before you invest more",
+    "Find out how your beta testers are using it and what feedback they have before rolling it out to everyone."
+   ]
+  ],
+  "guide": {
+   "eyebrow": "Typical interview structure",
+   "title": [
+    "The feature adoption interview",
+    "research guide."
+   ],
+   "sub": "Feature adoption interviews generally follow a six-part guideline built to gather the verifiable insights you need. Every question is editable, and the AI Researcher helps you adapt the Research Guide to your product.",
+   "steps": [
+    [
+     "The problem behind the feature",
+     "How they handle this problem today, and how often it comes up."
+    ],
+    [
+     "Whether they noticed it",
+     "How they found out about the feature, or why they didn’t."
+    ],
+    [
+     "Their first try",
+     "What they expected it to do, what actually happened, and where it got confusing. Frank asks them to walk through it step by step."
+    ],
+    [
+     "Whether it fits their work",
+     "Whether it works with their data, their team and the tools around it."
+    ],
+    [
+     "Why they keep using it, or stopped",
+     "The result that brings them back, or the moment they went back to the old way."
+    ],
+    [
+     "What would make it essential",
+     "The change that would turn it into something they use every week."
+    ]
+   ],
+   "note": "Frank doesn’t stop at the first answer. It follows up when a reply is vague and comes back to topics later in the conversation. That’s how “we don’t really need it” becomes “we need it, but it ignores holidays, so we still plan in a spreadsheet.”"
+  },
+  "vs": {
+   "eyebrow": "Comparison: Frank vs in-App feature surveys",
+   "title": [
+    "A survey asks if they like it.",
+    "Frank finds out why they don’t use it."
+   ],
+   "other": "In-app feature survey",
+   "shortOther": "Survey",
+   "frank": "feature adoption interview",
+   "groups": [
+    [
+     "In the interview",
+     [
+      [
+       "Who answers",
+       "Customers who already opened the feature",
+       "Regular users, one-time users, and customers who never found it"
+      ],
+      [
+       "What the customer does",
+       "Rates the feature, maybe adds a comment",
+       "Talks through how they handle the problem today"
+      ],
+      [
+       "“We don’t need it”",
+       "Logged as no demand",
+       "Followed up: how do you do this today, and what did you expect the feature to do?"
+      ],
+      [
+       "Follow-up questions",
+       "None",
+       "Asked whenever an answer is vague or doesn’t add up"
+      ],
+      [
+       "Awareness, need or usability",
+       "Mixed into one score",
+       "Separated, so you know which problem to fix"
+      ]
+     ]
+    ],
+    [
+     "After the interview",
+     [
+      [
+       "Analysis",
+       "You read open-text comments one by one",
+       "Themes ranked by how many customers raised them"
+      ],
+      [
+       "What you can act on",
+       "An average rating",
+       "Action Items, each linked to the moment in the recording"
+      ],
+      [
+       "Evidence for your team",
+       "A row in a spreadsheet",
+       "The customer’s own voice, ready to play in a meeting"
+      ]
+     ]
+    ]
+   ],
+   "close": [
+    "Keep the survey for the quick rating.",
+    "Run Frank when you need to know what’s holding adoption back."
+   ]
+  },
+  "out": {
+   "eyebrow": "Frank interview outcomes",
+   "title": [
+    "What you get"
+   ],
+   "intro": "Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many customers raised each one, and turns the biggest into Action Items.",
+   "caption": "Top reasons customers aren’t using resource planning. Example: 40 feature adoption interviews.",
+   "aria": "Top reasons customers aren’t using resource planning",
+   "total": 40,
+   "unit": "customers",
+   "rows": [
+    [
+     17,
+     "Most never knew it was there",
+     "The launch email went to account admins. The team leads who would use it never saw it.",
+     "I only found out it existed when you asked me about it. That’s exactly what I’ve been doing in a spreadsheet."
+    ],
+    [
+     11,
+     "It showed the wrong capacity",
+     "Without time off and part-time hours, the numbers were wrong, and they stopped trusting it.",
+     "It said Maria was free all week. She was on holiday. After that I went back to my spreadsheet."
+    ],
+    [
+     8,
+     "Setup took longer than the problem was worth",
+     "The view stayed empty until someone entered working hours for the whole team.",
+     "I had to fill in hours for 30 people before I saw anything useful. I’ll get to it someday."
+    ],
+    [
+     4,
+     "The customers who stuck with it use it for one job",
+     "Planning who takes on new work at the start of each week.",
+     "Every Monday I open it to see who has room for new work. It saves me an hour of chasing people in chat."
+    ]
+   ]
+  },
+  "where": {
+   "title": "How they plan capacity today",
+   "slices": [
+    [
+     "A spreadsheet",
+     20
+    ],
+    [
+     "Asking the team in chat",
+     11
+    ],
+    [
+     "Another tool",
+     5
+    ],
+    [
+     "The resource planning view",
+     4
+    ]
+   ]
+  },
+  "actions": {
+   "title": "Action Items",
+   "items": [
+    [
+     "Announce the feature to team leads inside the product, not only to admins by email.",
+     17
+    ],
+    [
+     "Pull time off and part-time hours into capacity automatically.",
+     11
+    ],
+    [
+     "Fill in default working hours so the view is useful on day one.",
+     8
+    ]
+   ],
+   "note": "Every insight links to the exact moment in the recording. Click through and hear it from the customer."
+  },
+  "faq": [
+   {
+    "q": "Who should I interview?",
+    "a": [
+     "Mix three groups: customers who use the feature regularly, customers who tried it and stopped, and customers it was built for who never opened it. Each group answers a different question."
+    ]
+   },
+   {
+    "q": "How do I reach customers who never used the feature?",
+    "a": [
+     "Show the interview somewhere they already work in your product, not inside the feature itself. Frank can then ask whether they noticed it at all."
+    ]
+   },
+   {
+    "q": "Doesn’t our product analytics already show this?",
+    "a": [
+     "It shows who used the feature and how often. It can’t tell apart customers who didn’t know about it, didn’t need it, or couldn’t make it work. Use analytics to pick who to interview, and Frank to find out why."
+    ]
+   },
+   {
+    "q": "How many interviews do I need?",
+    "a": [
+     "In most studies, the main reasons start repeating within the first 15 to 20 interviews. Frank shows how many customers raised each theme, so you can see when patterns settle. By running the interview consistently with an automatic trigger, you can see how perception changes as you make changes in real-time."
+    ]
+   },
+   {
+    "q": "How do I launch it?",
+    "a": [
+     "Start from this template, and the AI Researcher helps you adapt the Research Guide to your product. Then add the interview to your product as a floating button, an inline card, or a pop-up from your own button. You can also connect it through the API or easily add it to your site using your favorite AI Agent, LLM, or MCP server."
+    ]
+   },
+   {
+    "q": "Can I change the questions?",
+    "a": [
+     "Yes. Every question in the template is editable. Name the feature, describe what it’s for, and add questions about a specific step or setting."
+    ]
+   },
+   {
+    "q": "What languages does Frank support?",
+    "a": [
+     "Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more."
+    ]
+   },
+   {
+    "q": "What happens after the interviews?",
+    "a": [
+     "You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table."
+    ]
+   }
+  ],
+  "closing": {
+   "title": "Your customers know why the feature isn’t sticking.",
+   "marker": "Let them tell Frank.",
+   "sub": "Describe what you want to learn and hear from your customers before your next standup."
+  },
+  "_h1": "Frank finds out why customers aren’t using your new feature",
+  "_slug": "feature-adoption"
+ },
+ "Funnel Drop-off": {
+  "hero": {
+   "text": "In a short voice or video interview, Frank learns what happened at the step where people stopped, what they expected to see, and why they left. It works for any flow: sign-ups, onboarding, forms, project creation, bookings or applications. Then it ranks every reason by how many people raised it."
+  },
+  "what": {
+   "eyebrow": "Funnel drop-off interviews with Frank",
+   "lead": "What is a",
+   "phrase": "funnel drop-off interview?",
+   "sub": "A funnel drop-off interview is a short conversation with someone who started a process and didn’t finish it.",
+   "para": "It focuses on one step: what happened there, what they expected instead, and what they did next.",
+   "quote": "Your funnel report shows which step loses people and how many. It doesn’t show what they were looking at, what they expected, or what made them close the tab."
+  },
+  "when": [
+   [
+    "On the step that loses the most people",
+    "Show the interview pop-up right where people stop, while the problem is still in front of them."
+   ],
+   [
+    "In an email, after you change a flow",
+    "A new form, an extra field, a pricing step. Find out whether the change caused the drop."
+   ],
+   [
+    "When an A/B test doesn’t explain it",
+    "The test tells you which version won. Interviews tell you why, so your next test starts from a real reason."
+   ],
+   [
+    "For any process people abandon",
+    "Bookings, applications, quote requests, account verification. Every multi-step flow has the same blind spot."
+   ]
+  ],
+  "guide": {
+   "eyebrow": "Typical interview structure",
+   "title": [
+    "The funnel drop-off interview",
+    "research guide."
+   ],
+   "sub": "Funnel drop-off interviews generally follow a six-part guideline built to gather the verifiable insights you need. Every question is editable, and the AI Researcher helps you adapt the Research Guide to your product.",
+   "steps": [
+    [
+     "What they came to do",
+     "The goal that brought them into the flow, and how urgent it was."
+    ],
+    [
+     "What they expected",
+     "How long they thought it would take, and what information they expected to need."
+    ],
+    [
+     "What happened at the step",
+     "What they saw, what they tried, and where it stopped making sense. Frank asks them to walk through the moment step by step."
+    ],
+    [
+     "Why they stopped",
+     "Missing information, a question they couldn’t answer, an unexpected cost, a request for data they weren’t ready to share, or a simple interruption."
+    ],
+    [
+     "What they did next",
+     "Came back later, finished somewhere else, asked someone for help, or gave up."
+    ],
+    [
+     "What would have kept them going",
+     "The change, information or reassurance that would have got them to the end."
+    ]
+   ],
+   "note": "Frank doesn’t stop at the first answer. It follows up when a reply is vague and comes back to topics later in the conversation. That’s how “I got distracted” becomes “it asked for our VAT number, I had to go find it, and I never came back to the form.”"
+  },
+  "vs": {
+   "eyebrow": "Comparison: Frank vs exit-Intent surveys",
+   "title": [
+    "A survey asks why they’re leaving.",
+    "Frank finds out what happened."
+   ],
+   "other": "Exit-intent survey",
+   "shortOther": "Survey",
+   "frank": "funnel drop-off interview",
+   "groups": [
+    [
+     "In the interview",
+     [
+      [
+       "What the person does",
+       "Clicks one reason on the way out",
+       "Talks through what happened at the step"
+      ],
+      [
+       "“Just browsing”",
+       "Logged as low intent",
+       "Followed up: what were you looking for, and did you find it?"
+      ],
+      [
+       "Follow-up questions",
+       "None",
+       "Asked whenever an answer is vague or doesn’t add up"
+      ],
+      [
+       "What they expected",
+       "Not asked",
+       "Compared with what the step actually showed them"
+      ],
+      [
+       "Reasons you didn’t list",
+       "Buried in “Other”",
+       "Captured and grouped into new themes"
+      ]
+     ]
+    ],
+    [
+     "After the interview",
+     [
+      [
+       "Analysis",
+       "You read open-text comments one by one",
+       "Themes ranked by how many people raised them"
+      ],
+      [
+       "What you can act on",
+       "A percentage per reason",
+       "Action Items, each linked to the moment in the recording"
+      ],
+      [
+       "Evidence for your team",
+       "A row in a spreadsheet",
+       "The person’s own voice, ready to play in a meeting"
+      ]
+     ]
+    ]
+   ],
+   "close": [
+    "Keep the survey for the quick tally.",
+    "Run Frank when you need to know what to change on the step."
+   ]
+  },
+  "out": {
+   "eyebrow": "Frank interview outcomes",
+   "title": [
+    "What you get"
+   ],
+   "intro": "Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many people raised each one, and turns the biggest into Action Items.",
+   "caption": "Top reasons applicants stopped at company verification. Example: 38 funnel drop-off interviews.",
+   "aria": "Top reasons applicants stopped at company verification",
+   "total": 38,
+   "unit": "applicants",
+   "rows": [
+    [
+     15,
+     "They didn’t have the documents at hand",
+     "Most of these applicants first said they “got distracted.” Follow-ups showed the step asked for documents nobody had told them to prepare.",
+     "It asked for our articles of association. I had no idea where they were, so I closed it and meant to come back."
+    ],
+    [
+     10,
+     "Nobody explained why the data was needed",
+     "Ownership questions felt intrusive without a reason next to them.",
+     "It wanted the home address of everyone who owns more than 25%. Nothing said why, so I stopped."
+    ],
+    [
+     8,
+     "They weren’t the person who could finish it",
+     "Only a founder or director could confirm the ownership details.",
+     "I’m the office manager. Only our CEO could confirm who owns what, and she was travelling all week."
+    ],
+    [
+     5,
+     "The upload kept failing on mobile",
+     null,
+     "I took a photo of the document three times. Every time it said the file was invalid."
+    ]
+   ]
+  },
+  "where": {
+   "title": "What they did next",
+   "slices": [
+    [
+     "Planning to come back",
+     14
+    ],
+    [
+     "Opened an account with another provider",
+     11
+    ],
+    [
+     "Asked a colleague to finish",
+     8
+    ],
+    [
+     "Gave up on the account",
+     5
+    ]
+   ]
+  },
+  "actions": {
+   "title": "Action Items",
+   "items": [
+    [
+     "List the required documents on the first screen of the application.",
+     15
+    ],
+    [
+     "Explain why each ownership detail is needed, right next to the field.",
+     10
+    ],
+    [
+     "Let applicants invite a colleague to complete verification.",
+     8
+    ]
+   ],
+   "note": "Every insight links to the exact moment in the recording. Click through and hear it from the applicant."
+  },
+  "faq": [
+   {
+    "q": "Will people who abandoned a flow agree to an interview?",
+    "a": [
+     "More than you’d expect, if you ask while they’re still on the step. Show the interview pop-up where people stop, keep it short, and let them pick voice, video or WhatsApp (coming soon). People who just got stuck usually want to say what went wrong."
+    ]
+   },
+   {
+    "q": "Which step should I study?",
+    "a": [
+     "Start with the step that loses the most people, or the one you changed most recently. One study per step keeps the answers focused, and you can run several studies at the same time."
+    ]
+   },
+   {
+    "q": "Does it work for flows outside my product?",
+    "a": [
+     "Yes. Bookings, applications, quote requests and multi-step forms on your website all work, as long as you can add the interview to the page. For payment pages, the Checkout Abandonment template goes deeper."
+    ]
+   },
+   {
+    "q": "Doesn’t our funnel analytics already show this?",
+    "a": [
+     "It shows which step loses people and how many. It can’t show what they expected, what confused them, or what they did next. Use analytics to pick the step, and Frank to find out why."
+    ]
+   },
+   {
+    "q": "How many interviews do I need?",
+    "a": [
+     "In most studies, the main reasons start repeating within the first 15 to 20 interviews. Frank shows how many people raised each theme, so you can see when patterns settle. By running the interview consistently with an automatic trigger, you can see how perception changes as you make changes in real-time."
+    ]
+   },
+   {
+    "q": "How do I launch it?",
+    "a": [
+     "Start from this template, and the AI Researcher helps you adapt the Research Guide to your product. Then add the interview to the step people abandon as a floating button, an inline card, or a pop-up from your own button. You can also connect it through the API or easily add it to your site using your favorite AI Agent, LLM, or MCP server. Or you can send it out via email to people who entered the funnel but never completed it."
+    ]
+   },
+   {
+    "q": "Can I change the questions?",
+    "a": [
+     "Yes. Every question in the template is editable. Name the step, describe what it asks for, and add questions about a specific field, document or decision."
+    ]
+   },
+   {
+    "q": "What languages does Frank support?",
+    "a": [
+     "Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more."
+    ]
+   },
+   {
+    "q": "What happens after the interviews?",
+    "a": [
+     "You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table."
+    ]
+   }
+  ],
+  "closing": {
+   "title": "The people who left halfway know what stopped them.",
+   "marker": "Let them tell Frank.",
+   "sub": "Describe what you want to learn and hear from your customers before your next standup."
+  },
+  "_h1": "Frank finds out why people start a process and don’t finish it",
+  "_slug": "funnel-drop-off"
+ },
+ "Declining Engagement": {
+  "hero": {
+   "text": "In a short voice or video interview, Frank learns what changed in a customer’s needs or experience, and whether another tool or workaround has taken over. Then it ranks every reason by how many customers raised it, while there’s still time to act."
+  },
+  "what": {
+   "eyebrow": "Declining engagement interviews with Frank",
+   "lead": "What is a",
+   "phrase": "declining engagement interview?",
+   "sub": "A declining engagement interview is a short conversation with a customer who used to be active and now uses the product less.",
+   "para": "It finds out what changed, when it started, and what they use instead.",
+   "quote": "Your usage data shows fewer logins and fewer actions each week. It doesn’t show whether the customer’s needs changed, the product stopped fitting, or something else quietly replaced it."
+  },
+  "when": [
+   [
+    "When an account’s usage drops",
+    "Show the interview pop-up to customers whose activity has fallen well below their usual level, while they still log in now and then."
+   ],
+   [
+    "Before renewal",
+    "Talk to quieter accounts a few months before renewal, while there’s still time to change something."
+   ],
+   [
+    "After a product change",
+    "A redesign, a removed feature, a new plan limit. Find out whether it changed how often customers come back."
+   ],
+   [
+    "When your health score flags an account",
+    "The score tells you something is wrong. The interview tells your customer success team what to say on the next call."
+   ]
+  ],
+  "guide": {
+   "eyebrow": "Typical interview structure",
+   "title": [
+    "The declining engagement interview",
+    "research guide."
+   ],
+   "sub": "Declining engagement interviews generally follow a six-part guideline built to gather the verifiable insights you need. Every question is editable, and the AI Researcher helps you adapt the Research Guide to your product.",
+   "steps": [
+    [
+     "How they used to use it",
+     "The workflows they relied on, who on the team was involved, and what result it delivered."
+    ],
+    [
+     "What changed",
+     "Their role, team, priorities or business. Sometimes the product didn’t change at all."
+    ],
+    [
+     "When it started",
+     "The moment they noticed they were using it less, and what was happening at the time."
+    ],
+    [
+     "What’s covering the gap",
+     "Another tool, a spreadsheet, a feature in something they already use, or a manual workaround. Frank asks them to describe how they get the job done today."
+    ],
+    [
+     "What still works",
+     "The parts they still rely on, and why."
+    ],
+    [
+     "What would bring them back",
+     "The change, feature or help that would make the product part of their week again."
+    ]
+   ],
+   "note": "Frank doesn’t stop at the first answer. It follows up when a reply is vague and comes back to topics later in the conversation. That’s how “we’ve just been busy” becomes “our new head of sales wants everything in the CRM, so we only open your tool for the monthly report.”"
+  },
+  "vs": {
+   "eyebrow": "Comparison: Frank vs NPS surveys",
+   "title": [
+    "An NPS score says they’re less happy.",
+    "Frank finds out what changed."
+   ],
+   "other": "NPS survey",
+   "shortOther": "Survey",
+   "frank": "declining engagement interview",
+   "groups": [
+    [
+     "In the interview",
+     [
+      [
+       "What the customer does",
+       "Picks a number from 0 to 10, maybe adds a comment",
+       "Talks through how their use of the product has changed"
+      ],
+      [
+       "“We’ve been busy”",
+       "Rarely written down, and a 7 looks fine",
+       "Followed up: busy with what, and how do you handle that work now?"
+      ],
+      [
+       "Follow-up questions",
+       "None",
+       "Asked whenever an answer is vague or doesn’t add up"
+      ],
+      [
+       "What replaced you",
+       "Rarely asked",
+       "Named, along with how the workaround works"
+      ],
+      [
+       "Timing",
+       "Sent on a fixed schedule",
+       "Triggered when an account’s usage drops"
+      ]
+     ]
+    ],
+    [
+     "After the interview",
+     [
+      [
+       "Analysis",
+       "A score trend and a pile of comments",
+       "Themes ranked by how many customers raised them"
+      ],
+      [
+       "What you can act on",
+       "A score per account",
+       "Action Items, each linked to the moment in the recording"
+      ],
+      [
+       "Evidence for your team",
+       "A row in a spreadsheet",
+       "The customer’s own voice, ready to play in a meeting"
+      ]
+     ]
+    ]
+   ],
+   "close": [
+    "Keep NPS for the long-term trend.",
+    "Run Frank when an account goes quiet and you need to know why."
+   ]
+  },
+  "out": {
+   "eyebrow": "Frank interview outcomes",
+   "title": [
+    "What you get"
+   ],
+   "intro": "Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many customers raised each one, and turns the biggest into Action Items.",
+   "caption": "Top reasons teams use the knowledge base less. Example: 34 declining engagement interviews.",
+   "aria": "Top reasons teams use the knowledge base less",
+   "total": 34,
+   "unit": "customers",
+   "rows": [
+    [
+     13,
+     "Pages went out of date, so people stopped checking",
+     "Most of these customers first said the team “just got busy.” Follow-ups showed nobody owned keeping pages current after the first setup.",
+     "Half the pages were from last year. After someone followed an old process twice, people just asked in chat instead."
+    ],
+    [
+     9,
+     "Search in their chat tool took over",
+     "The AI search in their team chat answered questions faster, even if less reliably.",
+     "Now I ask the chat assistant and it finds an answer in some old thread. I haven’t opened the knowledge base in weeks."
+    ],
+    [
+     7,
+     "The team that used it most moved on",
+     "A reorganization took the heaviest users into a different tool.",
+     "Support used it every day. When support moved to its own help desk software, our usage basically halved."
+    ],
+    [
+     5,
+     "Field staff couldn’t fix mistakes on their phones",
+     null,
+     "Our technicians read it on their phones but can’t edit anything there, so errors just stay."
+    ]
+   ]
+  },
+  "where": {
+   "title": "How they find answers today",
+   "slices": [
+    [
+     "Asking in team chat",
+     15
+    ],
+    [
+     "The knowledge base, less often",
+     9
+    ],
+    [
+     "AI search in their chat tool",
+     6
+    ],
+    [
+     "Another documentation tool",
+     4
+    ]
+   ]
+  },
+  "actions": {
+   "title": "Action Items",
+   "items": [
+    [
+     "Assign page owners and remind them when a page hasn’t been reviewed in 90 days.",
+     13
+    ],
+    [
+     "Bring knowledge base search into team chat, so answers come from current pages.",
+     9
+    ],
+    [
+     "Alert the customer success manager when an account’s most active team goes quiet.",
+     7
+    ]
+   ],
+   "note": "Every insight links to the exact moment in the recording. Click through and hear it from the customer."
+  },
+  "faq": [
+   {
+    "q": "Who should I interview?",
+    "a": [
+     "Customers whose usage has stayed well below their own usual level for several weeks, and who still log in now and then. Comparing an account with its own history works better than a single threshold for everyone."
+    ]
+   },
+   {
+    "q": "How is this different from a churn interview?",
+    "a": [
+     "A churn interview talks to customers after they’ve cancelled. This one reaches them while they’re still customers, so there’s time to act on what you hear."
+    ]
+   },
+   {
+    "q": "Will customers who rarely log in agree to an interview?",
+    "a": [
+     "More than you’d expect. Show the interview the next time they open the product, keep it short, and let them pick voice, video or WhatsApp (coming soon). Customers often appreciate being asked before renewal instead of after."
+    ]
+   },
+   {
+    "q": "Won’t asking remind them to cancel?",
+    "a": [
+     "The template is built to listen, not to sell, and customers can tell the difference. A customer who has already found a workaround knows they’re using the product less. Hearing it from them gives you the chance to respond."
+    ]
+   },
+   {
+    "q": "How many interviews do I need?",
+    "a": [
+     "In most studies, the main reasons start repeating within the first 15 to 20 interviews. Frank shows how many customers raised each theme, so you can see when patterns settle. By running the interview consistently with an automatic trigger, you can see how perception changes as you make changes in real-time."
+    ]
+   },
+   {
+    "q": "How do I launch it?",
+    "a": [
+     "Start from this template, and the AI Researcher helps you adapt the Research Guide to your product. Then add the interview to your product as a floating button, an inline card, or a pop-up from your own button, and show it to accounts whose usage has dropped. You can also connect it through the API or easily add it to your site using your favorite AI Agent, LLM, or MCP server."
+    ]
+   },
+   {
+    "q": "Can I change the questions?",
+    "a": [
+     "Yes. Every question in the template is editable. Add questions about a specific workflow, a competitor you suspect, or a recent product change."
+    ]
+   },
+   {
+    "q": "What languages does Frank support?",
+    "a": [
+     "Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more."
+    ]
+   },
+   {
+    "q": "What happens after the interviews?",
+    "a": [
+     "You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table."
+    ]
+   }
+  ],
+  "closing": {
+   "title": "Your quieter customers know what changed.",
+   "marker": "Let them tell Frank.",
+   "sub": "Describe what you want to learn and hear from your customers before your next standup."
+  },
+  "_h1": "Frank finds out why active customers are using your product less",
+  "_slug": "declining-engagement"
+ },
+ "Upgrade Barriers": {
+  "hero": {
+   "text": "In a short voice or video interview, Frank learns whether customers need what your higher plans offer, and what stops them from moving up: price, approval, unclear value or a missing feature. Then it ranks every reason by how many customers raised it."
+  },
+  "what": {
+   "eyebrow": "Upgrade barriers interviews with Frank",
+   "lead": "What is an",
+   "phrase": "upgrade barriers interview?",
+   "sub": "An upgrade barriers interview is a short conversation with a customer who has stayed on their current plan.",
+   "para": "It finds out how they use the product today, whether they need more, and what stands between them and a higher plan.",
+   "quote": "Your billing data shows who stays on the same plan and who hits plan limits. It doesn’t show whether they need more, whether they understand what the next plan offers, or who would have to approve the cost."
+  },
+  "when": [
+   [
+    "When customers hit a plan limit",
+    "Show the interview pop-up when someone reaches a seat, usage or feature limit and doesn’t upgrade."
+   ],
+   [
+    "Via email, when expansion revenue stalls",
+    "Accounts renew but don’t grow. Talk to them before you redesign your plans."
+   ],
+   [
+    "Before you change your pricing",
+    "Find out which features actually justify a higher price, and which ones nobody would miss."
+   ],
+   [
+    "After launching a new plan",
+    "Learn whether customers understand what it offers and who it’s for."
+   ]
+  ],
+  "guide": {
+   "eyebrow": "Typical interview structure",
+   "title": [
+    "The upgrade barriers interview",
+    "research guide."
+   ],
+   "sub": "Upgrade barriers interviews generally follow a six-part guideline built to gather the verifiable insights you need. Every question is editable, and the AI Researcher helps you adapt the Research Guide to your product.",
+   "steps": [
+    [
+     "How they use it today",
+     "The workflows they rely on, how many people use it, and how often."
+    ],
+    [
+     "Where the plan gets in the way",
+     "Moments when their current plan limits them, and how they work around it. Frank asks for a specific example."
+    ],
+    [
+     "What they know about higher plans",
+     "What they think the next plan includes, and whether that matches what it actually offers."
+    ],
+    [
+     "Whether they need more",
+     "Which features they would use, and what result they would get from them. Some customers don’t need more, and that’s worth knowing too."
+    ],
+    [
+     "What’s holding them back",
+     "Price, budget timing, an approval process, unclear value, or a feature that isn’t on any plan."
+    ],
+    [
+     "What would make them upgrade",
+     "The change in price, packaging or proof that would make the higher plan an easy decision."
+    ]
+   ],
+   "note": "Frank doesn’t stop at the first answer. It follows up when a reply is vague and comes back to topics later in the conversation. That’s how “it’s too expensive” becomes “it’s worth it, but anything over $500 a month needs our CFO’s approval, and I can’t show the return yet.”"
+  },
+  "vs": {
+   "eyebrow": "Comparison: Frank vs pricing surveys",
+   "title": [
+    "A pricing survey asks what they’d pay.",
+    "Frank finds out what’s stopping them."
+   ],
+   "other": "Pricing survey",
+   "shortOther": "Survey",
+   "frank": "upgrade barriers interview",
+   "groups": [
+    [
+     "In the interview",
+     [
+      [
+       "What the customer does",
+       "Picks a price range or rates features",
+       "Talks through how they use the product and where the plan gets in the way"
+      ],
+      [
+       "“Too expensive”",
+       "Logged as price sensitivity",
+       "Followed up: compared to what, and who decides on the budget?"
+      ],
+      [
+       "Follow-up questions",
+       "None",
+       "Asked whenever an answer is vague or doesn’t add up"
+      ],
+      [
+       "Who approves the purchase",
+       "Rarely asked",
+       "Mapped: who has to sign off, and what they need to see"
+      ],
+      [
+       "Workarounds for plan limits",
+       "Invisible",
+       "Described in the customer’s own words"
+      ]
+     ]
+    ],
+    [
+     "After the interview",
+     [
+      [
+       "Analysis",
+       "You read open-text comments one by one",
+       "Themes ranked by how many customers raised them"
+      ],
+      [
+       "What you can act on",
+       "A willingness-to-pay range",
+       "Action Items, each linked to the moment in the recording"
+      ],
+      [
+       "Evidence for your team",
+       "A row in a spreadsheet",
+       "The customer’s own voice, ready to play in a meeting"
+      ]
+     ]
+    ]
+   ],
+   "close": [
+    "Keep the survey for price ranges.",
+    "Run Frank when you need to know what would make customers upgrade."
+   ]
+  },
+  "out": {
+   "eyebrow": "Frank interview outcomes",
+   "title": [
+    "What you get"
+   ],
+   "intro": "Every interview is recorded, transcribed and coded. Frank groups the answers into themes, counts how many customers raised each one, and turns the biggest into Action Items.",
+   "caption": "Top reasons customers stayed on the Starter plan. Example: 36 upgrade barriers interviews.",
+   "aria": "Top reasons customers stayed on the Starter plan",
+   "total": 36,
+   "unit": "customers",
+   "rows": [
+    [
+     12,
+     "They didn’t know the feature they needed was on a higher plan",
+     "Most of these customers first said they “didn’t need anything else.” Follow-ups showed they were doing by hand what bulk sending does automatically.",
+     "We send the same contract to 40 contractors every quarter, one at a time. I had no idea you could send them all at once."
+    ],
+    [
+     10,
+     "Upgrading needed approval they couldn’t easily get",
+     "The higher plan crossed a spending limit that required finance to sign off.",
+     "It’s worth it, but anything over our monthly card limit goes through finance, and I couldn’t explain the return yet."
+    ],
+    [
+     8,
+     "They worked around the limits instead",
+     "Teams shared a single login to avoid paying for more seats.",
+     "Three of us share one account. It’s not ideal, but it saves us paying for two more seats."
+    ],
+    [
+     6,
+     "The next plan was full of features they’d never use",
+     null,
+     "I only want the CRM integration. The rest of that plan is built for big legal teams."
+    ]
+   ]
+  },
+  "where": {
+   "title": "What they’d need to upgrade",
+   "slices": [
+    [
+     "A clear view of what each plan includes",
+     12
+    ],
+    [
+     "A business case they can share with finance",
+     10
+    ],
+    [
+     "A seat option for small teams",
+     8
+    ],
+    [
+     "The CRM integration on its own",
+     6
+    ]
+   ]
+  },
+  "actions": {
+   "title": "Action Items",
+   "items": [
+    [
+     "Show higher-plan features at the moment a customer does the same job by hand.",
+     12
+    ],
+    [
+     "Give customers a one-page summary of time saved to share with whoever approves the budget.",
+     10
+    ],
+    [
+     "Offer a small-team seat pack between the current plans.",
+     8
+    ]
+   ],
+   "note": "Every insight links to the exact moment in the recording. Click through and hear it from the customer."
+  },
+  "faq": [
+   {
+    "q": "Who should I interview?",
+    "a": [
+     "Customers who have been on the same plan for several months and use the product regularly. Start with those who hit plan limits or rely on workarounds, since they have the clearest view of what’s missing."
+    ]
+   },
+   {
+    "q": "Should I interview customers who don’t need to upgrade?",
+    "a": [
+     "Yes. They show you whether your plans match how customers actually work, and which features nobody would miss."
+    ]
+   },
+   {
+    "q": "Won’t customers think it’s a sales pitch?",
+    "a": [
+     "The template is built to listen, not to sell. Frank doesn’t push the upgrade, so customers talk openly about price, budget and what they’d actually pay for."
+    ]
+   },
+   {
+    "q": "Doesn’t usage data already show who should upgrade?",
+    "a": [
+     "It shows who hits limits. It can’t show whether they want more, whether they know what higher plans include, or who has to approve the cost. Use usage data to pick who to interview, and Frank to find out why they stay put."
+    ]
+   },
+   {
+    "q": "How many interviews do I need?",
+    "a": [
+     "In most studies, the main reasons start repeating within the first 15 to 20 interviews. Frank shows how many customers raised each theme, so you can see when patterns settle. By running the interview consistently with an automatic trigger, you can see how perception changes as you make changes in real-time."
+    ]
+   },
+   {
+    "q": "How do I launch it?",
+    "a": [
+     "Start from this template, and the AI Researcher helps you adapt the Research Guide to your product. Then add the interview to your product as a floating button, an inline card, or a pop-up from your own button, and show it when customers reach a plan limit or visit your pricing page. You can also connect it through the API or easily add it to your site using your favorite AI Agent, LLM, or MCP server."
+    ]
+   },
+   {
+    "q": "Can I change the questions?",
+    "a": [
+     "Yes. Every question in the template is editable. Add questions about a specific plan, feature or price point."
+    ]
+   },
+   {
+    "q": "What languages does Frank support?",
+    "a": [
+     "Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more."
+    ]
+   },
+   {
+    "q": "What happens after the interviews?",
+    "a": [
+     "You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table."
+    ]
+   }
+  ],
+  "closing": {
+   "title": "Your customers know what would make them upgrade.",
+   "marker": "Let them tell Frank.",
+   "sub": "Describe what you want to learn and hear from your customers before your next standup."
+  },
+  "_h1": "Frank finds out why customers don’t upgrade",
+  "_slug": "upgrade-barriers"
+ }
+}

@@ -16,6 +16,7 @@ import PlaybookIcon from '../components/PlaybookIcon';
 import { TEMPLATE_ICONS } from '../data/templateIcons';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
 import { END_OFFSET, ScrubText, ScrubTitle } from './reveal';
+import { TEMPLATE_PATHS } from '../lib/sitePaths';
 
 // The eleven interview templates (also read by the Churn page's templates section and, by id, the header menu). problem: what you'd say (a \n starts a new line in the panel); learn: what Frank finds out; prompt: what
 // "Start with this" types into the chat.
@@ -88,13 +89,16 @@ function Detail({ c, onUse, big, href, kit }) {
       {/* Types the template's question into the chat (home page), or, with `href` (other pages, which have no chat),
           a link; the arrow sits in its own circle. */}
       {(() => {
-        const to = c.href || href; // a case can carry its own link (the Roles pages' use cases)
+        // A case can carry its own link (the Roles pages' use cases). On pages without a chat (`href` given), a template that has a
+        // page of its own opens it; the home page (no `href`) still types the question into the chat.
+        const own = c.href || (href && TEMPLATE_PATHS[c.id]);
+        const to = own || href;
         const Tag = to ? 'a' : 'button';
         const act = to ? { href: to } : { type: 'button', onClick: () => onUse(c) };
         return (
           <Tag {...act}
             className={'group inline-flex h-12 cursor-pointer items-center gap-3 self-start rounded-full border-0 bg-black py-1.5 pl-5 pr-1.5 font-sans text-[15px] text-white no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#262626] active:scale-[0.98] ' + FOCUS + ' mt-auto'}>
-            {kit ? kit.labels.cta : 'Start with this template'}
+            {kit ? kit.labels.cta : (href && TEMPLATE_PATHS[c.id]) ? 'See this template' : 'Start with this template'}
             <span className="grid size-9 place-items-center rounded-full bg-white/[0.14] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-px group-hover:translate-x-0.5">
               <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
             </span>

@@ -125,9 +125,11 @@ function WhatIs({ reduce }) {
             <ScrubText as="p" reduce={reduce} lag={0.1} className="m-0 max-w-[52ch] font-sans text-[16px] leading-[1.6] text-ink-2 sm:text-[17px]">
               {D.what.para}
             </ScrubText>
-            <ScrubText as="p" reduce={reduce} lag={0.14} className="m-0 max-w-[40ch] border-0 border-l-2 border-solid border-[#a0d05f] pl-5 font-serif text-[clamp(19px,1.6vw,22px)] italic leading-[1.45] text-ink [text-wrap:pretty]">
-              {D.what.quote}
-            </ScrubText>
+            {D.what.quote && (
+              <ScrubText as="p" reduce={reduce} lag={0.14} className="m-0 max-w-[40ch] border-0 border-l-2 border-solid border-[#a0d05f] pl-5 font-serif text-[clamp(19px,1.6vw,22px)] italic leading-[1.45] text-ink [text-wrap:pretty]">
+                {D.what.quote}
+              </ScrubText>
+            )}
           </div>
         </div>
 
