@@ -70,8 +70,8 @@ const KIND = { phrases: Phrases, count: Count, quote: Quote, ring: Ring, theme: 
 // Where each card sits around the person (the stage is 440px wide on phones, up to 520px from 1024px). The first three show on
 // desktop, the first two on phones, smaller and at the edges so the face stays clear.
 const SPOTS = [
-  'left-0 top-[44%] max-sm:origin-top-left max-sm:scale-[0.7] lg:-left-4',
-  'right-0 top-[16%] max-sm:origin-top-right max-sm:scale-[0.7] lg:-right-2',
+  'left-0 top-[34%] max-sm:origin-top-left max-sm:scale-[0.7] sm:top-[44%] lg:-left-4',
+  'right-0 top-[58%] max-sm:origin-top-right max-sm:scale-[0.7] sm:top-[16%] lg:-right-2',
   'hidden lg:block lg:right-0 lg:top-[62%]',
 ];
 
@@ -96,7 +96,7 @@ export default function RoleHero({ d, person }) {
           {/* The person, cut at the waist and faded into the panel; cards float around them */}
           <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[380px] w-full max-w-[440px] sm:h-[420px] lg:h-[500px] lg:max-w-[520px] lg:self-end">
             <div className="absolute inset-0 overflow-hidden">
-              <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute left-1/2 top-0 h-auto w-[104%] max-w-none sm:w-[92%] -translate-x-1/2 select-none lg:w-[104%]" />
+              <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute left-1/2 top-0 h-auto w-[122%] max-w-none -translate-x-1/2 -scale-x-100 select-none sm:w-[108%] lg:w-[128%]" />
               <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[42%]" style={{ background: 'linear-gradient(to bottom, rgba(15,46,39,0) 0%, #0f2e27 88%)' }} />
             </div>
             {d.heroCards.map((c, i) => {
