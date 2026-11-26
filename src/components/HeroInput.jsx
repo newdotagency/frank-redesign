@@ -283,7 +283,7 @@ const HeroInput = forwardRef(function HeroInput({ reduced, onStatus, onUserEdit,
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
                   </span>
                   <span className="hidden truncate sm:inline">Your interview guide is ready.</span>
-                  <a href="#signup" className="shrink-0 font-medium text-ink underline decoration-brand-strong decoration-2 underline-offset-4 transition-colors duration-300 ease-frank hover:decoration-ink">Sign up to run it →</a>
+                  <a href="https://app.hifrank.ai/signup" className="shrink-0 font-medium text-ink underline decoration-brand-strong decoration-2 underline-offset-4 transition-colors duration-300 ease-frank hover:decoration-ink">Sign up to run it →</a>
                 </motion.p>
               )}
             </AnimatePresence>

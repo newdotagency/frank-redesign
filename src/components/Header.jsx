@@ -12,8 +12,8 @@ const NAV = {
     { label: 'Platform', href: '#' }, { label: 'Solutions', href: '#' },
     { label: 'Resources', href: '#' }, { label: 'Pricing', href: 'https://www.hifrank.ai/pricing' },
   ],
-  login: { label: 'Login', href: '#' },
-  cta: { label: 'Get started', href: '#signup' },
+  login: { label: 'Login', href: 'https://app.hifrank.ai/login' },
+  cta: { label: 'Get started', href: 'https://app.hifrank.ai/signup' },
 };
 const LOGO = '/frank-logo.png';
 

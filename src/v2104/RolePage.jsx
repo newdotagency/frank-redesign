@@ -31,9 +31,9 @@ const EASE = [0.23, 1, 0.32, 1];
 const FIG = "font-['Figtree',sans-serif]";
 // The use cases, in the home page's wheel: each with its icon, drawn in the page's greens (as the feature pages do).
 const kitOf = slug => ({
-  cases: ROLES[slug].useCases.cards.map(([name, problem, , icon], i) => ({ id: 'u' + i, name, problem, svg: iconSvg(icon) })),
+  cases: ROLES[slug].useCases.cards.map(([name, problem, path, icon], i) => ({ id: 'u' + i, name, problem, href: siteHref(path), svg: iconSvg(icon) })),
   color: () => '#5f8f22',
-  labels: { a: null, b: null, cta: 'Try it now' },
+  labels: { a: null, b: null, cta: 'See this use case' },
   icon: (c, size, on) => (
     <span aria-hidden="true" className="grid shrink-0 place-items-center transition-[background-color,color] duration-300"
       style={{ width: size, height: size, borderRadius: Math.round(size * 0.3), background: on ? '#d1f899' : 'rgba(26,23,20,0.05)', color: on ? '#2a321e' : 'rgba(26,23,20,0.45)' }}>

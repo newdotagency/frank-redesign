@@ -181,7 +181,7 @@ export default function ClosingCTA({ lines = null, sub = null, primary = null, s
                   {primary && primary.icon !== 'mic' ? <ArrowRight className="size-[18px]" strokeWidth={1.75} /> : <Mic className="size-[18px]" strokeWidth={1.75} />}
                 </span>
               </a>
-              {secondary !== false && <a href={secondary ? secondary.href : '#signup'} {...look}
+              {secondary !== false && <a href={secondary ? secondary.href : 'https://app.hifrank.ai/signup'} {...look}
                 {...(secondary?.ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className={'inline-flex h-14 items-center rounded-full bg-white/75 px-7 font-sans text-[16px] text-ink no-underline ring-1 ring-[#1a1714]/[0.1] shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white active:scale-[0.98] ' + FOCUS}>
                 {secondary ? secondary.label : 'Sign up'}

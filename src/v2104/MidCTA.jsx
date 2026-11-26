@@ -58,7 +58,7 @@ export default function MidCTA() {
           </ScrubText>
           <ScrubText reduce={reduce} lag={0.25} className="mt-8 flex justify-center sm:mt-9">
             {/* The arrow sits in its own circle at the button's end and nudges forward on hover. */}
-            <a href="#signup" onPointerEnter={() => setPose('Curious')} onPointerLeave={() => setPose('Ready')}
+            <a href="https://app.hifrank.ai/signup" onPointerEnter={() => setPose('Curious')} onPointerLeave={() => setPose('Ready')}
               className={'group inline-flex h-14 items-center gap-3 rounded-full bg-black py-1.5 pl-6 pr-1.5 font-sans text-[16px] text-white no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#262626] active:scale-[0.98] ' + FOCUS}>
               Get started
               <span aria-hidden="true" className="grid size-11 place-items-center rounded-full bg-white/[0.12] transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] motion-safe:group-hover:translate-x-0.5">

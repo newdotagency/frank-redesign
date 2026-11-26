@@ -848,7 +848,7 @@ function Takeaway({ byStep, msgs, onAgain, onClose, themes, H = 'h2', titleId = 
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
-        <a href="#signup" onClick={onClose}
+        <a href="https://app.hifrank.ai/signup" onClick={onClose}
           className="inline-flex h-11 items-center rounded-full bg-[#d1f899] px-5 text-[14.5px] font-medium text-[#1a1714] no-underline transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
           Sign up to interview your customers
         </a>
@@ -881,7 +881,7 @@ function WidgetTakeaway({ byStep, onAgain, themes, H = 'h3', titleId }) {
           className="inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#1a1714]/[0.06] px-3.5 text-[13px] text-ink transition-colors duration-150 hover:bg-[#1a1714]/[0.1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1714]">
           <RotateCcw className="size-3.5" />Try again
         </button>
-        <a href="#signup" className="inline-flex h-9 items-center rounded-full bg-[#1a1714] px-3.5 text-[13px] font-medium text-white no-underline transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1714]">
+        <a href="https://app.hifrank.ai/signup" className="inline-flex h-9 items-center rounded-full bg-[#1a1714] px-3.5 text-[13px] font-medium text-white no-underline transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1714]">
           Interview your customers
         </a>
       </div>

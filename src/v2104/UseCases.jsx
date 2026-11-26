@@ -88,8 +88,9 @@ function Detail({ c, onUse, big, href, kit }) {
       {/* Types the template's question into the chat (home page), or, with `href` (other pages, which have no chat),
           a link; the arrow sits in its own circle. */}
       {(() => {
-        const Tag = href ? 'a' : 'button';
-        const act = href ? { href } : { type: 'button', onClick: () => onUse(c) };
+        const to = c.href || href; // a case can carry its own link (the Roles pages' use cases)
+        const Tag = to ? 'a' : 'button';
+        const act = to ? { href: to } : { type: 'button', onClick: () => onUse(c) };
         return (
           <Tag {...act}
             className={'group inline-flex h-12 cursor-pointer items-center gap-3 self-start rounded-full border-0 bg-black py-1.5 pl-5 pr-1.5 font-sans text-[15px] text-white no-underline transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-[#262626] active:scale-[0.98] ' + FOCUS + ' mt-auto'}>
