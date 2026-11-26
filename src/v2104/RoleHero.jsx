@@ -5,6 +5,10 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import Glasses from '../v3/Glasses';
+import daniel from './portraits/daniel.jpg';
+import maya from './portraits/maya.jpg';
+import priya from './portraits/priya.jpg';
+import tomas from './portraits/tomas.jpg';
 import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow } from './titles';
 import { FOCUS, Rise } from './product-updates/parts';
@@ -21,13 +25,15 @@ function Drift({ reduce, dy = 6, dur = 5, delay = 0, className = '', children })
   );
 }
 
+// People who have answered, fading out to the right, then a "+" for the rest.
+const FACES = [[daniel, 'Daniel', 1], [maya, 'Maya', 0.8], [priya, 'Priya', 0.55], [tomas, 'Tomas', 0.3]];
 const Count = ({ d }) => (
   <div className={CARD + ' w-[184px] p-3.5'}>
     <p className={CAP}>{d.label}</p>
     <p className={FIG + ' m-0 mt-1 text-[28px] font-medium leading-none tracking-[-0.03em]'}>{d.value}</p>
-    <div className="mt-2.5 flex items-center">
-      {['#d1f899', '#9bc653', '#f1ead2', '#5f8f22'].map((c, i) => <span key={i} className="-ml-1.5 size-5 rounded-full ring-2 ring-[#143a32] first:ml-0" style={{ background: c }} />)}
-      <span className="ml-2 font-sans text-[12px] text-white/65">{d.note}</span>
+    <div className="mt-3 flex items-center" aria-hidden="true">
+      {FACES.map(([src, name, o]) => <img key={name} src={src.src || src} alt="" draggable={false} className="-ml-2 size-7 rounded-full object-cover ring-2 ring-[#143a32] first:ml-0" style={{ opacity: o }} />)}
+      <span className="-ml-2 grid size-7 place-items-center rounded-full bg-white/10 font-sans text-[14px] leading-none text-white/60 ring-2 ring-[#143a32]" style={{ opacity: 0.45 }}>+</span>
     </div>
   </div>
 );
@@ -90,7 +96,7 @@ export default function RoleHero({ d, person }) {
           {/* The person, cut at the waist and faded into the panel; cards float around them */}
           <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[380px] w-full max-w-[440px] sm:h-[420px] lg:h-[500px] lg:max-w-[520px] lg:self-end">
             <div className="absolute inset-0 overflow-hidden">
-              <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute left-1/2 top-[3%] h-auto w-[86%] max-w-none sm:w-[72%] -translate-x-1/2 select-none lg:w-[84%]" />
+              <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute left-1/2 top-0 h-auto w-[104%] max-w-none sm:w-[92%] -translate-x-1/2 select-none lg:w-[104%]" />
               <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[42%]" style={{ background: 'linear-gradient(to bottom, rgba(15,46,39,0) 0%, #0f2e27 88%)' }} />
             </div>
             {d.heroCards.map((c, i) => {

@@ -3,7 +3,9 @@
 // use cases → closing. The words and the pictures are the live pages' (roles/roles.json, public/roles/<slug>/).
 import { useMemo } from 'react';
 import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
-import { Phone, TrendingDown, Search, Compass, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
+import UseCases from './UseCases';
+import { iconSvg } from './features/media';
 import Header from '../components/Header';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
@@ -22,7 +24,18 @@ const SIGNUP = 'https://app.hifrank.ai/signup';
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
 const EASE = [0.23, 1, 0.32, 1];
 const FIG = "font-['Figtree',sans-serif]";
-const ICONS = { Phone, TrendingDown, Search, Compass };
+// The use cases, in the home page's wheel: each with its icon, drawn in the page's greens (as the feature pages do).
+const kitOf = slug => ({
+  cases: ROLES[slug].useCases.cards.map(([name, problem, , icon], i) => ({ id: 'u' + i, name, problem, svg: iconSvg(icon) })),
+  color: () => '#5f8f22',
+  labels: { a: null, b: null, cta: 'Try it now' },
+  icon: (c, size, on) => (
+    <span aria-hidden="true" className="grid shrink-0 place-items-center transition-[background-color,color] duration-300"
+      style={{ width: size, height: size, borderRadius: Math.round(size * 0.3), background: on ? '#d1f899' : 'rgba(26,23,20,0.05)', color: on ? '#2a321e' : 'rgba(26,23,20,0.45)' }}>
+      <span className="block [&>svg]:size-full" style={{ width: size * 0.55, height: size * 0.55 }} dangerouslySetInnerHTML={{ __html: c.svg }} />
+    </span>
+  ),
+});
 const BRANDS = [['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23]];
 
 // A tab's picture, filling the step card (the live page's picture).
@@ -85,6 +98,7 @@ export default function RolePage({ slug }) {
   const reduce = !!useReducedMotion();
   const tabs = useMemo(() => tabsOf(slug), [slug]);
   const stack = useMemo(() => stackOf(slug), [slug]);
+  const kit = useMemo(() => kitOf(slug), [slug]);
   return (
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative" id="top" style={{ background: '#ffffff' }}>
@@ -109,27 +123,11 @@ export default function RolePage({ slug }) {
           {/* 4 — How Frank works: the steps stacking one below the other */}
           <RoleStack d={d.how} steps={stack} reduce={reduce} />
 
-          {/* 5 — Use cases */}
-          <section aria-labelledby="rl-uc-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
-            <div className="mx-auto max-w-[1200px]">
-              <ScrubText reduce={reduce}><Eyebrow className="mb-6 sm:mb-8">{d.useCases.label}</Eyebrow></ScrubText>
-              <ScrubTitle reduce={reduce} id="rl-uc-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={d.useCases.lines} />
-              <ScrubText as="p" reduce={reduce} lag={0.05} className={SUBTITLE + ' mx-auto mb-0 mt-6 max-w-[44ch] text-center'}>{d.useCases.sub}</ScrubText>
-              <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 sm:grid-cols-2 xl:grid-cols-4">
-                {d.useCases.cards.map(([title, text, href, icon], i) => {
-                  const Icon = ICONS[icon];
-                  return (
-                    <ScrubText as="li" key={title} reduce={reduce} lag={(i % 4) * 0.05} className="flex flex-col rounded-[24px] bg-[#fffdf3] p-7 text-left shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] max-md:bg-white max-md:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)] sm:p-8">
-                      <span aria-hidden="true" className="grid size-12 place-items-center rounded-full bg-[#d1f899] text-[#2a321e]"><Icon className="size-6" strokeWidth={1.7} /></span>
-                      <h3 className="m-0 mt-6 font-['Figtree',sans-serif] text-[20px] font-medium leading-[1.25] tracking-[-0.02em] text-ink">{title}</h3>
-                      <p className="m-0 mt-3 font-sans text-[15.5px] leading-[1.6] text-ink-2">{text}</p>
-                      <a href={siteHref(href)} className={'mt-6 inline-flex h-11 w-fit items-center rounded-full bg-[#d1f899] px-5 font-sans text-[14.5px] font-medium text-ink no-underline transition-[background-color] duration-300 hover:bg-[#c4ef84] sm:mt-auto sm:pt-0 ' + FOCUS}>Start Free Trial</a>
-                    </ScrubText>
-                  );
-                })}
-              </ul>
-            </div>
-          </section>
+          {/* 5 — Use cases: the home page's use-case wheel (as on the feature pages) */}
+          <div className="pt-[clamp(88px,10vw,150px)]">
+            <UseCases kit={kit} href="/try-frank" sectionClass="relative px-4 sm:px-[clamp(16px,4vw,48px)]"
+              head={{ eyebrow: d.useCases.label, lines: d.useCases.lines, sub: d.useCases.sub, titleId: 'rl-uc-title' }} />
+          </div>
 
           {/* 6 — Closing */}
           <div className="pt-[clamp(88px,10vw,150px)]">

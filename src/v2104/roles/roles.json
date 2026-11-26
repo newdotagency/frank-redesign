@@ -93,25 +93,25 @@
           "Discovery calls",
           "Turn every new customer into a deep discovery conversation.",
           "/use-case/ai-discovery-calls",
-          "Phone"
+          "bubble-chat"
         ],
         [
           "Churn",
           "Capture feedback when customers cancel or disengage.",
           "/use-case/ai-churn-interviews",
-          "TrendingDown"
+          "analytics-down"
         ],
         [
           "Product discovery",
           "Know what to build, before you build it.",
           "/use-case/ai-product-discovery",
-          "Search"
+          "search-02"
         ],
         [
           "Feature discovery",
           "Learn how users experience new features and where they struggle.",
           "/use-case/ai-feature-discovery",
-          "Compass"
+          "idea"
         ]
       ]
     },
@@ -127,8 +127,7 @@
       {
         "kind": "count",
         "label": "Interviews overnight",
-        "value": "113",
-        "note": "+ more in progress"
+        "value": "113"
       },
       {
         "kind": "quote",
@@ -178,8 +177,7 @@
       {
         "kind": "count",
         "label": "Customers interviewed",
-        "value": "112",
-        "note": "overnight"
+        "value": "112"
       },
       {
         "kind": "theme",
@@ -272,25 +270,25 @@
           "Discovery calls",
           "Turn every new customer into a deep discovery conversation.",
           "/use-case/ai-discovery-calls",
-          "Phone"
+          "bubble-chat"
         ],
         [
           "Churn",
           "Capture feedback exactly when customers cancel or disengage, all while the context is fresh.",
           "/use-case/ai-churn-interviews",
-          "TrendingDown"
+          "analytics-down"
         ],
         [
           "Product discovery",
           "Know what to build, before you build it.",
           "/use-case/ai-product-discovery",
-          "Search"
+          "search-02"
         ],
         [
           "Feature discovery",
           "Learn how users experience new features, where they struggle, and what to improve next.",
           "/use-case/ai-feature-discovery",
-          "Compass"
+          "idea"
         ]
       ]
     },
