@@ -147,8 +147,8 @@ export default function VideoPage() {
             </ul>
           </section>
 
-          {/* 4 — The two answers (only the first title styled: the page's first titled section). */}
-          {ANSWERS.map((a, i) => <Answer key={a.id} a={a} reduce={reduce} first={i === 0} />)}
+          {/* 4 — The two answers, all titles plain (user, 2026-11-26: no italic, no marker on these pages). */}
+          {ANSWERS.map(a => <Answer key={a.id} a={a} reduce={reduce} />)}
 
           {/* 5 — Try it yourself, with the live widget. */}
           <section id="vi-try" aria-labelledby="vi-try-title" className="relative px-4 pb-[clamp(112px,13vw,200px)] md:px-10">

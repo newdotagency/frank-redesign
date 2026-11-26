@@ -476,8 +476,8 @@ export default function VoicePage() {
             </ul>
           </section>
 
-          {/* 4 — The three answers. */}
-          {ANSWERS.map((a, i) => <Answer key={a.id} a={a} reduce={reduce} first={i === 0} />)}
+          {/* 4 — The three answers, all titles plain (user, 2026-11-26: no italic, no marker on these pages). */}
+          {ANSWERS.map(a => <Answer key={a.id} a={a} reduce={reduce} />)}
 
           {/* 5 — Try it yourself, with the live voice widget (as in the homepage's Interview example). */}
           <section id="vo-try" aria-labelledby="vo-try-title" className="relative px-4 pb-[clamp(112px,13vw,200px)] md:px-10">
