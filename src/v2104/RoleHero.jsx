@@ -83,7 +83,7 @@ export default function RoleHero({ d, person }) {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(40% 60% at 74% 50%, rgba(209,248,153,0.16), rgba(209,248,153,0) 70%)' }} />
         <div className="mx-auto grid max-w-[1200px] items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8">
-          <div className="relative text-center lg:py-[clamp(72px,7vw,112px)] lg:text-left">
+          <div className="relative z-[2] text-center lg:py-[clamp(72px,7vw,112px)] lg:text-left">
             <Rise reduce={reduce}><Eyebrow className="mb-6 !text-white/85 sm:mb-8 lg:!justify-start">{d.label}</Eyebrow></Rise>
             <Rise as="h1" reduce={reduce} delay={0.06} id="rl-title" className={'m-0 pb-1 leading-[1.06] text-white [text-wrap:balance] ' + TITLE}>
               {d.hero.map(l => <span key={l} className="block">{l}</span>)}
@@ -93,7 +93,7 @@ export default function RoleHero({ d, person }) {
               <a href="https://app.hifrank.ai/signup" className={'inline-flex h-12 items-center rounded-full bg-[#d1f899] px-6 font-sans text-[15.5px] font-medium text-ink no-underline transition-[background-color] duration-300 hover:bg-[#c4ef84] ' + FOCUS}>Run 10 Free Interviews</a>
             </Rise>
           </div>
-          {/* The person, cut at the waist by the panel's bottom edge (no gap under the photo); cards float around them */}
+          {/* The person, cut at the waist by the panel's bottom edge with a fade into the panel colour across the panel's full width (so the photo reaches the edge, with no gap and no side seam); cards float around them */}
           <Rise reduce={reduce} delay={0.2} className="relative mx-auto h-[330px] w-full max-w-[440px] sm:h-[430px] lg:h-auto lg:max-w-[560px] lg:self-end">
             <div className="absolute inset-0 overflow-hidden lg:static lg:overflow-visible">
               <img src={person} alt="" draggable={false} className={'absolute left-1/2 top-0 block h-auto max-w-none -translate-x-1/2 select-none lg:relative lg:left-0 lg:top-0 lg:translate-x-0 ' + (d.heroFlip ? '-scale-x-100 w-[130%] sm:w-[118%] lg:w-[150%]' : 'w-[108%] sm:w-[100%] lg:w-full')} />
@@ -104,6 +104,7 @@ export default function RoleHero({ d, person }) {
             })}
           </Rise>
         </div>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[120px] lg:h-[150px]" style={{ background: 'linear-gradient(to bottom, rgba(15,46,39,0) 0%, #0f2e27 94%)' }} />
       </div>
     </section>
   );
