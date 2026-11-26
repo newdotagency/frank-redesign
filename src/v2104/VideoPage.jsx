@@ -2,11 +2,11 @@
 // page's pieces (VoicePage exports them), so the two read as one family. The words are the live page's (titles in
 // sentence case); the order follows it:
 //   1. Hero: the forest-green panel; the label with a "Coming soon" tag, title, the two lines under it and the two
-//      actions on the left; a video interview on the right (CallCard: the customer on video, Frank's tile, the
-//      conversation as bubbles), in place of the voice page's stack of call cards.
+//      actions on the left; on the right the stack of customer video cards (VoiceCrowd), each tagged with the
+//      reaction Frank saw. (The voice page uses the same stack with avatars and a waveform instead of video.)
 //   2. "Trusted by 1,000+ brands" and 3. the three figures: as on the voice page.
-//   4. Two answers, alternating sides: "Watch how customers actually feel" (the voice page's stack of customer
-//      clips, each tagged with the reaction Frank saw) and "Let AI do it all" (the calendar filling with interviews).
+//   4. Two answers, alternating sides: "Watch how customers actually feel" (a video interview: CallCard) and
+//      "Let AI do it all" (the calendar filling with interviews).
 //   5. "Try the AI interviewer yourself" with the live widget ("Try it now" across the page scrolls to it).
 //   6. How it works (the homepage's layout), 7. security, the FAQ and the lime closing panel.
 import { useRef } from 'react';
@@ -33,8 +33,8 @@ const SIGNUP = 'https://app.hifrank.ai/signup';
 const TRY = '/try-frank';
 const toTry = toSection('vi-try');
 
-// ——— 1. Hero visual: a video interview (CallCard, as on the use-case pages): what Frank sees matters here, so
-// he asks about a reaction as well as an answer.
+// ——— 4. "Watch how customers actually feel": a video interview (CallCard, as on the use-case pages): what Frank
+// sees matters here, so he asks about a reaction as well as an answer.
 const HERO_CALL = {
   icon: Video,
   name: 'Video interview',
@@ -53,25 +53,28 @@ const HERO_CALL = {
   },
 };
 
-// ——— 4. "Watch how customers actually feel": the voice page's stack of customer clips, each with what they say
-// and the reaction Frank saw on their face, in a cream card like the other scenes.
+// ——— 1. Hero visual: the stack of customer video cards (VoiceCrowd), each with what they say and the reaction
+// Frank saw on their face.
 const clipOf = n => ({ video: `/videos/call-${n}-card.mp4`, poster: `/videos/call-${n}-card.jpg` });
 const FACES = [
-  { ...clipOf('01'), name: 'Amara J.', q: 'When the report just appeared, I was genuinely relieved.', tag: 'Delighted', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
-  { ...clipOf('04'), name: 'Sophie R.', q: 'I think the pricing is fine… mostly.', tag: 'Hesitant', tone: 'bg-[#fbf3db] text-[#8a6100]' },
-  { ...clipOf('08'), name: 'Elena V.', q: 'Wait, where did my saved filters go?', tag: 'Confused', tone: 'bg-[#e8eefb] text-[#2e4f8a]' },
-  { ...clipOf('06'), name: 'Hanna L.', q: 'If it did this for every project, I’d use it daily.', tag: 'Excited', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
+  { ...clipOf('09'), name: 'Chloe M.', q: 'When the report just appeared, I was genuinely relieved.', tag: 'Delighted', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
+  { ...clipOf('02'), name: 'Tomás H.', q: 'I think the pricing is fine… mostly.', tag: 'Hesitant', tone: 'bg-[#fbf3db] text-[#8a6100]' },
+  { ...clipOf('10'), name: 'Lea N.', q: 'Wait, where did my saved filters go?', tag: 'Confused', tone: 'bg-[#e8eefb] text-[#2e4f8a]' },
+  { ...clipOf('11'), name: 'David K.', q: 'If it did this for every project, I’d use it daily.', tag: 'Excited', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
+  { ...clipOf('03'), name: 'Lukas B.', q: 'Setup was quicker than I expected, honestly.', tag: 'Surprised', tone: 'bg-[#e8eefb] text-[#2e4f8a]' },
 ];
-function FacesScene({ reduce }) {
+// The answer's scene: the video interview itself (CallCard: the customer on video, Frank's tile, the
+// conversation as bubbles), on the cream card.
+function CallScene({ reduce }) {
   return (
-    <div className={CARD + ' grid place-items-center px-4 pb-12 pt-2 sm:pb-14'}>
-      <VoiceCrowd reduce={reduce} crowd={FACES} saw="Frank saw" />
+    <div className={CARD + ' px-5 py-10 sm:px-10 sm:py-14'}>
+      <CallCard data={HERO_CALL} reduce={reduce} />
     </div>
   );
 }
 
 const ANSWERS = [
-  { id: 'vi-feel', kicker: 'Need more than words?', title: ['Watch how customers', 'actually feel'], Scene: FacesScene,
+  { id: 'vi-feel', kicker: 'Need more than words?', title: ['Watch how customers', 'actually feel'], Scene: CallScene,
     text: ['Surveys and transcripts tell you what people say, but not what they mean, or why they feel that way.',
       'With AI Video Interviews, you can see their facial expressions, micro-reactions, and body language. All decoded by AI to reveal true emotion, hesitation, and delight.'] },
   { id: 'vi-auto', kicker: 'Hours on moderation & transcription?', title: ['Let AI do it all'], Scene: CalendarScene, flip: true,
@@ -131,7 +134,7 @@ export default function VideoPage() {
                     <Btn href={TRY} onClick={toTry} tone="ghost" arrow={false}>Try it now</Btn>
                   </Rise>
                 </div>
-                <Rise reduce={reduce} delay={0.3} className="mx-auto w-full max-w-[540px]"><CallCard data={HERO_CALL} reduce={reduce} /></Rise>
+                <Rise reduce={reduce} delay={0.3}><VoiceCrowd reduce={reduce} crowd={FACES} saw="Frank saw" /></Rise>
               </div>
             </div>
           </section>

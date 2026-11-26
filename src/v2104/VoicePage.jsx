@@ -101,13 +101,15 @@ function Wave({ live, n = WAVE.length, color = 'currentColor', h = 44, gap = 3, 
 // top, and what they say rises in as a caption with the feeling Frank heard in it. The next customers wait
 // behind, a little smaller and turned. Every few seconds the front card steps back to the end of the queue
 // and the next comes forward (a spring). Runs while on screen; reduced motion: the stack, still.
-const clipOf = n => ({ video: `/videos/call-${n}-card.mp4`, poster: `/videos/call-${n}-card.jpg` });
+// avatar: a square still from the clip, picked with eyes open and mouth closed (frames pulled on this Mac,
+// 320×320), for the voice cards. The voice page's people (01, 04, 08, 05) differ from the video page's (09, 02,
+// 10, 11, 03), so each page has its own faces.
+const clipOf = n => ({ video: `/videos/call-${n}-card.mp4`, poster: `/videos/call-${n}-card.jpg`, avatar: `/videos/call-${n}-avatar.jpg` });
 const CROWD = [
-  { ...clipOf('09'), name: 'Chloe M.', q: 'I couldn’t work out how to invite my team.', tag: 'Confused', tone: 'bg-[#e8eefb] text-[#2e4f8a]' },
-  { ...clipOf('02'), name: 'Tomás H.', q: 'I’d pay more if setup took five minutes.', tag: 'Eager', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
-  { ...clipOf('10'), name: 'Lea N.', q: 'Moving our old data took a whole weekend.', tag: 'Frustrated', tone: 'bg-[#fdebec] text-[#9f2f2d]' },
-  { ...clipOf('11'), name: 'David K.', q: 'We only find out why they leave once they’re gone.', tag: 'Concerned', tone: 'bg-[#fbf3db] text-[#8a6100]' },
-  { ...clipOf('03'), name: 'Lukas B.', q: 'If search understood me, I’d stop asking colleagues.', tag: 'Hopeful', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
+  { ...clipOf('01'), name: 'Amara J.', q: 'I couldn’t work out how to invite my team.', tag: 'Confused', tone: 'bg-[#e8eefb] text-[#2e4f8a]' },
+  { ...clipOf('04'), name: 'Sophie R.', q: 'I’d pay more if setup took five minutes.', tag: 'Eager', tone: 'bg-[#eaf8d6] text-[#3f6b12]' },
+  { ...clipOf('08'), name: 'Elena V.', q: 'Moving our old data took a whole weekend.', tag: 'Frustrated', tone: 'bg-[#fdebec] text-[#9f2f2d]' },
+  { ...clipOf('05'), name: 'Jordan P.', q: 'We only find out why they leave once they’re gone.', tag: 'Concerned', tone: 'bg-[#fbf3db] text-[#8a6100]' },
 ];
 // Where a card sits by its place in the queue (0 = speaking, at the front).
 const SLOT = [
@@ -116,19 +118,39 @@ const SLOT = [
   { transform: 'translate(-44px, -40px) rotate(-6deg) scale(0.86)', opacity: 0.6 },
   { transform: 'translate(0px, -54px) rotate(0deg) scale(0.8)', opacity: 0 },
 ];
-function CrowdCard({ c, k, live, reduce, saw }) {
+// mode 'video' (the video page): the card is the customer's clip, playing while in front. mode 'voice' (this
+// page): a voice call card: the customer's avatar (a still from their clip, eyes open) in the middle, lime rings
+// breathing out of it and a waveform under it while they speak; no video.
+function CrowdCard({ c, k, live, reduce, saw, mode }) {
   const vid = useRef(null);
   const front = k === 0;
+  const voice = mode === 'voice';
   useEffect(() => {
     const v = vid.current; if (!v) return;
     if (front && live) { v.currentTime = 0; v.play().catch(() => {}); } else v.pause();
   }, [front, live]);
+  const speaking = front && live;
   return (
     <motion.div initial={false} animate={SLOT[Math.min(k, SLOT.length - 1)]}
       transition={reduce ? { duration: 0 } : { type: 'spring', duration: 0.9, bounce: 0.18 }}
       className="absolute inset-0 overflow-hidden rounded-[28px] bg-[#1d3b32] shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_40px_80px_-40px_rgba(0,0,0,0.7)]"
       style={{ zIndex: 10 - k }}>
-      <video ref={vid} src={c.video} poster={c.poster} muted loop playsInline preload="metadata" className="block size-full object-cover" />
+      {voice ? (
+        <>
+          <span className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(70% 50% at 50% 34%, rgba(209,248,153,0.16), rgba(209,248,153,0) 100%)' }} />
+          <div className="absolute inset-x-0 top-[17%] flex flex-col items-center">
+            <div className="relative size-[112px] sm:size-[128px]">
+              {[0, 1].map(i => (
+                <span key={i} className={'vo-pulse absolute inset-0 rounded-full ' + (speaking ? 'on' : '')} style={{ animationDelay: `${i * 1.2}s` }} />
+              ))}
+              <img src={c.avatar || c.poster} alt="" className="relative block size-full rounded-full object-cover shadow-[0_0_0_3px_rgba(255,255,255,0.9)]" />
+            </div>
+            <span className="mt-6 text-[#d1f899]"><Wave live={speaking} n={22} h={30} w={3} gap={3} /></span>
+          </div>
+        </>
+      ) : (
+        <video ref={vid} src={c.video} poster={c.poster} muted loop playsInline preload="metadata" className="block size-full object-cover" />
+      )}
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
       {/* Live tag and who it is. */}
       <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-black/35 py-1 pl-2 pr-3 font-sans text-[12px] text-white">
@@ -156,7 +178,7 @@ function CrowdCard({ c, k, live, reduce, saw }) {
   );
 }
 // crowd: the cards (default the voice page's); saw: the words before the tag ("Frank heard" by voice).
-export function VoiceCrowd({ reduce, crowd = CROWD, saw = 'Frank heard' }) {
+export function VoiceCrowd({ reduce, crowd = CROWD, saw = 'Frank heard', mode = 'video' }) {
   const ref = useRef(null);
   const live = useInView(ref, { amount: 0.3 }) && !reduce;
   const [who, setWho] = useState(0);
@@ -168,7 +190,7 @@ export function VoiceCrowd({ reduce, crowd = CROWD, saw = 'Frank heard' }) {
   return (
     <div ref={ref} aria-hidden="true" className="relative mx-auto flex h-[400px] w-full max-w-[560px] items-end justify-center pb-2 sm:h-[460px]">
       <div className="relative aspect-[4/5] w-[260px] sm:w-[300px]">
-        {crowd.map((c, i) => <CrowdCard key={c.video} c={c} k={(i - who + crowd.length) % crowd.length} live={live} reduce={reduce} saw={saw} />)}
+        {crowd.map((c, i) => <CrowdCard key={c.video} c={c} k={(i - who + crowd.length) % crowd.length} live={live} reduce={reduce} saw={saw} mode={mode} />)}
       </div>
     </div>
   );
@@ -441,7 +463,7 @@ export default function VoicePage() {
                     <Btn href={TRY} onClick={toTry} tone="ghost" arrow={false}>Try it now</Btn>
                   </Rise>
                 </div>
-                <Rise reduce={reduce} delay={0.3}><VoiceCrowd reduce={reduce} /></Rise>
+                <Rise reduce={reduce} delay={0.3}><VoiceCrowd reduce={reduce} mode="voice" /></Rise>
               </div>
             </div>
           </section>
