@@ -17,8 +17,7 @@ import { cornerGlowGrain } from '../components/grain';
 import Glasses from '../v3/Glasses';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
-import BrandMarquee from './BrandMarquee';
-import { PL_LOGOS } from './logos/prelaunchBrands';
+import TrustStrip from './TrustStrip';
 import { InterviewRoom, SCRIPTS } from './LiveInterview';
 import { PLATE, GRAIN } from './InterviewExample';
 import HowItWorks from './HowItWorks';
@@ -26,7 +25,7 @@ import FAQ from './FAQ';
 import SecuritySection from './SecuritySection';
 import Footer from './Footer';
 import CallCard from './CallCard';
-import { Answer, BRANDS, Btn, CARD, CalendarScene, Note, Rise, STATS, VoiceCrowd, toSection } from './VoicePage';
+import { Answer, Btn, CARD, CalendarScene, Note, Rise, STATS, VoiceCrowd, toSection } from './VoicePage';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const TRY = '/try-frank';
@@ -126,12 +125,7 @@ export default function VideoPage() {
           </section>
 
           {/* 2 — Trusted by. */}
-          <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
-            <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
-              <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ brands</p>
-              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
-            </ScrubText>
-          </section>
+          <TrustStrip />
 
           {/* 3 — Figures. */}
           <section aria-label="Frank in numbers" className="px-4 pb-[clamp(112px,13vw,200px)] pt-[clamp(80px,9vw,136px)] sm:px-[clamp(16px,4vw,48px)]">

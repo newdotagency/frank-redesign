@@ -5,14 +5,13 @@
 // only the site's general hero panel. The pictures are the originals, to be re-coloured later.
 //   · "What Frank delivers" is the home page's progress tabs (HowItWorks), each step showing its original picture;
 //   · the comparison is one grid: the row names, Traditional research, and Frank (dark) side by side; on phones each row is a card.
-import BrandMarquee from './BrandMarquee';
+import TrustStrip from './TrustStrip';
 import { useMemo } from 'react';
 import { MotionConfig, useReducedMotion } from 'framer-motion';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
-import { PL_LOGOS } from './logos/prelaunchBrands';
 import HowItWorks from './HowItWorks';
 import ClosingCTA from './ClosingCTA';
 import Testimonials from './Testimonials';
@@ -30,9 +29,6 @@ const CUSTOM = { price: PRICE_SCENES, quality: QUALITY_SCENES, speed: SPEED_SCEN
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
-const BRANDS = [
-  ['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23],
-];
 
 function Btn({ href, tone = 'lime', children, onClick }) {
   const tones = {
@@ -130,12 +126,7 @@ export default function BenefitPage({ slug }) {
           </section>
 
           {/* 2 — Trusted by */}
-          <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
-            <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
-              <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ industry-leading brands</p>
-              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
-            </ScrubText>
-          </section>
+          <TrustStrip />
 
           {/* 3 — What Frank delivers: the home page's progress tabs, each with its original picture */}
           <div className="pt-[clamp(88px,10vw,150px)]">

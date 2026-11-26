@@ -1,16 +1,15 @@
 // LiveUseCasePage (V21.04): the four use-case pages that are not on the doc's template (Product discovery, Feature discovery, Market discovery,
 // Win/loss analysis), copied from the live hifrank.ai pages in the live pages' own order: hero → "Trusted by" → "What you're dealing with" (the
-// pains, in quotes) → "The Frank Solution" → "How Frank Runs" (three steps with the live pictures) → "What You'll Learn" (the Roles pages' stacked cards) → the site's template wheel → FAQ → closing. The words and pictures are the live pages' (usecases/live.json, public/use-case/<slug>/); the hero has no picture, only
+// pains, in quotes) → (side by side, as the live page) "The Frank Solution" → "How Frank Runs" (three steps with the live pictures) → "What You'll Learn" (the Roles pages' stacked cards) → the site's template wheel → FAQ → closing. The words and pictures are the live pages' (usecases/live.json, public/use-case/<slug>/); the hero has no picture, only
 // the site's general hero panel. The live Feature discovery FAQ has six answers with no question: they are left out.
 import { useMemo } from 'react';
 import { MotionConfig, useReducedMotion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
-import { TITLE, Eyebrow, SUBTITLE } from './titles';
+import { TITLE, Eyebrow } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
-import BrandMarquee from './BrandMarquee';
-import { PL_LOGOS } from './logos/prelaunchBrands';
+import TrustStrip from './TrustStrip';
 import HowItWorks from './HowItWorks';
 import FAQ from './FAQ';
 import RoleStack from './RoleStack';
@@ -23,7 +22,6 @@ import { FOCUS, Rise } from './product-updates/parts';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
-const BRANDS = [['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23]];
 
 function Btn({ href, tone = 'lime', children }) {
   const tones = { lime: 'bg-[#d1f899] text-ink hover:bg-[#c4ef84]', ghost: 'bg-white/[0.08] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)] hover:bg-white/[0.14]' };
@@ -40,8 +38,8 @@ export default function LiveUseCasePage({ slug }) {
   const d = LIVE[slug];
   const reduce = !!useReducedMotion();
   const steps = useMemo(() => stepsOf(slug), [slug]);
-  const intro = slug === 'win-loss-analysis' ? null : d.solution[0];
-  const points = intro ? d.solution.slice(1) : d.solution;
+  // Row against row; the live pages list as many solutions as problems.
+  const rows = d.problem.quotes.map((q, i) => [q, d.solution[i]]);
   return (
     <MotionConfig reducedMotion="user">
       <div className="fk v9 v19 relative [text-wrap:pretty]" id="top" style={{ background: '#ffffff' }}>
@@ -66,44 +64,60 @@ export default function LiveUseCasePage({ slug }) {
           </section>
 
           {/* 2 — Trusted by */}
-          <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
-            <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
-              <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ industry-leading brands</p>
-              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
-            </ScrubText>
-          </section>
+          <TrustStrip />
 
-          {/* 3 — What you're dealing with */}
-          <section aria-labelledby="lu-problem-title" className="px-4 pt-[clamp(88px,10vw,150px)] md:px-10">
-            <div className="rounded-[32px] bg-[#fffdf3] px-5 py-[clamp(56px,7vw,112px)] sm:px-10 md:rounded-[44px]">
-              <div className="mx-auto max-w-[1200px]">
-                <ScrubText reduce={reduce}><Eyebrow className="mb-6 sm:mb-8">What you’re dealing with</Eyebrow></ScrubText>
-                <ScrubTitle reduce={reduce} id="lu-problem-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={d.problem.title} />
-                <ul className="m-0 mt-12 flex list-none flex-wrap justify-center gap-4 p-0 sm:mt-16">
-                  {d.problem.quotes.map((q, i) => (
-                    <ScrubText as="li" key={q} reduce={reduce} lag={(i % 3) * 0.05} className="w-full rounded-[24px] bg-white p-7 text-left shadow-[0_0_0_1px_rgba(26,23,20,0.06)] max-md:shadow-[0_0_0_1px_rgba(26,23,20,0.14)] sm:p-8 md:w-[calc((100%-2rem)/3)]">
-                      <p className="m-0 font-serif text-[clamp(19px,1.6vw,22px)] italic leading-[1.45] text-ink">{q}</p>
-                    </ScrubText>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          {/* 4 — The Frank Solution */}
-          <section aria-labelledby="lu-sol-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
+          {/* 3 — What you're dealing with vs The Frank Solution: the live page's comparison. Two columns from 768px, the problems on the
+                left with a cross and the Frank solution on the right (dark) with a tick, row against row; on phones, one card each. */}
+          <section aria-labelledby="lu-problem-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
             <div className="mx-auto max-w-[1200px]">
-              <ScrubText reduce={reduce}><Eyebrow className="mb-6 sm:mb-8">The Frank solution</Eyebrow></ScrubText>
-              <ScrubTitle reduce={reduce} id="lu-sol-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['The Frank Solution']} />
-              {intro && <ScrubText as="p" reduce={reduce} lag={0.05} className={SUBTITLE + ' mx-auto mb-0 mt-6 max-w-[52ch] text-center'}>{intro}</ScrubText>}
-              <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-2 xl:grid-cols-3">
-                {points.map((p, i) => (
-                  <ScrubText as="li" key={p} reduce={reduce} lag={(i % 3) * 0.05} className="flex gap-4 rounded-[24px] bg-[#fffdf3] p-7 text-left shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] max-md:bg-white max-md:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)]">
-                    <span aria-hidden="true" className="grid size-9 shrink-0 place-items-center rounded-full bg-[#d1f899] text-[#2a321e]"><Check className="size-5" strokeWidth={2} /></span>
-                    <p className="m-0 font-sans text-[16px] leading-[1.55] text-ink">{p}</p>
-                  </ScrubText>
-                ))}
-              </ul>
+              <ScrubTitle reduce={reduce} id="lu-problem-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={d.problem.title} />
+              <ScrubText reduce={reduce} lag={0.1} className="mt-12 hidden sm:mt-16 md:block">
+                <div role="table" aria-label="What you’re dealing with, and the Frank solution" className="grid grid-cols-2">
+                  <div role="row" className="contents">
+                    <div role="columnheader" className="rounded-tl-[24px] bg-[#fffdf3] px-7 py-6 font-sans text-[13.5px] font-medium uppercase tracking-[0.08em] text-ink">What you’re dealing with</div>
+                    <div role="columnheader" className="rounded-tr-[24px] bg-[#0f2e27] px-7 py-6 font-sans text-[13.5px] font-medium uppercase tracking-[0.08em] text-white">The Frank Solution</div>
+                  </div>
+                  {rows.map(([q, sol], i) => {
+                    const last = i === rows.length - 1;
+                    return (
+                      <div role="row" key={i} className="contents">
+                        <div role="cell" className={'flex items-start gap-4 border-0 border-t border-solid border-[#1a1714]/[0.08] bg-[#fffdf3] px-7 py-6 ' + (last ? 'rounded-bl-[24px]' : '')}>
+                          <X aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-ink/70" strokeWidth={1.6} />
+                          <p className="m-0 font-sans text-[16px] leading-[1.55] text-ink">{q}</p>
+                        </div>
+                        <div role="cell" className={'flex items-start gap-4 border-0 border-t border-solid border-white/[0.12] bg-[#0f2e27] px-7 py-6 ' + (last ? 'rounded-br-[24px]' : '')}>
+                          <Check aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-[#d1f899]" strokeWidth={1.8} />
+                          <p className="m-0 font-sans text-[16px] leading-[1.55] text-white">{sol}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </ScrubText>
+              <div className="mt-12 grid gap-4 md:hidden">
+                <ScrubText reduce={reduce} className="rounded-[24px] bg-white p-6 shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)]">
+                  <p className="m-0 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-ink">What you’re dealing with</p>
+                  <ul className="m-0 mt-4 list-none p-0">
+                    {d.problem.quotes.map(q => (
+                      <li key={q} className="flex items-start gap-3 border-0 border-t border-solid border-[#1a1714]/[0.08] py-4 first:border-t-0 first:pt-0">
+                        <X aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-ink/70" strokeWidth={1.6} />
+                        <p className="m-0 font-sans text-[15.5px] leading-[1.55] text-ink">{q}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </ScrubText>
+                <ScrubText reduce={reduce} lag={0.05} className="rounded-[24px] bg-[#0f2e27] p-6">
+                  <p className="m-0 font-sans text-[13px] font-medium uppercase tracking-[0.08em] text-white">The Frank Solution</p>
+                  <ul className="m-0 mt-4 list-none p-0">
+                    {d.solution.map(t => (
+                      <li key={t} className="flex items-start gap-3 border-0 border-t border-solid border-white/[0.12] py-4 first:border-t-0 first:pt-0">
+                        <Check aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-[#d1f899]" strokeWidth={1.8} />
+                        <p className="m-0 font-sans text-[15.5px] leading-[1.55] text-white">{t}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </ScrubText>
+              </div>
             </div>
           </section>
 

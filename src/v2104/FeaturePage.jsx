@@ -6,7 +6,7 @@
 //   FAQ; ClosingCTA (the home page's closing panel, with this page's words); Footer.
 // The words are the live pages' (hifrank.ai/features/<slug>, in features/data.js); the visuals are theirs too
 // (features/media.js, public/features/<slug>/), in the original's own cream and olive.
-import BrandMarquee from './BrandMarquee';
+import TrustStrip from './TrustStrip';
 import { useMemo } from 'react';
 import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
@@ -14,7 +14,6 @@ import Header from '../components/Header';
 import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
-import { PL_LOGOS } from './logos/prelaunchBrands';
 import HowItWorks from './HowItWorks';
 import UseCases from './UseCases';
 import SecuritySection from './SecuritySection';
@@ -38,9 +37,6 @@ const SIGNUP = 'https://app.hifrank.ai/signup';
 const TRY = '/try-frank'; // the Try Frank page on this site
 const EASE = [0.23, 1, 0.32, 1];
 const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink';
-const BRANDS = [
-  ['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23],
-];
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
 
 function Rise({ as = 'div', delay = 0, reduce, className, children, ...rest }) {
@@ -190,12 +186,7 @@ export default function FeaturePage({ slug }) {
           </section>
 
           {/* 2 — Trusted by */}
-          <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
-            <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
-              <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ brands</p>
-              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
-            </ScrubText>
-          </section>
+          <TrustStrip />
 
           {/* 3 — How it works: the home page's progress tabs, with the original page's visual in each step. */}
           <div className="pt-[clamp(88px,10vw,150px)]">

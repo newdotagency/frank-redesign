@@ -19,9 +19,8 @@ import ClosingCTA from './ClosingCTA';
 import Footer from './Footer';
 import RoleHero from './RoleHero';
 import ROLES from './roles/roles.json';
-import BrandMarquee from './BrandMarquee';
+import TrustStrip from './TrustStrip';
 import RoleStack from './RoleStack';
-import { PL_LOGOS } from './logos/prelaunchBrands';
 import { siteHref } from '../lib/sitePaths';
 import { FOCUS } from './product-updates/parts';
 
@@ -41,7 +40,6 @@ const kitOf = slug => ({
     </span>
   ),
 });
-const BRANDS = [['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23]];
 
 // The tabs' pictures: the feature and benefit pages' own scenes (drawn in the page's colours), picked per tab in roles.json as "set.index".
 const SCENE_SETS = { speed: SPEED_SCENES, scale: SCALE_SCENES, price: PRICE_SCENES, quality: QUALITY_SCENES, summaries: SUMMARIES_SCENES, transparency: TRANSPARENCY_SCENES };
@@ -82,12 +80,7 @@ export default function RolePage({ slug }) {
           <RoleHero d={d} person={`/roles/${slug}/person.webp`} />
 
           {/* 2 — Credibility: the "Trusted by" logo row */}
-          <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
-            <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
-              <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">{d.trust}</p>
-              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
-            </ScrubText>
-          </section>
+          <TrustStrip />
 
           {/* 3 — The problem: the home page's progress tabs, each with the live page's picture */}
           <div className="pt-[clamp(88px,10vw,150px)]">

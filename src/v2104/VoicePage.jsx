@@ -13,7 +13,7 @@
 //   7. Security (SOC 2, the ESOMAR award, GDPR), the FAQ, a lime closing panel, then the footer.
 // Entrance: the hero rises in once on load; everything else rises in with the scroll (reveal.jsx).
 // Motion inside the scenes runs only while they're on screen; reduced motion: they hold still.
-import BrandMarquee from './BrandMarquee';
+import TrustStrip from './TrustStrip';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check, Globe, List, MicOff, PhoneOff } from 'lucide-react';
@@ -24,7 +24,6 @@ import Glasses from '../v3/Glasses';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
 import MarkedPhrase from './MarkedPhrase';
 import { ScrubText, ScrubTitle } from './reveal';
-import { PL_LOGOS } from './logos/prelaunchBrands';
 import { InterviewRoom, SCRIPTS } from './LiveInterview';
 import { PLATE, GRAIN } from './InterviewExample';
 import HowItWorks from './HowItWorks';
@@ -408,11 +407,6 @@ export const STATS = [
   { n: '30+', what: 'languages available', text: 'Talk to customers worldwide. Frank speaks 30+ languages and delivers instant translations (coming soon).' },
 ];
 
-export const BRANDS = [
-  ['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23],
-];
-
-
 export const Note = ({ dark }) => (
   <p className={'m-0 mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-sans text-[13.5px] lg:justify-start ' + (dark ? 'text-ink/70' : 'text-ink-3')}>
     <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />Claim 225 signup credits</span>
@@ -455,12 +449,7 @@ export default function VoicePage() {
           </section>
 
           {/* 2 — Trusted by. */}
-          <section aria-label="Trusted by 1,000+ brands" className="px-4 pt-[clamp(56px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
-            <ScrubText reduce={reduce} className="mx-auto max-w-[1312px] text-center">
-              <p className="m-0 font-sans text-[12.5px] font-light uppercase tracking-[0.08em] text-ink-3">Trusted by 1,000+ brands</p>
-              <BrandMarquee brands={BRANDS} logos={PL_LOGOS} />
-            </ScrubText>
-          </section>
+          <TrustStrip />
 
           {/* 3 — Figures. */}
           <section aria-label="Frank in numbers" className="px-4 pb-[clamp(112px,13vw,200px)] pt-[clamp(80px,9vw,136px)] sm:px-[clamp(16px,4vw,48px)]">
