@@ -1,6 +1,6 @@
 // LiveUseCasePage (V21.04): the four use-case pages that are not on the doc's template (Product discovery, Feature discovery, Market discovery,
 // Win/loss analysis), copied from the live hifrank.ai pages in the live pages' own order: hero → "Trusted by" → "What you're dealing with" (the
-// pains, in quotes) → (side by side, as the live page) "The Frank Solution" → "How Frank Runs" (three steps with the live pictures) → "What You'll Learn" (the Roles pages' stacked cards) → the site's template wheel → FAQ → closing. The words and pictures are the live pages' (usecases/live.json, public/use-case/<slug>/); the hero has no picture, only
+// pains, in quotes) → (side by side, as the live page) "The Frank Solution" → "How Frank Runs" (the three steps, each with one of the feature and benefit pages' redrawn scenes in place of the live pictures) → "What You'll Learn" (the Roles pages' stacked cards) → the site's template wheel → FAQ → closing. The words are the live pages' (usecases/live.json); the hero has no picture, only
 // the site's general hero panel. The live Feature discovery FAQ has six answers with no question: they are left out.
 import { useMemo } from 'react';
 import { MotionConfig, useReducedMotion } from 'framer-motion';
@@ -16,7 +16,7 @@ import RoleStack from './RoleStack';
 import UseCases from './UseCases';
 import ClosingCTA from './ClosingCTA';
 import Footer from './Footer';
-import { imageScene } from './features/scenes';
+import { sceneOf } from './features/sceneSets';
 import LIVE from './usecases/live.json';
 import { FOCUS, Rise } from './product-updates/parts';
 
@@ -31,7 +31,7 @@ function Btn({ href, tone = 'lime', children }) {
 // Built once per page, so a step's picture keeps its identity between renders.
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = LIVE[slug].how.steps.map((s, i) => ({
-  name: 'Step ' + (i + 1), title: s.title.replace(/^\d+\.\s*/, ''), body: [s.text], scene: imageScene(s.img, s.title),
+  name: 'Step ' + (i + 1), title: s.title.replace(/^\d+\.\s*/, ''), body: [s.text], scene: sceneOf(s.scene),
 })));
 
 export default function LiveUseCasePage({ slug }) {

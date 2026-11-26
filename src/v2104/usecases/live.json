@@ -43,19 +43,19 @@
    "title": "How Frank Runs",
    "steps": [
     {
-     "img": "/use-case/ai-product-discovery/step-1.webp",
      "title": "1. Frame the Idea or Concept",
-     "text": "Share what you want to explore — a product idea, concept, positioning, or problem space. Frank helps structure the right discovery questions."
+     "text": "Share what you want to explore — a product idea, concept, positioning, or problem space. Frank helps structure the right discovery questions.",
+     "scene": "speed.0"
     },
     {
-     "img": "/use-case/ai-product-discovery/step-2.webp",
      "title": "2. Run Conversations at Scale",
-     "text": "Customers engage in natural, in-depth interviews — sharing how they think, what they need, and how your idea fits (or doesn’t)."
+     "text": "Customers engage in natural, in-depth interviews — sharing how they think, what they need, and how your idea fits (or doesn’t).",
+     "scene": "speed.1"
     },
     {
-     "img": "/use-case/ai-product-discovery/step-3.webp",
      "title": "3. Extract Patterns & Direction",
-     "text": "Frank surfaces themes, objections, desires, and opportunities — helping you understand what to build, refine, or rethink."
+     "text": "Frank surfaces themes, objections, desires, and opportunities — helping you understand what to build, refine, or rethink.",
+     "scene": "quality.1"
     }
    ]
   },
@@ -195,19 +195,19 @@
    "title": "How Frank Runs",
    "steps": [
     {
-     "img": "/use-case/ai-feature-discovery/step-1.webp",
      "title": "1. Define Feature Touchpoints",
-     "text": "Choose when to trigger interviews — after feature use, repeated use, non-use, or drop-off moments."
+     "text": "Choose when to trigger interviews — after feature use, repeated use, non-use, or drop-off moments.",
+     "scene": "alwayson.0"
     },
     {
-     "img": "/use-case/ai-feature-discovery/step-2.webp",
      "title": "2. Capture Real User Experience",
-     "text": "Frank runs short, natural conversations with users about how they experienced the feature — what worked, what didn’t, and why."
+     "text": "Frank runs short, natural conversations with users about how they experienced the feature — what worked, what didn’t, and why.",
+     "scene": "global.1"
     },
     {
-     "img": "/use-case/ai-feature-discovery/step-3.webp",
      "title": "3. Turn Usage into Insight",
-     "text": "Every response is analyzed and grouped into clear themes, showing friction points, drivers of adoption, and opportunities to improve."
+     "text": "Every response is analyzed and grouped into clear themes, showing friction points, drivers of adoption, and opportunities to improve.",
+     "scene": "summaries.2"
     }
    ]
   },
@@ -329,19 +329,19 @@
    "title": "How Frank Runs",
    "steps": [
     {
-     "img": "/use-case/market-discovery/step-1.webp",
      "title": "1. Define the Market & Hypotheses",
-     "text": "Choose the region, segment, or audience you want to explore, and outline what you want to learn — demand, positioning, pricing, or behavior."
+     "text": "Choose the region, segment, or audience you want to explore, and outline what you want to learn — demand, positioning, pricing, or behavior.",
+     "scene": "global.0"
     },
     {
-     "img": "/use-case/market-discovery/step-2.webp",
      "title": "2. Run Local Conversations at Scale",
-     "text": "Frank interviews customers in their own language, capturing how they think, what they need, and how they respond to your product or idea."
+     "text": "Frank interviews customers in their own language, capturing how they think, what they need, and how they respond to your product or idea.",
+     "scene": "scale.2"
     },
     {
-     "img": "/use-case/market-discovery/step-3.webp",
      "title": "3. Compare, Analyze & Decide",
-     "text": "Insights are structured into themes across regions — helping you understand where you fit, what to adapt, and whether to enter at all."
+     "text": "Insights are structured into themes across regions — helping you understand where you fit, what to adapt, and whether to enter at all.",
+     "scene": "scale.3"
     }
    ]
   },
@@ -478,19 +478,19 @@
    "title": "How Frank Works",
    "steps": [
     {
-     "img": "/use-case/win-loss-analysis/step-1.webp",
      "title": "1. Trigger the Interview",
-     "text": "Embed Frank in your site or app, or send it by email after key moments. Start the conversation while the experience is still fresh."
+     "text": "Embed Frank in your site or app, or send it by email after key moments. Start the conversation while the experience is still fresh.",
+     "scene": "alwayson.0"
     },
     {
-     "img": "/use-case/win-loss-analysis/step-2.webp",
      "title": "2. Frank Finds the Real Reason",
-     "text": "Frank adapts each conversation in real time, probing answers, challenging assumptions, and uncovering the why behind every decision - all without a sales rep."
+     "text": "Frank adapts each conversation in real time, probing answers, challenging assumptions, and uncovering the why behind every decision - all without a sales rep.",
+     "scene": "quality.2"
     },
     {
-     "img": "/use-case/win-loss-analysis/step-3.webp",
      "title": "3. Turn Every Deal Into Sales Intelligence",
-     "text": "Frank reveals why people buy, hesitate, or walk away - turning real conversations into insights to improve your messaging, funnel, and sales process."
+     "text": "Frank reveals why people buy, hesitate, or walk away - turning real conversations into insights to improve your messaging, funnel, and sales process.",
+     "scene": "speed.2"
     }
    ]
   },
