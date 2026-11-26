@@ -41,15 +41,17 @@ const FOCUS = 'focus-visible:outline focus-visible:outline-2 focus-visible:outli
 const BODY = 'font-sans text-[17px] leading-[1.6] text-ink-2 sm:text-[18px]';
 
 // "Try it now" buttons on this page scroll to the live widget (section 5), its title clear of the header.
-function toTry(e) {
-  const el = document.getElementById('vo-try');
+// (Exported, with Rise, Btn, the scenes and Answer, for the AI video interviewer page, which shares this frame.)
+export const toSection = id => e => {
+  const el = document.getElementById(id);
   if (!el) return;
   e.preventDefault();
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24, behavior: reduce ? 'auto' : 'smooth' });
-}
+};
+const toTry = toSection('vo-try');
 
-function Rise({ as = 'div', delay = 0, reduce, className, children, ...rest }) {
+export function Rise({ as = 'div', delay = 0, reduce, className, children, ...rest }) {
   const M = motion[as];
   return (
     <M initial={reduce ? { opacity: 0 } : { opacity: 0, transform: 'translateY(16px)' }}
@@ -59,7 +61,7 @@ function Rise({ as = 'div', delay = 0, reduce, className, children, ...rest }) {
 }
 
 // Buttons: the page's pill with its arrow in a circle at the end (nudges forward on hover), and a quiet one.
-function Btn({ href, onClick, tone = 'ink', children, arrow = true, ext = false }) {
+export function Btn({ href, onClick, tone = 'ink', children, arrow = true, ext = false }) {
   const tones = {
     ink: 'bg-[#1a1714] text-white hover:bg-[#2a2622]',
     lime: 'bg-[#d1f899] text-ink hover:bg-[#c4ef84]',
@@ -114,7 +116,7 @@ const SLOT = [
   { transform: 'translate(-44px, -40px) rotate(-6deg) scale(0.86)', opacity: 0.6 },
   { transform: 'translate(0px, -54px) rotate(0deg) scale(0.8)', opacity: 0 },
 ];
-function CrowdCard({ c, k, live, reduce }) {
+function CrowdCard({ c, k, live, reduce, saw }) {
   const vid = useRef(null);
   const front = k === 0;
   useEffect(() => {
@@ -144,7 +146,7 @@ function CrowdCard({ c, k, live, reduce }) {
             className="absolute inset-x-3 bottom-3 rounded-[18px] bg-white/95 p-3.5 shadow-[0_16px_32px_-18px_rgba(0,0,0,0.6)]">
             <p className="m-0 font-serif text-[16px] leading-[1.35] text-ink">“{c.q}”</p>
             <span className="mt-2 flex items-center gap-2 font-sans text-[11.5px] text-ink-3">
-              Frank heard
+              {saw}
               <span className={'rounded-full px-2 py-0.5 font-medium ' + c.tone}>{c.tag}</span>
             </span>
           </motion.div>
@@ -153,26 +155,27 @@ function CrowdCard({ c, k, live, reduce }) {
     </motion.div>
   );
 }
-function VoiceCrowd({ reduce }) {
+// crowd: the cards (default the voice page's); saw: the words before the tag ("Frank heard" by voice).
+export function VoiceCrowd({ reduce, crowd = CROWD, saw = 'Frank heard' }) {
   const ref = useRef(null);
   const live = useInView(ref, { amount: 0.3 }) && !reduce;
   const [who, setWho] = useState(0);
   useEffect(() => {
     if (!live) return;
-    const id = setInterval(() => setWho(w => (w + 1) % CROWD.length), 3600);
+    const id = setInterval(() => setWho(w => (w + 1) % crowd.length), 3600);
     return () => clearInterval(id);
-  }, [live]);
+  }, [live, crowd.length]);
   return (
     <div ref={ref} aria-hidden="true" className="relative mx-auto flex h-[400px] w-full max-w-[560px] items-end justify-center pb-2 sm:h-[460px]">
       <div className="relative aspect-[4/5] w-[260px] sm:w-[300px]">
-        {CROWD.map((c, i) => <CrowdCard key={c.video} c={c} k={(i - who + CROWD.length) % CROWD.length} live={live} reduce={reduce} />)}
+        {crowd.map((c, i) => <CrowdCard key={c.video} c={c} k={(i - who + crowd.length) % crowd.length} live={live} reduce={reduce} saw={saw} />)}
       </div>
     </div>
   );
 }
 
 // ——— 4. The three answers' scenes. Each sits in a cream card at 5:4 (near the homepage's 4:3 objection boxes).
-const CARD = 'relative w-full overflow-hidden rounded-[28px] bg-[#fffdf3] shadow-[inset_0_0_0_1px_rgba(26,23,20,0.04)] lg:rounded-[32px]';
+export const CARD = 'relative w-full overflow-hidden rounded-[28px] bg-[#fffdf3] shadow-[inset_0_0_0_1px_rgba(26,23,20,0.04)] lg:rounded-[32px]';
 const SCENE = CARD + ' aspect-square sm:aspect-[5/4]';
 
 // Tone: the live page's "Voice Call" phone, rebuilt in Frank's colours (the video's lavender ring, red button,
@@ -183,7 +186,7 @@ const SCENE = CARD + ' aspect-square sm:aspect-[5/4]';
 // timer on the video; the call controls on a clean tray (end call in ink).
 // Everything inside the phone is sized to the phone's width (container units), so it scales as one piece.
 // Motion only while on screen; reduced motion: still, the clip's first frame.
-function PhoneScene({ reduce }) {
+export function PhoneScene({ reduce }) {
   const box = useRef(null);
   const vid = useRef(null);
   const live = useInView(box, { amount: 0.3 }) && !reduce;
@@ -283,7 +286,7 @@ function PhoneScene({ reduce }) {
 // to Frank's lime and green (re-encoded on this Mac with Core Image: calendar-brand.mp4). Centred on the cream
 // card, rounded like a screen, muted and looping while on screen (paused off screen); reduced motion: the
 // first frame.
-function CalendarScene({ reduce }) {
+export function CalendarScene({ reduce }) {
   const box = useRef(null);
   const vid = useRef(null);
   const live = useInView(box, { amount: 0.3 }) && !reduce;
@@ -309,7 +312,7 @@ const HELLOS = [
   ['Olá', 'Portuguese'], ['こんにちは', 'Japanese'], ['안녕하세요', 'Korean'], ['你好', 'Chinese'],
   [Globe, 'Multilanguage'],
 ];
-function ReachScene({ reduce }) {
+export function ReachScene({ reduce }) {
   const ref = useRef(null);
   const live = useInView(ref, { amount: 0.4 }) && !reduce;
   const [k, setK] = useState(0);
@@ -349,7 +352,7 @@ const ANSWERS = [
 
 // first: the first of these sections, the page's first titled section after the hero, so the only one whose
 // title is styled (its second line under the marker; user rule, 2026-11-23). The others are plain.
-function Answer({ a, reduce, first }) {
+export function Answer({ a, reduce, first }) {
   const titleId = a.id + '-title';
   return (
     <section aria-labelledby={titleId} className="relative px-4 pb-[clamp(112px,13vw,200px)] sm:px-[clamp(16px,4vw,48px)]">
@@ -391,18 +394,18 @@ const FAQS = [
   { q: 'Is it secure?', a: ['Yes! Prelaunch is SOC 2 certified and GDPR compliant. All audio data is encrypted and anonymized for privacy and compliance.'] },
 ];
 
-const STATS = [
+export const STATS = [
   { n: '100x', what: 'more interviews per month', text: 'Run and analyze hundreds of deep interviews automatically. No scheduling, no transcripts, no hassle.' },
   { n: '50x', what: 'more affordable', text: 'Traditional interviews cost $500–$1,000 each. Get the same insights for a fraction of the price.' },
   { n: '30+', what: 'languages available', text: 'Talk to customers worldwide. Frank speaks 30+ languages and delivers instant translations (coming soon).' },
 ];
 
-const BRANDS = [
+export const BRANDS = [
   ['Bosch', 'bosch', 20], ['Ducati', 'ducati', 17], ['3M', '3m', 26], ['Haier', 'haier', 24], ['Philips', 'philips', 16], ['P&G', 'pg', 26], ['Audi', 'audi', 23],
 ];
 
 
-const Note = ({ dark }) => (
+export const Note = ({ dark }) => (
   <p className={'m-0 mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-sans text-[13.5px] lg:justify-start ' + (dark ? 'text-ink/70' : 'text-ink-3')}>
     <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />Claim 225 signup credits</span>
     <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />No credit card required</span>
