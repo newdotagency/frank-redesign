@@ -20,7 +20,7 @@ import PlaybookIcon from './PlaybookIcon';
 import {
   BadgeCheck, BookOpen, Boxes, Clock3, FileText, Globe, LayoutGrid, Megaphone,
   Mic, Plug, Quote, Rocket, Scale, Search, ShieldCheck, ShoppingBag, Sparkles, Tag, TrendingUp,
-  Video, Zap, ArrowRight, PhoneCall, Lightbulb, Puzzle, Compass, Trophy,
+  Video, Zap, ArrowRight, PhoneCall,
 } from 'lucide-react';
 
 import { siteHref, TEMPLATE_PATHS } from '../lib/sitePaths';
@@ -66,6 +66,7 @@ export const MENUS = {
       // activation are the Figma template cards' own; the others are drafted from the home page's problem lines.
       { label: 'Use cases', cols: 2, items: [
         tp('churn', 'Churn reasons', 'Cancellation causes, ranked'),
+        it(PhoneCall, 'Discovery calls', 'Why new customers chose you', '/use-case/ai-discovery-calls'),
         tp('activation', 'Activation barriers', 'Why new users don’t start'),
         tp('trial', 'Trial conversion', 'Why trial users don’t pay'),
         tp('adoption', 'Feature adoption', 'Why a feature goes unused'),
@@ -76,14 +77,6 @@ export const MENUS = {
         tp('value', 'Customer value drivers', 'Why customers keep coming back'),
         tp('checkout', 'Checkout abandonment', 'Why payment isn’t completed'),
         tp('downgrade', 'Downgrade reasons', 'Why customers pay for less'),
-      ] },
-      // The use-case pages (/use-case/<slug>), one per research question (2026-11-26).
-      { label: 'More use cases', items: [
-        it(PhoneCall, 'Discovery calls', 'Why new customers chose you', '/use-case/ai-discovery-calls'),
-        it(Lightbulb, 'Product discovery', 'Hear the problem before building', '/use-case/ai-product-discovery'),
-        it(Puzzle, 'Feature discovery', 'Why users adopt or ignore it', '/use-case/ai-feature-discovery'),
-        it(Compass, 'Market discovery', 'How a new market really buys', '/use-case/market-discovery'),
-        it(Trophy, 'Win/loss analysis', 'Why you win and lose deals', '/use-case/win-loss-analysis'),
       ] },
       { label: 'Roles', items: [
         it(Boxes, 'Product Managers', 'Decisions backed by customers', '/roles/product-managers'),
