@@ -85,7 +85,7 @@
           "Scale",
           "Reach 100+ users overnight",
           "Voice or video interviews run at the same time, with results ready by morning.",
-          "scale"
+          "progress"
         ],
         [
           "Build",
@@ -161,6 +161,185 @@
         "title": "Import setup is confusing",
         "note": "38 of 113 users"
       }
+    ],
+    "featureIcons": [
+      "Zap",
+      "Users",
+      "Search",
+      "ShieldCheck"
     ]
+  },
+  "growth-teams": {
+    "slug": "growth-teams",
+    "title": "AI Researcher for Growth & Marketing Teams | Frank",
+    "description": "Frank interviews 100+ customers overnight to uncover what they want, what they fear, why they buy and the words they use, so your next campaign lands harder.",
+    "label": "For Growth Teams",
+    "hero": [
+      "Stop Guessing What",
+      "Messaging Will Convert."
+    ],
+    "heroP": "Frank interviews 100+ customers overnight to uncover what they want, what they fear, why they buy, and the words they actually use, so your next campaign lands harder.",
+    "heroCards": [
+      {
+        "kind": "quote",
+        "answer": "The pricing page just felt unclear.",
+        "followUp": "What exactly was unclear?"
+      },
+      {
+        "kind": "phrases",
+        "label": "Words customers use",
+        "items": [
+          "“saves me hours”",
+          "“no more guessing”",
+          "“finally clear”"
+        ]
+      },
+      {
+        "kind": "count",
+        "label": "Customers interviewed",
+        "value": "112",
+        "note": "overnight"
+      },
+      {
+        "kind": "theme",
+        "tag": "Top objection",
+        "title": "Pricing is hard to compare",
+        "note": "41 of 112 customers"
+      }
+    ],
+    "trust": {
+      "title": "Developed by Prelaunch.com",
+      "sub": "Delivering consumer insights to 1,000+ brands globally for 7+ years",
+      "badges": [
+        [
+          "SOC 2",
+          "Independently audited for security and privacy"
+        ],
+        [
+          "Award-winning methodology",
+          "Silver Winner of the ESOMAR Award for Breakthrough Research Methodology"
+        ],
+        [
+          "GDPR",
+          "Privacy built to meet EU regulations"
+        ]
+      ]
+    },
+    "problem": {
+      "label": "The problem",
+      "lines": [
+        "How many customer assumptions are",
+        "in your marketing strategy?"
+      ],
+      "sub": "No waiting weeks for research. No relying on opinions. No writing copy in the dark."
+    },
+    "featureIcons": [
+      "MessageCircle",
+      "AlertTriangle",
+      "Quote",
+      "CalendarCheck"
+    ],
+    "features": [
+      [
+        "Hear what customers actually care about.",
+        "Frank interviews real prospects and customers to uncover the pains, desires, objections, and motivations driving action, so messaging starts with your customers’ reality, in their own voice.",
+        "feature-1",
+        "Customers’ interview answers grouped by what they care about"
+      ],
+      [
+        "Discover what’s stopping people from buying.",
+        "Frank probes into hesitation, trust gaps, pricing friction, confusion, and emotional blockers that analytics can’t explain.",
+        "feature-2",
+        "Interview insights on what stops people from buying"
+      ],
+      [
+        "Get customer language you can use immediately.",
+        "Frank surfaces the exact phrases customers use to describe their problems, desired outcomes, frustrations, and buying triggers.",
+        "feature-3",
+        "Customer phrases surfaced from interviews"
+      ],
+      [
+        "Launch insight-backed campaigns this week.",
+        "Interview 100+ customers overnight and wake up to actionable findings you can use in copy, offers, positioning, creative, and CRO.",
+        "feature-4",
+        "Interview findings ready for campaigns"
+      ]
+    ],
+    "how": {
+      "label": "How Frank works for marketers",
+      "lines": [
+        "Build Campaigns Customers",
+        "Already Wrote For You"
+      ],
+      "sub": "Frank continuously interviews your market across signup flows, purchases, abandoned carts, churn moments, and customer segments, giving you a live stream of messaging intelligence.",
+      "steps": [
+        [
+          "Write",
+          "Use words customers already believe",
+          "Frank extracts real customer phrasing you can plug directly into your landing pages, ads, sales funnels and scripts, email marketing campaigns, offers, and retargeting campaigns.",
+          "build"
+        ],
+        [
+          "Discover",
+          "Find what actually drives action",
+          "Learn what drives people to click, buy, hesitate, compare, trust, or leave: why they chose to act now, what nearly stopped them, and which problem felt urgent enough to finally push them forward.",
+          "drivers"
+        ],
+        [
+          "Optimize",
+          "Fix leaks before spend increases",
+          "Use real interview insights to improve low-converting landing pages, underperforming ad hooks, confusing upsells and offers, pricing hesitations, trust issues and more.",
+          "leaks"
+        ],
+        [
+          "Scale",
+          "Research every segment simultaneously",
+          "Interview customers by typical segments like country, gender, age or persona, or embed Frank in specific funnels and understand customers coming from different campaign sources and offers.",
+          "scale"
+        ]
+      ]
+    },
+    "useCases": {
+      "label": "What marketers use Frank for",
+      "lines": [
+        "The research modern",
+        "growth teams actually need"
+      ],
+      "sub": "Frank covers the moments that matter most to growth and marketing teams.",
+      "cards": [
+        [
+          "Discovery calls",
+          "Turn every new customer into a deep discovery conversation.",
+          "/use-case/ai-discovery-calls",
+          "Phone"
+        ],
+        [
+          "Churn",
+          "Capture feedback exactly when customers cancel or disengage, all while the context is fresh.",
+          "/use-case/ai-churn-interviews",
+          "TrendingDown"
+        ],
+        [
+          "Product discovery",
+          "Know what to build, before you build it.",
+          "/use-case/ai-product-discovery",
+          "Search"
+        ],
+        [
+          "Feature discovery",
+          "Learn how users experience new features, where they struggle, and what to improve next.",
+          "/use-case/ai-feature-discovery",
+          "Compass"
+        ]
+      ]
+    },
+    "cta": {
+      "lines": [
+        "Your next best-performing campaign",
+        "may already be inside your customers’ heads"
+      ],
+      "sub": "Set up in 5 minutes. Insights overnight. Better messaging by tomorrow.",
+      "button": "Run 10 Free Interviews"
+    }
   }
 }

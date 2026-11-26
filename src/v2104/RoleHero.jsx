@@ -50,7 +50,13 @@ const Theme = ({ d }) => (
     <p className="m-0 mt-1 font-sans text-[12.5px] text-ink-2">{d.note}</p>
   </div>
 );
-const KIND = { count: Count, quote: Quote, ring: Ring, theme: Theme };
+const Phrases = ({ d }) => (
+  <div className={CARD + ' w-[204px] p-4'}>
+    <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">{d.label}</p>
+    <div className="mt-2.5 flex flex-wrap gap-1.5">{d.items.map(t => <span key={t} className="rounded-full bg-[#d1f899] px-2.5 py-1 font-sans text-[12.5px] text-[#2a321e]">{t}</span>)}</div>
+  </div>
+);
+const KIND = { phrases: Phrases, count: Count, quote: Quote, ring: Ring, theme: Theme };
 
 // Where each card sits, around a 360px-wide person in a 760px stage (desktop); on phones only the first two show, smaller and low at the edges so the face stays clear.
 const SPOTS = [
@@ -80,7 +86,7 @@ export default function RoleHero({ d, person }) {
           <img src={person} alt="" width="900" height="1350" draggable={false} className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain" />
           {d.heroCards.map((c, i) => {
             const C = KIND[c.kind];
-            return <Drift key={c.kind} reduce={reduce} dy={5 + (i % 2) * 2} dur={4.4 + i * 0.6} delay={i * 0.35} className={SPOTS[i]}><C d={c} /></Drift>;
+            return <Drift key={c.kind + i} reduce={reduce} dy={5 + (i % 2) * 2} dur={4.4 + i * 0.6} delay={i * 0.35} className={SPOTS[i]}><C d={c} /></Drift>;
           })}
         </Rise>
       </div>

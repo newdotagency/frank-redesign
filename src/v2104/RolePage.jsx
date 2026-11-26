@@ -3,7 +3,7 @@
 // use cases → closing. The words and the pictures are the live pages' (roles/roles.json, public/roles/<slug>/).
 import { useMemo } from 'react';
 import { MotionConfig, motion, useReducedMotion } from 'framer-motion';
-import { Zap, Users, Search, ShieldCheck, Phone, TrendingDown, Compass, Check } from 'lucide-react';
+import { Zap, Users, Search, ShieldCheck, MessageCircle, AlertTriangle, Quote, CalendarCheck, Phone, TrendingDown, Compass, Check } from 'lucide-react';
 import Header from '../components/Header';
 import { TITLE, Eyebrow, SUBTITLE } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
@@ -22,8 +22,7 @@ const SIGNUP = 'https://app.hifrank.ai/signup';
 const HREFS = { home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' };
 const EASE = [0.23, 1, 0.32, 1];
 const FIG = "font-['Figtree',sans-serif]";
-const FEATURE_ICONS = [Zap, Users, Search, ShieldCheck];
-const UC_ICONS = { Phone, TrendingDown, Search, Compass };
+const ICONS = { Zap, Users, Search, ShieldCheck, MessageCircle, AlertTriangle, Quote, CalendarCheck, Phone, TrendingDown, Compass };
 const SEALS = [soc2, esomar, gdpr];
 
 // A step's picture, filling the step card (the live page's picture).
@@ -55,14 +54,31 @@ const InterviewScene = cardScene(
     <p className="m-0 max-w-[90%] self-start rounded-[14px] rounded-bl-[4px] bg-[#0f2e27] px-3.5 py-2.5 text-white">Fine how? What did you expect to happen?</p>
     <p className="m-0 max-w-[85%] self-end rounded-[14px] rounded-br-[4px] bg-[#f3f1e6] px-3.5 py-2.5 text-ink">I expected the import to just work.</p>
   </div>);
-const ScaleScene = cardScene(
+const ProgressScene = cardScene(
   <div>
     <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">Overnight</p>
     <p className={FIG + ' m-0 mt-1 text-[40px] font-medium leading-none tracking-[-0.03em] text-ink'}>112 / 100+</p>
     <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#eef6df]"><div className="h-full w-[92%] rounded-full bg-[#9bc653]" /></div>
     <p className="m-0 mt-3 flex items-center gap-1.5 font-sans text-[13px] text-ink-2"><Check className="size-4 text-[#5f8f22]" strokeWidth={2.2} />Results ready by morning</p>
   </div>);
-const SCENES = { interview: InterviewScene, scale: ScaleScene };
+const DriversScene = cardScene(
+  <div>
+    <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">What moved them</p>
+    {[['Clear pricing page', 82], ['A friend’s referral', 64], ['Free trial', 51]].map(([t, v]) => (
+      <div key={t} className="mt-3.5">
+        <div className="flex justify-between font-sans text-[13.5px] text-ink"><span>{t}</span><span className="text-ink-2">{v}%</span></div>
+        <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-[#eef6df]"><div className="h-full rounded-full bg-[#9bc653]" style={{ width: v + '%' }} /></div>
+      </div>
+    ))}
+  </div>);
+const LeaksScene = cardScene(
+  <div>
+    <p className="m-0 font-sans text-[11.5px] font-light uppercase tracking-[0.08em] text-ink-3">Landing page leak</p>
+    <p className={FIG + ' m-0 mt-2 text-[17px] font-medium leading-[1.3] tracking-[-0.01em] text-ink'}>“I couldn’t tell what the plans included.”</p>
+    <div className="mt-4 flex items-center gap-2 rounded-[12px] bg-[#d1f899] px-3.5 py-2.5 font-sans text-[13.5px] font-medium text-[#2a321e]"><Check className="size-4" strokeWidth={2.4} />Fix: add a plan comparison table</div>
+    <p className="m-0 mt-3 font-sans text-[13px] text-ink-2">Mentioned by 41 of 112 customers</p>
+  </div>);
+const SCENES = { interview: InterviewScene, progress: ProgressScene, drivers: DriversScene, leaks: LeaksScene };
 
 const STEPS = {};
 const stepsOf = slug => STEPS[slug] || (STEPS[slug] = ROLES[slug].how.steps.map(([name, title, text, img]) => ({
@@ -106,7 +122,7 @@ export default function RolePage({ slug }) {
                 <ScrubText as="p" reduce={reduce} lag={0.05} className={SUBTITLE + ' mx-auto mb-0 mt-6 max-w-[44ch] text-center'}>{d.problem.sub}</ScrubText>
                 <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 md:grid-cols-2">
                   {d.features.map(([title, text, img, alt], i) => {
-                    const Icon = FEATURE_ICONS[i];
+                    const Icon = ICONS[d.featureIcons[i]];
                     return (
                       <ScrubText as="li" key={title} reduce={reduce} lag={(i % 2) * 0.05} className="flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_0_0_1px_rgba(26,23,20,0.06)] max-md:shadow-[0_0_0_1px_rgba(26,23,20,0.14)]">
                         <div className="p-7 sm:p-8">
@@ -136,7 +152,7 @@ export default function RolePage({ slug }) {
               <ScrubText as="p" reduce={reduce} lag={0.05} className={SUBTITLE + ' mx-auto mb-0 mt-6 max-w-[44ch] text-center'}>{d.useCases.sub}</ScrubText>
               <ul className="m-0 mt-12 grid list-none gap-4 p-0 sm:mt-16 sm:grid-cols-2 xl:grid-cols-4">
                 {d.useCases.cards.map(([title, text, href, icon], i) => {
-                  const Icon = UC_ICONS[icon];
+                  const Icon = ICONS[icon];
                   return (
                     <ScrubText as="li" key={title} reduce={reduce} lag={(i % 4) * 0.05} className="flex flex-col rounded-[24px] bg-[#fffdf3] p-7 text-left shadow-[inset_0_0_0_1px_rgba(26,23,20,0.05)] max-md:bg-white max-md:shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)] sm:p-8">
                       <span aria-hidden="true" className="grid size-12 place-items-center rounded-full bg-[#d1f899] text-[#2a321e]"><Icon className="size-6" strokeWidth={1.7} /></span>
