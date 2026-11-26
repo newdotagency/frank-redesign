@@ -16,7 +16,7 @@
 import BrandMarquee from './BrandMarquee';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Check, List, MicOff, PhoneOff } from 'lucide-react';
+import { ArrowRight, Check, Globe, List, MicOff, PhoneOff } from 'lucide-react';
 import Header from '../components/Header';
 import HighlightMarker from '../components/HighlightMarker';
 import { cornerGlowGrain } from '../components/grain';
@@ -302,12 +302,12 @@ function CalendarScene({ reduce }) {
   );
 }
 
-// Reach: hello in many languages as soft chips; one lights up at a time, as if Frank just greeted someone
-// there.
+// Reach: hello in each language Frank supports as soft chips, plus a Multilanguage chip with a globe; one
+// lights up at a time, as if Frank just greeted someone there.
 const HELLOS = [
-  ['Hello', 'English'], ['Hola', 'Spanish'], ['Bonjour', 'French'], ['Hallo', 'German'], ['Ciao', 'Italian'],
+  ['Hello', 'English (US)'], ['Hola', 'Spanish'], ['Bonjour', 'French'], ['Hallo', 'German'], ['Ciao', 'Italian'],
   ['Olá', 'Portuguese'], ['こんにちは', 'Japanese'], ['안녕하세요', 'Korean'], ['你好', 'Chinese'],
-  ['नमस्ते', 'Hindi'], ['مرحبا', 'Arabic'],
+  [Globe, 'Multilanguage'],
 ];
 function ReachScene({ reduce }) {
   const ref = useRef(null);
@@ -315,7 +315,7 @@ function ReachScene({ reduce }) {
   const [k, setK] = useState(0);
   useEffect(() => {
     if (!live) return;
-    const id = setInterval(() => setK(x => (x + 5) % HELLOS.length), 1400);
+    const id = setInterval(() => setK(x => (x + 3) % HELLOS.length), 1400);
     return () => clearInterval(id);
   }, [live]);
   return (
@@ -324,8 +324,8 @@ function ReachScene({ reduce }) {
         {HELLOS.map(([w, lang], i) => {
           const on = i === k;
           return (
-            <span key={w} className={'inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 font-sans text-[14px] transition-[background-color,color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] xl:h-11 xl:gap-2 xl:px-4 xl:text-[16px] ' + (on ? 'scale-[1.04] bg-[#1a1714] text-white shadow-[0_14px_28px_-16px_rgba(26,23,20,0.6)]' : 'bg-white text-ink-2 shadow-[0_0_0_1px_rgba(26,23,20,0.06)]')}>
-              {w}
+            <span key={lang} className={'inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 font-sans text-[14px] transition-[background-color,color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] xl:h-11 xl:gap-2 xl:px-4 xl:text-[16px] ' + (on ? 'scale-[1.04] bg-[#1a1714] text-white shadow-[0_14px_28px_-16px_rgba(26,23,20,0.6)]' : 'bg-white text-ink-2 shadow-[0_0_0_1px_rgba(26,23,20,0.06)]')}>
+              {typeof w === 'string' ? w : (() => { const Icon = w; return <Icon className="size-[1.05em]" strokeWidth={1.75} />; })()}
               <span className={'text-[11px] transition-colors xl:text-[11.5px] duration-500 ' + (on ? 'text-[#d1f899]' : 'text-ink-3')}>{lang}</span>
             </span>
           );

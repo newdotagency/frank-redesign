@@ -603,7 +603,7 @@ const CHURN_FAQ = [
   { q: 'Does this replace our cancellation survey?',
     a: ['It doesn’t have to. Many teams keep the survey for a quick tally and use Frank to find out what’s behind the top answers.'] },
   { q: 'What languages does Frank support?',
-    a: ['Frank supports interviewing in over 30 languages, including English, Spanish, French, Chinese, Russian, Hindi, Arabic and many more.'] },
+    a: ['Frank interviews in English, Spanish, French, German, Italian, Portuguese, Japanese, Korean and Chinese, and has a Multilanguage mode.'] },
   { q: 'What happens after the interviews?',
     a: ['You get the recordings, transcripts, themes ranked by frequency in the Performance tab, and Action Items linked to the source quotes. Need a different view? Ask Analytics Chat for a chart or table.'] },
 ];
