@@ -1,0 +1,607 @@
+{
+ "ai-product-discovery": {
+  "slug": "ai-product-discovery",
+  "label": "Product Discovery",
+  "hero": {
+   "title": [
+    "Know What to Build —",
+    "Before You Build It"
+   ],
+   "text": "With Frank, you can run deep customer conversations at scale to understand real needs, expectations, and reactions — before you commit time, budget, or roadmap.",
+   "ctas": [
+    [
+     "Validate Your Direction",
+     "https://app.hifrank.ai/signup"
+    ],
+    [
+     "See how it works",
+     "/try-frank"
+    ]
+   ]
+  },
+  "problem": {
+   "title": [
+    "Say Goodbye to Product",
+    "Discovery Confusion"
+   ],
+   "quotes": [
+    "“Surely everybody wants this product we’ve been building for 6 months…”",
+    "“We only talk to a few users — it’s hard to know what’s actually true.”",
+    "“Surveys tell us what, but not why.”",
+    "“By the time we get feedback, we’ve already built too much.”",
+    "“We got some positive response on the beta 6 months ago, but it’s been a while since we had users give feedback.”"
+   ]
+  },
+  "solution": [
+   "Frank lets you test ideas directly with customers, uncovering real needs, reactions, and expectations before you commit.",
+   "Run 100s of in-depth conversations to validate patterns and separate signal from noise.",
+   "Frank runs real conversations with follow-ups, revealing motivations, objections, and emotional drivers.",
+   "Get input early — during ideation and concept stages — so you can course-correct before investing heavily.",
+   "Run interviews continuously, adjusting your research goals as you develop your product to get even more concrete insights on what you’re building."
+  ],
+  "how": {
+   "title": "How Frank Runs",
+   "steps": [
+    {
+     "img": "/use-case/ai-product-discovery/step-1.webp",
+     "title": "1. Frame the Idea or Concept",
+     "text": "Share what you want to explore — a product idea, concept, positioning, or problem space. Frank helps structure the right discovery questions."
+    },
+    {
+     "img": "/use-case/ai-product-discovery/step-2.webp",
+     "title": "2. Run Conversations at Scale",
+     "text": "Customers engage in natural, in-depth interviews — sharing how they think, what they need, and how your idea fits (or doesn’t)."
+    },
+    {
+     "img": "/use-case/ai-product-discovery/step-3.webp",
+     "title": "3. Extract Patterns & Direction",
+     "text": "Frank surfaces themes, objections, desires, and opportunities — helping you understand what to build, refine, or rethink."
+    }
+   ]
+  },
+  "learn": {
+   "title": "What You’ll Learn",
+   "intro": "More AI customer interviews should not mean more work. Frank is like a helpful teammate that knows the answer… just ask him via chat, and he’ll resolve all of your customer doubts in seconds!",
+   "items": [
+    {
+     "icon": "/use-case/ai-product-discovery/icon-1.svg",
+     "title": "Whether your idea actually resonates",
+     "text": "Not just interest - real reactions, excitement, hesitation, and confusion."
+    },
+    {
+     "icon": "/use-case/ai-product-discovery/icon-2.svg",
+     "title": "What problems customers are truly trying to solve",
+     "text": "Understand the underlying needs driving behavior — not just surface-level feedback."
+    },
+    {
+     "icon": "/use-case/ai-product-discovery/icon-3.svg",
+     "title": "How your product fits into their world",
+     "text": "See how customers would use it, where it adds value, and where it falls short."
+    },
+    {
+     "icon": "/use-case/ai-product-discovery/icon-4.svg",
+     "title": "What to change before you build",
+     "text": "Identify gaps, objections, and opportunities early — when it’s still easy to pivot."
+    }
+   ]
+  },
+  "cta": {
+   "button": "Discover Customer Needs",
+   "title": "Don’t build first and validate later.",
+   "sub": null
+  },
+  "faq": [
+   {
+    "q": "When should I use this — before or after building something?",
+    "a": [
+     "Ideally before. Product Discovery is most valuable in early stages, when ideas are still flexible and cheap to change."
+    ]
+   },
+   {
+    "q": "How is this different from concept testing surveys?",
+    "a": [
+     "Surveys give limited, predefined answers. Frank uncovers deeper insights through conversation — including unexpected needs and objections."
+    ]
+   },
+   {
+    "q": "Do I need a fully defined product to start?",
+    "a": [
+     "No. You can explore rough ideas, problem spaces, or early concepts — Frank adapts the conversation accordingly."
+    ]
+   },
+   {
+    "q": "How many customers should I talk to?",
+    "a": [
+     "With Frank, you’re not limited — you can run 100s of interviews to validate patterns with confidence."
+    ]
+   },
+   {
+    "q": "Can I iterate on the idea based on feedback?",
+    "a": [
+     "Yes. You can continuously refine and re-test ideas as insights come in."
+    ]
+   },
+   {
+    "q": "What happens to the insights over time?",
+    "a": [
+     "They’re stored in your dashboard, helping to build a deeper understanding of your market and informing future decisions."
+    ]
+   }
+  ],
+  "others": [
+   [
+    "/use-case/win-loss-analysis",
+    "Win/Loss Analysis",
+    "Your CRM tells you who converted. But do you know why? With Frank, every customer is interviewed automatically after they buy or decide not to - so you can learn what influenced their decision: pricing, competitors, objections, expectations, and everything in between."
+   ],
+   [
+    "/use-case/market-discovery",
+    "Market Discovery",
+    "With Frank, you can run in-depth customer conversations across regions to understand who your new customers are, what they care about, and what will make your product succeed."
+   ],
+   [
+    "/use-case/ai-feature-discovery",
+    "Feature Discovery",
+    "With Frank, every interaction with a feature becomes a conversation — revealing how users use it, where they struggle, and what needs to change."
+   ],
+   [
+    "/use-case/ai-churn-interviews",
+    "Churn",
+    "With Frank, every cancellation, downgrade, or drop-off becomes a real conversation — revealing exactly what went wrong, and what to fix next."
+   ]
+  ],
+  "title": "Real Customer Product Discovery Interviews With AI | Frank",
+  "description": "Run deep customer conversations before you build. Frank uncovers real needs, reactions, and expectations at scale — so you validate ideas early, not after months of work."
+ },
+ "ai-feature-discovery": {
+  "slug": "ai-feature-discovery",
+  "label": "Feature Discovery",
+  "hero": {
+   "title": [
+    "Get Instant Feedback on",
+    "Your Latest Feature"
+   ],
+   "text": "With Frank, every interaction with a feature becomes a conversation — revealing how users use it, where they struggle, and what needs to change.",
+   "ctas": [
+    [
+     "Learn from feature interactions",
+     "https://app.hifrank.ai/signup"
+    ],
+    [
+     "See how it works",
+     "/try-frank"
+    ]
+   ]
+  },
+  "problem": {
+   "title": [
+    "Say Goodbye to Feature",
+    "Discovery Pains"
+   ],
+   "quotes": [
+    "“We see feature usage… but don’t know why people use it or ignore it.”",
+    "“We shipped a feature, but adoption is lower than expected.”",
+    "“Analytics show drop-offs, but not the friction behind them.”",
+    "“Feedback is scattered and hard to turn into clear action.”"
+   ]
+  },
+  "solution": [
+   "Frank interviews users after they interact (or don’t), uncovering motivations, confusion, and intent.",
+   "Talk directly to users who didn’t use it — and understand what stopped them.",
+   "Frank captures real-time feedback on usability issues, confusion, and unmet expectations.",
+   "Insights are automatically structured into themes, patterns, and opportunities you can act on immediately."
+  ],
+  "how": {
+   "title": "How Frank Runs",
+   "steps": [
+    {
+     "img": "/use-case/ai-feature-discovery/step-1.webp",
+     "title": "1. Define Feature Touchpoints",
+     "text": "Choose when to trigger interviews — after feature use, repeated use, non-use, or drop-off moments."
+    },
+    {
+     "img": "/use-case/ai-feature-discovery/step-2.webp",
+     "title": "2. Capture Real User Experience",
+     "text": "Frank runs short, natural conversations with users about how they experienced the feature — what worked, what didn’t, and why."
+    },
+    {
+     "img": "/use-case/ai-feature-discovery/step-3.webp",
+     "title": "3. Turn Usage into Insight",
+     "text": "Every response is analyzed and grouped into clear themes, showing friction points, drivers of adoption, and opportunities to improve."
+    }
+   ]
+  },
+  "learn": {
+   "title": "What You’ll Learn",
+   "intro": "More AI customer interviews should not mean more work. Frank is like a helpful teammate that knows the answer… just ask him via chat, and he’ll resolve all of your customer doubts in seconds!",
+   "items": [
+    {
+     "icon": "/use-case/ai-feature-discovery/icon-1.svg",
+     "title": "Why users adopt (or ignore) your feature",
+     "text": "Go beyond usage numbers and understand the real drivers behind behavior."
+    },
+    {
+     "icon": "/use-case/ai-feature-discovery/icon-2.svg",
+     "title": "Where users get stuck or confused",
+     "text": "Identify friction, cognitive load, and usability issues in real terms."
+    },
+    {
+     "icon": "/use-case/ai-feature-discovery/icon-3.svg",
+     "title": "What users expected vs. what they experienced",
+     "text": "Spot gaps between design intent and real-world use."
+    },
+    {
+     "icon": "/use-case/ai-feature-discovery/icon-4.svg",
+     "title": "What to improve, simplify, or remove",
+     "text": "Get clear direction on how to increase adoption and value."
+    }
+   ]
+  },
+  "cta": {
+   "button": "Turn usage into insights",
+   "title": "Shipping features is step one. Understanding them is what drives growth.",
+   "sub": null
+  },
+  "faq": [
+   {
+    "q": "What if users only interact briefly with the feature?",
+    "a": [
+     "Even short interactions provide valuable insight — especially around first impressions and confusion."
+    ]
+   },
+   {
+    "q": "Can I use this for newly launched features only?",
+    "a": [
+     "No — it works for both new and existing features, especially when optimizing adoption."
+    ]
+   },
+   {
+    "q": "How quickly can we act on the insights?",
+    "a": [
+     "Immediately. Insights are structured and summarized in real time."
+    ]
+   }
+  ],
+  "others": [
+   [
+    "/use-case/win-loss-analysis",
+    "Win/Loss Analysis",
+    "Your CRM tells you who converted. But do you know why? With Frank, every customer is interviewed automatically after they buy or decide not to - so you can learn what influenced their decision: pricing, competitors, objections, expectations, and everything in between."
+   ],
+   [
+    "/use-case/market-discovery",
+    "Market Discovery",
+    "With Frank, you can run in-depth customer conversations across regions to understand who your new customers are, what they care about, and what will make your product succeed."
+   ],
+   [
+    "/use-case/ai-product-discovery",
+    "Product Discovery",
+    "With Frank, you can run deep customer conversations at scale to understand real needs, expectations, and reactions — before you commit time, budget, or roadmap."
+   ],
+   [
+    "/use-case/ai-churn-interviews",
+    "Churn",
+    "With Frank, every cancellation, downgrade, or drop-off becomes a real conversation — revealing exactly what went wrong, and what to fix next."
+   ]
+  ],
+  "title": "AI Feature Discovery Interviews That Reveal the Why | Frank",
+  "description": "Frank automatically interviews users after every feature interaction — revealing why they adopt, where they struggle, and what to fix next. Real insights, at scale."
+ },
+ "market-discovery": {
+  "slug": "market-discovery",
+  "label": "Market Discovery",
+  "hero": {
+   "title": [
+    "Understand New Markets",
+    "Before You Enter Them"
+   ],
+   "text": "With Frank, you can run in-depth customer conversations across regions to understand who your new customers are, what they care about, and what will make your product succeed.",
+   "ctas": [
+    [
+     "Validate your next market",
+     "https://app.hifrank.ai/signup"
+    ],
+    [
+     "See how it works",
+     "/try-frank"
+    ]
+   ]
+  },
+  "problem": {
+   "title": [
+    "Say Goodbye to Market",
+    "Discovery Issues"
+   ],
+   "quotes": [
+    "“We don’t really know if our product will resonate in this market.”",
+    "“We’re relying on assumptions or second-hand research.”",
+    "“It worked here, so it should work there… I guess customer needs differ by region, but how?”",
+    "“Market research is slow, expensive, and hard to scale.”"
+   ]
+  },
+  "solution": [
+   "Frank lets you test demand and reactions directly with local customers before you launch.",
+   "Run real conversations with real people in your target market — not reports or proxies.",
+   "Frank highlights both global patterns and local nuances across markets.",
+   "Run hundreds of interviews across countries simultaneously — without agencies or long timelines."
+  ],
+  "how": {
+   "title": "How Frank Runs",
+   "steps": [
+    {
+     "img": "/use-case/market-discovery/step-1.webp",
+     "title": "1. Define the Market & Hypotheses",
+     "text": "Choose the region, segment, or audience you want to explore, and outline what you want to learn — demand, positioning, pricing, or behavior."
+    },
+    {
+     "img": "/use-case/market-discovery/step-2.webp",
+     "title": "2. Run Local Conversations at Scale",
+     "text": "Frank interviews customers in their own language, capturing how they think, what they need, and how they respond to your product or idea."
+    },
+    {
+     "img": "/use-case/market-discovery/step-3.webp",
+     "title": "3. Compare, Analyze & Decide",
+     "text": "Insights are structured into themes across regions — helping you understand where you fit, what to adapt, and whether to enter at all."
+    }
+   ]
+  },
+  "learn": {
+   "title": "What You’ll Learn",
+   "intro": "More AI customer interviews should not mean more work. Frank is like a helpful teammate that knows the answer… just ask him via chat, and he’ll resolve all of your customer doubts in seconds!",
+   "items": [
+    {
+     "icon": "/use-case/market-discovery/icon-1.svg",
+     "title": "Whether your product fits the market",
+     "text": "Understand real demand, relevance, and potential before committing resources."
+    },
+    {
+     "icon": "/use-case/market-discovery/icon-2.svg",
+     "title": "How customer needs differ by region",
+     "text": "Identify what’s universal - and what needs to be localized."
+    },
+    {
+     "icon": "/use-case/market-discovery/icon-3.svg",
+     "title": "What messaging actually resonates",
+     "text": "Learn the language, objections, and motivations specific to each market."
+    },
+    {
+     "icon": "/use-case/market-discovery/icon-4.svg",
+     "title": "What to adapt before launching",
+     "text": "Refine pricing, positioning, features, or onboarding to match local expectations."
+    }
+   ]
+  },
+  "cta": {
+   "button": "Validate your next market",
+   "title": "Don’t enter a new market blind.",
+   "sub": null
+  },
+  "faq": [
+   {
+    "q": "Do I need local teams or researchers to use this?",
+    "a": [
+     "No. Frank handles conversations across languages and regions automatically."
+    ]
+   },
+   {
+    "q": "Can I compare multiple markets at once?",
+    "a": [
+     "Yes. You can run interviews across different regions simultaneously and analyze them side by side."
+    ]
+   },
+   {
+    "q": "How is this different from traditional market research?",
+    "a": [
+     "Traditional research is slow and expensive. Frank gives you real conversations at scale — instantly and continuously."
+    ]
+   },
+   {
+    "q": "Will language differences affect insight quality?",
+    "a": [
+     "No. Conversations are localized and analyzed consistently, preserving meaning and nuance."
+    ]
+   },
+   {
+    "q": "When should I use Market Discovery?",
+    "a": [
+     "Before entering a new market — or when performance varies across regions and you need to understand why."
+    ]
+   },
+   {
+    "q": "Can I test pricing or positioning in different markets?",
+    "a": [
+     "Yes. Frank is ideal for stress-testing messaging, pricing, and product fit across regions."
+    ]
+   }
+  ],
+  "others": [
+   [
+    "/use-case/win-loss-analysis",
+    "Win/Loss Analysis",
+    "Your CRM tells you who converted. But do you know why? With Frank, every customer is interviewed automatically after they buy or decide not to - so you can learn what influenced their decision: pricing, competitors, objections, expectations, and everything in between."
+   ],
+   [
+    "/use-case/ai-feature-discovery",
+    "Feature Discovery",
+    "With Frank, every interaction with a feature becomes a conversation — revealing how users use it, where they struggle, and what needs to change."
+   ],
+   [
+    "/use-case/ai-product-discovery",
+    "Product Discovery",
+    "With Frank, you can run deep customer conversations at scale to understand real needs, expectations, and reactions — before you commit time, budget, or roadmap."
+   ],
+   [
+    "/use-case/ai-churn-interviews",
+    "Churn",
+    "With Frank, every cancellation, downgrade, or drop-off becomes a real conversation — revealing exactly what went wrong, and what to fix next."
+   ]
+  ],
+  "title": "Validate New Markets With AI Interviews | Frank",
+  "description": "Entering a new market? Frank runs AI interviews across regions to uncover real demand, local needs, and what will make your product succeed before you invest in growth."
+ },
+ "win-loss-analysis": {
+  "slug": "win-loss-analysis",
+  "label": "Win/Loss Analysis",
+  "hero": {
+   "title": [
+    "Understand Why Your Leads Converted or Walked Away"
+   ],
+   "text": "Your CRM tells you who converted. But do you know why? With Frank, every customer is interviewed automatically after they buy or decide not to - so you can learn what influenced their decision: pricing, competitors, objections, expectations, and everything in between.",
+   "ctas": [
+    [
+     "Run 10 Interviews Free",
+     "https://app.hifrank.ai/signup"
+    ]
+   ]
+  },
+  "problem": {
+   "title": [
+    "Know Why Deals Are",
+    "Lost or Won"
+   ],
+   "quotes": [
+    "“We lost the deal. ‘Price’ is basically all we know.”",
+    "“Our CRM tells us who we lost. Not why they chose someone else.”",
+    "“We keep dropping the price, but people still say it’s too expensive…”",
+    "“We signed 10 customers last quarter. Why? Not sure… ”",
+    "“I can’t manually investigate every win and loss.”"
+   ]
+  },
+  "solution": [
+   "Automatically see the primary objections, expectations, alternatives, and decision factors behind each loss.",
+   "Interview prospects immediately after the decision, while their reasoning is still fresh, and turn the answers into actionable patterns.",
+   "Frank probes vague answers to uncover what buyers really mean by price, value, fit, timing, or budget.",
+   "Interview new customers after they convert to uncover the motivations and buying triggers behind your wins.",
+   "Frank interviews customers automatically and finds recurring patterns across deals, segments, competitors, and reps."
+  ],
+  "how": {
+   "title": "How Frank Works",
+   "steps": [
+    {
+     "img": "/use-case/win-loss-analysis/step-1.webp",
+     "title": "1. Trigger the Interview",
+     "text": "Embed Frank in your site or app, or send it by email after key moments. Start the conversation while the experience is still fresh."
+    },
+    {
+     "img": "/use-case/win-loss-analysis/step-2.webp",
+     "title": "2. Frank Finds the Real Reason",
+     "text": "Frank adapts each conversation in real time, probing answers, challenging assumptions, and uncovering the why behind every decision - all without a sales rep."
+    },
+    {
+     "img": "/use-case/win-loss-analysis/step-3.webp",
+     "title": "3. Turn Every Deal Into Sales Intelligence",
+     "text": "Frank reveals why people buy, hesitate, or walk away - turning real conversations into insights to improve your messaging, funnel, and sales process."
+    }
+   ]
+  },
+  "learn": {
+   "title": "What You’ll Learn",
+   "intro": "More AI customer interviews should not mean more work. Frank is like a helpful teammate that knows the answer… just ask him via chat, and he’ll resolve all of your customer doubts in seconds!",
+   "items": [
+    {
+     "icon": "/use-case/win-loss-analysis/icon-1.svg",
+     "title": "Why Customers Choose You",
+     "text": "Discover the moments, messages, features, and differentiators that actually convince customers to buy."
+    },
+    {
+     "icon": "/use-case/win-loss-analysis/icon-2.svg",
+     "title": "How You Lose Deals",
+     "text": "Go beyond “price” or “competitor” and uncover the deeper reasons prospects decide not to move forward."
+    },
+    {
+     "icon": "/use-case/win-loss-analysis/icon-3.svg",
+     "title": "What Your Competitors Do Better",
+     "text": "Find out who customers considered, what they liked about the alternatives, and where you’re falling behind."
+    },
+    {
+     "icon": "/use-case/win-loss-analysis/icon-4.svg",
+     "title": "Where Your Sales Funnel Is Breaking",
+     "text": "Spot recurring friction across discovery, demos, pricing, proposals, onboarding, and other stages of the buying journey."
+    },
+    {
+     "icon": "/use-case/win-loss-analysis/icon-5.svg",
+     "title": "Which Objections Matter Most",
+     "text": "Separate genuine deal-breakers from objections that sound important but rarely affect the final decision."
+    },
+    {
+     "icon": "/use-case/win-loss-analysis/icon-6.svg",
+     "title": "What Your Best Customers Have in Common",
+     "text": "Compare winning customers to lost opportunities and see what your best customers saw in your product that other prospects didn’t."
+    }
+   ]
+  },
+  "cta": {
+   "button": "Run your first interview",
+   "title": "Every Sales Conversation Teaches You Something",
+   "sub": "Turn every deal into an opportunity to learn. And every insight into a better sales funnel."
+  },
+  "faq": [
+   {
+    "q": "When should Frank interview a lead after a deal is won or lost?",
+    "a": [
+     "As soon as possible, while the decision is still fresh. You can trigger Frank at the point that makes the most sense for your sales process: after a purchase, after a lost opportunity, after a proposal, or when a lead goes cold."
+    ]
+   },
+   {
+    "q": "Can Frank interview leads who didn’t buy?",
+    "a": [
+     "Yes. That’s one of the most valuable applications of win/loss analysis. Frank can speak with prospects after they decide not to move forward and explore what influenced their decision, including objections, alternatives, pricing, expectations, and competitive factors."
+    ]
+   },
+   {
+    "q": "Will customers be honest with an AI interviewer?",
+    "a": [
+     "Frank gives people a more neutral environment to share feedback. There’s no salesperson trying to defend the product or respond to criticism, and customers can speak directly with an AI interviewer rather than feeling like they’re being evaluated by the company."
+    ]
+   },
+   {
+    "q": "Can Frank find out why a customer chose a competitor?",
+    "a": [
+     "Yes. You can specifically investigate alternatives, competitive perceptions, switching considerations, and what ultimately influenced the decision. Frank can then identify recurring competitive opportunities across your conversations."
+    ]
+   },
+   {
+    "q": "Can Frank tell me more than just “price” or “features”?",
+    "a": [
+     "That’s exactly the point. When someone gives a broad answer like “the price was too high,” Frank can ask follow-up questions to understand what they were comparing it against, what they expected to get for the price, and what ultimately made the difference."
+    ]
+   },
+   {
+    "q": "Can I see trends across all my won and lost deals?",
+    "a": [
+     "Yes. Frank automatically analyzes conversations across your interviews, allowing you to identify recurring themes, compare segments and cohorts, and track how reasons for winning and losing change over time."
+    ]
+   },
+   {
+    "q": "Does Frank tell me what I should do next?",
+    "a": [
+     "Frank can identify action items and recommendations from your interviews, with each recommendation linked back to the customer conversations that support it. That gives your team a clear path from customer feedback to action."
+    ]
+   }
+  ],
+  "others": [
+   [
+    "/use-case/market-discovery",
+    "Market Discovery",
+    "With Frank, you can run in-depth customer conversations across regions to understand who your new customers are, what they care about, and what will make your product succeed."
+   ],
+   [
+    "/use-case/ai-feature-discovery",
+    "Feature Discovery",
+    "With Frank, every interaction with a feature becomes a conversation — revealing how users use it, where they struggle, and what needs to change."
+   ],
+   [
+    "/use-case/ai-product-discovery",
+    "Product Discovery",
+    "With Frank, you can run deep customer conversations at scale to understand real needs, expectations, and reactions — before you commit time, budget, or roadmap."
+   ],
+   [
+    "/use-case/ai-churn-interviews",
+    "Churn",
+    "With Frank, every cancellation, downgrade, or drop-off becomes a real conversation — revealing exactly what went wrong, and what to fix next."
+   ]
+  ],
+  "title": "Win/Loss Analysis: Understand Why Deals Are Won or Lost",
+  "description": "Use AI-powered win/loss analysis to understand why customers buy, why deals are lost, what competitors do better, and which objections matter most."
+ }
+}
