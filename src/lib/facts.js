@@ -45,3 +45,13 @@ export const MCP_FACTS = [
     ['Full setup guide', MCP_DOCS],
   ] },
 ];
+
+// Project-cost calculator, as plain text (readiness doc addendum, item 2). The worked examples come from calc.js.
+import { CALC_STATIC } from './calc.js';
+export const CALC_FACTS = [
+  { h: 'What will my project cost?', p: [
+    'Interviews × average interview length = voice minutes needed. Compare that with the minutes each plan includes: Free 60, Starter 120, Growth 450, Business 950. Beyond Business, use an Enterprise plan.',
+    ...CALC_STATIC.map((t, i) => ['Example ' + (i + 1), t]),
+    'Yearly plans are paid upfront for the year; the monthly figure is that total divided by 12. Taxes and optional participant incentives are not included. Customer recruitment is not included.',
+  ] },
+];

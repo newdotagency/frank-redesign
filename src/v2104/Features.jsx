@@ -76,7 +76,7 @@ function Step({ g, n }) {
         {g.items.map((f, i) => {
           const on = i === active;
           return (
-            <li key={f.title} className="border-0 border-b border-solid border-[#1a1714]/[0.06]">
+            <li key={f.title} {...(f.title.startsWith('Works with your AI') ? { 'data-agent-change': '' } : {})} className="border-0 border-b border-solid border-[#1a1714]/[0.06]">
               <button type="button" aria-expanded={on} aria-controls={`ftx-${n}-${i}`}
                 onMouseEnter={() => hoverable() && setActive(i)} onFocus={pick(i)} onClick={pick(i)}
                 className="group flex w-full cursor-pointer items-center gap-4 border-0 bg-transparent py-3.5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1a1714] sm:py-4">

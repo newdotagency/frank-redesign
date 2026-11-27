@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 import FactsStatic from '../layouts/FactsStatic.astro';
 import Page from '../v2104/PricingPage.jsx';
-import { PRICING_FACTS } from '../lib/facts.js';
+import { PRICING_FACTS, CALC_FACTS } from '../lib/facts.js';
 import { PRICING_LD, PRICING_FAQ_LD } from '../lib/jsonld.js';
 ---
 <Base title="Pricing | Frank AI Researcher" description="Frank AI Researcher pricing: a Free plan with 60 voice minutes a month and no card required, plus Starter, Growth, Business and Enterprise plans for AI voice interviews." jsonld={[...PRICING_LD, PRICING_FAQ_LD]}>
   <div id="root"><Page client:only="react" /></div>
-  <FactsStatic blocks={PRICING_FACTS} />
+  <FactsStatic blocks={[...CALC_FACTS, ...PRICING_FACTS]} />
 </Base>

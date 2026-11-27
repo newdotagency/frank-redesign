@@ -126,7 +126,7 @@ function Item({ i, onPick, link }) {
     );
   }
   return (
-    <a href={link(i.href)} onClick={onPick}
+    <a href={link(i.href)} onClick={onPick} {...(i.title.includes('Coming soon') ? { 'data-agent-change': '' } : {})}
       className="group/i -mx-3 flex gap-3 rounded-[14px] px-3 py-2.5 text-ink no-underline outline-none transition-colors duration-200 ease-out hover:bg-[#1a1714]/[0.035] focus-visible:bg-[#1a1714]/[0.035] focus-visible:ring-2 focus-visible:ring-ink/15">
       <Icon aria-hidden="true" strokeWidth={1.5}
         className={'size-[17px] shrink-0 text-ink-3 transition-colors duration-200 group-hover/i:text-ink ' + (i.desc ? 'mt-[2px]' : '')} />

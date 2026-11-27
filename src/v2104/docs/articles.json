@@ -2091,7 +2091,7 @@
           {
             "t": "list",
             "items": [
-              "Choose how the widget appears on their website (currently only the Floating widget type is available)",
+              "Choose how the widget appears on their website (Floating, Inline or Pop-up)",
               "Customize its appearance to match their brand",
               "Decide how participants are identified",
               "Configure the introductory content and consent options",
@@ -2104,6 +2104,46 @@
             "t": "callout",
             "tone": "tip",
             "x": "The widget is designed to work on both desktop and mobile devices."
+          }
+        ]
+      },
+      {
+        "id": "before-you-install",
+        "title": "Before you install",
+        "blocks": [
+          {
+            "t": "h3",
+            "x": "A share link and a website embed are different"
+          },
+          {
+            "t": "p",
+            "x": "A share link opens the interview on a Frank-hosted page. A website embed puts the interview inside your own site, and it only works once it is activated and the site is on the protected domain. Sending the share link to a participant does not turn the embed on, and activating the embed does not change the share link."
+          },
+          {
+            "t": "h3",
+            "x": "Prerequisites"
+          },
+          {
+            "t": "list",
+            "items": [
+              "**Formats —** every research has three widget formats, `floating`, `inline` and `popup`, each with its own embed ID and settings.",
+              "**Activation —** the widget's on/off switch must be on. An inactive widget does not load.",
+              "**Protected domain —** the snippet only runs on the domain set for the research. On any other domain the widget does not run.",
+              "**Production script —** the snippet loads `https://widget.hifrank.ai/widget.js`. Do not use a staging address on a live site."
+            ]
+          },
+          {
+            "t": "h3",
+            "x": "Example: feedback that a customer starts"
+          },
+          {
+            "t": "p",
+            "x": "Choose the Pop-up format and add your own button to the page, for example one with the ID `start-interview-btn`. The interview opens only when a customer clicks that button, for instance from a cancellation or help page. The Google Tag Manager guide shows the same button-triggered setup."
+          },
+          {
+            "t": "callout",
+            "tone": "tip",
+            "x": "Use a test study and a consenting test participant when you first install the widget, and never paste real customer data or real embed IDs into public pages."
           }
         ]
       },
@@ -2138,7 +2178,7 @@
           {
             "t": "list",
             "items": [
-              "**Floating widget —** opens from a floating button — currently the only fully available type",
+              "**Floating widget —** opens from a floating button",
               "**Inline —** renders directly inside the page content",
               "**Pop-up —** opens from a button the researcher provides on their own site"
             ]
@@ -2291,7 +2331,7 @@
           {
             "t": "code",
             "lang": "html",
-            "x": "<script> window.Frank = window.Frank || function(){(window.Frank.q=window.Frank.q||[]).push(arguments)};\nFrank('init', { embedId: 'emb_...' });\nFrank('identify', {\nname: user.name, // replace 'user' with your app's user variable\nemail: user.email,\n});\n</script>\n<script src=\"https://widget.staging.hifrank.ai/widget.js\" async></script>"
+            "x": "<script> window.Frank = window.Frank || function(){(window.Frank.q=window.Frank.q||[]).push(arguments)};\nFrank('init', { embedId: 'emb_...' });\nFrank('identify', {\nname: user.name, // replace 'user' with your app's user variable\nemail: user.email,\n});\n</script>\n<script src=\"https://widget.hifrank.ai/widget.js\" async></script>"
           },
           {
             "t": "p",

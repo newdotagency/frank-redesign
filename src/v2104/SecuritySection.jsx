@@ -25,7 +25,7 @@ export default function SecuritySection({ reduce, id = 'sec-title', className = 
                 {s.img ? <img src={s.img} alt="" className="size-11 object-contain" /> : <s.icon className="size-7 text-[#5f8f22]" strokeWidth={1.5} />}
               </span>
               <h3 className="m-0 mt-6 font-['Figtree',sans-serif] text-[22px] font-medium leading-tight tracking-[-0.02em] text-ink">{s.name}</h3>
-              <p className="m-0 mt-2 font-sans text-[15.5px] leading-[1.55] text-ink-2">{s.text}</p>
+              <p {...(s.name === 'SOC 2' ? { 'data-agent-change': '' } : {})} className="m-0 mt-2 font-sans text-[15.5px] leading-[1.55] text-ink-2">{s.text}</p>
             </ScrubText>
           ))}
         </ul>

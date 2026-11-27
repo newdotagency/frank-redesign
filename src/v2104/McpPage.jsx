@@ -807,7 +807,7 @@ function Hero({ reduce }) {
             <Rise as="h1" reduce={reduce} delay={0.06} id="mcp-title" className={'m-0 pb-1 leading-[1.05] text-white [text-wrap:balance] ' + (bare ? 'text-[clamp(36px,5.4vw,72px)] ' : 'text-[clamp(36px,4.6vw,60px)] ') + TITLE}>
               Run customer research from within your <span className="italic">favorite LLM</span>
             </Rise>
-            <Rise as="p" reduce={reduce} delay={0.14} className={'m-0 mt-5 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-white/70 sm:mt-6' + (bare ? ' mx-auto [text-wrap:pretty]' : '')}>
+            <Rise as="p" reduce={reduce} delay={0.14} data-agent-change="" className={'m-0 mt-5 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-white/70 sm:mt-6' + (bare ? ' mx-auto [text-wrap:pretty]' : '')}>
               Works with ChatGPT, Claude, Grok and Muse, plus other MCP clients that support remote servers with OAuth. Create studies, run voice interviews and explore transcripts without leaving your chat.
             </Rise>
             <Rise reduce={reduce} delay={0.22} className="mt-9">
@@ -850,14 +850,14 @@ function Where({ reduce }) {
         <ul className="m-0 grid list-none auto-rows-fr grid-cols-2 gap-3 p-0 sm:grid-cols-3 lg:gap-4">
           {TOOLS.map(([name, logo], i) => (
             <ScrubText as="li" key={name} reduce={reduce} lag={i * 0.03} className="h-full">
-              <span className="flex h-full min-h-[148px] flex-col items-center justify-center gap-3.5 rounded-[20px] bg-white px-4 py-6 text-center ring-1 ring-inset ring-[#1a1714]/[0.08]">
+              <span {...(name === 'Grok' || name === 'Muse' ? { 'data-agent-change': '' } : {})} className="flex h-full min-h-[148px] flex-col items-center justify-center gap-3.5 rounded-[20px] bg-white px-4 py-6 text-center ring-1 ring-inset ring-[#1a1714]/[0.08]">
                 <span className="grid size-8 place-items-center"><span className="block size-8">{logo}</span></span>
                 <span className={FIG + ' text-[18px] leading-[1.2] tracking-[-0.01em] text-ink'}>{name}</span>
               </span>
             </ScrubText>
           ))}
           <ScrubText as="li" reduce={reduce} lag={0.15} className="h-full">
-            <span className="flex h-full min-h-[148px] flex-col items-center justify-center gap-3.5 rounded-[20px] bg-[#d1f899] px-4 py-6 text-center">
+            <span data-agent-change="" className="flex h-full min-h-[148px] flex-col items-center justify-center gap-3.5 rounded-[20px] bg-[#d1f899] px-4 py-6 text-center">
               <img src={mcpLogo} alt="" className="block size-8" />
               {/* The label box is one line tall, as in the other tiles, so this logo sits at the same height as theirs;
                   the second line runs below it. */}

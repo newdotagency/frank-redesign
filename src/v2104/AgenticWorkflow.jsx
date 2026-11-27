@@ -323,13 +323,13 @@ function WorksWith({ pick, onPick }) {
           const on = k === pick;
           return (
             <button key={x.name} ref={el => { refs.current[k] = el; }} type="button" role="radio" aria-checked={on} tabIndex={on ? 0 : -1}
-              onClick={() => onPick(k)}
+              onClick={() => onPick(k)} {...(k >= 2 ? { 'data-agent-change': '' } : {})}
               className={'inline-flex cursor-pointer items-center gap-2 rounded-full border-0 font-sans text-[13.5px] transition-[background-color,color,box-shadow,transform] duration-200 ease-out active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70 '
                 + (x.any ? 'px-3.5 py-1.5 ' : 'py-1 pl-1 pr-3.5 ')
                 + (on ? 'bg-white text-ink shadow-[0_1px_2px_rgba(0,0,0,0.12)]'
                   : x.any ? 'bg-transparent text-white/60 [outline:1px_dashed_rgba(255,255,255,0.25)] [outline-offset:-1px] hover:text-white/85'
                   : 'bg-white/[0.08] text-white/80 ring-1 ring-inset ring-white/[0.12] hover:bg-white/[0.14] hover:text-white')}>
-              {!x.any && <Mark a={x} />}{x.any ? '+ any MCP client' : x.name}
+              {!x.any && <Mark a={x} />}{x.any ? '+ other MCP clients' : x.name}
             </button>
           );
         })}

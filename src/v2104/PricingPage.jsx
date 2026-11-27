@@ -25,6 +25,7 @@ import { ScrubText, ScrubTitle } from './reveal';
 import { PL_LOGOS } from './logos/prelaunchBrands';
 import FAQ from './FAQ';
 import FactsBlock from './FactsBlock';
+import PricingCalculator from './PricingCalculator';
 import { PRICING_FACTS } from '../lib/facts';
 import Footer from './Footer';
 
@@ -49,12 +50,12 @@ const PLANS = [
 ];
 
 const FAQS = [
-  { q: 'What is a credit?', a: ['10 credits equals roughly 1 minute of voice interview.'] },
+  { mark: true, q: 'What is a credit?', a: ['10 credits equals roughly 1 minute of voice interview.'] },
   { q: 'Can I switch plans anytime?', a: ['Yes. You can upgrade or downgrade at any time. When upgrading, you get immediate access to new plan features. Downgrades take effect at the next billing cycle.'] },
   { q: 'What happens if I exceed my minutes?', a: ['You can keep interviewing at the overage rate for your plan. There are no hard caps — your research never stops mid-conversation.'] },
   { q: 'Do unused credits roll over?', a: ['On Growth and above, unused credits roll over for 30 days. Free and Starter plans reset monthly.'] },
-  { q: 'Is there a free trial?', a: ['There is no free trial on paid plans. The Free plan is the way to try Frank.'] },
-  { q: 'What interview formats are supported?', a: ['Frank runs voice interviews. Video and WhatsApp interviews are Coming soon.'] },
+  { mark: true, q: 'Is there a free trial?', a: ['There is no free trial on paid plans. The Free plan is the way to try Frank.'] },
+  { mark: true, q: 'What interview formats are supported?', a: ['Frank runs voice interviews. Video and WhatsApp interviews are Coming soon.'] },
 ];
 
 const LBL = 'm-0 font-sans text-[12px] font-light uppercase leading-none tracking-[0.08em]';
@@ -150,7 +151,7 @@ function Plan({ p, yearly, reduce, lag }) {
       <p className="m-0 mt-2 h-5 font-sans text-[13px] text-[#5f8f22]">
         {p.free ? '' : yearly ? `Billed as ${p.billed}/year` : 'Billed monthly'}
       </p>
-      <a href={SIGNUP}
+      <a href={SIGNUP} {...(p.free ? {} : { 'data-agent-change': '' })}
         className={'mt-5 inline-flex h-11 items-center justify-center rounded-full px-5 font-sans text-[14.5px] font-medium no-underline transition-[background-color,transform] duration-200 ease-out active:scale-[0.98] ' + FOCUS + ' '
           + (pop ? 'bg-[#d1f899] text-ink hover:bg-[#c4ef84]' : p.free ? 'bg-white text-ink shadow-[inset_0_0_0_1px_rgba(26,23,20,0.14)] hover:bg-[#f6f5f1]' : 'bg-[#1a1714] text-white hover:bg-[#2a2622]')}>
         {p.cta}
@@ -304,6 +305,9 @@ export default function PricingPage() {
             <div className="mx-auto grid max-w-[1312px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {PLANS.map((p, i) => <Plan key={p.id} p={p} yearly={yearly} reduce={reduce} lag={0.3 + i * 0.06} />)}
             </div>
+
+            {/* Project-cost calculator (readiness doc addendum). */}
+            <PricingCalculator />
 
             {/* 3 — Enterprise, as one wide card under the plans (the same white card, so it reads as the next
                 step up): a small label, the question as its heading, the offer, and "Book a Demo" on the right.

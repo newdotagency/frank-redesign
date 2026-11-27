@@ -30,7 +30,7 @@ const FAQS = [
   { q: 'How long does setup take? Do I need a developer?',
     a: ['Most teams go live in minutes, with no developer. Describe what you want to learn, review the study Frank drafts, then share a link or paste one embed snippet into your site, including Shopify storefronts.',
       'The interview can appear inline, as a pop-up or as a floating bubble, styled to your brand.'] },
-  { q: 'Can I run Frank from ChatGPT, Claude, Grok or Muse?',
+  { mark: true, q: 'Can I run Frank from ChatGPT, Claude, Grok or Muse?',
     a: ['Yes. Frank works with ChatGPT, Claude, Grok and Muse, plus other MCP clients that support remote servers with OAuth.',
       'You can say “Set up a churn interview for users who cancelled this month” to your assistant, and Frank builds the study, launches it and reports the findings back there.'] },
   { q: 'How do I know the insights are accurate?',
@@ -47,7 +47,7 @@ const EASE = [0.23, 1, 0.32, 1];
 function Item({ f, open, onToggle, reduce }) {
   const id = useId();
   return (
-    <li className="border-0 border-b border-solid border-[#1a1714]/[0.1]">
+    <li {...(f.mark ? { 'data-agent-change': '' } : {})} className="border-0 border-b border-solid border-[#1a1714]/[0.1]">
       <h3 className="m-0">
         <button type="button" id={id + 'q'} aria-expanded={open} aria-controls={id + 'a'} onClick={onToggle}
           className="group flex w-full cursor-pointer items-center justify-between gap-6 border-0 bg-transparent py-6 text-left font-sans text-[18px] leading-snug text-ink transition-colors duration-150 ease-out hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink sm:py-7 sm:text-[20px]">

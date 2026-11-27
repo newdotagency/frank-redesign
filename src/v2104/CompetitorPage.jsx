@@ -348,7 +348,7 @@ function Closing({ c, reduce }) {
         </ScrubText>
         <ScrubText reduce={reduce} lag={0.25} className="mt-9 flex flex-col items-center gap-3">
           <PillButton href={SIGNUP}>{c.close.cta}</PillButton>
-          <span className="font-sans text-[13.5px] text-ink/65">Free plan: 60 voice minutes a month, no card required.</span>
+          <span data-agent-change="" className="font-sans text-[13.5px] text-ink/65">Free plan: 60 voice minutes a month, no card required.</span>
         </ScrubText>
       </div>
     </section>
