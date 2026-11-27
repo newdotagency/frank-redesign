@@ -1,7 +1,7 @@
 {
   "overview": {
     "title": "Overview",
-    "lead": "The Frank AI Interviewer is an automated research agent that conducts real, in-depth customer conversations via voice call — without requiring you to be in the room. It listens, asks intelligent follow-up questions, probes for the \"why\" behind answers, and delivers structured insights the moment an interview ends.",
+    "lead": "The Frank AI Researcher is an automated research agent that conducts real, in-depth customer conversations via voice call — without requiring you to be in the room. It listens, asks intelligent follow-up questions, probes for the \"why\" behind answers, and delivers structured insights the moment an interview ends.",
     "readMins": 3,
     "sections": [
       {
@@ -12,7 +12,7 @@
             "t": "list",
             "items": [
               "**Who it's for:** Founders, product managers, and marketers who need fast, reliable customer insight without the time and cost of traditional research.",
-              "**Why it matters:** Traditional user interviews are slow, expensive ($500–$1,000 per session), and hard to scale. The AI Interviewer makes it possible to run hundreds of interviews in parallel, in 30+ languages, at a fraction of the cost.",
+              "**Why it matters:** Traditional user interviews are slow, expensive ($500–$1,000 per session), and hard to scale. The AI Interviewer makes it possible to run hundreds of interviews in parallel, in 50+ interview languages, at a fraction of the cost.",
               "**How it's different from surveys:** Surveys are static — they can't follow up, push back, or uncover emotion. The AI Interviewer is dynamic. It adapts in real time, clarifies vague answers, and captures the emotional reasoning behind customer behavior."
             ]
           }
@@ -62,7 +62,7 @@
               "**Thematic Analysis:** Automatically groups responses into themes with sentiment scores and frequency stats across all interviews.",
               "**AI Analytics Chat:** Ask questions about your data, generate charts, and explore patterns without writing a single line of code.",
               "**Transcripts & highlights:** Replay interviews, read full transcripts, and save the quotes that resonate.",
-              "**30+ languages:** Run interviews with customers worldwide; translations are available automatically.",
+              "**50+ interview languages:** Run interviews with customers worldwide; translations are available automatically.",
               "**Parallel scaling:** Run dozens or hundreds of interviews simultaneously with no scheduling bottleneck.",
               "**SOC 2 & GDPR compliant:** Enterprise-grade security and privacy built in."
             ]
@@ -1438,7 +1438,7 @@
                 "a": [
                   {
                     "t": "p",
-                    "x": "It supports 30+ languages. Customers can respond in whatever language feels natural to them, and you'll receive translated transcripts in your preferred language automatically."
+                    "x": "It supports 50+ interview languages. Customers can respond in whatever language feels natural to them, and you'll receive translated transcripts in your preferred language automatically."
                   }
                 ]
               }
@@ -1560,7 +1560,7 @@
                 "a": [
                   {
                     "t": "p",
-                    "x": "Yes — completely. The AI Interviewer is SOC 2 certified and GDPR compliant. All data is encrypted in transit and at rest, meeting enterprise-grade security standards."
+                    "x": "Yes — completely. The AI Interviewer is SOC 2 and GDPR compliant. All data is encrypted in transit and at rest, meeting enterprise-grade security standards."
                   }
                 ]
               },

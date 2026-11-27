@@ -16,7 +16,7 @@ export default {
     body: "Both Frank and Strella help teams run AI-powered customer interviews and uncover qualitative insight faster. But if you’re looking for a simpler, more action-oriented platform built for founders, marketers, and operators, not just research teams — Frank was built for you."
   },
   whatIs: [
-    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 30+ languages.",
+    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 50+ interview languages.",
     "Run customer discovery, validate ideas, understand churn, and surface actionable insights directly from your real customers — all without scheduling, agencies, or research bottlenecks."
   ],
   table: [

@@ -1,0 +1,14 @@
+---
+// The same facts as the page's visible section, in the page's server-rendered HTML. The pages are React islands
+// (client:only), so their own text is not in the HTML that AI crawlers read; this copy is. Visually hidden, still read
+// by screen readers. Source of the words: src/lib/facts.js.
+const { blocks } = Astro.props;
+---
+<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">
+  {blocks.map((b) => (
+    <section>
+      <h2>{b.h}</h2>
+      {b.p.map((l) => <p>{Array.isArray(l) ? <><strong>{l[0]}:</strong> {l[1]}</> : l}</p>)}
+    </section>
+  ))}
+</div>

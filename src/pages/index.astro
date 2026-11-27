@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Page from '../v2104/AppV2111.jsx';
+import { HOME_LD } from '../lib/jsonld.js';
 ---
-<Base title="Frank — Ask your customers anything" description="Frank runs hundreds of AI-moderated customer interviews overnight and brings back the answers in your customers' own words.">
+<Base title="Frank — Ask your customers anything" description="Frank AI Researcher runs short AI voice interviews with your own customers and turns them into transcripts, themes and quotes. Free plan: 60 voice minutes a month, no card required." jsonld={[HOME_LD]}>
   <div id="root"><Page client:only="react" /></div>
 </Base>

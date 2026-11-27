@@ -70,7 +70,7 @@ function Btn({ href, onClick, tone = 'ink', children, arrow = true, ext = false 
 
 const Note = () => (
   <p className="m-0 mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-sans text-[13.5px] text-white/60">
-    <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />Claim 225 signup credits</span>
+    <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />Free plan: 60 voice minutes a month, no card required</span>
     <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />No credit card required</span>
   </p>
 );

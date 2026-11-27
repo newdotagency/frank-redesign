@@ -30,7 +30,7 @@ const SOCIALS = [
 const COLUMNS = [
   { title: 'Platform', links: [
     ['Voice Interviewer', '/ai-voice-interviewer'],
-    ['Video Interviewer', '/ai-video-interviewer'],
+    ['Video Interviewer (Coming soon)', '/ai-video-interviewer'],
   ] },
   { title: 'Why Frank', links: [
     ['Price', '/benefits/price'],

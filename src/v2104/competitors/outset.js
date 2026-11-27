@@ -16,7 +16,7 @@ export default {
     body: "Both Frank and Outset help teams run AI-powered customer interviews at scale. But if you’re looking for a simpler, more affordable, and more action-oriented way to understand customers without building research workflows or hiring specialists — Frank was built for you."
   },
   whatIs: [
-    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 30+ languages.",
+    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 50+ interview languages.",
     "Run customer discovery, validate ideas, understand churn, and surface actionable insights directly from your real customers — all without scheduling, agencies, or research bottlenecks."
   ],
   table: [

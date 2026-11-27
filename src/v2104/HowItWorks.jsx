@@ -26,7 +26,7 @@ const STEPS = [
   {
     name: 'Set up', title: <>Describe it.<br />Frank builds it.</>,
     body: [
-      'Type your goal here or tell Dot, Claude, Gemini or your favorite LLM. Frank drafts the study, the questions and the follow-up logic.',
+      'Type your goal here or tell ChatGPT, Claude or Grok. Frank drafts the study, the questions and the follow-up logic.',
       'Frank can embed itself automatically into any page or user flow, or provide you with an easy link to share.',
     ],
   },

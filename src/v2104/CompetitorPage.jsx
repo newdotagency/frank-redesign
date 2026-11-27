@@ -279,7 +279,7 @@ function Choose({ c, reduce }) {
     <section aria-labelledby="vs-choose-title" className={'pt-[clamp(112px,13vw,200px)] ' + PAD}>
       <div className="mx-auto max-w-[1312px]">
         <ScrubTitle reduce={reduce} id="vs-choose-title" className={H2 + ' mx-auto max-w-[760px] text-center'}
-          lines={['Traditional research vs', 'Frank AI Interviewer.']} />
+          lines={['Traditional research vs', 'Frank AI Researcher.']} />
         <div className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 lg:grid-cols-2 lg:gap-5">
           <ScrubText reduce={reduce} className="relative overflow-hidden rounded-[28px] bg-[#0f2e27] p-8 text-white sm:p-10">
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-40" style={cornerGlowGrain} />
@@ -348,7 +348,7 @@ function Closing({ c, reduce }) {
         </ScrubText>
         <ScrubText reduce={reduce} lag={0.25} className="mt-9 flex flex-col items-center gap-3">
           <PillButton href={SIGNUP}>{c.close.cta}</PillButton>
-          <span className="font-sans text-[13.5px] text-ink/65">Claim 225 signup credits. No credit card required.</span>
+          <span className="font-sans text-[13.5px] text-ink/65">Free plan: 60 voice minutes a month, no card required.</span>
         </ScrubText>
       </div>
     </section>

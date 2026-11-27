@@ -16,7 +16,7 @@ export default {
     body: "Frank and Listen Labs are both great AI-powered interview tools. But if you’re a founder, marketer, PM, or operator who needs customer clarity without building a research department — Frank was built for you."
   },
   whatIs: [
-    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 30+ languages.",
+    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 50+ interview languages.",
     "Run customer discovery, validate ideas, understand churn, and surface actionable insights directly from your real customers — all without scheduling, agencies, or research bottlenecks."
   ],
   table: [

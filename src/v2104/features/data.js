@@ -24,7 +24,7 @@ export const FEATURES = {
       ['Global insights roll up automatically', 'You get all international interview transcripts, summaries and insights translated — while still having access to everything in its original language!'],
     ],
     get: [
-      ['Built-in language support', 'Interview customers in 30+ languages — no translators or extra workflows. Frank adapts to each customer’s language and delivers all insights back in yours.'],
+      ['Built-in language support', 'Interview customers in 50+ interview languages — no translators or extra workflows. Frank adapts to each customer’s language and delivers all insights back in yours.'],
       ['Global patterns, local nuance', 'See what’s universally true and what only applies in specific regions. Each with resounding evidence to support any claim.'],
       ['Scale without scaling cost', 'Whether it’s 10 interviews in one city or 10,000 interviews spread across 7 continents, the operational effort stays the same.'],
     ],

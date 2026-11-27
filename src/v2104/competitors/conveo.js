@@ -16,7 +16,7 @@ export default {
     body: "Both Frank and Conveo use AI to help teams uncover customer insight faster. But if you want something easier to deploy, simpler to use, and built for action, not research workflows — Frank may be the better fit."
   },
   whatIs: [
-    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 30+ languages.",
+    "Frank runs AI voice, video, and WhatsApp interviews automatically, uncovering honest feedback from around the world in 50+ interview languages.",
     "Run customer discovery, validate ideas, understand churn, and surface actionable insights directly from your real customers — all without scheduling, agencies, or research bottlenecks."
   ],
   table: [

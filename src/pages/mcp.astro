@@ -1,7 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import FactsStatic from '../layouts/FactsStatic.astro';
 import Page from '../v2104/McpPage.jsx';
+import { MCP_FACTS } from '../lib/facts.js';
+import { MCP_LD } from '../lib/jsonld.js';
 ---
-<Base title="Frank MCP: customer research inside your AI" description="Connect Frank to Claude, ChatGPT, Gemini and the AI tools you already use. Create research, run interviews and explore transcripts without leaving your workflow.">
+<Base title="Frank MCP | Run Customer Interviews in ChatGPT, Claude and Grok" description="Connect Frank AI Researcher to ChatGPT, Claude, Grok and Muse to create studies, run voice interviews and read transcripts from your AI chat. Included on every plan, including Free." jsonld={[MCP_LD]}>
   <div id="root"><Page client:only="react" /></div>
+  <FactsStatic blocks={MCP_FACTS} />
 </Base>

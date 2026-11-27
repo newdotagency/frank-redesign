@@ -1,0 +1,5 @@
+# 301s for URLs people and agents guess (readiness doc M6, S1)
+/integrations /mcp 301
+/claude /mcp 301
+/security /features/transparency-security 301
+/trust /features/transparency-security 301

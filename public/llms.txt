@@ -1,0 +1,15 @@
+# Frank AI Researcher
+
+> Frank is an AI user researcher that runs short voice interviews. Frank AI Researcher (short name: Frank) interviews your own customers by voice, then turns the conversations into transcripts, themes and quotes. Built by Prelaunch.com.
+
+Free plan: 60 voice minutes a month, no card required. MCP is included on every plan, including Free.
+
+## Key pages
+- [Pricing](https://www.hifrank.ai/pricing): plans, prices and billing rules
+- [MCP connector](https://www.hifrank.ai/mcp): connect Frank to ChatGPT, Claude, Grok and Muse
+- [Voice interviewer](https://www.hifrank.ai/ai-voice-interviewer): how voice interviews work
+- [Docs](https://www.hifrank.ai/docs): guides, including the [MCP connector setup](https://www.hifrank.ai/docs/frank-mcp-connector)
+- [Security](https://www.hifrank.ai/features/transparency-security): SOC 2 and GDPR compliant
+
+## More
+- [Full summary for AI tools](https://www.hifrank.ai/llms-full.txt)

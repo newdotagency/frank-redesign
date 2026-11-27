@@ -17,11 +17,10 @@ import Glasses from '../v3/Glasses';
 import { cornerGlowGrain } from '../components/grain';
 import { TITLE, Eyebrow, SUBTITLE_SIZE } from './titles';
 import { ScrubText, ScrubTitle, useProgress } from './reveal';
-// Assistant logos from LobeHub Icons (MIT; the marks belong to their owners). Dot and Instinct have
-// no published mark there yet, so they get a quiet initial until their own logos are added.
+// Assistant logos from LobeHub Icons (MIT; the marks belong to their owners). Grok and Muse have
+// no published mark here yet, so they get a quiet initial until their own logos are added.
 import claudeLogo from './logos/claude.svg';
 import openaiLogo from './logos/openai.svg';
-import cursorLogo from './logos/cursor.svg';
 
 // url: what the browser's address bar shows (only where the web address is certain).
 // connect / use: the two rows shown when it's picked. Grounded in hifrank.ai/mcp: Frank connects
@@ -34,17 +33,14 @@ const ASSISTANTS = [
   { name: 'ChatGPT', logo: openaiLogo, url: 'chatgpt.com',
     connect: 'Connect Frank’s MCP server and approve access once.',
     use: 'Ask what customers said about pricing and get answers with their quotes.' },
-  { name: 'Cursor', logo: cursorLogo, url: 'cursor.com',
-    connect: 'Add Frank to Cursor’s MCP servers and sign in once.',
+  { name: 'Grok',
+    connect: 'Connect Frank’s MCP server and sign in once.',
     use: 'Check what users asked for before you build the next feature.' },
-  { name: 'Dot',
-    connect: 'Connect Frank through its MCP server and sign in once.',
+  { name: 'Muse',
+    connect: 'Connect Frank’s MCP server and sign in once.',
     use: 'Ask quick questions about your customers between meetings.' },
-  { name: 'Instinct',
-    connect: 'Connect Frank through its MCP server and sign in once.',
-    use: 'Turn customer interviews into decisions without leaving your workspace.' },
-  { name: 'Any MCP client', short: 'any MCP client', reply: 'your assistant', url: 'your AI assistant', any: true,
-    connect: 'Point any MCP-compatible client at Frank’s server and sign in.',
+  { name: 'Other MCP clients', short: 'other MCP clients', reply: 'your assistant', url: 'your AI assistant', any: true,
+    connect: 'Clients that support remote servers with OAuth: point them at Frank’s server and sign in.',
     use: 'New studies start as drafts, so nothing goes out without your OK.' },
 ];
 const EASE = [0.23, 1, 0.32, 1];
@@ -386,7 +382,7 @@ export default function AgenticWorkflow() {
           <ScrubTitle reduce={reduce} id="ag-title" className={'m-0 leading-[1.04] text-white [text-wrap:balance] ' + TITLE}
             lines={['Use Frank with', 'your AI assistant']} />
           <ScrubText as="p" reduce={reduce} lag={0.15} className={'mb-0 max-w-[46ch] mt-6 text-white/70 ' + SUBTITLE_SIZE}>
-            Connect Frank to Claude, ChatGPT, Cursor, Dot, Instinct or any MCP client once. From there, you can design, launch and analyze customer interviews without ever leaving your AI assistant.
+            Works with ChatGPT, Claude, Grok and Muse, plus other MCP clients that support remote servers with OAuth. From there, you can design, launch and analyze customer interviews without ever leaving your AI assistant.
           </ScrubText>
           <ScrubText reduce={reduce} lag={0.2} className="mt-8">
             <WorksWith pick={pick} onPick={setPick} />

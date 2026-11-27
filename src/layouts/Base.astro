@@ -3,8 +3,9 @@ import '../index.css';
 import '../motion.css';
 import '../v9/v9.css';
 import '../v2104/v19.css';
-interface Props { title: string; description: string }
-const { title, description } = Astro.props;
+interface Props { title: string; description: string; jsonld?: object[] }
+const { title, description, jsonld = [] } = Astro.props;
+const canonical = 'https://www.hifrank.ai' + (Astro.url.pathname.replace(/(index)?\.html$/, '').replace(/\/$/, '') || '/');
 ---
 <!doctype html>
 <html lang="en">
@@ -13,6 +14,13 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content="Frank AI Researcher" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {jsonld.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
     <!-- Not indexed for now: remove this tag, public/robots.txt and the X-Robots-Tag in public/_headers to go live -->
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/png" href="/frank-logo.png" />

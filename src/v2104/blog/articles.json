@@ -461,7 +461,7 @@
     "items": [
      "Always-on AI customer interviews",
      "Natural, adaptive conversations through voice or video",
-     "Support for 30+ languages for global customer research",
+     "Support for 50+ interview languages for global customer research",
      "24/7 availability with no manual scheduling or no-shows",
      "Ability to conduct 100+ interviews simultaneously",
      "Science-driven interview structure that [helps teams ask better questions](/blog/how-to-ask-better-customer-interview-questions), avoid shallow “yes/no” research, and probe beyond surface-level answers with adaptive follow-ups.",
@@ -1468,7 +1468,7 @@
     "items": [
      "Adaptive follow-ups that probe the reasons and decision drivers behind an answer",
      "Runs hundreds to 1,000+ interviews simultaneously",
-     "Supports 30+ languages",
+     "Supports 50+ interview languages",
      "SOC 2 & GDPR compliant",
      "Transparent verification via transcripts and recordings"
     ]
@@ -1836,7 +1836,7 @@
      [
       "Frank",
       "SaaS and ecommerce startups and growing teams",
-      "Deep AI interviews from your real customers in 30+ languages. Video coming soon.",
+      "Deep AI interviews from your real customers in 50+ interview languages. Video coming soon.",
       "Free / $49/mo"
      ],
      [
@@ -1907,7 +1907,7 @@
     "items": [
      "**Self-serve from minute one** - free tier with 120 signup credits, no credit card needed. Starter plan from $49/month.",
      "**3 AI interviewer types:** Discovery and validation, product experience, and retention/growth interviews",
-     "**30+ languages** with no translation layer required.",
+     "**50+ interview languages** with no translation layer required.",
      "Runs hundreds to **1,000+ interviews simultaneously**.",
      "Every insight **links back to transcripts** and recordings for transparent verification."
     ]
@@ -1928,7 +1928,7 @@
    },
    {
     "t": "p",
-    "x": "Conveo's enterprise pricing and EU-first positioning make it hard to start small. Frank directly resolves both. **A free tier, transparent monthly pricing, 30+ languages, and global GDPR and SOC 2 Type II compliance without the EU-only framing**. If you want depth without the procurement cycle, Frank is the obvious starting point."
+    "x": "Conveo's enterprise pricing and EU-first positioning make it hard to start small. Frank directly resolves both. **A free tier, transparent monthly pricing, 50+ interview languages, and global GDPR and SOC 2 compliance without the EU-only framing**. If you want depth without the procurement cycle, Frank is the obvious starting point."
    },
    {
     "t": "p",
@@ -2952,7 +2952,7 @@
    },
    {
     "t": "p",
-    "x": "[Frank](/) runs adaptive, AI-moderated interviews with your own customers across 30+ languages, asking conversational follow-up questions instead of a fixed list. Every interview links back to a transcript and recording, so insights come with transparent verification instead of a black-box summary."
+    "x": "[Frank](/) runs adaptive, AI-moderated interviews with your own customers across 50+ interview languages, asking conversational follow-up questions instead of a fixed list. Every interview links back to a transcript and recording, so insights come with transparent verification instead of a black-box summary."
    },
    {
     "t": "img",
@@ -3792,7 +3792,7 @@
      "Automated theming, summaries, and highlight reels",
      "Fraud detection on participant responses",
      "Integrated recruiting via 25+ panel partners",
-     "Enterprise security (SOC 2 Type II, GDPR)"
+     "Enterprise security (SOC 2, GDPR)"
     ]
    },
    {
@@ -4537,7 +4537,7 @@
    },
    {
     "t": "p",
-    "x": "What makes this particularly useful is the ability to conduct hundreds of interviews simultaneously, without scheduling individual calls or dealing with no-shows. Frank supports 30+ languages and automatically analyzes conversations to identify recurring themes, patterns, and sentiment."
+    "x": "What makes this particularly useful is the ability to conduct hundreds of interviews simultaneously, without scheduling individual calls or dealing with no-shows. Frank supports 50+ interview languages and automatically analyzes conversations to identify recurring themes, patterns, and sentiment."
    },
    {
     "t": "p",
@@ -4553,7 +4553,7 @@
      "Conducts adaptive voice interviews with follow-up questions based on each respondent's answers",
      "Research Agent builds interview outlines based on your research goals",
      "Runs multiple interviews simultaneously without scheduling individual calls",
-     "Supports 30+ languages",
+     "Supports 50+ interview languages",
      "Automatically identifies recurring themes, patterns, and sentiment",
      "Embeddable floating widget for collecting feedback directly on your website or app",
      "MCP integration connects Frank with AI tools such as ChatGPT, Claude, Gemini, Copilot, and Cursor",
@@ -7035,7 +7035,7 @@
     "items": [
      "Runs 100+ interviews simultaneously, no scheduling or time zones to manage.",
      "Reaches users on their terms through voice and video.",
-     "Works in 30+ languages, automatically translating responses.",
+     "Works in 50+ interview languages, automatically translating responses.",
      "[Analyzes conversational data](https://prelaunch.com/blog/how-to-analyze-conversational-data) in real time, tagging themes and summarizing sentiment."
     ]
    },
@@ -7691,7 +7691,7 @@
      [
       "Frank",
       "SaaS and ecommerce teams that want to continuously interview their own customers at key moments without recruiting a panel or scheduling calls",
-      "Automated voice interviews in 30+ languages, real-time follow-ups, automatic analysis, and AI-powered analysis at scale",
+      "Automated voice interviews in 50+ interview languages, real-time follow-ups, automatic analysis, and AI-powered analysis at scale",
       "Free / from $49/mo (billed annually)"
      ],
      [
@@ -7783,7 +7783,7 @@
      "**Every summary links back to the raw transcript**, making it easy to verify insights and trace findings back to what customers actually said.",
      "**SOC 2 and GDPR compliant.**",
      "**No research expertise required:** state your research goal, and Frank automatically builds the interview framework.",
-     "**30+ languages**, so teams can collect feedback from customers beyond English-speaking audiences.",
+     "**50+ interview languages**, so teams can collect feedback from customers beyond English-speaking audiences.",
      "**Connects to your AI workflow through** [**Frank's MCP connector**](/mcp), so you can bring customer interview insights into tools like Claude, ChatGPT, Gemini, Copilot, and Cursor."
     ]
    },
@@ -7816,7 +7816,7 @@
      "Starter: $49/month (billed annually; $59 billed monthly)",
      "Growth: $166/month (billed annually; $199 billed monthly)",
      "Business: $312/month (billed annually; $375 billed monthly)",
-     "All paid plans include a 14-day free trial, no credit card required"
+     "No free trial on paid plans; the Free plan is the way to try Frank"
     ]
    },
    {
@@ -8338,7 +8338,7 @@
    },
    {
     "t": "p",
-    "x": "Platforms like Frank add a global layer to this process, running chats in 30+ languages where people already communicate daily. That means users can share feedback naturally, in a place they chat often, in their own words, in their own language, while researchers receive structured, translated transcripts with tone and intent preserved."
+    "x": "Platforms like Frank add a global layer to this process, running chats in 50+ interview languages where people already communicate daily. That means users can share feedback naturally, in a place they chat often, in their own words, in their own language, while researchers receive structured, translated transcripts with tone and intent preserved."
    },
    {
     "t": "h",
@@ -8552,7 +8552,7 @@
    },
    {
     "t": "p",
-    "x": "That tradeoff is what AI customer interviewers break. An AI agent can run hundreds to 1,000+ interviews simultaneously, in 30+ languages at survey-scale economics. **The result: qualitative depth at quantitative reach.**"
+    "x": "That tradeoff is what AI customer interviewers break. An AI agent can run hundreds to 1,000+ interviews simultaneously, in 50+ interview languages at survey-scale economics. **The result: qualitative depth at quantitative reach.**"
    },
    {
     "t": "table",
@@ -8642,7 +8642,7 @@
    },
    {
     "t": "p",
-    "x": "**How Frank works:** You define the interview goal and key questions, and Frank conducts the conversations via voice, using adaptive follow-ups to explore relevant responses. The resulting transcripts and structured insights surface themes, motivations, and decision drivers for your team to review and act on. Frank supports 30+ languages and can conduct hundreds to 1,000+ interviews simultaneously."
+    "x": "**How Frank works:** You define the interview goal and key questions, and Frank conducts the conversations via voice, using adaptive follow-ups to explore relevant responses. The resulting transcripts and structured insights surface themes, motivations, and decision drivers for your team to review and act on. Frank supports 50+ interview languages and can conduct hundreds to 1,000+ interviews simultaneously."
    },
    {
     "t": "h",
@@ -9080,7 +9080,7 @@
     "t": "ul",
     "items": [
      "Trigger interviews automatically at specific customer moments, such as churn or failed activation",
-     "Run interviews in 30+ languages",
+     "Run interviews in 50+ interview languages",
      "Analyze conversations into recurring themes",
      "Provide transcripts, recordings, and chat logs behind every summary",
      "Return structured insight the next day, built on a research methodology shaped by the experience of running 100,000s of interviews"
@@ -9581,7 +9581,7 @@
     "a": [
      {
       "t": "p",
-      "x": "Platforms like Frank is globally scalable and supports **30+ languages**. It can conduct an interview in Spanish or German and deliver the summarized insights to your dashboard in English by the next morning."
+      "x": "Platforms like Frank is globally scalable and supports **50+ interview languages**. It can conduct an interview in Spanish or German and deliver the summarized insights to your dashboard in English by the next morning."
      }
     ]
    }
@@ -12144,7 +12144,7 @@
    },
    {
     "t": "p",
-    "x": "You get a structured summary the next morning, and every insight links back to the original transcript or recording, so nothing you act on is a black-box summary you have to take on faith. Frank supports interviews in 30+ languages, which matters if your pipeline includes international buyers who never fully articulated their confusion in English on the call."
+    "x": "You get a structured summary the next morning, and every insight links back to the original transcript or recording, so nothing you act on is a black-box summary you have to take on faith. Frank supports interviews in 50+ interview languages, which matters if your pipeline includes international buyers who never fully articulated their confusion in English on the call."
    },
    {
     "t": "p",
@@ -12627,7 +12627,7 @@
     "t": "ul",
     "items": [
      "**Runs interviews through voice today, with video coming soon** — giving your customers more ways to share feedback in the format that feels most natural to them.",
-     "**Supports 30+ languages**, with automatic translation and contextual understanding, making qualitative research accessible beyond English-speaking audiences.",
+     "**Supports 50+ interview languages**, with automatic translation and contextual understanding, making qualitative research accessible beyond English-speaking audiences.",
      "**Adapts follow-ups dynamically**, meaning it doesn’t rely on static question lists; it reads what users say, extracts keywords, and asks context-aware questions in response.",
      "**Structures outputs automatically**, generating transcripts, key insights, and common patterns, all formatted for quick synthesis.",
      "**Scales horizontally:** the same behavioral flow can run across hundreds of sessions simultaneously, each conversation personalized but built from the same base logic."
@@ -12920,7 +12920,7 @@
    },
    {
     "t": "p",
-    "x": "A cancellation form gives you one of five options. Frank gives you a conversation in 30+ languages, any time zone, no moderator needed. If someone says, \"I wasn't sure it was working,\" Frank asks what they were trying to do when that happened. Turns out people are also [pretty honest when there's no human](/blog/do-people-talk-to-ai) on the other end judging their answer."
+    "x": "A cancellation form gives you one of five options. Frank gives you a conversation in 50+ interview languages, any time zone, no moderator needed. If someone says, \"I wasn't sure it was working,\" Frank asks what they were trying to do when that happened. Turns out people are also [pretty honest when there's no human](/blog/do-people-talk-to-ai) on the other end judging their answer."
    },
    {
     "t": "img",
@@ -13691,7 +13691,7 @@
      "One person can only run so many churn interviews. Reaching saturation across every plan and language takes far more time than most teams have.",
      "\"Churn at scale\" means four things: enough interviews per segment, consistent quality, fast outreach, and full coverage. Not just more interviews.",
      "Manual setups can usually hit one of those four, not all of them at once.",
-     "An AI Interviewer, Frank, automates the whole thing, adaptive interviews triggered at cancellation, in 30+ languages, summarized overnight."
+     "An AI Interviewer, Frank, automates the whole thing, adaptive interviews triggered at cancellation, in 50+ interview languages, summarized overnight."
     ]
    },
    {
@@ -13955,7 +13955,7 @@
    },
    {
     "t": "p",
-    "x": "Frank connects to the moment someone cancels, downgrades, or hits a renewal milestone, and reaches out right then, no webhook to build, no list to pull. The conversation adapts to what the customer actually says instead of stopping at the first answer, in natural voice today (video coming soon). All of it runs across 100+ interviews at once, in 30+ languages, so the segments that used to fall off a manual list just don't anymore. If someone says \"it wasn't quite right,\" Frank asks what \"not quite right\" actually meant, which is [how Frank understands why they churn](/use-case/ai-churn-interviews) instead of just logging that they did."
+    "x": "Frank connects to the moment someone cancels, downgrades, or hits a renewal milestone, and reaches out right then, no webhook to build, no list to pull. The conversation adapts to what the customer actually says instead of stopping at the first answer, in natural voice today (video coming soon). All of it runs across 100+ interviews at once, in 50+ interview languages, so the segments that used to fall off a manual list just don't anymore. If someone says \"it wasn't quite right,\" Frank asks what \"not quite right\" actually meant, which is [how Frank understands why they churn](/use-case/ai-churn-interviews) instead of just logging that they did."
    },
    {
     "t": "h",
@@ -15422,7 +15422,7 @@
      ],
      [
       "Language Support",
-      "30+ languages. No translation layer needed",
+      "50+ interview languages. No translation layer needed",
       "English-primary; limited multilingual support",
       "EU-market focus; strong data residency options for GDPR compliance",
       "29 languages with auto-translation",
@@ -15849,7 +15849,7 @@
    },
    {
     "t": "p",
-    "x": "However, Frank sits in a different spot. Instead of recruiting strangers from a panel, it reaches the people who actually use your product. It runs the interview for you in 30+ languages, with every insight linked back to the original transcript and recording for transparency."
+    "x": "However, Frank sits in a different spot. Instead of recruiting strangers from a panel, it reaches the people who actually use your product. It runs the interview for you in 50+ interview languages, with every insight linked back to the original transcript and recording for transparency."
    },
    {
     "t": "p",
@@ -15991,7 +15991,7 @@
     ],
     "rows": [
      [
-      "Frank AI Interviewer",
+      "Frank AI Researcher",
       "SaaS and ecommerce teams that want to interview their customers during every stage of their lifecycle — **fast and without an enterprise budget**",
       "Pop-up widget integration anywhere in your product",
       "Free (60 min/mo) – $312/mo (Business, annual); Enterprise custom"
@@ -16054,7 +16054,7 @@
    },
    {
     "t": "p",
-    "x": "Each interview uses adaptive follow-ups to dig into reasons, motivations, and decision drivers. Frank runs hundreds to 1,000+ interviews simultaneously in 30+ languages. Every insight also links back to its transcript and recording. That transparent verification answers the most common worry about this category: is the AI making things up?"
+    "x": "Each interview uses adaptive follow-ups to dig into reasons, motivations, and decision drivers. Frank runs hundreds to 1,000+ interviews simultaneously in 50+ interview languages. Every insight also links back to its transcript and recording. That transparent verification answers the most common worry about this category: is the AI making things up?"
    },
    {
     "t": "img",
@@ -16097,7 +16097,7 @@
    },
    {
     "t": "p",
-    "x": "**Pricing is the second difference.** Marvin keeps paid pricing behind “contact sales” past its free tier, and its paid plans are annual-only. That makes it hard to test at low commitment. Frank publishes self-serve pricing: Free, Starter at $49/mo, Growth at $166/m,o and Business at $312/mo (all billed annually). There’s also a 14-day free trial with no credit card required. If pricing opacity (drawback #1) is your dealbreaker, this is the direct fix."
+    "x": "**Pricing is the second difference.** Marvin keeps paid pricing behind “contact sales” past its free tier, and its paid plans are annual-only. That makes it hard to test at low commitment. Frank publishes self-serve pricing: Free, Starter at $49/mo, Growth at $166/m,o and Business at $312/mo (all billed annually). There’s also a Free plan with 60 voice minutes a month and no card required. If pricing opacity (drawback #1) is your dealbreaker, this is the direct fix."
    },
    {
     "t": "p",
@@ -17885,7 +17885,7 @@
     "t": "ul",
     "items": [
      "**Zero scheduling, zero no-shows.**Frank is available 24/7, so you can trigger interviews immediately after the behavior you care about —**not two weeks later** when the memory has faded.",
-     "**100+ interviews simultaneously**, across 30+ languages, so you're**not limited to the 1–2 users** per week that traditional interviewing allows.",
+     "**100+ interviews simultaneously**, across 50+ interview languages, so you're**not limited to the 1–2 users** per week that traditional interviewing allows.",
      "**Higher honesty.**Participants tend to [give more candid answers to an AI](https://prelaunch.com/blog/do-people-talk-to-ai) than to a human interviewer —**reducing social desirability bias** right at the source.",
      "**Traceable transparency.**Every structured summary links back to raw transcripts and recordings, so insights aren't a black box —**you can verify them**.",
      "**Scientific methodology baked in.**Frank's interview structure and summaries are built on proven research frameworks, so you get**insights that are not just fast but credible.**",
@@ -18128,7 +18128,7 @@
    },
    {
     "t": "quote",
-    "x": "***Frank, powered by Prelaunch,*** *is what qual at scale looks like in practice. An AI interviewer that conducts real adaptive conversations, no script, no moderator, no human bottleneck. Runs via scheduled voice calls today (video coming soon), across 30+ languages, overnight. Every insight tied back to the full transcript, so you're never trusting a summary someone wrote up.*"
+    "x": "***Frank, powered by Prelaunch,*** *is what qual at scale looks like in practice. An AI interviewer that conducts real adaptive conversations, no script, no moderator, no human bottleneck. Runs via scheduled voice calls today (video coming soon), across 50+ interview languages, overnight. Every insight tied back to the full transcript, so you're never trusting a summary someone wrote up.*"
    },
    {
     "t": "h",
@@ -18233,7 +18233,7 @@
     "a": [
      {
       "t": "p",
-      "x": "That's not a blocker anymore. Tools like Frank run across 30+ languages without needing separate research setups or translation teams. The AI conducts and synthesizes the interviews in the participant's language, so you're not losing nuance through a translation layer."
+      "x": "That's not a blocker anymore. Tools like Frank run across 50+ interview languages without needing separate research setups or translation teams. The AI conducts and synthesizes the interviews in the participant's language, so you're not losing nuance through a translation layer."
      }
     ]
    },
@@ -18442,7 +18442,7 @@
      "**Runs 100+ interviews simultaneously,** with zero scheduling and zero no-shows",
      "SOC 2 and GDPR compliant",
      "[MCP connector](/mcp) **brings interview insights** into tools like Claude, ChatGPT, Gemini, Copilot, and Cursor",
-     "**30+ languages**, available 24/7",
+     "**50+ interview languages**, available 24/7",
      "**Automated overnight summaries** that pull out the specific reasons behind each answer, with themes and sentiment layered on top, no manual tagging",
      "**Every insight traceable** back to the raw transcript and recording, so nothing gets taken on faith",
      "**Guided setup**: describe the goal; Frank builds the framework; no research team needed"
@@ -18646,7 +18646,7 @@
    },
    {
     "t": "p",
-    "x": "To carry out recruitment, Outset covers more than 1.1 billion potential participants in over 85 countries via its partner panels, which means that multi-market, multi-language studies do not need a separate panel vendor. The company's advantage in the enterprise sector is in terms of compliance and setup, offering SOC 2 Type II and GDPR compliance, custom screeners and quotas, and the option to use your own customer list or to recruit through Outset's partner panels."
+    "x": "To carry out recruitment, Outset covers more than 1.1 billion potential participants in over 85 countries via its partner panels, which means that multi-market, multi-language studies do not need a separate panel vendor. The company's advantage in the enterprise sector is in terms of compliance and setup, offering SOC 2 and GDPR compliance, custom screeners and quotas, and the option to use your own customer list or to recruit through Outset's partner panels."
    },
    {
     "t": "h",
@@ -18660,7 +18660,7 @@
      "**One platform offers four modes:** video, voice, text, and voice-to-voice, so that the format is tailored to the study rather than the study being tailored to the format.",
      "**40+ languages** for global, multi-market programs",
      "**1.1B+ potential participants in 85+ countries** through partner panels, so you're not stuck bringing your own list",
-     "**Enterprise-grade compliance** out of the box: SOC 2 Type II and GDPR",
+     "**Enterprise-grade compliance** out of the box: SOC 2 and GDPR",
      "**Custom screeners, quotas,** and the option to bring your own customer list alongside partner-panel recruitment"
     ]
    },
@@ -18680,7 +18680,7 @@
    },
    {
     "t": "p",
-    "x": "**Why Outset over Qualtrics:** Qualtrics enterprise agreement is designed for a certain scale, offering multi-market coverage, support for 40 or more languages, and compliance with both SOC 2 Type II and GDPR. The difference lies in what is given to each respondent: rather than having to click through a scale question, they receive an AI-moderated interview that includes up to 10 follow-up probes per question."
+    "x": "**Why Outset over Qualtrics:** Qualtrics enterprise agreement is designed for a certain scale, offering multi-market coverage, support for 40 or more languages, and compliance with both SOC 2 and GDPR. The difference lies in what is given to each respondent: rather than having to click through a scale question, they receive an AI-moderated interview that includes up to 10 follow-up probes per question."
    },
    {
     "t": "p",
@@ -19535,7 +19535,7 @@
      "Runs 100+ simultaneous interviews, zero scheduling, zero no-shows",
      "Participants join via voice, no app downloads, no account creation, no scheduling friction on their end",
      "Participants tend to [give more honest answers to AI](/blog/do-people-talk-to-ai) than human interviewers, reducing social desirability bias",
-     "30+ languages",
+     "50+ interview languages",
      "Every insight is traceable back to raw transcripts and recordings",
      "Guided setup: describe your research goal, Frank builds the framework, no research background needed",
      "[Companies using Frank report](https://app.dealroom.co/news/feed/prelaunch-com-launches-frank-ai-researcher-to-automate-hundreds-of-customer-interviews-overnight) 56% higher feature adoption and 20% lower churn rates, with a six-week research cycle compressed into roughly three days"
@@ -21343,7 +21343,7 @@
    },
    {
     "t": "p",
-    "x": "And because it “never sleeps,” it keeps talking to customers even while teams are offline, running 100+ deep interviews overnight, speaking 30+ languages, across time zones. It extracts insights into short video summaries, transcripts, and dashboards that show what customers actually feel and why. And, with full access to the underlying recordings/transcripts/chat logs for verification and SOC 2 and GDPR compliance, teams can trust the insights."
+    "x": "And because it “never sleeps,” it keeps talking to customers even while teams are offline, running 100+ deep interviews overnight, speaking 50+ interview languages, across time zones. It extracts insights into short video summaries, transcripts, and dashboards that show what customers actually feel and why. And, with full access to the underlying recordings/transcripts/chat logs for verification and SOC 2 and GDPR compliance, teams can trust the insights."
    },
    {
     "t": "p",

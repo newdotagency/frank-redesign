@@ -7,7 +7,7 @@ import soc2 from './logos/soc2.png';
 import gdpr from './logos/gdpr.png';
 
 const SECURITY = [
-  { name: 'SOC 2', text: 'Independently audited for top-tier security and privacy.', img: soc2 },
+  { name: 'SOC 2', text: 'SOC 2 and GDPR compliant.', img: soc2 },
   { name: 'Award winning methodology', text: 'Prelaunch.com is the Silver Winner of the global ESOMAR Award for Breakthrough Research Methodology', icon: Award },
   { name: 'GDPR', text: 'Privacy built to meet EU regulations.', img: gdpr },
 ];

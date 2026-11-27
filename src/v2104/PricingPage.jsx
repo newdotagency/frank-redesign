@@ -24,6 +24,8 @@ import MarkedPhrase from './MarkedPhrase';
 import { ScrubText, ScrubTitle } from './reveal';
 import { PL_LOGOS } from './logos/prelaunchBrands';
 import FAQ from './FAQ';
+import FactsBlock from './FactsBlock';
+import { PRICING_FACTS } from '../lib/facts';
 import Footer from './Footer';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
@@ -36,23 +38,23 @@ const PLANS = [
     cta: 'Get started free',
     items: ['60 voice minutes / month', '~4 interviews (15 min each)', '10-minute max interview length', 'Sentiment & thematic analysis', 'Video reels compilation', 'Unlimited anonymous viewers'] },
   { id: 'starter', name: 'Starter', blurb: 'For solo innovators & DTC brands starting out.', price: [49, 59], billed: '$590',
-    cta: 'Start free trial', perMin: 'Average at $0.50/min.',
+    cta: 'Get started', perMin: 'Average at $0.50/min.',
     items: ['120 voice minutes / month', '~8 interviews (15 min each)', '20-minute max interview length', '50 chat conversations', 'Full analytics suite'] },
   { id: 'growth', name: 'Growth', blurb: 'For product teams and startups scaling their customer insights.', price: [166, 199], billed: '$1,990',
-    cta: 'Start free trial', perMin: 'Average at $0.45/min.', popular: true,
+    cta: 'Get started', perMin: 'Average at $0.45/min.', popular: true,
     items: ['450 voice minutes / month', '~30 interviews (15 min each)', '20-minute max interview length', 'Credit rollovers (30 days)'] },
   { id: 'business', name: 'Business', blurb: 'Advanced tools for established teams.', price: [312, 375], billed: '$3,750',
-    cta: 'Start free trial', perMin: 'Average at $0.40/min.',
+    cta: 'Get started', perMin: 'Average at $0.40/min.',
     items: ['950 voice minutes / month', '~63 interviews (15 min each)', '30-minute max interview length', 'Everything in Growth'] },
 ];
 
 const FAQS = [
-  { q: 'What is a credit?', a: ['10 credits equals roughly 1 minute of voice interview or 10 chat messages. Credits give you flexibility to mix and match interview types.'] },
+  { q: 'What is a credit?', a: ['10 credits equals roughly 1 minute of voice interview.'] },
   { q: 'Can I switch plans anytime?', a: ['Yes. You can upgrade or downgrade at any time. When upgrading, you get immediate access to new plan features. Downgrades take effect at the next billing cycle.'] },
   { q: 'What happens if I exceed my minutes?', a: ['You can keep interviewing at the overage rate for your plan. There are no hard caps — your research never stops mid-conversation.'] },
   { q: 'Do unused credits roll over?', a: ['On Growth and above, unused credits roll over for 30 days. Free and Starter plans reset monthly.'] },
-  { q: 'Is there a free trial?', a: ['All paid plans include a 14-day free trial. No credit card required to start.'] },
-  { q: 'What interview formats are supported?', a: ['Frank supports voice interviews, video interviews, WhatsApp chat, and web chat. Each format uses credits at a different rate — voice is the most efficient.'] },
+  { q: 'Is there a free trial?', a: ['There is no free trial on paid plans. The Free plan is the way to try Frank.'] },
+  { q: 'What interview formats are supported?', a: ['Frank runs voice interviews. Video and WhatsApp interviews are Coming soon.'] },
 ];
 
 const LBL = 'm-0 font-sans text-[12px] font-light uppercase leading-none tracking-[0.08em]';
@@ -288,7 +290,7 @@ export default function PricingPage() {
                   <span className="block">Know what your customers</span><span className="block">actually think.</span>
                 </Rise>
                 <Rise as="p" reduce={reduce} delay={0.14} className="mx-auto mb-0 mt-5 max-w-[50ch] font-sans text-[17px] leading-[1.55] text-white/70 [text-wrap:balance] sm:mt-6 sm:text-[18px]">
-                  AI-powered voice &amp; chat interviews that scale your customer research. Choose the plan that fits your team.
+                  AI voice interviews with your own customers. Video and WhatsApp: Coming soon.
                 </Rise>
                 <Rise reduce={reduce} delay={0.22} className="mt-12 sm:mt-14">
                   <Billing yearly={yearly} onChange={setYearly} reduce={reduce} />
@@ -329,6 +331,9 @@ export default function PricingPage() {
               </div>
             </Rise>
           </section>
+
+          {/* The prices and rules in full sentences (readiness doc M1). */}
+          <FactsBlock blocks={PRICING_FACTS} id="pr-facts-title" className="pt-[clamp(112px,13vw,200px)]" />
 
           {/* Common questions, in the homepage FAQ's two-column layout. */}
           <div className="pt-[clamp(112px,13vw,200px)]">

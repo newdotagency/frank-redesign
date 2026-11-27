@@ -84,7 +84,7 @@ const FAQS = [
   { q: 'Do people feel comfortable talking to AI on video?', a: ['Yes. People find it surprisingly natural and more personal. The AI’s adaptive follow-ups help users feel understood and open up easily.'] },
   { q: 'What extra insights can video interviews provide?', a: ['Video interviews add another layer of visual emotion. You can see smiles, confusion, or hesitation, and the AI translates those cues into emotional and behavioral insights.'] },
   { q: 'Do I need special software or downloads?', a: ['No. Participants can join directly from their browser or phone. No logins or installations needed!'] },
-  { q: 'Are video interviews private and secure?', a: ['Absolutely. Prelaunch is SOC 2 certified and GDPR compliant. All videos are encrypted, anonymized, and stored securely.'] },
+  { q: 'Are video interviews private and secure?', a: ['Absolutely. Prelaunch is SOC 2 and GDPR compliant. All videos are encrypted, anonymized, and stored securely.'] },
   { q: 'Can I share highlights with my team?', a: ['Yes. Every interview is summarized into short, shareable video clips so your team can see and hear your customers directly, no decks required.'] },
 ];
 

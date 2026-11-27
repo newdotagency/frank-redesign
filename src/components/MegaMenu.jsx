@@ -38,7 +38,7 @@ export const MENUS = {
     groups: [
       { label: 'Product', items: [
         it(Mic, 'AI Voice Interviews', 'Natural voice conversations', '/ai-voice-interviewer'),
-        it(Video, 'AI Video Interviews', 'Face-to-face video conversations', '/ai-video-interviewer'),
+        it(Video, 'AI Video Interviews (Coming soon)', 'Face-to-face video conversations', '/ai-video-interviewer'),
         it(Plug, 'MCP', 'Frank inside your AI tools', '/mcp'),
       ] },
       { label: 'Features', items: [

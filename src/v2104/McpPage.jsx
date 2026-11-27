@@ -15,7 +15,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useInView, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ArrowUp, Check, Mic, PhoneOff } from 'lucide-react';
-import { siGithubcopilot, siGooglegemini } from 'simple-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { HandshakeIcon, Megaphone01Icon, PackageIcon, Rocket01Icon } from '@hugeicons/core-free-icons';
 import Header from '../components/Header';
@@ -25,11 +24,12 @@ import { TITLE, SUBTITLE, Eyebrow } from './titles';
 import { ScrubText, ScrubTitle } from './reveal';
 import Footer from './Footer';
 import FAQ from './FAQ';
+import FactsBlock from './FactsBlock';
+import { MCP_FACTS } from '../lib/facts';
 import HowItWorks from './HowItWorks';
 import { DefineScene, EngageScene, QueryScene } from './McpScenes';
 import claudeLogo from './logos/claude.svg';
 import openaiLogo from './logos/openai.svg';
-import cursorLogo from './logos/cursor.svg';
 import mcpLogo from './logos/mcp.svg';
 
 const SIGNUP = 'https://app.hifrank.ai/signup';
@@ -197,9 +197,9 @@ function AiChat({ reduce }) {
   );
 }
 
-// A logo from simple-icons, drawn from its path.
-const PathLogo = ({ icon, color }) => (
-  <svg viewBox="0 0 24 24" aria-hidden="true" className="size-full"><path d={icon.path} fill={color} /></svg>
+// A letter mark for the clients that have no logo file here (Grok, Muse).
+const LetterLogo = ({ t, color }) => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" className="size-full"><text x="12" y="18.5" textAnchor="middle" fontSize="20" fontWeight="600" fontFamily="Figtree, sans-serif" fill={color}>{t}</text></svg>
 );
 
 // ——— 1b. Hero, concept B: one research base, every AI. Drawn straight on the green panel. Frank's research in the
@@ -223,10 +223,10 @@ const HUB = [
     reply: { lines: [['The price went up for small teams', '12'], ['Reporting moved into their CRM', '8']] } },
   { name: 'ChatGPT', logo: <img src={openaiLogo} alt="" className="size-full invert" />, at: [380, 0], ask: 'Find quotes about onboarding',
     reply: { quote: 'The setup took one call. After that, the team just used it.' } },
-  { name: 'Gemini', logo: <PathLogo icon={siGooglegemini} color="#c9b6ff" />, at: [0, 476], ask: 'Set up a study on pricing',
+  { name: 'Grok', logo: <LetterLogo t="G" color="#c9b6ff" />, at: [0, 476], ask: 'Set up a study on pricing',
     reply: { lines: [['Pricing perception study', 'Draft'], ['6 questions, ready to review', '']] } },
-  { name: 'Cursor', logo: <img src={cursorLogo} alt="" className="size-full invert" />, at: [380, 476], ask: 'What do users say about the API?',
-    reply: { lines: [['Wants webhooks for new answers', '9'], ['Docs need more examples', '5']] } },
+  { name: 'Muse', logo: <LetterLogo t="M" color="#ffffff" />, at: [380, 476], ask: 'What do users say about onboarding?',
+    reply: { lines: [['Wants a shorter first setup', '9'], ['Needs more examples', '5']] } },
 ];
 const BEATS = [900, 800, 1100, 800, 2700]; // ask · out · Frank works · back · answer
 const chipC = ([x, y]) => [x + 70, y + 22]; // the chip's centre (chips are 140 × 44)
@@ -467,15 +467,12 @@ const LLMS = [
   { name: 'ChatGPT', dark: <img src={openaiLogo} alt="" className="size-full invert" />, light: <img src={openaiLogo} alt="" className="size-full" />,
     ask: 'Talk to this week’s new sign-ups about their first few days.',
     study: 'First-week onboarding', qs: ['What did you want to get done first?', 'Where did you get stuck?', 'What almost made you give up?'] },
-  { name: 'Gemini', dark: <PathLogo icon={siGooglegemini} color="#c9b6ff" />, light: <PathLogo icon={siGooglegemini} color={'#' + siGooglegemini.hex} />,
+  { name: 'Grok', dark: <LetterLogo t="G" color="#c9b6ff" />, light: <LetterLogo t="G" color="#1a1714" />,
     ask: 'Ask our power users how they would price a team plan.',
     study: 'Team plan pricing', qs: ['How does your team use it today?', 'Who decides on new tools?', 'What would a fair price per seat be?'] },
-  { name: 'Copilot', dark: <PathLogo icon={siGithubcopilot} color="#ffffff" />, light: <PathLogo icon={siGithubcopilot} color="#1a1714" />,
+  { name: 'Muse', dark: <LetterLogo t="M" color="#ffffff" />, light: <LetterLogo t="M" color="#1a1714" />,
     ask: 'Find out why trial users never invite their team.',
     study: 'Team invites in the trial', qs: ['Who else would use this with you?', 'What stopped you from inviting them?', 'What would make sharing easier?'] },
-  { name: 'Cursor', dark: <img src={cursorLogo} alt="" className="size-full invert" />, light: <img src={cursorLogo} alt="" className="size-full" />,
-    ask: 'Ask developers what is missing from our API.',
-    study: 'API feedback', qs: ['What did you try to build with the API?', 'Where did the docs fall short?', 'What would you add first?'] },
 ];
 const JOINED = ['/videos/call-03-card.jpg', '/videos/call-07-card.jpg', '/videos/call-10-card.jpg'];
 // ms per phase after the typing (phase 0): create runs · drafting · q1 · q2 · q3 · publish runs · live · fade
@@ -811,7 +808,7 @@ function Hero({ reduce }) {
               Run customer research from within your <span className="italic">favorite LLM</span>
             </Rise>
             <Rise as="p" reduce={reduce} delay={0.14} className={'m-0 mt-5 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-white/70 sm:mt-6' + (bare ? ' mx-auto [text-wrap:pretty]' : '')}>
-              Connect Frank to Claude, OpenAI, Gemini, and the AI tools you already love to use. Create new research projects, run interviews, explore transcripts, analyze correlations, and uncover real customer insights without leaving your workflow.
+              Works with ChatGPT, Claude, Grok and Muse, plus other MCP clients that support remote servers with OAuth. Create studies, run voice interviews and explore transcripts without leaving your chat.
             </Rise>
             <Rise reduce={reduce} delay={0.22} className="mt-9">
               <Pill href={SIGNUP} tone="lime">Sign up to get started</Pill>
@@ -834,9 +831,8 @@ function Hero({ reduce }) {
 const TOOLS = [
   ['Claude', <img src={claudeLogo} alt="" className="size-full" />],
   ['ChatGPT', <img src={openaiLogo} alt="" className="size-full" />],
-  ['Gemini', <PathLogo icon={siGooglegemini} color={'#' + siGooglegemini.hex} />],
-  ['Copilot', <PathLogo icon={siGithubcopilot} color="#1a1714" />],
-  ['Cursor', <img src={cursorLogo} alt="" className="size-full" />],
+  ['Grok', <LetterLogo t="G" color="#1a1714" />],
+  ['Muse', <LetterLogo t="M" color="#1a1714" />],
 ];
 function Where({ reduce }) {
   return (
@@ -866,7 +862,7 @@ function Where({ reduce }) {
               {/* The label box is one line tall, as in the other tiles, so this logo sits at the same height as theirs;
                   the second line runs below it. */}
               <span className="relative block h-[22px] w-full">
-                <span className={FIG + ' absolute inset-x-0 top-0 text-[16px] leading-[1.35] tracking-[-0.01em] text-ink [text-wrap:balance]'}>and any <span className="whitespace-nowrap">MCP-compatible</span> platform</span>
+                <span className={FIG + ' absolute inset-x-0 top-0 text-[15px] leading-[1.3] tracking-[-0.01em] text-ink [text-wrap:balance]'}>plus other MCP clients with remote server and OAuth support</span>
               </span>
             </span>
           </ScrubText>
@@ -1063,7 +1059,7 @@ function Teams({ reduce }) {
 
 // ——— 5. FAQ: the live page's seven questions.
 const MCP_FAQ = [
-  { q: 'What is the Frank MCP server?', a: ['Frank’s MCP server connects your Frank account to compatible AI clients such as Claude, ChatGPT and Gemini. This lets your AI assistant work with your Frank research, interviews, and transcripts, and, with the right permissions, create and manage research too.'] },
+  { q: 'What is the Frank MCP server?', a: ['Frank’s MCP server connects your Frank account to MCP clients that support remote servers with OAuth, including ChatGPT, Claude, Grok and Muse. This lets your AI assistant work with your Frank research, interviews, and transcripts, and, with the right permissions, create and manage research too.'] },
   { q: 'What can I do with Frank through MCP?', a: ['You can use your AI assistant to work across the research lifecycle. Create research projects, access studies and interviews, read transcripts, explore customer responses, and analyze what people said.'] },
   { q: 'Do I need to use a separate Frank workflow?', a: ['No. That’s the point. Once Frank is connected, you can work with your customer research from the AI environment you already use. You don’t need to copy transcripts into another tool or switch between platforms every time you have a question.'] },
   { q: 'Can my AI create research with Frank?', a: ['Yes. With the appropriate permissions, your AI can create a research project in Frank. New research is created as a draft, so it isn’t published to participants without separate approval.'] },
@@ -1100,6 +1096,7 @@ export default function McpPage() {
           hrefs={{ home: '/', pricing: '/pricing', voice: '/ai-voice-interviewer', docs: '/docs', blog: '/blog', cases: '/case-study', comparison: '/comparison', churn: '/use-case/ai-churn-interviews', mcp: '/mcp' }} />
         <main id="main">
           <Hero reduce={reduce} />
+          <FactsBlock blocks={MCP_FACTS} id="mcp-connect-title" className="pt-[clamp(64px,8vw,120px)]" />
           <Where reduce={reduce} />
           <How />
           <Teams reduce={reduce} />

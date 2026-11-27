@@ -30,15 +30,15 @@ const FAQS = [
   { q: 'How long does setup take? Do I need a developer?',
     a: ['Most teams go live in minutes, with no developer. Describe what you want to learn, review the study Frank drafts, then share a link or paste one embed snippet into your site, including Shopify storefronts.',
       'The interview can appear inline, as a pop-up or as a floating bubble, styled to your brand.'] },
-  { q: 'Can I run Frank from Claude, ChatGPT, Cursor or my favorite agent?',
-    a: ['Yes. Frank connects to any AI assistant that supports MCP (Model Context Protocol), including Claude, ChatGPT, Cursor, Dot and Instinct.',
+  { q: 'Can I run Frank from ChatGPT, Claude, Grok or Muse?',
+    a: ['Yes. Frank works with ChatGPT, Claude, Grok and Muse, plus other MCP clients that support remote servers with OAuth.',
       'You can say “Set up a churn interview for users who cancelled this month” to your assistant, and Frank builds the study, launches it and reports the findings back there.'] },
   { q: 'How do I know the insights are accurate?',
     a: ['Every theme Frank reports traces back to the verbatim quotes and the specific interviews behind it. You can click from a top-line finding to the exact moment a customer said it, read full transcripts, and see quality scores on answers. Nothing is a black box.'] },
   { q: 'Is my customer data secure?',
     a: ['Frank is SOC 2 compliant and GDPR-compliant. You control who can see each study and share only private links.'] },
   { q: 'Who is Frank for, and what if I don’t have customers yet?',
-    a: ['Frank is built for AI-native SaaS founders and Shopify store owners who need customer insight without a research team. It ships with 11 templates for situations like churn, discovery, abandoned cart, post-purchase and feature releases, and interviews in 30+ languages with transcripts translated into yours.',
+    a: ['Frank is built for AI-native SaaS founders and Shopify store owners who need customer insight without a research team. It ships with 11 templates for situations like churn, discovery, abandoned cart, post-purchase and feature releases, and interviews in 50+ interview languages with transcripts translated into yours.',
       'No customers yet? Recruit interviewees from Frank’s managed panel to test an idea with your target market.'] },
 ];
 

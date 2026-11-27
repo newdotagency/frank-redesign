@@ -366,7 +366,7 @@ const ANSWERS = [
     text: ['Scheduling, moderating, transcribing? Traditional voice interviews are a nightmare to scale beyond 2-3 interviews per week, especially on a busy schedule!',
       'Prelaunch’s AI Voice Interviewer can run hundreds of 1-on-1 voice conversations simultaneously, ask intelligent follow-up questions, and deliver structured insights automatically.'] },
   { id: 'vo-global', kicker: 'Need global reach?', title: ['Talk to anyone, anywhere,', 'instantly'], Scene: ReachScene,
-    text: ['Your AI Voice Interviewer speaks 30+ languages and can conduct interviews in real time, across continents, time zones, and markets!',
+    text: ['Your AI Voice Interviewer speaks 50+ interview languages and can conduct interviews in real time, across continents, time zones, and markets!',
       'Understand your customers no matter where they are.'] },
 ];
 
@@ -395,21 +395,21 @@ export function Answer({ a, reduce, first }) {
 
 const FAQS = [
   { q: 'Do people feel comfortable talking to AI by voice?', a: ['Yes! And they actually open up more easily. The AI’s conversational tone builds comfort and trust, leading to more candid answers.'] },
-  { q: 'Can the AI Voice Interviewer handle different accents and languages?', a: ['No problem. The AI Interviewer supports 30+ languages and automatically adapts to accents and speech patterns.'] },
+  { q: 'Can the AI Voice Interviewer handle different accents and languages?', a: ['No problem. The AI Interviewer supports 50+ interview languages and automatically adapts to accents and speech patterns.'] },
   { q: 'How long does a typical AI Voice Interview take?', a: ['Most interviews last between 5–10 minutes, depending on your goals and user engagement.'] },
   { q: 'Can I get transcripts and summaries?', a: ['Absolutely. Every interview is automatically transcribed, analyzed, and summarized, with highlights you can share directly.'] },
-  { q: 'Is it secure?', a: ['Yes! Prelaunch is SOC 2 certified and GDPR compliant. All audio data is encrypted and anonymized for privacy and compliance.'] },
+  { q: 'Is it secure?', a: ['Yes! Prelaunch is SOC 2 and GDPR compliant. All audio data is encrypted and anonymized for privacy and compliance.'] },
 ];
 
 export const STATS = [
   { n: '100x', what: 'more interviews per month', text: 'Run and analyze hundreds of deep interviews automatically. No scheduling, no transcripts, no hassle.' },
   { n: '50x', what: 'more affordable', text: 'Traditional interviews cost $500–$1,000 each. Get the same insights for a fraction of the price.' },
-  { n: '30+', what: 'languages available', text: 'Talk to customers worldwide. Frank speaks 30+ languages and delivers instant translations (coming soon).' },
+  { n: '30+', what: 'languages available', text: 'Talk to customers worldwide. Frank speaks 50+ interview languages and delivers instant translations (coming soon).' },
 ];
 
 export const Note = ({ dark }) => (
   <p className={'m-0 mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-sans text-[13.5px] lg:justify-start ' + (dark ? 'text-ink/70' : 'text-ink-3')}>
-    <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />Claim 225 signup credits</span>
+    <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />Free plan: 60 voice minutes a month, no card required</span>
     <span className="inline-flex items-center gap-1.5"><Check aria-hidden="true" className="size-3.5" strokeWidth={2} />No credit card required</span>
   </p>
 );

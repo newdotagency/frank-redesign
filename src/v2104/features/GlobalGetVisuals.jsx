@@ -1,6 +1,6 @@
 // GlobalGetVisuals (V21.04): the three "What you get" pictures of the Global scalability page redrawn from the live page's pictures as plain
 // HTML and SVG in the V21.04 colours (flags are small SVGs, the map is drawn from simple shapes):
-//   Language:  flags in orbit around a dotted globe (30+ languages).
+//   Language:  flags in orbit around a dotted globe (50+ interview languages).
 //   Patterns:  a lined world map with each region's score, and the dashed links between them.
 //   Cost:      "10 interviews" and "10k interviews" over a list of conversations, "Same operational effort" floating on top.
 // Each is drawn on a 400 × 300 stage (the card's 4:3) scaled to its width; the orbit and the floating card drift slowly, and hold still with

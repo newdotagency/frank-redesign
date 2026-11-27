@@ -28,7 +28,7 @@ const GROUPS = [
     { icon: UserRound, title: 'Interviewer avatars', text: 'Choose the face and voice your customers will talk to, from a custom library.' },
     { icon: ShieldCheck, title: 'Dual-agent moderation', text: 'One agent asks the questions. A second watches every exchange and keeps it sharp.' },
     { icon: MessageCircleQuestion, title: 'Adaptive probing', text: 'Every answer gets a follow-up, until Frank reaches the why a form never will.' },
-    { icon: Languages, title: '30+ languages', text: 'Customers speak their language. You read the results in yours.' },
+    { icon: Languages, title: '50+ interview languages', text: 'Customers speak their language. You read the results in yours.' },
     { icon: MousePointerClick, title: 'Flexible triggers', text: 'Share a link, or embed inline, as a pop-up or as a floating bubble.' },
     { icon: Palette, title: 'Your brand, not ours', text: 'Style the widget so it looks like it was always part of your site.' },
     { icon: UsersRound, title: 'Managed panel', text: 'No customers yet? Interview your target market from our panel.' },
@@ -43,7 +43,7 @@ const GROUPS = [
   { label: 'Take it anywhere', items: [
     { icon: Share2, title: 'Interview sharing', text: 'Send a private link to one moment or a whole analysis.' },
     { icon: Braces, title: 'Export and API', text: 'CSV, transcripts and reports, plus a full REST API.' },
-    { icon: Plug, title: 'Works with any AI, via MCP', text: 'Run studies from Claude, ChatGPT, Cursor, Dot, Instinct or any MCP client, in plain words.' },
+    { icon: Plug, title: 'Works with your AI, via MCP', text: 'Run studies from ChatGPT, Claude, Grok and Muse, plus other MCP clients that support remote servers with OAuth, in plain words.' },
   ] },
 ];
 

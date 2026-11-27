@@ -93,7 +93,7 @@
     [
      "Global Coverage",
      "Requires large teams & vendors",
-     "30+ languages out-of-the-box"
+     "50+ interview languages out-of-the-box"
     ],
     [
      "Cost per additional customer/user",
@@ -318,7 +318,7 @@
      "name": "Data"
     },
     {
-     "title": "Global access in 30+ languages",
+     "title": "Global access in 50+ interview languages",
      "text": "Move beyond your home market instantly. Talk to customers in any region or language and query the insights in your own language, getting actionable next steps you can work on immediately, no matter the market.",
      "img": "/benefits/scale/step-3.webp",
      "icon": "/benefits/scale/step-3-icon.svg",
@@ -370,7 +370,7 @@
     [
      "Global Coverage",
      "Requires large teams & vendors",
-     "30+ languages out-of-the-box"
+     "50+ interview languages out-of-the-box"
     ],
     [
      "Cost per additional customer/user",
@@ -418,14 +418,14 @@
  "speed": {
   "slug": "speed",
   "metaTitle": "Customer Insights Overnight, Not in Weeks | Frank",
-  "metaDescription": "With Frank AI Interviewer, you can run 100+ deep interviews overnight, get instant analysis, and move from question to insight to decision before your competitors even wake up!",
+  "metaDescription": "With Frank AI Researcher, you can run 100+ deep interviews overnight, get instant analysis, and move from question to insight to decision before your competitors even wake up!",
   "hero": {
    "label": "Speed",
    "lines": [
     "Understand customers.",
     "Outpace competitors."
    ],
-   "p": "With Frank AI Interviewer, you can run 100+ deep interviews overnight, get instant analysis, and move from question to insight to decision before your competitors even wake up!",
+   "p": "With Frank AI Researcher, you can run 100+ deep interviews overnight, get instant analysis, and move from question to insight to decision before your competitors even wake up!",
    "primary": {
     "label": "Start learning faster",
     "href": "https://app.hifrank.ai/signup"

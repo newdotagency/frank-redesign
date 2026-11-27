@@ -1,6 +1,6 @@
 // BenefitPage (V21.04): one of the four "Benefits" pages of hifrank.ai (/benefits/price, /quality, /scale, /speed) in the V21.04 style. They
 // share one layout on the live site, kept here: hero → "Trusted by" → "What Frank delivers" (tabs, each with its picture) → "When X
-// matters most" (four cards with icons) → "Traditional research vs Frank AI Interviewer" (three columns) → the home page's Testimonials
+// matters most" (four cards with icons) → "Traditional research vs Frank AI Researcher" (three columns) → the home page's Testimonials
 // section → closing. The words and pictures are the live pages' (benefits/benefits.json, public/benefits/<slug>/); the hero has no picture,
 // only the site's general hero panel. The pictures are the originals, to be re-coloured later.
 //   · "What Frank delivers" is the home page's progress tabs (HowItWorks), each step showing its original picture;
@@ -59,7 +59,7 @@ function Comparison({ b, reduce }) {
   return (
     <section aria-labelledby="bn-cmp-title" className="px-4 pt-[clamp(88px,10vw,150px)] sm:px-[clamp(16px,4vw,48px)]">
       <div className="mx-auto max-w-[1200px]">
-        <ScrubTitle reduce={reduce} id="bn-cmp-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['Traditional research vs', 'Frank AI Interviewer']} />
+        <ScrubTitle reduce={reduce} id="bn-cmp-title" className={'m-0 text-center leading-[1.06] text-ink [text-wrap:balance] ' + TITLE} lines={['Traditional research vs', 'Frank AI Researcher']} />
         {/* From 768px: one grid, so the rows line up across the three columns. */}
         <ScrubText reduce={reduce} lag={0.1} className="mt-12 hidden sm:mt-16 md:block">
           <div role="table" aria-label="Traditional research and Frank compared" className="grid grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)_minmax(0,1fr)] gap-x-3">
