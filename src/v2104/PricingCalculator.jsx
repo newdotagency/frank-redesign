@@ -13,7 +13,7 @@ export default function PricingCalculator() {
   const [yearly, setYearly] = useState(false);
   const r = calc(n, len, yearly);
   return (
-    <section aria-labelledby="pr-calc-title" className="px-4 pt-[clamp(48px,6vw,88px)] sm:px-[clamp(16px,4vw,48px)]">
+    <section aria-labelledby="pr-calc-title" className="pt-[clamp(48px,6vw,88px)]">
       <div data-agent-change="" className="mx-auto max-w-[1312px] rounded-[28px] bg-[#fffdf3] p-6 ring-1 ring-inset ring-[#1a1714]/[0.08] sm:p-10">
         <h2 id="pr-calc-title" className="m-0 font-['Figtree',sans-serif] text-[clamp(22px,2.4vw,30px)] font-medium leading-[1.15] tracking-[-0.02em] text-ink">What will my project cost?</h2>
         <p className="m-0 mt-2 font-sans text-[15.5px] leading-[1.6] text-ink/75">Interviews × average length = the voice minutes you need. Customer recruitment is not included.</p>
